@@ -1,8 +1,8 @@
-## References
+## 参考文献
 
-Beyond literals, any Object in JavaScript (including functions, arrays, regexp etc) are references. This means the following
+リテラル以外にも、JavaScriptのあらゆるオブジェクト（関数、配列、正規表現など）は参照です。これは、次のことを意味します
 
-### Mutations are across all references
+### 突然変異はすべての参照に渡っている
 
 ```js
 var foo = {};
@@ -12,7 +12,7 @@ foo.baz = 123;
 console.log(bar.baz); // 123
 ```
 
-### Equality is for references
+### 平等は参照用です
 
 ```js
 var foo = {};

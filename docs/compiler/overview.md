@@ -1,29 +1,29 @@
-# Compiler
-The TypeScript compiler source is located under the [`src/compiler`](https://github.com/Microsoft/TypeScript/tree/master/src/compiler) folder.
+# コンパイラ
+typescriptコンパイラのソースは、[`src / compiler`]（https://github.com/Microsoft/TypeScript/tree/master/src/compiler）フォルダの下にあります。
 
-It is split into the follow key parts:
-* Scanner (`scanner.ts`)
-* Parser (`parser.ts`)
-* Binder (`binder.ts`)
-* Checker (`checker.ts`)
-* Emitter (`emitter.ts`)
+それは以下の主要な部分に分割されます：
+* スキャナ（ `scanner.ts`）
+* パーサー（ `parser.ts`）
+* バインダー（ `バインダー.ts`）
+* チェッカー（ `checker.ts`）
+* エミッタ（ `emitter.ts`）
 
-Each of these get their own unique files in the source. These parts will be explained later on in this chapter.
+これらのそれぞれは、ソース内で独自のファイルを取得します。これらの部分については、この章の後半で説明します。
 
-## BYOTS
-We have a project called [Bring Your Own TypeScript (BYOTS)](https://github.com/basarat/byots) which makes it easier to play around with the compiler API e.g. by exposing internal APIs. You can use it to expose your local app's version of TypeScript globally.
+## バイツ
+私たちは、[Bring Your Own TypeScript（BYOTS）]というプロジェクト（https://github.com/basarat/byots）を持っています。内部APIを公開することによってこれを使用して、ローカルアプリケーションのTypeScriptのバージョンをグローバルに公開することができます。
 
-## Syntax vs. Semantics
-Just because something is *syntactically* correct doesn't mean it is *semantically* correct. Consider the following piece of TypeScript code which although *syntactically* valid is *semantically* wrong
+## シンタックスとセマンティクス
+文法的に正しいものが*意味的*正しいことを意味するわけではありません。以下のTypeScriptコードを考えてみましょう。*構文的には有効ですが*意味的には*間違っています
 
 ```ts
 var foo: number = "not a number";
 ```
 
-`Semantic` means "meaning" in English. This concept is useful to have in your head.
+「セマンティック」は英語で「意味」を意味します。このコンセプトはあなたの頭の中にあると便利です。
 
-## Processing Overview
-The following is a quick review of how these key parts of the TypeScript compiler compose:
+## 処理の概要
+以下は、TypeScriptコンパイラのこれらの主要部分がどのように構成されているかを簡単に見直したものです。
 
 ```code
 SourceCode ~~ scanner ~~> Token Stream
@@ -36,37 +36,37 @@ Token Stream ~~ parser ~~> AST
 ```code
 AST ~~ binder ~~> Symbols
 ```
-`Symbol` is the primary building block of the TypeScript *semantic* system. As shown the symbols are created as a result of binding. Symbols connect declaration nodes in the AST to other declarations contributing to the same entity.
+`Symbol`はTypeScript * semantic *システムの主要ビルディングブロックです。示されているように、シンボルはバインディングの結果として作成されます。シンボルは、AST内の宣言ノードを、同じエンティティに寄与する他の宣言に接続します。
 
-Symbols + AST are what is used by the checker to *semantically* validate the source code
+Symbols + ASTは、ソースコードを意味的に*検証するためにチェッカーが使用するものです
 ```code
 AST + Symbols ~~ checker ~~> Type Validation
 ```
 
-Finally When a JS output is requested:
+最後にJS出力が要求されたとき：
 ```code
 AST + Checker ~~ emitter ~~> JS
 ```
 
-There are a few additional files in the TypeScript compiler that provide utilities to many of these key portions which we cover next.
+TypeScriptコンパイラには、次に説明するキー部分の多くにユーティリティを提供するいくつかの追加ファイルがあります。
 
-## File: Utilities
-`core.ts` : core utilities used by the TypeScript compiler. A few important ones:
+## ファイル：ユーティリティ
+`core.ts`：TypeScriptコンパイラが使うコアユーティリティ。いくつか重要なもの：
 
-* `let objectAllocator: ObjectAllocator` : is a variable defined as a singleton global. It provides the definitions for `getNodeConstructor` (Nodes are covered when we look at `parser` / `AST`), `getSymbolConstructor` (Symbols are covered in `binder`), `getTypeConstructor` (Types are covered in `checker`), `getSignatureConstructor` (Signatures are the index, call and construct signatures).
+* `let objectAllocator：ObjectAllocator`：シングルトングローバルとして定義された変数です。 `getSymbolConstructor`（シンボルは`binder`でカバーされています）、 `getTypeConstructor`（型は`checker`で扱います）、 `getNodeConstructor`（ノードは`parser` / `AST`を見るとカバーされます）、`getSymbolConstructor` 、 `getSignatureConstructor`（シグネチャはインデックス、コール、シグネチャを構成します）。
 
-## File: Key Data Structures
-`types.ts` contains key data structures and interfaces uses throughout the compiler. Here is a sampling of a few key ones:
+## ファイル：主要なデータ構造
+`types.ts`には、主要なデータ構造とインタフェースがコンパイラ全体で使用されます。いくつかの重要なサンプルの抜粋です：
 * `SyntaxKind`
-The AST node type is identified by the `SyntaxKind` enum.
+ASTノードタイプは、 `SyntaxKind` enumによって識別されます。
 * `TypeChecker`
-This is the interface provided by the TypeChecker.
+TypeCheckerが提供するインターフェイスです。
 * `CompilerHost`
-This is used by the `Program` to interact with the `System`.
+これは `Program`が`System`と対話するために使用します。
 * `Node`
-An AST node.
+ASTノード。
 
-## File: System
-`system.ts`. All interaction of the TypeScript compiler with the operating system goes through a `System` interface. Both the interface and its implementations (`WScript` and `Node`) are defined in `system.ts`. You can think of it as the *Operating Environment* (OE).
+## ファイルシステム
+`system.ts`です。 TypeScriptコンパイラとオペレーティングシステムとのすべての対話は、 `System`インタフェースを介して行われます。インターフェースとその実装（ `WScript`と`Node`）は `system.ts`で定義されています。あなたは* Operating Environment *（OE）と考えることができます。
 
-Now that you have an overview of the major files, we can look at the concept of `Program`
+主要なファイルの概要を知ったので、 `Program`の概念を見ることができます

@@ -1,29 +1,29 @@
-## External modules
-There is a lot of power and usability packed into the TypeScript external module pattern. Here we discuss its power and some patterns needed to reflect real world usages.
+## 外部モジュール
+TypeScriptの外部モジュールパターンには多くの力と使い勝手があります。ここでは、そのパワーと実際の用途を反映するために必要ないくつかのパターンについて説明します。
 
-### Clarification: commonjs, amd, es modules, others
+### 明確化：commonjs、amd、esモジュール、その他
 
-First up we need to clarify the (awful) inconsistency of the module systems out there. I'll just give you my *current* recommendation and remove the noise i.e. not show you all the *other* ways things can work.
+最初に、そこにあるモジュールシステムの（ひどい）矛盾を明確にする必要があります。私はあなたに私の現在の*推奨を与えて、ノイズを取り除くだけです。
 
-From the *same TypeScript* you can generate different *JavaScript* depending upon the `module` option. Here are things you can ignore (I am not interested in explaining dead tech):
+* 同じTypeScript *から、 `module`オプションに応じて異なる* JavaScript *を生成することができます。無視できるものは次のとおりです（デッドテックの説明に興味はありません）：
 
-* AMD: Do not use. Was browser only.
-* SystemJS: Was a good experiment. Superseded by ES modules.
-* ES Modules: Not ready yet.
+* AMD：使用しないでください。ブラウザのみでした。
+* SystemJS：良い実験でした。 ESモジュールによって置き換えられました。
+* ESモジュール：まだ準備ができていません。
 
-Now these are just the options for *generating the JavaScript*. Instead of these options use `module:commonjs`
+これはJavaScript *を生成するためのオプションです。これらのオプションの代わりに、 `module：commonjs`
 
-How you *write* TypeScript modules is also a bit of a mess. Again here is how not to do it *today*:
+どのように*書く* TypeScriptモジュールもちょっと混乱しています。もう一度やりなさい*今日*：
 
-* `import foo = require('foo')`. i.e. `import/require`. Use ES module syntax instead.
+* `import foo = require（ 'foo'）`。すなわち、「インポート/要求する」。代わりにESモジュールの構文を使用してください。
 
-Cool, with that out of the way, lets look at the ES module syntax.
+クールな方法で、ESモジュールの構文を見てみましょう。
 
-> Summary: Use `module:commonjs` and use the ES module syntax to import / export / author modules.
+> 概要： `module：commonjs`を使い、ESモジュール構文を使ってモジュールをインポート/エクスポート/作成します。
 
-### ES Module syntax
+### ESモジュールの構文
 
-* Exporting a variable (or type) is as easy as prefixing the keyword `export` e.g.
+* 変数（または型）のエクスポートは、キーワード'export`の前に置くのと同じくらい簡単です。
 
 ```js
 // file `foo.ts`
@@ -33,7 +33,7 @@ export type SomeType = {
 };
 ```
 
-* Exporting a variable or type in a dedicated `export` statement e.g.
+* 変数またはタイプを専用の「エクスポート」ステートメントにエクスポートする。
 
 ```js
 // file `foo.ts`
@@ -46,7 +46,7 @@ export {
   SomeType
 };
 ```
-* Exporting a variable or type in a dedicated `export` statement *with renaming* e.g.
+* 名前を変更して専用の `export`文で変数や型をエクスポートする*
 
 ```js
 // file `foo.ts`
@@ -54,58 +54,58 @@ let someVar = 123;
 export { someVar as aDifferentName };
 ```
 
-* Import a variable or a type using `import` e.g.
+* 'import'を使用して変数または型をインポートする。
 
 ```js
 // file `bar.ts`
 import { someVar, SomeType } from './foo';
 ```
 
-* Import a variable or a type using `import` *with renaming* e.g.
+* 名前を変更して* import *を使って変数や型をインポートします。
 
 ```js
 // file `bar.ts`
 import { someVar as aDifferentName } from './foo';
 ```
 
-* Import everything from a module into a name with `import * as` e.g.
+* モジュールから `import * as 'を持つ名前にすべてをインポートします。
 ```js
 // file `bar.ts`
 import * as foo from './foo';
 // you can use `foo.someVar` and `foo.SomeType` and anything else that foo might export.
 ```
 
-* Import a file *only* for its side effect with a single import statement:
+* 1つのインポートステートメントで副作用のために* only *ファイルをインポートする：
 
 ```js
 import 'core-js'; // a common polyfill library
 ```
 
-* Re-Exporting all the items from another module
+* 別のモジュールからすべてのアイテムを再エクスポートする
 
 ```js
 export * from './foo';
 ```
 
-* Re-Exporting only some items from another module
+* 一部のアイテムのみを別のモジュールから再エクスポートする
 
 ```js
 export { someVar } from './foo';
 ```
 
-* Re-Exporting only some items from another module *with renaming*
+* 名前を変更して別のモジュールから一部のアイテムのみを再エクスポートする*
 
 ```js
 export { someVar as aDifferentName } from './foo';
 ```
 
-### Default exports/imports
-As you will learn later, I am not a fan of default exports. Nevertheless here is syntax for export and using default exports
+### デフォルトの輸出入
+あなたが後で学ぶように、私はデフォルト輸出のファンではありません。ここではエクスポートの構文とデフォルトのエクスポートを使用しています
 
-* Export using `export default`
-  * before a variable (no `let / const / var` needed)
-  * before a function
-  * before a class
+* `export default`を使ってエクスポートする
+  *変数の前に（ `let / const / var`は必要ありません）
+  *関数の前に
+  *クラス前
 
 ```js
 // some var
@@ -116,67 +116,67 @@ export default function someFunction() { }
 export default class SomeClass { }
 ```
 
-* Import using the `import someName from "someModule"` syntax (you can name the import whatever you want) e.g.
+* import someName using someModule "構文を使用してインポートします（インポートには任意の名前を付けることができます）。
 
 ```js
 import someLocalNameForThisFile from "../foo";
 ```
 
-### Module paths
+### モジュールのパス
 
-> I am just going to assume `moduleResolution: commonjs`. This is the option you should have in your TypeScript config. This setting is implied automatically by `module:commonjs`.
+> 私は `moduleResolution：commonjs`と仮定しようとしています。これはあなたのTypeScript設定に含めるべきオプションです。この設定は `module：commonjs`によって自動的に暗示されます。
 
-There are two distinct kinds of modules. The distinction is driven by the path section of the import statment (e.g. `import foo from 'THIS IS THE PATH SECTION'`).
+2つの異なる種類のモジュールがあります。この区別は、インポート・ステートメントのパス・セクションによって行われます（たとえば、「これはパス・セクションです」からのインポートfoo）。
 
-* Relative path modules (where path starts with `.` e.g. `./someFile` or `../../someFolder/someFile` etc.)
-* Other dynamic lookup modules (e.g. `'core-js'` or `'typestyle'` or `'react'` or even `'react/core'` etc.)
+* 相対パスモジュール（パスは `.`で始まる`。/ someFile`や `../../ someFolder / someFile`など）
+* その他の動的参照モジュール（ ``core-js '`や` `typestyle``や` `react``や` `react / core``など）
 
-The main difference is *how the module is resolved on the file system*.
+主な違いは、モジュールがファイルシステム上でどのように解決されるかです。
 
-> I will use a conceptual term *place* that I will explain after mentioning the lookup pattern.
+> 私は、ルックアップパターンについて言及した後に説明する概念的な用語* place *を使用します。
 
-#### Relative path modules
-Easy, just follow the relative path :) e.g.
+#### 相対パスモジュール
+簡単、ちょうど相対的なパスに従ってください:)
 
-* if file `bar.ts` does `import * as foo from './foo';` then place `foo` must exist in the same folder.
-* if file `bar.ts` does `import * as foo from '../foo';` then place `foo` must exist in a folder up.
-* if file `bar.ts` does `import * as foo from '../someFolder/foo';` then one folder up, there must be a folder `someFolder` with a place `foo`
+* `bar.ts`ファイルが`。* foo 'から `import * as foo'を実行した場合、`foo`を同じフォルダに置く必要があります。
+* ファイル `bar.ts`が '../foo'から`import * as foo 'を実行する場合、 `foo`はフォルダ内に存在する必要があります。
+* ファイル `bar.ts`が '../foo'から`foo 'としてインポートするのであれば、 `foo`の場所に`someFolder`というフォルダがなければなりません。
 
-Or any other relative path you can think of :)
+またはあなたが考えることができる他の相対的なパス:)
 
-#### Dynamic lookup
+#### 動的ルックアップ
 
-When the import path is *not* relative, lookup is driven by [*node style resolution*](https://nodejs.org/api/modules.html#modules_all_together). Here I only give a simple example:
+インポートパスが*相対でない場合、ルックアップは[*ノードスタイル解決*]（https://nodejs.org/api/modules.html#modules_all_together）によって駆動されます。ここでは簡単な例を示します。
 
-* You have `import * as foo from 'foo'`, the following are the places that are checked *in order*
-  * `./node_modules/foo`
-  * `../node_modules/foo`
-  * `../../node_modules/foo`
-  * Till root of file system
+* あなたは `foo 'からfooとして` import *を持っています、以下はチェックされた場所です*順番に*
+  * `。/ node_modules / foo`
+  * `../ node_modules / foo`
+  * `../../ node_modules / foo`
+  *ファイルシステムのルートまで
 
-* You have `import * as foo from 'something/foo'`, the following are the places that are checked *in order*
-  * `./node_modules/something/foo`
-  * `../node_modules/something/foo`
-  * `../../node_modules/something/foo`
-  * Till root of file system
+* あなたは `something * / foo'`からfooとして` import *を持っています、以下はチェックされた場所です*順番に*
+  * `。/ node_modules / something / foo`
+  * `../ node_modules / something / foo`
+  * `../../ node_modules / something / foo`
+  *ファイルシステムのルートまで
 
 
-### What is *place*
-When I say *places that are checked* I mean that the following things are checked in that place. e.g. for a place `foo`:
+### *とは何ですか？
+私がチェックしている場所*を言うとき、私はその場所で次のことがチェックされていることを意味します。例えば`foo`の場所に対して：
 
-* If the place is a file, e.g. `foo.ts`, hurray!
-* else if the place is a folder and there is a file `foo/index.ts`, hurray!
-* else if the place is a folder and there is a `foo/package.json` and a file specified in the `types` key in the package.json that exists, then hurray!
-* else if the place is a folder and there is a `package.json` and a file specified in the `main` key in the package.json that exists, then hurray!
+* 場所がファイルの場合、たとえば`foo.ts`、hurray！
+* 場所がフォルダで、 `foo / index.ts`ファイルがある場合は、hurray！
+* 場所がフォルダで、 `foo / package.json`と存在するpackage.json内の`types`キーで指定されたファイルがある場合は、hurray！
+* 他に場所がフォルダであり、存在するpackage.jsonに `main`キーで指定された`package.json`とファイルが存在する場合、その時ハレー！
 
-By file I actually mean `.ts` / `.d.ts` and `.js`.
+ファイルでは、実際には `.ts`/` .d.ts`と `.js`を意味します。
 
-And that's it. You are now module lookup experts (not a small feat!).
+以上です。あなたは今モジュールルックアップのエキスパートです（小さな偉業ではありません！）。
 
-### Overturning dynamic lookup *just for types*
-You can declare a module *globally* for your project by using `declare module 'somePath'` and then imports will resolve *magically* to that path
+### 型のためだけにダイナミックルックアップを転覆する*
+`declare module 'somePath'`を使ってあなたのプロジェクトのモジュール*をグローバルに宣言することができます。そして、importはそのパスに魔法のように*解決します
 
-e.g.
+例えば
 ```ts
 // globals.d.ts
 declare module 'foo' {
@@ -185,7 +185,7 @@ declare module 'foo' {
 }
 ```
 
-and then:
+その後：
 ```ts
 // anyOtherTsFileInYourProject.ts
 import * as foo from 'foo';
@@ -194,67 +194,67 @@ import * as foo from 'foo';
 
 ```
 
-### `import/require` for importing type only
-The following statement:
+### `import / require`はタイプをインポートするだけです
+次の文：
 
 ```ts
 import foo = require('foo');
 ```
 
-actually does *two* things:
+実際には* 2つのもの：
 
-* Imports the type information of the foo module.
-* Specifies a runtime dependency on the foo module.
+* fooモジュールのタイプ情報をインポートします。
+* fooモジュールのランタイム依存性を指定します。
 
-You can pick and choose so that only *the type information* is loaded and no runtime dependency occurs. Before continuing you might want to recap the [*declaration spaces*](../project/declarationspaces.md) section of the book.
+* タイプ情報*のみがロードされ、ランタイム依存性が発生しないように選択して選択することができます。続行する前に、本の[* declaration spaces *]（../ project / declarationspaces.md）セクションを要約するとよいでしょう。
 
-If you do not use the imported name in the variable declaration space then the import is completely removed from the generated JavaScript. This is best explained with examples. Once you understand this we will present you with use cases.
+変数宣言空間でインポートされた名前を使用しないと、インポートは生成されたJavaScriptから完全に削除されます。これは例を用いて最もよく説明されています。これを理解すると、ユースケースを紹介します。
 
-#### Example 1
+#### 例1
 ```ts
 import foo = require('foo');
 ```
-will generate the JavaScript:
+JavaScriptを生成します：
 
 ```js
 
 ```
-That's right. An *empty* file as foo is not used.
+そのとおり。 fooとしての* empty *ファイルは使用されません。
 
-#### Example 2
+#### 例2
 ```ts
 import foo = require('foo');
 var bar: foo;
 ```
-will generate the JavaScript:
+JavaScriptを生成します：
 ```js
 var bar;
 ```
-This is because `foo` (or any of its properties e.g. `foo.bas`) is never used as a variable.
+これは、 `foo`（または`foo.bas`などのプロパティ）が決して変数として使用されないためです。
 
-#### Example 3
+#### 例3
 ```ts
 import foo = require('foo');
 var bar = foo;
 ```
-will generate the JavaScript (assuming commonjs):
+JavaScriptを生成します（commonjsと仮定します）。
 ```js
 var foo = require('foo');
 var bar = foo;
 ```
-This is because `foo` is used as a variable.
+これは `foo`が変数として使われているからです。
 
 
-### Use case: Lazy loading
-Type inference needs to be done *upfront*. This means that if you want to use some type from a file `foo` in a file `bar` you will have to do:
+### 使用例：遅延読み込み
+型推論は* upfront *する必要があります。これは、ファイル `bar`でファイル`foo`のある型を使用したい場合、次のようにしなければなりません：
 
 ```ts
 import foo = require('foo');
 var bar: foo.SomeType;
 ```
-However, you might want to only load the file `foo` at runtime under certain conditions. For such cases you should use the `import`ed name only in *type annotations* and **not** as a *variable*. This removes any *upfront* runtime dependency code being injected by TypeScript. Then *manually import* the actual module using code that is specific to your module loader.
+しかし、特定の条件下では、実行時に `foo`ファイルだけをロードしたいかもしれません。そのような場合には、 `import`という名前を*型注釈*と**変数*として**使用しないでください。これは、TypeScriptによって注入された* upfront *ランタイム依存性コードをすべて削除します。 *あなたのモジュールローダーに固有のコードを使って実際のモジュールを手動でインポートする*。
 
-As an example, consider the following `commonjs` based code where we only load a module `'foo'` on a certain function call:
+例として、次の `commonjs`ベースのコードを考えてみましょう。このコードでは、特定の関数呼び出しで` `foo``モジュールだけを読み込みます：
 
 ```ts
 import foo = require('foo');
@@ -266,7 +266,7 @@ export function loadFoo() {
 }
 ```
 
-A similar sample in `amd` (using requirejs) would be:
+amd（requirejsを使用）の同様のサンプルは次のようになります：
 ```ts
 import foo = require('foo');
 
@@ -278,17 +278,17 @@ export function loadFoo() {
 }
 ```
 
-This pattern is commonly used:
-* in web apps where you load certain JavaScript on particular routes,
-* in node applications where you only load certain modules if needed to speed up application bootup.
+このパターンは一般的に使用されます。
+* あなたが特定のルート上の特定のJavaScriptを読み込むWebアプリケーションでは、
+* アプリケーションの起動を高速化するために、必要に応じて特定のモジュールのみをロードするノードアプリケーションでは*。
 
-### Use case: Breaking Circular dependencies
+### ユースケース：円周の依存関係を壊す
 
-Similar to the lazy loading use case certain module loaders (commonjs/node and amd/requirejs) don't work well with circular dependencies. In such cases it is useful to have *lazy loading* code in one direction and loading the modules upfront in the other direction.
+レイジーロードの使用例と同様に、特定のモジュールローダ（commonjs / nodeとamd / requirejs）は循環依存性でうまく動作しません。そのような場合には、ある方向に* lazy loading *コードを持ち、他の方向にモジュールを先にロードすると便利です。
 
-### Use case: Ensure Import
+### ユースケース：インポートを確実にする
 
-Sometimes you want to load a file just for the side effect (e.g. the module might register itself with some library like [CodeMirror addons](https://codemirror.net/doc/manual.html#addons) etc.). However, if you just do a `import/require` the transpiled JavaScript will not contain a dependency on the module and your module loader (e.g. webpack) might completely ignore the import. In such cases you can use a `ensureImport` variable to ensure that the compiled JavaScript takes a dependency on the module e.g.:
+場合によっては、副作用のためだけにファイルをロードすることもできます（モジュールが[CodeMirror addons]（https://codemirror.net/doc/manual.html#addons）などのライブラリに登録されるなど）。しかし、単に `import / require`を行うと、翻訳されたJavaScriptはモジュールへの依存関係を持たず、モジュールローダー（例えばwebpack）はインポートを完全に無視するかもしれません。このような場合、 `ensureImport`変数を使用して、コンパイルされたJavaScriptがモジュールに依存するようにすることができます。
 
 ```ts
 import foo = require('./foo');

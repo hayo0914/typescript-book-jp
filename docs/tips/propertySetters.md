@@ -1,8 +1,8 @@
-## Limit usage of property setters
+## プロパティセッターの使用を制限する
 
-Prefer explicit set/get functions (e.g. `setBar` and `getBar` functions) over setters/getters.
+セッター/ゲッターより明示的なset / get関数（例えば `setBar`や`getBar`関数）を使うことをお勧めします。
 
-Consider the following code:
+次のコードを考えてみましょう：
 
 ```ts
 foo.bar = {
@@ -11,7 +11,7 @@ foo.bar = {
 };
 ```
 
-In the presence of setter/getters:
+セッター/ゲッターの存在下で：
 
 ```ts
 class Foo {
@@ -25,6 +25,6 @@ class Foo {
 let foo = new Foo();
 ```
 
-This is not a *good* use of property setters. The person reading the first code sample has no context about all the things that will change. Whereas someone calling `foo.setBar(value)` might have an idea that something might change on `foo`.
+これは不動産設定者の*良い*使用ではありません。最初のコードサンプルを読んでいる人は、変更されるすべてのものについてのコンテキストがありません。 `foo.setBar（value）`を呼び出す人は、 `foo`で何かが変わるかもしれないという考えを持っているかもしれません。
 
-> Bonus points: Find references works better if you have different functions. In TypeScript tools if you find references for a getter or a setter you get *both* whereas with explicit function calls you only get references to the relevant function.
+> ボーナスポイント：異なる機能を持っている場合は参考文献を見つけることができます。 TypeScriptツールでは、getterまたはsetterの参照が見つかった場合は*両方を取得しますが、明示的な関数呼び出しでは関連する関数への参照のみを取得します。

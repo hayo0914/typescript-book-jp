@@ -1,21 +1,21 @@
-# Never
+# 決して
 
-> [A video lesson on the never type](https://egghead.io/lessons/typescript-use-the-never-type-to-avoid-code-with-dead-ends-using-typescript)
+> [決してタイプしないビデオレッスン]（https://egghead.io/lessons/typescript-use-the-never-type-to-avoid-code-with-dead-ends-using-typescript）
 
-Programming language design does have a concept of *bottom* type that is a **natural** outcome as soon as you do *code flow analysis*. TypeScript does *code flow analysis* (😎) and so it needs to reliably represent stuff that might never happen.
+プログラミング言語の設計には、コードフロー解析*を行うとすぐに**自然な結果である* bottom *型の概念があります。 TypeScriptは*フロー解析*（😎）を実行するので、決して起こりえないようなものを確実に表現する必要があります。
 
-The `never` type is used in TypeScript to denote this *bottom* type. Cases when it occurs naturally:
+`never`型は、この* bottom型を表すためにTypeScriptで使用されます。自然発生した場合：
 
-* A function never returns (e.g. if the function body has `while(true){}`)
-* A function always throws (e.g. in `function foo(){throw new Error('Not Implemented')}` the return type of `foo` is `never`)
+* 関数が返ることはありません（例えば、関数本体に `while（true）{}`がある場合）
+* 関数は常に（例えば `function foo（）{throw new Error（ '実装されていません'）}` `foo`の戻り値の型は`never`です）
 
-Of course you can use this annotation yourself as well
+もちろん、この注釈を自分でも使用できます
 
 ```ts
 let foo: never; // Okay
 ```
 
-However, *only `never` can be assigned to another never*. e.g.
+しかし、決して*決して*決して他の決して*割り当てることができません。例えば
 
 ```ts
 let foo: never = 123; // Error: Type number is not assignable to never
@@ -24,11 +24,11 @@ let foo: never = 123; // Error: Type number is not assignable to never
 let bar: never = (() => { throw new Error('Throw my hands in the air like I just dont care') })();
 ```
 
-Great. Now let's just jump into its key use case :)
+すばらしいです。さあ、その主要な使用例に飛び乗りましょう:)
 
-# Use case: Exhaustive Checks
+# ユースケース：完全なチェック
 
-You can call never functions in a never context.
+neverコンテキストで関数を決して呼び出すことはできません。
 
 ```ts
 function foo(x: string | number): boolean {
@@ -41,7 +41,7 @@ function foo(x: string | number): boolean {
   // Without a never type we would error :
   // - Not all code paths return a value (strict null checks)
   // - Or Unreachable code detected
-  // But because TypeScript understands that `fail` function returns `never`
+  // But because typescript understands that `fail` function returns `never`
   // It can allow you to call it as you might be using it for runtime safety / exhaustive checks.
   return fail("Unexhaustive!");
 }
@@ -49,16 +49,16 @@ function foo(x: string | number): boolean {
 function fail(message: string): never { throw new Error(message); }
 ```
 
-And because `never` is only assignable to another `never` you can use it for *compile time* exhaustive checks as well. This is covered in the [*discriminated union* section](./discriminated-unions.md).
+`never`は他の`never`にのみ割り当てられるので、* compile time *徹底的なチェックのためにも使うことができます。これは[* discriminated union *セクション]（./ discriminated-unions.md）で網羅されています。
 
-# Confusion with `void`
+# 「ボイド」との混乱
 
-As soon as someone tells you that `never` is returned when a function never exits gracefully you intuitively want to think of it as the same as `void`. However, `void` is a Unit. `never` is a falsum.
+関数が正常に終了しないときには `never`が返されると直ちに直感的に`void`と同じように考えたいと思っていますが、 `void`はUnitです。 `決して`はうそつきです。
 
-A function that *returns* nothing returns a Unit `void`. However, a function *that never returns* (or always throws) returns `never`. `void` is something that can be assigned (without `strictNullChecking`) but `never` can `never` be assigned to anything other than `never`.
+* 何も返さない関数はユニット `void`を返します。しかし、*を返すことのない関数（または常にスローする）*は `never`を返します。 `void`は（strictNullCheckingなしで）割り当てることができるものですが、`never`以外のものに `never`を割り当てることはできません。
 
-<!--
-PR: https://github.com/Microsoft/TypeScript/pull/8652
-Issue : https://github.com/Microsoft/TypeScript/issues/3076
-Concept : https://en.wikipedia.org/wiki/Bottom_type
--->
+<！ - 
+PR：https://github.com/Microsoft/TypeScript/pull/8652
+問題：https://github.com/Microsoft/TypeScript/issues/3076
+コンセプト：https://en.wikipedia.org/wiki/Bottom_type
+ - >

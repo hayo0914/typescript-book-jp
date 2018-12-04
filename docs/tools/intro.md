@@ -1,2 +1,2 @@
-# Tools
-Here are some great tools that I recommend you use or at least try in your TypeScript projects. 
+# ツール
+ここでは、あなたが使用するか、少なくともあなたのTypeScriptプロジェクトで試してみることをお勧めする素晴らしいツールがあります。

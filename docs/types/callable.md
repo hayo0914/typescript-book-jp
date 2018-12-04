@@ -1,20 +1,20 @@
-## Callable
-You can annotate callables as a part of a type or an interface as follows
+## 呼び出し可能
+次のように、タイプまたはインタフェースの一部としてコール可能オブジェクトに注釈を付けることができます
 
 ```ts
 interface ReturnString {
   (): string
 }
 ```
-An instance of such an interface would be a function that returns a string e.g.
+そのようなインターフェースのインスタンスは、例えば文字列を返す関数である。
 
 ```ts
 declare const foo: ReturnString;
 const bar = foo(); // bar is inferred as a string
 ```
 
-### Obvious examples
-Of course such a *callable* annotation can also specify any arguments / optional arguments / rest arguments as needed. e.g. here is a complex example:
+### 明らかな例
+もちろん、このような*呼び出し可能な注釈は、必要に応じて引数/オプション引数/残り引数を指定することもできます。例えばここに複雑な例があります：
 
 ```ts
 interface Complex {
@@ -22,7 +22,7 @@ interface Complex {
 }
 ```
 
-An interface can provide multiple callable annotations to specify function overloading. For example:
+インタフェースは、複数の呼び出し可能な注釈を提供して、関数のオーバーロードを指定することができます。例えば：
 
 ```ts
 interface Overloaded {
@@ -48,7 +48,7 @@ const str = overloaded(''); // type of `str` is inferred as `string`
 const num = overloaded(123); // type of `num` is inferred as `number`
 ```
 
-Of course, like the body of *any* interface, you can use the body of a callable interface as a type annotation for a variable. For example:
+もちろん、* any *インターフェースの本体のように、呼び出し可能なインターフェースの本体を変数の型名として使用することができます。例えば：
 
 ```ts
 const overloaded: {
@@ -57,19 +57,19 @@ const overloaded: {
 } = (foo: any) => foo;
 ```
 
-### Arrow Syntax
-To make it easy to specify callable signatures, TypeScript also allows simple arrow type annotations. For example, a function that takes a `number` and returns a `string` can be annotated as:
+### 矢印の構文
+呼び出し可能なシグネチャを簡単に指定できるように、TypeScriptでは単純な矢印タイプの注釈も使用できます。例えば、 `number`をとり、`string`を返す関数は次のように注釈することができます：
 
 ```ts
 const simple: (foo: number) => string
     = (foo) => foo.toString();
 ```
 
-> Only limitation of the arrow syntax: You can't specify overloads. For overloads you must use the full bodied `{ (someArgs): someReturn }` syntax.
+> 矢印の構文の制限のみ：過負荷を指定することはできません。オーバーロードの場合、フルボディの `{（someArgs）：someReturn}`構文を使用する必要があります。
 
 ### Newable
 
-Newable is just a special type of *callable* type annotation with the prefix `new`. It simply means that you need to *invoke* with `new` e.g.
+Newableは、接頭辞 `new`を持つ特別な型の* callable *型の注釈です。これは単に* newを使って*を呼び出す必要があることを意味します。
 
 ```ts
 interface CallMeWithNewToGetString {

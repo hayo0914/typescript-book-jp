@@ -1,13 +1,13 @@
-## Null and Undefined
-JavaScript (and by extension TypeScript) has two bottom types : `null` and `undefined`. They are *intended* to mean different things:
+## NullおよびUndefined
+JavaScript（拡張子はTypeScript）には、 `null`と`undefined`という2つのボトムタイプがあります。彼らは異なることを意味することを意図しています*
 
-* Something hasn't been initialized : `undefined`.
-* Something is currently unavailable: `null`.
+* 何かが初期化されていない： `undefined`。
+* 何か現在利用できません： `null`。
 
 
-### Checking for either
+### どちらかを確認する
 
-Fact is you will need to deal with both. Just check for either with `==` check.
+事実、あなたは両方を扱う必要があります。 `==`チェックだけでどちらかをチェックしてください。
 
 ```ts
 /// Imagine you are doing `foo.bar == undefined` where bar can be one of:
@@ -19,7 +19,7 @@ console.log(0 == undefined); // false
 console.log('' == undefined); // false
 console.log(false == undefined); // false
 ```
-Recommend `== null` to check for both `undefined` or `null`. You generally don't want to make a distinction between the two.
+`== null`を使って`undefined`と `null`の両方をチェックすることをお勧めします。あなたは一般的に2つを区別したくありません。
 
 ```ts
 function foo(arg: string | null | undefined) {
@@ -29,15 +29,15 @@ function foo(arg: string | null | undefined) {
 }
 ```
 
-One exception, root level undefined values which we discuss next.
+1つの例外は、ルートレベル未定義の値です。
 
-### Checking for root level undefined
+### 未定義のルートレベルのチェック
 
-Remember how I said you should use `== null`. Of course you do (cause I just said it ^). Don't use it for root level things. In strict mode if you use `foo` and `foo` is undefined you get a `ReferenceError` **exception** and the whole call stack unwinds.
+`== null`を使うべきだと言ったことを思い出してください。もちろん、あなたは（私はちょうどそれを言ったので^）。ルートレベルのものには使用しないでください。 strictモードで `foo`を使うと`foo`が定義されていないと、 `ReferenceError` **例外**が発生し、呼び出しスタック全体が巻き戻されます。
 
-> You should use strict mode ... and in fact the TS compiler will insert it for you if you use modules ... more on those later in the book so you don't have to be explicit about it :)
+> 厳密なモードを使うべきです...実際には、TSコンパイラはモジュールを使うとそれを挿入します...もっと後のものについては、もっと詳しく述べる必要はありません:)
 
-So to check if a variable is defined or not at a *global* level you normally use `typeof`:
+したがって、変数が* global *レベルで定義されているかどうかを確認するには、通常は `typeof`を使用します：
 
 ```ts
 if (typeof someglobal !== 'undefined') {
@@ -46,8 +46,8 @@ if (typeof someglobal !== 'undefined') {
 }
 ```
 
-### Limit explicit use of `undefined`
-Because TypeScript gives you the opportunity to *document* your structures separately from values instead of stuff like:
+### 明示的に `undefined`を使うことを制限する
+TypeScriptは以下のようなものではなく、値とは別にあなたの構造体を文書化する機会を与えるからです：
 ```ts
 function foo(){
   // if Something
@@ -56,7 +56,7 @@ function foo(){
   return {a:1,b:undefined};
 }
 ```
-you should use a type annotation:
+型の注釈を使用する必要があります。
 ```ts
 function foo():{a:number,b?:number}{
   // if Something
@@ -66,8 +66,8 @@ function foo():{a:number,b?:number}{
 }
 ```
 
-### Node style callbacks
-Node style callback functions (e.g. `(err,somethingElse)=>{ /* something */ }`) are generally called with `err` set to `null` if there isn't an error. You generally just use a truthy check for this anyways:
+### ノードスタイルコールバック
+ノードスタイルのコールバック関数（ `（err、somethingElse）=> {/ *何か* /}`）は、エラーがなければ `err`を`null`に設定して呼び出されます。あなたは一般的にちょうどこれのために本当にチェックを使用します：
 
 ```ts
 fs.readFile('someFile', 'utf8', (err,data) => {
@@ -78,18 +78,18 @@ fs.readFile('someFile', 'utf8', (err,data) => {
   }
 });
 ```
-When creating your own APIs it's *okay* to use `null` in this case for consistency. In all sincerity for your own APIs you should look at promises, in that case you actually don't need to bother with absent error values (you handle them with `.then` vs. `.catch`).
+独自のAPIを作成するときは、一貫性のために `null`を使用してください。あなた自身のAPIの全ての誠実さにおいて、約束を見てください。その場合、実際にはエラー値（ `.then`と`.catch`を使って扱います）を気にする必要はありません。
 
-### Don't use `undefined` as a means of denoting *validity*
+### *有効性を示す手段として `undefined`を使用しないでください*
 
-For example an awful function like this:
+たとえば、次のようなひどい関数です。
 
 ```ts
 function toInt(str:string) {
   return str ? parseInt(str) : undefined;
 }
 ```
-can be much better written like this:
+次のように書くのがはるかに優れています：
 ```ts
 function toInt(str: string): { valid: boolean, int?: number } {
   const int = parseInt(str);
@@ -103,7 +103,7 @@ function toInt(str: string): { valid: boolean, int?: number } {
 ```
 
 
-### Final thoughts
-TypeScript team doesn't use `null` : [TypeScript coding guidelines](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined) and it hasn't caused any problems. Douglas Crockford thinks [`null` is a bad idea](https://www.youtube.com/watch?v=PSGEjv3Tqo0&feature=youtu.be&t=9m21s) and we should all just use `undefined`.
+### 最終的な考え
+TypeScriptチームは、[TypeScriptコーディングガイドライン]（https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined）を使用せず、問題は発生していません。 Douglas Crockfordは[`null`は悪い考えだと思う]（https://www.youtube.com/watch?v=PSGEjv3Tqo0&feature=youtu.be&t=9m21s）、私たちはすべて`undefined`を使うべきです。
 
-However, NodeJS style code bases uses `null` for Error arguments as standard as it denotes `Something is currently unavailable`. I personally don't care to distinguish between the two as most projects use libraries with differing opinions and just rule out both with `== null`.
+しかし、NodeJSスタイルのコードベースでは、Error引数に `null`が標準で使用されています。これは`何か現在利用できません 'を示しています。私は個人的には、ほとんどのプロジェクトが意見の異なるライブラリを使い、 `== null`で除外するだけなので、2つを区別するのに気にしません。

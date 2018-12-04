@@ -1,10 +1,10 @@
-## JQuery Tips
+## JQueryのヒント
 
-Note: you need to install the `jquery.d.ts` file for these tips
+注意：これらのヒント用に `jquery.d.ts`ファイルをインストールする必要があります
 
-### Quickly define a new plugin 
+### 新しいプラグインをすばやく定義する
 
-Just create `jquery-foo.d.ts` with: 
+次のように `jquery-foo.d.ts`を作成してください：
 
 ```ts
 interface JQuery {
@@ -12,4 +12,4 @@ interface JQuery {
 }
 ```
 
-And now you can use `$('something').foo({whateverYouWant:'hello jquery plugin'})`
+そして、あなたは `$（ 'something'）を使うことができます。foo（{whateverYouWant： 'hello jquery plugin'}）`

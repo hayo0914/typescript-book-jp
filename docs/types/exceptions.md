@@ -1,6 +1,6 @@
-# Exception Handling
+# 例外処理
 
-JavaScript has an `Error` class that you can use for exceptions. You throw an error with the `throw` keyword. You can catch it with a `try` / `catch` block pair e.g.
+JavaScriptには、例外のために使用できる `Error`クラスがあります。あなたは `throw`キーワードでエラーを投げます。あなたは `try`/` catch`ブロックの対でそれを捕まえることができます。
 
 ```js
 try {
@@ -11,13 +11,13 @@ catch(e) {
 }
 ```
 
-## Error Sub Types
+## エラーサブタイプ
 
-Beyond the built in `Error` class there are a few additional built-in error classes that inherit from `Error` that the JavaScript runtime can throw:
+ビルトインされた `Error`クラスのほかに、JavaScriptランタイムが投げることができる`Error`を継承するいくつかの組み込みエラークラスがあります：
 
 ### RangeError
 
-Creates an instance representing an error that occurs when a numeric variable or parameter is outside of its valid range.
+数値変数またはパラメータが有効な範囲外にあるときに発生するエラーを表すインスタンスを作成します。
 
 ```js
 // Call console with too many arguments
@@ -26,16 +26,16 @@ console.log.apply(console, new Array(1000000000)); // RangeError: Invalid array 
 
 ### ReferenceError
 
-Creates an instance representing an error that occurs when de-referencing an invalid reference. e.g.
+無効な参照を参照解除するときに発生するエラーを表すインスタンスを作成します。例えば
 
 ```js
 'use strict';
 console.log(notValidVar); // ReferenceError: notValidVar is not defined
 ```
 
-### SyntaxError
+### 構文エラー
 
-Creates an instance representing a syntax error that occurs while parsing code that isn't valid JavaScript.
+有効でないJavaScriptを解析する際に発生する構文エラーを表すインスタンスを作成します。
 
 ```js
 1***3; // SyntaxError: Unexpected token *
@@ -43,7 +43,7 @@ Creates an instance representing a syntax error that occurs while parsing code t
 
 ### TypeError
 
-Creates an instance representing an error that occurs when a variable or parameter is not of a valid type.
+変数またはパラメータが有効な型でないときに発生するエラーを表すインスタンスを作成します。
 
 ```js
 ('1.2').toPrecision(1); // TypeError: '1.2'.toPrecision is not a function
@@ -51,15 +51,15 @@ Creates an instance representing an error that occurs when a variable or paramet
 
 ### URIError
 
-Creates an instance representing an error that occurs when `encodeURI()` or `decodeURI()` are passed invalid parameters.
+`encodeURI（）`または `decodeURI（）`に無効なパラメータが渡されたときに発生するエラーを表すインスタンスを生成します。
 
 ```js
 decodeURI('%'); // URIError: URI malformed
 ```
 
-## Always use `Error`
+## 常にエラーを使用する
 
-Beginner JavaScript developers sometimes just throw raw strings e.g.
+初心者のJavaScriptデベロッパーはたまに生の文字列を投げるだけです
 
 ```js
 try {
@@ -70,13 +70,13 @@ catch(e) {
 }
 ```
 
-*Don't do that*. The fundamental benefit of `Error` objects is that they automatically keep track of where they were built and originated with the `stack` property.
+* しないでください*。 `Error`オブジェクトの基本的な利点は、`stack`プロパティを使ってビルドされた場所を自動的に追跡することです。
 
-Raw strings result in a very painful debugging experience and complicate error analysis from logs.
+生の文字列は非常に苦しいデバッグ経験をもたらし、ログからのエラー分析を複雑にします。
 
-## You don't have to `throw` an error
+## あなたはエラーを `スローする必要はありません
 
-It is okay to pass an `Error` object around. This is conventional in Node.js callback style code which takes callbacks with the first argument as an error object.
+`Error`オブジェクトを渡すことは大丈夫です。これは、Node.jsのコールバックスタイルコードでは、最初の引数をエラーオブジェクトとしてコールバックを受け取ります。
 
 ```js
 function myFunction (callback: (e?: Error)) {
@@ -90,13 +90,13 @@ function myFunction (callback: (e?: Error)) {
 }
 ```
 
-## Exceptional cases
+## 例外的なケース
 
-`Exceptions should be exceptional` is a common saying in computer science. There are a few reasons why this is true for JavaScript (and TypeScript) as well.
+「例外は例外的でなければならない」は、コンピュータサイエンスの一般的な言葉です。これがJavaScript（およびTypeScript）にも当てはまる理由はいくつかあります。
 
-### Unclear where it is thrown
+### どこに投げられるのか不明
 
-Consider the following piece of code:
+次のコードを考えてみましょう。
 
 ```js
 try {
@@ -108,11 +108,11 @@ catch(e) {
 }
 ```
 
-The next developer cannot know which function might throw the error. The person reviewing the code cannot know without reading the code for task1 / task2 and other functions they might call etc.
+次の開発者は、どの関数がエラーを投げるかも知れません。コードをレビューしている人は、task1 / task2のコードとそれが呼び出す可能性のある他の関数を読み取ることなく知ることができません。
 
-### Makes graceful handling hard
+### 優雅なハンドリングを困難にする
 
-You can try to make it graceful with explicit catch around each thing that might throw:
+スローする可能性のあるものの周りを明示的にキャッチして優雅にしようとすることができます：
 
 ```js
 try {
@@ -129,7 +129,7 @@ catch(e) {
 }
 ```
 
-But now if you need to pass stuff from the first task to the second one the code becomes messy: (notice `foo` mutation requiring `let` + explicit need for annotating it because it cannot be inferred from the return of `runTask1`):
+しかし、最初のタスクから2番目のタスクに物事を渡す必要がある場合、コードは乱雑になります（ 'run`を必要とする `foo`突然変異+`runTask1`の復帰から推論できないため注釈を明示的に必要とすることに注意してください） ：
 
 ```ts
 let foo: number; // Notice use of `let` and explicit type annotation
@@ -147,9 +147,9 @@ catch(e) {
 }
 ```
 
-### Not well represented in the type system
+### 型システムでうまく表現されていない
 
-Consider the function:
+次の関数を考えてみましょう。
 
 ```ts
 function validate(value: number) {
@@ -157,7 +157,7 @@ function validate(value: number) {
 }
 ```
 
-Using `Error` for such cases is a bad idea as it is not represented in the type definition for the validate function (which is `(value:number) => void`). Instead a better way to create a validate method would be:
+このような場合に `Error`を使うのは、validate関数の型定義（`（value：number）=> void`）で表現されていないので、悪い考えです。代わりに、検証メソッドを作成するためのより良い方法は次のとおりです。
 
 ```ts
 function validate(value: number): {error?: string} {
@@ -165,6 +165,6 @@ function validate(value: number): {error?: string} {
 }
 ```
 
-And now its represented in the type system.
+そして今、型システムで表現されています。
 
-> Unless you want to handle the error in a very generic (simple / catch-all etc) way, don't *throw* an error.
+> 非常に一般的な（シンプル/キャッチオールなど）の方法でエラーを処理しない限り、エラーをスローしないでください。

@@ -1,12 +1,14 @@
-## Generators
+## 発電機
 
-`function *` is the syntax used to create a *generator function*. Calling a generator function returns a *generator object*. The generator object just follows the [iterator][iterator] interface (i.e. the `next`, `return` and `throw` functions). 
+> 注記：意味のある方法でTypeScriptでジェネレータを使用することはできません（ES5エミッタが進行中です）。しかし、それはすぐに変わるので、私たちはまだこの章を持っています。
 
-There are two key motivations behind generator functions: 
+`function *`は*ジェネレータ関数*の作成に使われる構文です。ジェネレータ関数を呼び出すと、ジェネレータオブジェクト*が返されます。ジェネレータオブジェクトは、[iterator] [iterator]インタフェース（すなわち、 `next`、`return`および `throw`関数）の直後にあります。
 
-### Lazy Iterators
+ジェネレータ機能には2つの重要な動機があります。
 
-Generator functions can be used to create lazy iterators e.g. the following function returns an **infinite** list of integers on demand:
+### レイジーイテレータ
+
+ジェネレータ関数を使用して遅延イテレータを作成することができます。次の関数は、必要に応じて整数の**無限**リストを返します：
 
 ```ts
 function* infiniteSequence() {
@@ -22,7 +24,7 @@ while (true) {
 }
 ```
 
-Of course if the iterator does end, you get the result of `{ done: true }` as demonstrated below:
+もちろんイテレータが終了した場合は、以下に示すように `{done：true}`の結果が得られます。
 
 ```ts
 function* idMaker(){
@@ -39,10 +41,10 @@ console.log(gen.next()); // { value: 2, done: false }
 console.log(gen.next()); // { done: true }
 ```
 
-### Externally Controlled Execution
-This is the part of generators that is truly exciting. It essentially allows a function to pause its execution and pass control (fate) of the remainder of the function execution to the caller.
+### 外部制御の実行
+これは本当にエキサイティングな発電機の一部です。本質的には、関数がその実行を一時停止し、残りの関数実行の制御（運命）を呼び出し元に渡すことができます。
 
-A generator function does not execute when you call it. It just creates a generator object. Consider the following example along with a sample execution:
+ジェネレータ関数は、呼び出したときには実行されません。これはジェネレータオブジェクトを作成するだけです。サンプルの実行とともに次の例を考えてみましょう。
 
 ```ts
 function* generator(){
@@ -60,7 +62,7 @@ console.log(iterator.next()); // { value: 1, done: false }
 console.log(iterator.next()); // { value: undefined, done: true }
 ```
 
-If you run this you get the following output:
+これを実行すると、次の出力が得られます。
 
 ```
 $ node outside.js
@@ -73,18 +75,18 @@ Execution resumed
 { value: undefined, done: true }
 ```
 
-* The function only starts execution once `next` is called on the generator object.
-* The function *pauses* as soon as a `yield` statement is encountered.
-* The function *resumes* when `next` is called.
+* 関数はジェネレータオブジェクトに対して `next`が呼び出されると実行を開始します。
+* 関数は `yield`文が出現するとすぐに*を一時停止します。
+* 関数nextは、 `next`が呼び出されたときに*を再開します。
 
-> So essentially the execution of the generator function is controllable by the generator object.
+> 本質的にジェネレータ関数の実行は、ジェネレータオブジェクトによって制御可能です。
 
-Our communication using the generator has been mostly one way with the generator returning values for the iterator. One extremely powerful feature of generators in JavaScript is that they allow two way communications!
+ジェネレータを使った私たちのコミュニケーションは、ジェネレータがイテレータの値を返すほとんど1つの方法でした。 JavaScriptのジェネレータの非常に強力な機能の1つは、双方向通信を可能にすることです！
 
-* you can control the resulting value of the `yield` expression using `iterator.next(valueToInject)`
-* you can throw an exception at the point of the `yield` expression using `iterator.throw(error)`
+* `iterator.next（valueToInject）`を使って、 `yield`式の結果の値を制御することができます。
+* あなたは `iterator.throw（error）`を使って `yield`式のポイントで例外を投げることができます
 
-The following example demonstrates `iterator.next(valueToInject)`:
+次の例は `iterator.next（valueToInject）`を示しています：
 
 ```ts
 function* generator() {
@@ -100,7 +102,7 @@ console.log(foo.value); // foo
 const nextThing = iterator.next('bar');
 ```
 
-The following example demonstrates `iterator.throw(error)`:
+次の例は `iterator.throw（error）`を示しています：
 
 ```ts
 function* generator() {
@@ -120,12 +122,12 @@ console.log(foo.value); // foo
 var nextThing = iterator.throw(new Error('bar'));
 ```
 
-So here is the summary:
-* `yield` allows a generator function to pause its communication and pass control to an external system
-* the external system can push a value into the generator function body
-* the external system can throw an exception into the generator function body
+ここに要約があります：
+* `yield`は、ジェネレータ関数が通信を一時停止し、外部システムに制御を渡すことを許可します
+* 外部システムは、ジェネレータ関数本体に値をプッシュすることができます
+外部システムがジェネレータ関数本体に例外をスローする
 
-How is this useful? Jump to the next section [**async/await**][async-await] and find out.
+これはどのように便利ですか？次のセクション[** async / await **] [async-await]に移動して調べてください。
 
-[iterator]:./iterators.md
-[async-await]:./async-await.md
+[iterator]：./ iterators.md
+[async-await]：./ async-await.md

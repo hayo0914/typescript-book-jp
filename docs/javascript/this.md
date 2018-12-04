@@ -1,8 +1,8 @@
-## this
+## この
 
-Any access to `this` keyword within a function is actually controlled by how the function is actually called. It is commonly referred to as the “calling context.”
+関数内の `this`キーワードへのアクセスは、実際に関数が実際に呼び出される方法によって実際に制御されます。これは一般に「呼び出しコンテキスト」と呼ばれます。
 
-Here is an example:
+次に例を示します。
 
 ```ts
 function foo() {
@@ -16,6 +16,6 @@ let bar = {
 bar.foo(); // Logs out `bar` as `foo` was called on `bar`
 ```
 
-So be mindful of your usage of `this`. If you want to disconnect `this` in a class from the calling context use an arrow function, [more on that later][arrow].
+だから、あなたの使い方に気をつけてください。呼び出しコンテキストからクラス内の `this`を切断したい場合は、矢印関数を使います。[more later] [arrow]。
 
-[arrow]:../arrow-functions.md
+[arrow]：../ arrow-functions.md

@@ -1,5 +1,5 @@
-#### What's up with the IIFE
-The js generated for the class could have been:
+#### IIFEには何がありますか？
+クラスのために生成されたjsは、
 ```ts
 function Point(x, y) {
     this.x = x;
@@ -10,7 +10,7 @@ Point.prototype.add = function (point) {
 };
 ```
 
-The reason it's wrapped in an Immediately-Invoked Function Expression (IIFE) i.e.
+Immediately-Invoked Function Expression（IIFE）で包まれた理由
 
 ```ts
 (function () {
@@ -21,7 +21,7 @@ The reason it's wrapped in an Immediately-Invoked Function Expression (IIFE) i.e
 })();
 ```
 
-has to do with inheritance. It allows TypeScript to capture the base class as a variable `_super` e.g.
+継承と関係しています。これは、TypeScriptが基本クラスを変数 `_super`として取り込むことを可能にする。
 
 ```ts
 var Point3D = (function (_super) {
@@ -38,10 +38,10 @@ var Point3D = (function (_super) {
 })(Point);
 ```
 
-Notice that the IIFE allows TypeScript to easily capture the base class `Point` in a `_super` variable and that is used consistently in the class body.
+IIFEは、TypeScriptが基本クラス `Point`を`_super`変数に簡単に取り込むことを可能にし、クラス本体で一貫して使用されることに注意してください。
 
 ### `__extends`
-You will notice that as soon as you inherit a class TypeScript also generates the following function:
+クラスを継承するとすぐに、TypeScriptは次の関数も生成します：
 ```ts
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -50,22 +50,22 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 ```
-Here `d` refers to the derived class and `b` refers to the base class. This function does two things:
-1. copies the static members of the base class onto the child class i.e. `for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];`
-1. sets up the child class function's prototype to optionally lookup members on the parent's `proto` i.e. effectively `d.prototype.__proto__ = b.prototype`
+ここで `d`は派生クラスを指し、`b`は基底クラスを指す。この関数は2つのことを行います：
+1. （b.hasOwnProperty（p））d [p] = b [p];であれば、基本クラスの静的メンバーを子クラスにコピーする。
+子クラス関数のプロトタイプを設定して、オプションで親の `proto '、つまり効果的に`d.prototype .__ proto__ = b.prototype`のメンバーを検索します
 
-People rarely have trouble understanding 1, but many people struggle with 2. So an explanation is in order.
+人々はほとんど理解することができませんが、多くの人が2と闘います。説明は順調です。
 
-#### `d.prototype.__proto__ = b.prototype`
+#### `d.prototype .__ proto__ = b.prototype`
 
-After having tutored many people about this I find the following explanation to be simplest. First we will explain how the code from `__extends` is equivalent to the simple `d.prototype.__proto__ = b.prototype`, and then why this line in itself is significant. To understand all this you need to know these things:
+これについて多くの人を教えた後、私は以下の説明が最も簡単であることを見出します。まず、 `__extends`のコードが単純な`d.prototype .__ proto__ = b.prototype`とどのように等価であるのか、そしてなぜこの行自体が重要であるのかを説明します。これらすべてを理解するには、これらのことを知る必要があります。
 
 1. `__proto__`
-1. `prototype`
-1. effect of `new` on `this` inside the called function
-1. effect of `new` on `prototype` and `__proto__`
+1. プロトタイプ
+1. 呼び出された関数内の `this`に対する`new`の効果
+1. プロトタイプと `__proto__`に対する`new`の効果
 
-All objects in JavaScript contain a `__proto__` member. This member is often not accessible in older browsers (sometimes documentation refers to this magical property as `[[prototype]]`). It has one objective: If a property is not found on an object during lookup (e.g. `obj.property`) then it is looked up at `obj.__proto__.property`. If it is still not found then `obj.__proto__.__proto__.property` till either: *it is found* or *the latest `.__proto__` itself is null*. This explains why JavaScript is said to support *prototypal inheritance* out of the box. This is shown in the following example, which you can run in the chrome console or Node.js:
+JavaScriptのすべてのオブジェクトには `__proto__`メンバが含まれています。このメンバは古いブラウザではアクセスできないことがよくあります（ドキュメントでは、この魔法のプロパティを `[[prototype]]と呼ぶこともあります）。 1つの目的があります：ルックアップ中にオブジェクトにプロパティが見つからない場合（例えば `obj.property`）、`obj .__ proto __。property`でルックアップされます。それでもまだ見つからなければ、 `obj .__ proto __.__ proto __。property`を*見つけられます：*それが見つかるか*最新の`.__ proto__`自体はnullです*。これはJavaScriptがなぜプロトタイプの継承*をサポートすると言われているのかを説明しています。これは次の例に示されています。これはchromeコンソールまたはNode.jsで実行できます。
 
 ```ts
 var foo = {}
@@ -81,7 +81,7 @@ delete foo.__proto__.bar; // remove from foo.__proto__
 console.log(foo.bar); // undefined
 ```
 
-Cool so you understand `__proto__`. Another useful fact is that all `function`s in JavaScript have a property called `prototype` and that it has a member `constructor` pointing back to the function. This is shown below:
+あなたが `__proto__`を理解するように冷静にしてください。もう一つの有用な事実は、JavaScriptの `function`には`prototype`というプロパティがあり、 `constructor`というメンバーが関数を指しているということです。これを以下に示します。
 
 ```ts
 function Foo() { }
@@ -89,7 +89,7 @@ console.log(Foo.prototype); // {} i.e. it exists and is not undefined
 console.log(Foo.prototype.constructor === Foo); // Has a member called `constructor` pointing back to the function
 ```
 
-Now let's look at *effect of `new` on `this` inside the called function*. Basically `this` inside the called function is going to point to the newly created object that will be returned from the function. It's simple to see if you mutate a property on `this` inside the function:
+次に、呼び出された関数*内の `this`に`new`が及ぼす影響を見てみましょう。基本的には、呼び出された関数内の `this`は、関数から返される新しく生成されたオブジェクトを指します。関数内で `this`のプロパティを変更するのは簡単です：
 
 ```ts
 function Foo() {
@@ -101,7 +101,7 @@ var newFoo = new Foo();
 console.log(newFoo.bar); // 123
 ```
 
-Now the only other thing you need to know is that calling `new` on a function assigns the `prototype` of the function to the `__proto__` of the newly created object that is returned from the function call. Here is the code you can run to completely understand it:
+関数で `new`を呼び出すと、関数呼び出しから返された新しく作成されたオブジェクトの`__proto__`に関数の `prototype`が代入されるということだけです。完全に理解するために実行できるコードは次のとおりです。
 
 ```ts
 function Foo() { }
@@ -111,7 +111,7 @@ var foo = new Foo();
 console.log(foo.__proto__ === Foo.prototype); // True!
 ```
 
-That's it. Now look at the following straight out of `__extends`. I've taken the liberty to number these lines:
+それでおしまい。今度は、 `__extends`の中から次のように真っ直ぐ見てください。私はこれらの行に番号を付ける自由を取った：
 
 ```ts
 1  function __() { this.constructor = d; }
@@ -119,13 +119,13 @@ That's it. Now look at the following straight out of `__extends`. I've taken the
 3   d.prototype = new __();
 ```
 
-Reading this function in reverse the `d.prototype = new __()` on line 3 effectively means `d.prototype = {__proto__ : __.prototype}` (because of the effect of `new` on `prototype` and `__proto__`), combining it with the previous line (i.e. line 2 `__.prototype = b.prototype;`) you get `d.prototype = {__proto__ : b.prototype}`.
+この関数を3行目の `d.prototype = new __（）`と逆に読むと `d.prototype = {__proto__：__。prototype}`を意味します（ `prototype`と`__proto__ `）、それを前の行（つまり、行2`__。prototype = b.prototype; `）と組み合わせると`d.prototype = {__proto__：b.prototype} `となります。
 
-But wait, we wanted `d.prototype.__proto__` i.e. just the proto changed and maintain the old `d.prototype.constructor`. This is where the significance of the first line (i.e. `function __() { this.constructor = d; }`) comes in. Here we will effectively have `d.prototype = {__proto__ : __.prototype, constructor : d}` (because of the effect of `new` on `this` inside the called function). So, since we restore `d.prototype.constructor`, the only thing we have truly mutated is the `__proto__` hence `d.prototype.__proto__ = b.prototype`.
+しかし、私たちは `d.prototype .__ proto__`を望んでいました。つまり、protoだけが変更され、古い`d.prototype.constructor`が維持されました。これは、最初の行の意味（つまり `function __（）{this.constructor = d;}`）が来る場所です。ここでは `d.prototype = {__proto__：__。prototype、constructor：d} `（これは呼び出された関数の中で`this`に `new`が及ぼす影響のためです）。したがって、 `d.prototype.constructor`を復元するので、私たちが本当に突然変異させたのは`__proto__`だけなので、 `d.prototype .__ proto__ = b.prototype`です。
 
-#### `d.prototype.__proto__ = b.prototype` significance
+#### `d.prototype .__ proto__ = b.prototype`の意義
 
-The significance is that it allows you to add member functions to a child class and inherit others from the base class. This is demonstrated by the following simple example:
+重要な点は、子クラスにメンバー関数を追加し、基本クラスから他のメンバー関数を継承できることです。これは次の簡単な例で示されます。
 
 ```ts
 function Animal() { }
@@ -139,4 +139,4 @@ var bird = new Bird();
 bird.walk();
 bird.fly();
 ```
-Basically `bird.fly` will be looked up from `bird.__proto__.fly` (remember that `new` makes the `bird.__proto__` point to `Bird.prototype`) and `bird.walk` (an inherited member) will be looked up from `bird.__proto__.__proto__.walk` (as `bird.__proto__ == Bird.prototype` and `bird.__proto__.__proto__` == `Animal.prototype`).
+基本的に `bird.fly`は`bird.__ proto __。fly`（ `new`は`bird.__ proto__`が `Bird.prototype`を指すことを覚えておいてください）と`bird.walk`（継承されたメンバー） `bird .__ proto__ == Bird.prototype`と`bird.__ proto __.__ proto__` == `Animal.prototype`）で検索します。

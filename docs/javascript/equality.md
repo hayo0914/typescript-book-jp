@@ -1,18 +1,18 @@
-## Equality
+## 平等
 
-One thing to be careful about in JavaScript is the difference between `==` and `===`. As JavaScript tries to
-be resilient against programming errors `==` tries to do type coercion between two variables e.g. converts a
-string to a number so that you can compare with a number as shown below:
+JavaScriptで注意すべき点の1つは、 `==`と `===`の違いです。 JavaScriptが試みるように
+プログラミングエラーに対して弾力性がある `==` 2つの変数間で型強制を試みる。 aを変換する
+文字列を数値に変換して、数値と比較することができます。
 
 ```js
 console.log(5 == "5"); // true   , TS Error
 console.log(5 === "5"); // false , TS Error
 ```
 
-However, the choices JavaScript makes are not always ideal. For example, in the below example the first statement is false
-because `""` and `"0"` are both strings and are clearly not equal. However, in the second case both `0` and the
-empty string (`""`) are falsy (i.e. behave like `false`) and are therefore equal with respect to `==`. Both statements
-are false when you use `===`.
+しかし、JavaScriptの選択肢は必ずしも理想的ではありません。たとえば、次の例では、最初の文はfalseです
+`` ``と ``0 '`は両方とも文字列であり、明らかに等しくないためです。しかし、第2のケースでは、「0」と
+空文字列（ `" "`）は偽である（すなわち、 `false`のように振る舞う）ので、`== `に関して等しい。両方のステートメント
+`===`を使うとfalseになります。
 
 ```js
 console.log("" == "0"); // false
@@ -22,20 +22,20 @@ console.log("" === "0"); // false
 console.log(0 === ""); // false
 ```
 
-> Note that `string == number` and `string === number` are both compile time errors in TypeScript, so you don't normally need to worry about this.
+> `string == number`と`string === number `はどちらもTypeScriptのコンパイル時エラーであることに注意してください。通常、これについて心配する必要はありません。
 
-Similar to `==` vs. `===`, there is `!=` vs. `!==`
+`==`と `===`と同様に、 `！=`と `！==`
 
-So ProTip: Always use `===` and `!==` except for null checks, which we cover later.
+だからProTip：私たちは後で説明するヌルチェックを除いて常に `===`と `！==`を使います。
 
-## Structural Equality 
-If you want to compare two objects for structural equality `==`/`===` are ***not*** sufficient. e.g. 
+## 構造平等
+`==`/ `===`の2つのオブジェクトを比較したい場合は、***ではありません。例えば
 
 ```js
 console.log({a:123} == {a:123}); // False
 console.log({a:123} === {a:123}); // False
 ```
-To do such checks use the [deep-equal](https://www.npmjs.com/package/deep-equal) npm package e.g. 
+このようなチェックを行うには、[deep-equal]（https://www.npmjs.com/package/deep-equal）npmパッケージを使用します。
 
 ```js
 import * as deepEqual from "deep-equal";
@@ -43,7 +43,7 @@ import * as deepEqual from "deep-equal";
 console.log(deepEqual({a:123},{a:123})); // True
 ```
 
-However, quite commonly you don't need deep checks and all you really need is to check by some `id` e.g. 
+しかし、かなり一般的に深いチェックは必要ありません。本当に必要なのは、いくつかの `id`でチェックすることだけです。
 
 ```ts
 type IdDisplay = {

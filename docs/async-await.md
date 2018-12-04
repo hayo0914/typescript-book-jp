@@ -1,8 +1,8 @@
 ## Async Await
 
-> [A PRO egghead video course that covers the same material](https://egghead.io/courses/async-await-using-typescript)
+> [同じ素材をカバーするPRO卵ヘッドのビデオコース]（https://egghead.io/courses/async-await-using-typescript）
 
-As a thought experiment imagine the following: a way to tell the JavaScript runtime to pause the executing of code on the `await` keyword when used on a promise and resume *only* once (and if) the promise returned from the function is settled:
+思考実験として、次のように想像してみましょう：promiseで使用されたときに `await`キーワードでコードの実行を一時停止し、関数から返された約束が一度だけ再開されるようにJavaScriptランタイムに指示する方法：
 
 ```ts
 // Not actual code. A thought experiment
@@ -17,21 +17,21 @@ async function foo() {
 }
 ```
 
-When the promise settles execution continues,
-* if it was fulfilled then await will return the value,
-* if it's rejected an error will be thrown synchronously which we can catch.
+約束が執行を続けると、
+* それが満たされていれば、値を返すことを待っています。
+* 拒否された場合、エラーを同期的にスローして捕捉できます。
 
-This suddenly (and magically) makes asynchronous programming as easy as synchronous programming.  Three things needed for this thought experiment are:
+これは突然（そして魔法のように）非同期プログラミングを同期プログラミングほど簡単にします。この思考実験に必要な3つのものは次のとおりです。
 
-* Ability to *pause function* execution.
-* Ability to *put a value inside* the function.
-* Ability to *throw an exception inside* the function.
+* 機能*実行を一時停止する能力。
+* 機能の中に値を入れる*能力。
+* 機能の内部に例外をスローする能力。
 
-This is exactly what generators allowed us to do! The thought experiment *is actually real* and so is the `async`/`await` implementation in TypeScript / JavaScript. Under the covers it just uses generators.
+これはまさに発電機が私たちに許したものです！思考実験*は実際には実際のものです。*また、TypeScript / JavaScriptの `async`/` await`実装もそうです。カバーの下では、それは単に発電機を使用しています。
 
-### Generated JavaScript
+### 生成されたJavaScript
 
-You don't have to understand this, but it's fairly simple if you've [read up on generators][generators]. The function `foo` can be simply wrapped up as follows:
+あなたはこれを理解する必要はありませんが、[ジェネレータを読む]ことができればかなり簡単です。関数 `foo`は次のように単純にラップすることができます：
 
 ```ts
 const foo = wrapToReturnPromise(function* () {
@@ -45,17 +45,17 @@ const foo = wrapToReturnPromise(function* () {
 });
 ```
 
-where the `wrapToReturnPromise` just executes the generator function to get the `generator` and then use `generator.next()`, if the value is a `promise` it would `then`+`catch` the promise and depending upon the result call `generator.next(result)` or `generator.throw(error)`. That's it!
+`wrapToReturnPromise`はジェネレータ関数を実行して`generator`を取得し、 `generator.next（）`を使います。値が `promise`なら`promise`を `` ``catch``し、結果を `generator.next（result）`または `generator.throw（error）`と呼びます。それでおしまい！
 
 
 
-### Async Await Support in TypeScript
-**Async - Await** has been supported by [TypeScript since version 1.7](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-7.html). Asynchronous functions are prefixed with the *async* keyword; *await* suspends the execution until an asynchronous function return promise is fulfilled and unwraps the value from the *Promise* returned.
-It was only supported for **target es6** transpiling directly to **ES6 generators**.
+### AsyncはTypeScriptでのサポートを待っています
+** Async  -  Await **は[Type 1.7以降のTypeScript]（https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-7.html）でサポートされています。非同期関数の先頭に* async *キーワードが付きます。 * await *は、非同期関数の戻り値promiseが満たされ、* Promise *からの値をアンラップするまで実行を中断します。
+** ターゲットES6 **のためにのみサポートされていました** ** ES6ジェネレータ**に直接移動します。
 
-**TypeScript 2.1** [added the capability to ES3 and ES5 run-times](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-1.html), meaning you’ll be free to take advantage of it no matter what environment you’re using. It's important to notice that we can use async / await with TypeScript 2.1 and many browsers are supported, of course, having globally added a **polyfill for Promise**.
+** TypeScript 2.1 ** [ES3とES5のランタイムに機能を追加しました]（https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-1.html）あなたが使っている環境に関係なく自由に利用することができます。 TypeScript 2.1でasync / awaitを使用できることに注意することが重要です。もちろん、多くのブラウザがサポートされています。もちろん、Promise **のための** polyfillがグローバルに追加されています。
 
-Let's see this **example** and take a look at this code to figure out how TypeScript async / await **notation** works: 
+この**例**を見て、このコードを見て、TypeScript async / await **表記法**の仕組みを理解してください。
 ```ts
 function delay(milliseconds: number, count: number): Promise<number> {
     return new Promise<number>(resolve => {
@@ -81,7 +81,7 @@ async function dramaticWelcome(): Promise<void> {
 dramaticWelcome();
 ```
 
-**Transpiling to ES6 (--target es6)**
+** ES6へのトランスペアリング（--target es6）**
 ```js
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -112,10 +112,10 @@ function dramaticWelcome() {
 }
 dramaticWelcome();
 ```
-You can see full example [here][asyncawaites6code].
+完全な例[here] [asyncawaites6code]を見ることができます。
 
 
-**Transpiling to ES5 (--target es5)**
+** ES5へのトランスペアリング（--target es5）**
 ```js
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -188,12 +188,12 @@ function dramaticWelcome() {
 }
 dramaticWelcome();
 ```
-You can see full example [here][asyncawaites5code].
+完全な例[here] [asyncawaites5code]を見ることができます。
 
 
-**Note**: for both target scenarios, we need to make sure our run-time has an ECMAScript-compliant Promise available globally. That might involve grabbing a polyfill for Promise. We also need to make sure that TypeScript knows Promise exists by setting our lib flag to something like "dom", "es2015" or "dom", "es2015.promise", "es5". 
-**We can see what browsers DO have Promise support (native and polyfilled) [here](https://kangax.github.io/compat-table/es6/#test-Promise).**
+** 注**：両方のターゲットシナリオでは、実行時にグローバルにECMAScriptに準拠したプロミスがあることを確認する必要があります。それはPromiseのためにポリフィルを取得することを含むかもしれません。また、libフラグを "dom"、 "es2015"、 "dom"、 "es2015.promise"、 "es5"のように設定することで、TypeScriptがPromiseを認識していることを確認する必要があります。
+** Promiseサポート（ネイティブおよびポリ充てん）[ここ]（https://kangax.github.io/compat-table/es6/#test-Promise）を持っているブラウザを確認できます。**
 
-[generators]:./generators.md
-[asyncawaites5code]:https://cdn.rawgit.com/basarat/typescript-book/705e4496/code/async-await/es5/asyncAwaitES5.js
-[asyncawaites6code]:https://cdn.rawgit.com/basarat/typescript-book/705e4496/code/async-await/es6/asyncAwaitES6.js
+[ジェネレータ]：./ generators.md
+[asyncawaites5code]：https：//cdn.rawgit.com/basarat/typescript-book/705e4496/code/async-await/es​​5/asyncAwaitES5.js
+[asyncawaites6code]：https：//cdn.rawgit.com/basarat/typescript-book/705e4496/code/async-await/es​​6/asyncAwaitES6.js

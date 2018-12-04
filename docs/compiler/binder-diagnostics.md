@@ -1,8 +1,8 @@
-### Binder Error Reporting
+### バインダーエラーの報告
 
-Binding errors are added to the sourceFile's list of `bindDiagnostics`.
+バインディング・エラーは、sourceFileの `bindDiagnostics`のリストに追加されます。
 
-An example error detected during binding is the use of `eval` or `arguments` as a variable name in `use strict` scenario. The relevant code is presented in its entirety below (`checkStrictModeEvalOrArguments` is called from multiple places, call stacks originating from `bindWorker` which calls different functions for different node `SyntaxKind`):
+バインディング中に検出されるエラーの例は、 `use strict`シナリオで変数名として`eval`または `arguments`を使用することです。関連するコードは以下の通りです（ `checkStrictModeEvalOrArguments`は複数の場所から呼び出され、異なるノード`SyntaxKind`に対して異なる関数を呼び出す `bindWorker`からの呼び出しスタック）。
 
 ```ts
 function checkStrictModeEvalOrArguments(contextNode: Node, name: Node) {

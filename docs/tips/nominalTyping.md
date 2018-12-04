@@ -1,11 +1,11 @@
-## Nominal Typing
-The TypeScript type system is structural [and this is one of the main motivating benefits](../why-typescript.md). However, there are real-world use cases for a system where you want two variables to be differentiated because they have a different *type name* even if they have the same structure. A very common use case is *identity* structures (which are generally just strings with semantics associated with their *name* in languages like C#/Java).
+## 公称タイピング
+TypeScript型のシステムは構造的です（これは主な動機の一つです）。（../ why-typescript.md）しかし、同じ構造を持っていても、2つの変数が異なる*タイプ名*を持つため、2つの変数を区別する必要があるシステムでは、実際の使用例があります。非常に一般的な使用例は、* identity *構造（一般にC#/ Javaなどの言語で* name *に関連付けられたセマンティクスを持つ文字列です）です。
 
-There are a few patterns that have emerged in the community. I cover them in decreasing order of personal preference:
+コミュニティにはいくつかのパターンがあります。私はそれらを個人的な好みの降順でカバーする：
 
-## Using literal types
+## リテラル型の使用
 
-This pattern uses generics and literal types: 
+このパターンは、ジェネリック型とリテラル型を使用します。
 
 ```ts
 /** Generic Id type */
@@ -29,19 +29,19 @@ foo = bar; // Error
 foo = foo; // Okay
 ```
 
-* Advantages
-  - No need for any type assertions 
-* Disadvantage
-  - The structure `{type,value}` might not be desireable and need server serialization support
+* メリット
+   - どのタイプアサーションも必要ありません
+* 不利益
+   - 構造体 `{type、value}`は望ましくない可能性があり、サーバの直列化のサポートが必要です
 
-## Using Enums
-[Enums in TypeScript](../enums.md) offer a certain level of nominal typing. Two enum types aren't equal if they differ by name. We can use this fact to provide nominal typing for types that are otherwise structurally compatible.
+## Enumを使う
+[TypeScriptのEnums]（../ enums.md）は、特定のレベルの名目型を提供します。 2つの列挙型は、名前が異なる場合、等しくありません。この事実を利用して、構造的に互換性のある型に対して公称型を提供することができます。
 
-The workaround involves:
-* Creating a *brand* enum.
-* Creating the type as an *intersection* (`&`) of the brand enum + the actual structure.
+回避策は次のとおりです。
+* *ブランド* enumを作成する。
+* ブランドenumの*交差*（ `＆`）としての型の作成+実際の構造。
 
-This is demonstrated below where the structure of the types is just a string:
+これは、型の構造が単なる文字列であるところで以下に説明されています：
 
 ```ts
 // FOO
@@ -72,15 +72,15 @@ str = fooId;
 str = barId;
 ```
 
-## Using Interfaces
+## インタフェースの使用
 
-Because `numbers` are type compatible with `enum`s the previous technique cannot be used for them. Instead we can use interfaces to break the structural compatibility. This method is still used by the TypeScript compiler team, so worth mentioning. Using `_` prefix and a `Brand` suffix is a convention I strongly recommend (and [the one followed by the TypeScript team](https://github.com/Microsoft/TypeScript/blob/7b48a182c05ea4dea81bab73ecbbe9e013a79e99/src/compiler/types.ts#L693-L698)).
+`numbers`は`enum`と型互換性があるため、これまでの手法は使用できません。代わりに、インターフェイスを使用して構造の互換性を破ることができます。このメソッドはまだTypeScriptコンパイラチームによって使用されているので、言及する価値があります。 `_`接頭辞と`Brand`接尾辞を使用することを強くお勧めします（そして、[TypeScriptチームに続く人]（https://github.com/Microsoft/TypeScript/blob/7b48a182c05ea4dea81bab73ecbbe9e013a79e99/src/compiler/types）。 .ts#L693-L698））。
 
-The workaround involves the following:
-* adding an unused property on a type to break structural compatibility.
-* using a type assertion when needing to new up or cast down.
+この回避策には、以下が含まれます。
+構造上の互換性を損なうために、型に未使用のプロパティを追加する。
+* 新しいアサーションやキャストダウンが必要な場合は、型アサーションを使用します。
 
-This is demonstrated below:
+これは以下のとおりです：
 
 ```ts
 // FOO

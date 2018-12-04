@@ -1,17 +1,17 @@
-## Dynamic import expressions 
+## 動的インポート式
 
-**Dynamic import expressions** are a new feature and part of **ECMAScript** that allows users to asynchronously request a module at any arbitrary point in your program.
-**TC39** JavaScript committee has it’s own proposal which is in stage 3, and it’s called [import() proposal for JavaScript](https://github.com/tc39/proposal-dynamic-import).
+** 動的インポート式**は新しい機能であり、** ECMAScript **の一部で、ユーザーはプログラムの任意の時点でモジュールを非同期に要求できます。
+** TC39 ** JavaScript委員会には、ステージ3にある独自の提案があり、JavaScriptの[import（）proposal for]（https://github.com/tc39/proposal-dynamic-import）と呼ばれています。
 
-Alternatively, **webpack** bundler has a feature called [**Code Splitting**](https://webpack.js.org/guides/code-splitting/) which allows you to split your bundle into chunks which can be downloaded asynchronously at a later time. For instance, this allows to serve a minimal bootstrap bundle first and to asynchronously load additional features later.
+また、** webpack ** bundlerにはバンドルを分割することができる[**コード分割**]（https://webpack.js.org/guides/code-splitting/）という機能があります。後で非同期にダウンロードされます。たとえば、これにより、最小のブートストラップバンドルを最初に提供し、後で追加の機能を非同期にロードすることができます。
 
-It’s natural to think (if we are using webpack in our dev workflow) that [TypeScript 2.4 dynamic import expressions](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#dynamic-import-expressions) will **automatically produce** bundle chunks and automatically code-split your JS final bundle. BUT, that is not as easy as it seems, because it depends on the **tsconfig.json configuration** we are working with.
+私たちの開発ワークフローでwebpackを使用している場合、[TypeScript 2.4動的インポート式]（https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#dynamic- import-expressions）は自動的に**バンドルチャンクを生成し、JS最終バンドルを自動的にコード分割します。しかし、** tsconfig.jsonの設定**に依存しているので、それはそう簡単ではありません**。
 
-The thing is that webpack code splitting supports two similar techniques to achieve this goal: using **import()** (preferred, ECMAScript proposal) and **require.ensure()** (legacy, webpack specific). And what that means is the expected TypeScript output is **leave the import() statement as it is** instead of transpile it to anything else.
+webpackのコード分割では、** import（）**（ECMAScriptの推奨）と** require.ensure（）**（従来のwebpack固有）を使用して、この目標を達成するための2つの同様の手法をサポートしています。そして、それが意味するのは、期待されるTypeScriptの出力は、** import（）ステートメントをそのまま**そのまま残すことです。
 
-Let’s see an example to figure out how to configure webpack + TypeScript 2.4.
+webpack + TypeScript 2.4の設定方法の例を見てみましょう。
 
-In the following code I want to **lazy load the library _moment_** but I am interested in code splitting as well, which means, having the moment library in a separate chunk of JS (JavaScript file) that will be loaded only when required.
+次のコードでは、**ライブラリの_moment _ **を遅延ロードしたいと思いますが、コード分割にも興味があります。つまり、必要なときにのみロードされる別のJS（javascriptファイル） 。
 
 ```ts
 import(/* webpackChunkName: "momentjs" */ "moment")
@@ -27,7 +27,7 @@ import(/* webpackChunkName: "momentjs" */ "moment")
   });
 ```
 
-Here is the tsconfig.json:
+ここにtsconfig.jsonがあります：
 
 ```json
 {
@@ -59,12 +59,12 @@ Here is the tsconfig.json:
 ```
 
 
-**Important notes**:
+** 重要なメモ**：
 
-- Using **"module": "esnext"** TypeScript produces the mimic import() statement to be input for Webpack Code Splitting.
-- For further information read this article: [Dynamic Import Expressions and webpack 2 Code Splitting integration with TypeScript 2.4](https://blog.josequinto.com/2017/06/29/dynamic-import-expressions-and-webpack-code-splitting-integration-with-typescript-2-4/).
+ -  ** "module"を使う： "esnext" ** TypeScriptは、Webpackコード分割のために入力する模擬import（）文を生成します。
+ - さらに詳しい情報については、この記事を読んでください：[動的インポート式とwebpack 2コード分割とTypeScript 2.4の統合]（https://blog.josequinto.com/2017/06/29/dynamic-import-expressions-and-webpack-code -splitting-integration-with-typescript-2-4 /）を使用します。
 
 
-You can see full example [here][dynamicimportcode].
+完全な例[here] [dynamicimportcode]を見ることができます。
 
-[dynamicimportcode]:https://cdn.rawgit.com/basarat/typescript-book/705e4496/code/dynamic-import-expressions/dynamicImportExpression.js
+[dynamicimportcode]：https：//cdn.rawgit.com/basarat/typescript-book/705e4496/code/dynamic-import-expressions/dynamicImportExpression.js

@@ -1,21 +1,21 @@
-* [Type Compatibility](#type-compatibility)
-* [Soundness](#soundness)
-* [Structural](#structural)
-* [Generics](#generics)
-* [Variance](#variance)
-* [Functions](#functions)
-  * [Return Type](#return-type)
-  * [Number of arguments](#number-of-arguments)
-  * [Optional and rest parameters](#optional-and-rest-parameters)
-  * [Types of arguments](#types-of-arguments)
-* [Enums](#enums)
-* [Classes](#classes)
-* [Generics](#generics)
-* [FootNote: Invariance](#footnote-invariance)
+* [型互換性]（#型互換性）
+* [健全性]（健全性）
+* [構造]（#構造）
+* [Generics]（#ジェネリックス）
+* [分散]（#分散）
+* [関数]（#関数）
+  * [戻り値の型]（#return-type）
+  * [引数の数]（#引数の数）
+  * [オプションパラメータと残りのパラメータ]（#オプションと休止パラメータ）
+  * [引数の種類]（#種類の引数）
+* [Enums]（#enums）
+* [クラス]（#クラス）
+* [Generics]（#ジェネリックス）
+* [脚注：不変量]（#脚注 - 不変量）
 
-## Type Compatibility
+## 型の互換性
 
-Type Compatibility (as we discuss here) determines if one thing can be assigned to another. E.g. `string` and `number` are not compatible:
+タイプの互換性（ここで議論する）は、あるものを別のものに割り当てることができるかどうかを決定します。例えば。 `string`と`number`は互換性がありません：
 
 ```ts
 let str: string = "Hello";
@@ -25,9 +25,9 @@ str = num; // ERROR: `number` is not assignable to `string`
 num = str; // ERROR: `string` is not assignable to `number`
 ```
 
-## Soundness
+## 健全性
 
-TypeScript's type system is designed to be convenient and allows for *unsound* behaviours e.g. anything can be assigned to `any` which means telling the compiler to allow you to do whatever you want:
+TypeScriptの型システムは便利であるように設計されています。 `any`に何かを割り当てることができます。これは、コンパイラにあなたが望むことを何でもできるようにすることを意味します：
 
 ```ts
 let foo: any = 123;
@@ -37,9 +37,9 @@ foo = "Hello";
 foo.toPrecision(3); // Allowed as you typed it as `any`
 ```
 
-## Structural
+## 構造
 
-TypeScript objects are structurally typed. This means the *names* don't matter as long as the structures match
+TypeScriptオブジェクトは構造的に型付けされています。つまり、* names *は構造が一致する限り重要ではありません
 
 ```ts
 interface Point {
@@ -56,9 +56,9 @@ let p: Point;
 p = new Point2D(1,2);
 ```
 
-This allows you to create objects on the fly (like you do in vanilla JS) and still have safety whenever it can be inferred.
+これにより、（バニラJSのように）オンザフライでオブジェクトを作成することができ、推論が可能な場合でも安全性が保たれます。
 
-Also *more* data is considered fine:
+また、*もっと*データが細かいとみなされます：
 
 ```ts
 interface Point2D {
@@ -79,30 +79,30 @@ iTakePoint2D(point3D); // extra information okay
 iTakePoint2D({ x: 0 }); // Error: missing information `y`
 ```
 
-## Variance
+## 分散
 
-Variance is an easy to understand and important concept for type compatibility analysis.
+分散は、タイプの互換性分析のために理解しやすく、重要な概念です。
 
-For simple types `Base` and `Child`, if `Child` is a child of `Base`, then instances of `Child` can be assigned to a variable of type `Base`.
+単純な型 `Base`と`Child`の場合、 `Child`が`Base`の子であれば、 `Child`のインスタンスは`Base`型の変数に代入することができます。
 
-> This is polymorphism 101
+> 多型101です
 
-In type compatibility of complex types composed of such `Base` and `Child` types depends on where the `Base` and `Child` in similar scenarios is driven by *variance*.
+このような `Base`型と`Child`型で構成される複合型の型互換性は、類似のシナリオにおける `Base`と`Child`が* variance *によって駆動されるところに依存します。
 
-* Covariant : (co aka joint) only in *same direction*
-* Contravariant : (contra aka negative) only in *opposite direction*
-* Bivariant : (bi aka both) both co and contra.
-* Invariant : if the types aren't exactly the same then they are incompatible.
+* 共変量：同じ方向にのみ（共に関節）
+* コントラバナント：反対の方向にのみ（逆の反対）
+* Bivariant：（共に両方とも）共同と反対の両方。
+* 不変式：型がまったく同じでない場合、それらは互換性がありません。
 
-> Note: For a completely sound type system in the presence of mutable data like JavaScript, `invariant` is the only valid option. But as mentioned *convenience* forces us to make unsound choices.
+> 注意：JavaScriptのような変更可能なデータの存在下で、完全に健全な型のシステムの場合、 `invariant`が唯一有効なオプションです。しかし、述べたように*利便性は私たちに不健全な選択を強いる。
 
-## Functions
+## 関数
 
-There are a few subtle things to consider when comparing two functions.
+2つの機能を比較するときには、いくつか微妙なことを考慮する必要があります。
 
-### Return Type
+戻り値の型
 
-`covariant`: The return type must contain at least enough data.
+`covariant`：戻り型は少な​​くとも十分なデータを含んでいなければなりません。
 
 ```ts
 /** Type Hierarchy */
@@ -118,9 +118,9 @@ iMakePoint2D = iMakePoint3D; // Okay
 iMakePoint3D = iMakePoint2D; // ERROR: Point2D is not assignable to Point3D
 ```
 
-### Number of arguments
+### 引数の数
 
-Fewer arguments are okay (i.e. functions can choose to ignore additional parameters). After all you are guaranteed to be called with at least enough arguments.
+引数が少なくて済みます（つまり、関数は追加のパラメータを無視することができます）。結局のところ、あなたは少なくとも十分な引数で呼び出されることが保証されています。
 
 ```ts
 let iTakeSomethingAndPassItAnErr
@@ -134,9 +134,9 @@ iTakeSomethingAndPassItAnErr((err, data) => null) // Okay
 iTakeSomethingAndPassItAnErr((err, data, more) => null);
 ```
 
-### Optional and Rest Parameters
+### オプションおよび残りのパラメータ
 
-Optional (pre determined count) and Rest parameters (any count of arguments) are compatible, again for convenience.
+オプションの（事前に決定されたカウント）およびレストパラメーター（任意のカウント数）は、便宜上、再び互換性があります。
 
 ```ts
 let foo = (x:number, y: number) => { /* do something */ }
@@ -147,11 +147,11 @@ foo = bar = bas;
 bas = bar = foo;
 ```
 
-> Note: optional (in our example `bar`) and non optional (in our example `foo`) are only compatible if strictNullChecks is false.
+> 注意：strictNullChecksがfalseの場合、オプションの（ここでは `bar`）とオプションではない（この例では`foo`）のみ互換性があります。
 
-### Types of arguments
+### 引数のタイプ
 
-`bivariant` : This is designed to support common event handling scenarios
+`bivariant`：これは共通イベント処理シナリオをサポートするように設計されています
 
 ```ts
 /** Event Hierarchy */
@@ -176,9 +176,9 @@ addEventListener(EventType.Mouse, <(e: Event) => void>((e: MouseEvent) => consol
 addEventListener(EventType.Mouse, (e: number) => console.log(e));
 ```
 
-Also makes `Array<Child>` assignable to `Array<Base>` (covariance) as the functions are compatible. Array covariance requires all `Array<Child>` functions to be assignable to `Array<Base>` e.g. `push(t:Child)` is assignable to `push(t:Base)` which is made possible by function argument bivariance.
+また、 `Array <子> 'を`Array <Base> `（共分散）に割り当てることもできます。配列共分散は全ての `Array <Child>`関数が `Array <Base>`に代入可能であることを必要とする。 `push（t：Child）`は関数の引数二項演算によって可能になる `push（t：Base）`に代入可能です。
 
-**This can be confusing for people coming from other languages** who would expect the following to error but will not in TypeScript:
+** これは、他の言語から来ている人には混乱を招く可能性があります**誰がエラーを次のように期待しますが、TypeScriptではそうではないでしょう：
 
 ```ts
 /** Type Hierarchy */
@@ -195,7 +195,7 @@ iTakePoint2D = iTakePoint3D; // Okay : WHAT
 
 ## Enums
 
-* Enums are compatible with numbers, and numbers are compatible with enums.
+* 列挙型は数値と互換性があり、数値は列挙型と互換性があります。
 
 ```ts
 enum Status { Ready, Waiting };
@@ -207,7 +207,7 @@ status = num; // OKAY
 num = status; // OKAY
 ```
 
-* Enum values from different enum types are considered incompatible. This makes enums useable *nominally* (as opposed to structurally)
+* 異なる列挙型のEnum値は互換性がないとみなされます。これは、enumを名目上*（構造的にではなく）
 
 ```ts
 enum Status { Ready, Waiting };
@@ -219,9 +219,9 @@ let color = Color.Red;
 status = color; // ERROR
 ```
 
-## Classes
+## クラス
 
-* Only instance members and methods are compared. *constructors* and *statics* play no part.
+* インスタンスメンバーとメソッドのみが比較されます。 *コンストラクタ*と*静的*は何もしません。
 
 ```ts
 class Animal {
@@ -241,7 +241,7 @@ a = s;  // OK
 s = a;  // OK
 ```
 
-* `private` and `protected` members *must originate from the same class*. Such members essentially make the class *nominal*.
+* `private`と`protected`メンバー*は同じクラスから生まれなければなりません*。そのようなメンバーは本質的にクラス*名義*を作る。
 
 ```ts
 /** A class hierarchy */
@@ -263,9 +263,9 @@ animal = size; // ERROR
 size = animal; // ERROR
 ```
 
-## Generics
+## ジェネリックス
 
-Since TypeScript has a structural type system, type parameters only affect compatibility when used by a member. For example, in the  following `T` has no impact on compatibility:
+TypeScriptは構造型システムを備えているため、型パラメータはメンバが使用するときの互換性にのみ影響します。例えば、以下の `T`は互換性に影響を与えません：
 
 ```ts
 interface Empty<T> {
@@ -276,7 +276,7 @@ let y: Empty<string>;
 x = y;  // okay, y matches structure of x
 ```
 
-However, if `T` is used, it will play a role in compatibility based on its *instantiation* as shown below:
+しかし、 `T`を使用すると、以下に示すように*インスタンス化*に基づいて互換性の役割を果たします。
 
 ```ts
 interface NotEmpty<T> {
@@ -288,7 +288,7 @@ let y: NotEmpty<string>;
 x = y;  // error, x and y are not compatible
 ```
 
-In cases where generic arguments haven't been *instantiated* they are substituted by `any` before checking compatibility:
+ジェネリック引数がインスタンス化されていない*場合、それらは互換性をチェックする前に `any`で置き換えられます：
 
 ```ts
 let identity = function<T>(x: T): T {
@@ -302,7 +302,7 @@ let reverse = function<U>(y: U): U {
 identity = reverse;  // Okay because (x: any)=>any matches (y: any)=>any
 ```
 
-Generics involving classes are matched by relevant class compatibility as mentioned before. e.g. 
+クラスを含むジェネリックは、前述のように関連するクラスの互換性によってマッチします。例えば
 
 ```ts
 class List<T> {
@@ -321,9 +321,9 @@ cats.add(new Animal()); // Error
 cats.add(new Cat()); // Okay
 ```
 
-## FootNote: Invariance
+## FootNote：不変性
 
-We said invariance is the only sound option. Here is an example where both `contra` and `co` variance are shown to be unsafe for arrays.
+私たちは不変性が唯一の選択肢だと言った。ここでは、 `contra`と`co`の分散の両方が配列にとって危険であると示されている例を示します。
 
 ```ts
 /** Hierarchy */

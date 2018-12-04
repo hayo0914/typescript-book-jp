@@ -1,9 +1,9 @@
-### Spread Operator
+### スプレッド演算子
 
-The main objective of the spread operator is to *spread* the elements of an array or object. This is best explained with examples.
+スプレッド演算子の主な目的は、配列またはオブジェクトの要素を拡散させることです。これは例を用いて最もよく説明されています。
 
-#### Apply
-A common use case is to spread an array into the function arguments. Previously you would need to use `Function.prototype.apply`:
+#### 適用
+よく使われるケースは、配列を関数の引数に渡すことです。以前は `Function.prototype.apply`を使う必要がありました：
 
 ```ts
 function foo(x, y, z) { }
@@ -11,7 +11,7 @@ var args = [0, 1, 2];
 foo.apply(null, args);
 ```
 
-Now you can do this simply by prefixing the arguments with `...` as shown below:
+これを行うには、以下に示すように、引数の前に `...`を付けるだけです。
 
 ```ts
 function foo(x, y, z) { }
@@ -19,19 +19,19 @@ var args = [0, 1, 2];
 foo(...args);
 ```
 
-Here we are *spreading* the `args` array into positional `arguments`.
+ここでは、 `args`配列を位置的な`arguments`に広げています。
 
-#### Destructuring
-We've already seen one usage of this in *destructuring*:
+#### デストラクション
+* destructuring *でこれを使用した例はすでにあります。
 
 ```ts
 var [x, y, ...remaining] = [1, 2, 3, 4];
 console.log(x, y, remaining); // 1,2,[3,4]
 ```
-The motivation here is to simply make it easy for you to capture the remaining elements of an array when destructuring.
+ここでの動機付けは、構造を破壊するときに配列の残りの要素を簡単に取り込めるようにすることです。
 
-#### Array Assignment
-The spread operator allows you to easily place an *expanded version* of an array into another array. This is demonstrated in the example below:
+#### 配列の割り当て
+スプレッド演算子を使用すると、配列の*拡張バージョン*を別の配列に簡単に配置できます。これは以下の例で実証されています：
 
 ```ts
 var list = [1, 2];
@@ -39,7 +39,7 @@ list = [...list, 3, 4];
 console.log(list); // [1,2,3,4]
 ```
 
-You can put the expanded array in at any position, and get the effect you'd expect:
+展開された配列を任意の位置に配置して、期待する効果を得ることができます。
 
 ```ts
 var list = [1, 2];
@@ -47,8 +47,8 @@ list = [0, ...list, 4];
 console.log(list); // [0,1,2,4]
 ```
 
-#### Object spread
-You can also spread an object into another object. A common use case is to simply add a property to an object without mutating the original:
+#### オブジェクトスプレッド
+オブジェクトを別のオブジェクトに広げることもできます。一般的な使用例は、オリジナルに変更を加えることなくオブジェクトにプロパティを追加するだけです。
 
 ```ts
 const point2D = {x: 1, y: 2};
@@ -56,7 +56,7 @@ const point2D = {x: 1, y: 2};
 const point3D = {...point2D, z: 3};
 ```
 
-For objects, the order of where you put the spread matters.  This works something like `Object.assign`, and does what you'd expect: what comes first is 'overridden' by what comes later:
+オブジェクトの場合、スプレッド事項を置く順序。これは `Object.assign`のように動作し、あなたが期待していることを行います：最初に来るのは後で来るものによって '上書き'されます：
 
 ```ts
 const point2D = {x: 1, y: 2};
@@ -66,7 +66,7 @@ const yetAnotherPoint3D = {...point2D, x: 5, z: 4}
 console.log(yetAnotherPoint3D); // {x: 5, y: 2, z: 4}
 ```
 
-Another common use case is a simple shallow extend:
+別の一般的な使用例は、単純な浅い拡張です。
 
 ```ts
 const foo = {a: 1, b: 2, c: 0};
@@ -76,8 +76,8 @@ const fooBar = {...foo, ...bar};
 // fooBar is now {a: 1, b: 2, c: 1, d: 2}
 ```
 
-#### Summary
-`apply` is something that you often use in JavaScript, so it's good to have a better syntax where you don't have that ugly `null` for the `this` argument. Also having a dedicated syntax for moving arrays out of (destructuring) or into (assignment) other arrays provides a neat syntax for when you are doing array processing on partial arrays.
+#### 要約
+`apply`はJavaScriptでよく使うものなので、`this`引数にその醜い `null`を持たない方が良い構文にするのは良いことです。また、他の配列から配列を外す（destructuring）または（代入）するための専用の構文を使用すると、部分配列に対して配列処理を実行するときに便利な構文が提供されます。
 
 
-[](https://github.com/Microsoft/TypeScript/pull/1931)
+[]（https://github.com/Microsoft/TypeScript/pull/1931）

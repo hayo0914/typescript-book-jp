@@ -1,12 +1,12 @@
-## Creating arrays
+## 配列を作る
 
-Creating an empty array is super easy: 
+空の配列を作成するのは簡単です：
 
 ```ts
 const foo:string[] = [];
 ```
 
-If you want to create an array pre-filled with some content use the ES6 `Array.prototype.fill`: 
+あるコンテンツで事前に埋められた配列を作成するには、ES6 `Array.prototype.fill`を使います：
 
 ```ts
 const foo:string[] = new Array(3).fill('');

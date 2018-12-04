@@ -1,3 +1,3 @@
-## String enums
+## 文字列列挙型
 
-Sometimes you need a collection of strings collected under a common key. Prior to TypeScript 2.4, TypeScript only supported number-based enums. If using versions prior to 2.4, a work-around is to use [string literal types to create string based enums by combining with union types](../types/literal-types.md).
+場合によっては、共通鍵の下に収集された一連の文字列が必要になることがあります。 TypeScript 2.4以前では、TypeScriptは数値ベースの列挙型のみをサポートしていました。 2.4より前のバージョンを使用している場合は、[文字列リテラル型を使用して文字列ベースの列挙型をユニオン型と組み合わせて作成する]（../ types / literal-types.md）を使用します。

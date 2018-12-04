@@ -1,6 +1,6 @@
-## Classes Are Useful
+## クラスは有用です
 
-It is very common to have the following structure:
+次の構造を持つことは非常に一般的です。
 
 ```ts
 function foo() {
@@ -21,9 +21,9 @@ function foo() {
 }
 ```
 
-This is known as the *revealing module pattern* and quite common in JavaScript (taking advantage of JavaScript closure).
+これは*明らかなモジュールパターン*と呼ばれ、JavaScriptではかなり一般的です（JavaScriptクロージャを利用しています）。
 
-If you use [*file modules* (which you really should as global scope is bad)](../project/modules.md) then *your file is effectively the same*. However, there are too many cases where people will write code like the following:
+[* file modules *（グローバルスコープが悪いので本当に必要です）]]（../ project / modules.md）を使用すると、ファイルは事実上同じ*になります。しかし、人々が次のようなコードを書くことはあまりにも多くあります。
 
 ```ts
 let someProperty;
@@ -43,7 +43,7 @@ export function someMethod() {
 }
 ```
 
-Even though I am not a big fan of inheritance *I do find that letting people use classes helps them organize their code better*. The same developer would intuitively write the following:
+私は継承の大きなファンではありませんが、私は人々がクラスを使用させることでコードをより良く整理することができます*。同じ開発者が直感的に次のように書く：
 
 ```ts
 class Foo {
@@ -65,6 +65,6 @@ class Foo {
 export = new Foo();
 ```
 
-And its not just developers, creating dev tools that provide great visualizations over classes are much more common, and there is one less pattern your team needs to understand and maintain.
+また、開発者だけでなく、クラスの上で優れた視覚化を実現する開発ツールを作成することはずっと一般的であり、チームが理解し維持する必要があるパターンは1つ少なくなります。
 
-> PS: There is nothing wrong in my opinion with *shallow* class hierarchies if they provide significant reuse and reduction in boiler plate.
+> PS：ボイラープレートの大幅な再利用と削減を提供する場合は、* shallow *クラス階層については私の意見に間違いがありません。

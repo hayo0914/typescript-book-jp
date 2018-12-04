@@ -1,9 +1,9 @@
-## Ambient Declarations
+## アンビエント宣言
 
-As we mentioned in [why TypeScript](../../why-typescript.md):
+[なぜTypeScript]（../../ why-typescript.md）で述べたように：
 
-> A major design goal of TypeScript was to make it possible for you to safely and easily use existing JavaScript libraries in TypeScript. TypeScript does this by means of *declaration*.
+> TypeScriptの主要な設計目標は、TypeScriptで既存のJavaScriptライブラリを安全かつ簡単に使用できるようにすることでした。 TypeScriptはこれを*宣言*で行います。
 
-Ambient declarations allow you to *safely use existing popular JavaScript libraries* and *incrementally migrate your JavaScript/CoffeeScript/Other-Compile-To-Js-Language project to TypeScript*.
+アンビエント宣言を使用すると、既存の一般的なJavaScriptライブラリを安全に使用したり、JavaScript / CoffeeScript / Other-Compile-To-Js-LanguageプロジェクトをTypeScript *に段階的に移行することができます。
 
-Studying patterns in ambient declarations for *third party JavaScript code* is good practice for annotating *your* TypeScript code base as well. This is why we present it so early on.
+* サードパーティのJavaScriptコード*の環境宣言でパターンを学習することは、*あなたの* TypeScriptコードベースにも注釈を付ける良い習慣です。これが早い時期にそれを提示する理由です。

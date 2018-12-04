@@ -1,6 +1,6 @@
-## Which files?
+## どのファイルですか？
 
-You can either use `files` to be explicit:
+明示的に `files`を使うことができます：
 
 ```json
 {
@@ -10,7 +10,7 @@ You can either use `files` to be explicit:
 }
 ```
 
-or `include` and `exclude` to specify files / folders / globs. E.g.:
+ファイル/フォルダ/グロブを指定するには `include`と`exclude`を使います。例えば。：
 
 
 ```json
@@ -25,6 +25,6 @@ or `include` and `exclude` to specify files / folders / globs. E.g.:
 }
 ```
 
-Some notes:
+いくつかのメモ：
 
-* For globs : `**/*` (e.g. sample usage `somefolder/**/*`) means all folder and any files (the extensions `.ts`/`.tsx` will be assumed and if `allowJs:true` so will `.js`/`.jsx`)
+* globsの場合： `** / *`（例えば、サンプル使用法 `somefolder / ** / *`）はすべてのフォルダとファイルを意味します（ `.ts`/` .tsx`拡張子が仮定され、 `allowJs：true `so will`.js` / `.jsx`）

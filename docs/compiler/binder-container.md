@@ -1,6 +1,6 @@
-### Container
+### コンテナ
 
-An AST node can be a container. This determines the kinds of `SymbolTables` the Node and associated Symbol will have. Container is an abstract concept (i.e. has no associated data structure). The concept is driven by a few things, one being the `ContainerFlags` enum. The function `getContainerFlags` (in `binder.ts`) drives this flag and is presented below:
+ASTノードはコンテナです。これは、Nodeとそれに関連するSymbolが持つSymbolTablesの種類を決定します。コンテナは抽象的な概念です（つまり、関連するデータ構造はありません）。このコンセプトは、いくつかのものによって駆動されます.1つは `ContainerFlags`enumです。関数 `getContainerFlags`（`binder.ts`にあります）がこのフラグを駆動し、以下に示します：
 
 ```ts
 function getContainerFlags(node: Node): ContainerFlags {
@@ -62,7 +62,7 @@ function getContainerFlags(node: Node): ContainerFlags {
 }
 ```
 
-It is *only* invoked from the binder's `bindChildren` function which sets up a node as a `container` and/or a `blockScopedContainer` depending upon the evaluation of the `getContainerFlags` function. The function `bindChildren` is presented below:
+これはバインダーの `bindChildren`関数から呼び出され、`getContainerFlags`関数の評価に応じてノードを `container`および/または`blockScopedContainer`として設定します。関数 `bindChildren`を以下に示します：
 
 ```ts
 // All container nodes are kept on a linked list in declaration order. This list is used by
@@ -120,4 +120,4 @@ function bindChildren(node: Node) {
 }
 ```
 
-As you might recall from the section on binder functions : `bindChildren` is called from the `bind` function. So we have the recursive binding setup : `bind` calls `bindChildren` calls `bind` for each child.
+バインダー関数のセクションから思い出してくるように、 `bind`関数から`bindChildren`が呼び出されます。だから我々は再帰的なバインディングの設定を持っている： `bind`を呼び出す`bindChildren`はそれぞれの子に対して `bind`を呼び出します。

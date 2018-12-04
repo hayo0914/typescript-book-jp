@@ -1,2 +1,55 @@
-# Errors 
-In this section we discuss how to read and understand TypeScript errors. We follow this with common errors and their solutions.
+# よくあるエラー
+このセクションでは、ユーザーが現実世界で経験する多くの一般的なエラーコードについて説明します。
+
+## TS2304
+サンプル：
+> 「名前が見つからない」
+
+おそらく第三者の図書館（Googleアナリティクスなど）を使用しており、宣言していない可能性があります。 TypeScriptは、*スペルミス*や*を宣言せずに変数を使用してあなたを保存しようとします*あなたは外部ライブラリを含むので実行時に*利用可能なものに明示する必要があります[周囲]）。
+
+## TS2307
+サンプル：
+> `モジュール 'アンダースコア'を見つけることができません
+
+おそらく、サードパーティのライブラリ（アンダースコアなど）を*モジュール*（[モジュール上のその他] [モジュール]）として使用していて、それに対する環境宣言ファイルはありません。
+
+## TS1148
+サンプル：
+> '--module'フラグが与えられていない限りモジュールをコンパイルできない
+
+[モジュールに関するセクション] [モジュール]をチェックしてください。
+
+## キャッチ句の変数は型の注釈を持つことはできません
+サンプル：
+```js
+try { something(); }
+catch (e: Error) { // Catch clause variable cannot have a type annotation
+}
+```
+TypeScriptは、野生のJavaScriptコードからあなたを誤って保護しています。代わりにタイプガードを使用してください：
+```js
+try { something(); }
+catch (e) {
+  if (e instanceof Error){
+    // Here you go.
+  }
+}
+```
+
+## Interface `ElementClass`は`Component`と `Component`の型を同時に拡張することはできません。
+これはコンパイルコンテキストに2つの `react.d.ts`（`@ types / react / index.d.ts`）があるときに起こります。
+
+** 修正**：
+* `node_modules`と`package-lock`（または糸のロック）と `npm install`をもう一度削除してください。
+* うまくいかない場合は、無効なモジュールを見つけてください（あなたのプロジェクトで使われているすべてのモジュールは `react.d.ts`を`peerDependency`とし、ハードな依存性は持たないようにしてください）。
+
+
+## 検索インデックス作成用
+あなたはこれを読むことを無視することができます。このセクションは、検索エンジンの索引付け用です。
+
+> 人々が使用してエラーを起こす傾向がある他のモジュール：
+* 名前$を見つけることができません
+* モジュールjqueryが見つかりません
+
+[ambient]：../types/ambient/d.ts.md
+[modules]：../project/modules.md

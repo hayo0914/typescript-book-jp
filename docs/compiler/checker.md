@@ -1,8 +1,8 @@
-## Checker
-Like we mentioned before *checker* is the thing that makes TypeScript uniquely more powerful than *just another JavaScript transpiler*. The checker is located in `checker.ts` and at this moment it is 23k+ lines of TypeScript (largest part of the compiler).
+## チェッカー
+以前に述べたように* checker *は、TypeScriptを他のJavaScriptトランスファーよりもユニークに強力にするものです。チェッカーは `checker.ts 'にあり、この時点ではTypeScriptの23k +行（コンパイラの最大部分）です。
 
-### Usage by Program
-The `checker` is initialized by `program`. The following is a sampling of the call stack (we showed the same one when looking at `binder`):
+### プログラムによる使用
+`checker`は`program`で初期化されます。以下はコールスタックのサンプルです（ `バインダー`を見ると同じものを示しています）：
 
 ```
 program.getTypeChecker ->
@@ -13,10 +13,10 @@ program.getTypeChecker ->
             for each SourceFile `ts.mergeSymbolTable` (in checker)
 ```
 
-### Association with Emitter
-True type checking happens once a call is made to `getDiagnostics`. This function is called e.g. once a request is made to `Program.emit`, in which case the checker returns an `EmitResolver` (program calls the checkers `getEmitResolver` function) which is just a set of functions local to `createTypeChecker`. We will mention this again when we look at the emitter.
+### エミッタとの関連
+`getDiagnostics`が呼び出されると、真の型チェックが行われます。この機能は、例えば、 `Program.emit`が要求されると、チェッカーは`EmitResolver`（プログラムはチェッカー `getEmitResolver`関数を呼び出します）を返します。これは`createTypeChecker`のローカル関数の集合です。エミッタを見ると再びこれについて言及します。
 
-Here is the call stack right down to `checkSourceFile` (a function local to `createTypeChecker`).
+ここでコールスタックは `checkSourceFile`（`createTypeChecker`のローカル関数）です。
 
 ```
 program.emit ->

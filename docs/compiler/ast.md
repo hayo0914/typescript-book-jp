@@ -1,17 +1,17 @@
-## Node
-The basic building block of the Abstract Syntax Tree (AST). In general a `Node` represents non-terminals in the language grammar; however, some terminals are kept in the tree such as identifiers and literals.
+## ノード
+抽象構文木（AST）の基本ビルディングブロック。一般に、「ノード」は言語文法の非終端記号を表す。ただし、識別子やリテラルなどのツリーには端末が保持されています。
 
-Two key things make up an AST node's documentation. The node's `SyntaxKind` which identifies its type within the AST, and its `interface`, the API the node provides when instantiated into the AST.
+2つの重要なことが、ASTノードのドキュメントを構成します。 AST内の型を識別するノードの「SyntaxKind」と、ASTにインスタンス化されたときにノードが提供するAPIである `interface`。
 
-Here are a few key `interface Node` members:
-* `TextRange` members that identify the node's `start` and `end` in the source file.
-* `parent?: Node` the parent of the node in the AST.
+いくつかの主要な `interface Node`メンバーがあります：
+ソースファイル内のノードの `start`と`end`を識別する `TextRange`メンバ。
+* `parent ?: Node`は、ASTのノードの親です。
 
-There are other additional members for `Node` flags and modifiers etc. that you can lookup by searching `interface Node` in the source code but the ones we mentioned are vital for node traversal.
+`Node`フラグと修飾子のための他の追加のメンバがあります。あなたはソースコード中で`interface Node`を検索することで検索することができますが、ここで言及したものはノードトラバーサルにとって不可欠です。
 
-## SourceFile
+## ソースファイル
 
 * `SyntaxKind.SourceFile`
-* `interface SourceFile`.
+* `interface SourceFile`。
 
-Each `SourceFile` is a top-level AST node that is contained in the `Program`.
+各 `SourceFile`は`Program`に含まれるトップレベルのASTノードです。

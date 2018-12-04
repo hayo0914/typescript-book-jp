@@ -1,10 +1,10 @@
-## Promise
+## 約束する
 
-The `Promise` class is something that exists in many modern JavaScript engines and can be easily [polyfilled][polyfill]. The main motivation for promises is to bring synchronous style error handling to Async / Callback style code.
+`Promise`クラスは、多くの最新のJavaScriptエンジンに存在し、簡単に[polyfill] [polyfill]することができます。約束の主な動機は、同期スタイルエラー処理をAsync / Callbackスタイルコードに持たせることです。
 
-### Callback style code
+### コールバックスタイルコード
 
-In order to fully appreciate promises let's present a simple sample that proves the difficulty of creating reliable Async code with just callbacks. Consider the simple case of authoring an async version of loading JSON from a file. A synchronous version of this can be quite simple:
+約束を完全に理解するために、コールバックだけで信頼性の高い非同期コードを作成することの難しさを証明する簡単なサンプルを提示しましょう。ファイルからJSONをロードする非同期バージョンをオーサリングする単純なケースを考えてみましょう。この同期バージョンは非常に簡単です。
 
 ```ts
 import fs = require('fs');
@@ -33,7 +33,7 @@ catch (err) {
 }
 ```
 
-There are three behaviors of this simple `loadJSONSync` function, a valid return value, a file system error or a JSON.parse error. We handle the errors with a simple try/catch as you are used to when doing synchronous programming in other languages. Now let's make a good async version of such a function. A decent initial attempt with trivial error checking logic would be as follows:
+この単純な `loadJSONSync`関数、有効な戻り値、ファイルシステムエラー、またはJSON.parseエラーの3つの動作があります。私たちは、他の言語で同期プログラミングを行う際に慣れていたように、単純なtry / catchでエラーを処理します。このような関数の良い非同期バージョンを作ってみましょう。些細なエラーチェックロジックでまともな試みは次のようになります：
 
 ```ts
 import fs = require('fs');
@@ -47,12 +47,12 @@ function loadJSON(filename: string, cb: (error: Error, data: any) => void) {
 }
 ```
 
-Simple enough, it takes a callback, passes any file system errors to the callback. If no file system errors, it returns the `JSON.parse` result. A few points to keep in mind when working with async functions based on callbacks are:
+十分単純で、コールバックをとり、ファイルシステムエラーをコールバックに渡します。ファイルシステムエラーがなければ、 `JSON.parse`の結果を返します。コールバックに基づいて非同期関数を操作するときに留意すべき点は次のとおりです。
 
-1. Never call the callback twice.
-1. Never throw an error.
+1. 決してコールバックを2回コールしないでください。
+1. 決してエラーを投げないでください。
 
-However, this simple function fails to accommodate for point two. In fact, `JSON.parse` throws an error if it is passed bad JSON and the callback never gets called and the application crashes. This is demonstrated in the below example:
+しかしながら、この単純な関数は点2に対応できない。実際にJSON.parseはJSONが渡され、コールバックが呼び出されず、アプリケーションがクラッシュするとエラーをスローします。これは以下の例で示されます：
 
 ```ts
 import fs = require('fs');
@@ -73,7 +73,7 @@ loadJSON('invalid.json', function (err, data) {
 });
 ```
 
-A naive attempt at fixing this would be to wrap the `JSON.parse` in a try catch as shown in the below example:
+これを修正する単純な試みは、次の例に示すように `JSON.parse`をtry catchにラップすることです。
 
 ```ts
 import fs = require('fs');
@@ -102,7 +102,7 @@ loadJSON('invalid.json', function (err, data) {
 });
 ```
 
-However, there is a subtle bug in this code. If the callback (`cb`), and not `JSON.parse`, throws an error, since we wrapped it in a `try`/`catch`, the `catch` executes and we call the callback again i.e. the callback gets called twice! This is demonstrated in the example below:
+しかし、このコードには微妙なバグがあります。 `JSON.parse`ではなく、コールバック（`cb`）がエラーをスローすると、 `try`/` catch`でラップしたので、 `catch`が実行され、コールバックを再度コールします。二度呼ばれる！これは以下の例で実証されています：
 
 ```ts
 import fs = require('fs');
@@ -144,11 +144,11 @@ our callback called
 Error: Cannot read property 'bar' of undefined
 ```
 
-This is because our `loadJSON` function wrongfully wrapped the callback in a `try` block. There is a simple lesson to remember here.
+これは、 `loadJSON`関数が`try`ブロックでコールバックを間違ってラップしたためです。ここで覚えておくべき簡単な教訓があります。
 
-> Simple lesson: Contain all your sync code in a try catch, except when you call the callback.
+> シンプルなレッスン：コールバックを呼び出すときを除いて、すべてのシンクコードをtryキャッチに入れます。
 
-Following this simple lesson, we have a fully functional async version of `loadJSON` as shown below:
+この簡単なレッスンの後で、以下に示すように完全に機能する非同期バージョンの `loadJSON`があります：
 
 ```ts
 import fs = require('fs');
@@ -168,15 +168,15 @@ function loadJSON(filename: string, cb: (error: Error) => void) {
     });
 }
 ```
-Admittedly this is not hard to follow once you've done it a few times but nonetheless it’s a lot of boiler plate code to write simply for good error handling. Now let's look at a better way to tackle asynchronous JavaScript using promises.
+確かに、これを数回やった後はこれを実行するのは難しいことではありませんが、エラー処理を簡単に行うためのボイラープレートコードがたくさんあります。では、約束を使って非同期JavaScriptに取り組むより良い方法を見てみましょう。
 
-## Creating a Promise
+## 約束をする
 
-A promise can be either `pending` or `fulfilled` or `rejected`.
+約束は、「保留中」または「履行済み」または「拒否」のいずれかになります。
 
-![promise states and fates](https://raw.githubusercontent.com/basarat/typescript-book/master/images/promise%20states%20and%20fates.png)
+！[約束の州と運命]（https://raw.githubusercontent.com/basarat/typescript-book/master/images/promise%20states%20and%20fates.png）
 
-Let's look at creating a promise. It's a simple matter of calling `new` on `Promise` (the promise constructor). The promise constructor is passed `resolve` and `reject` functions for settling the promise state:
+約束を作るのを見てみましょう。 Promise（promiseコンストラクタ）で `new`を呼び出すのは簡単なことです。 promiseコンストラクタには、約束状態を解決するために `resolve`と`reject`関数が渡されます。
 
 ```ts
 const promise = new Promise((resolve, reject) => {
@@ -184,9 +184,9 @@ const promise = new Promise((resolve, reject) => {
 });
 ```
 
-### Subscribing to the fate of the promise
+### 約束の運命に加入する
 
-The promise fate can be subscribed to using `.then` (if resolved) or `.catch` (if rejected).
+約束運命は、 `.then`（解決された場合）または`.catch`（拒絶された場合）を使用して購読することができます。
 
 ```ts
 const promise = new Promise((resolve, reject) => {
@@ -212,14 +212,14 @@ promise.catch((err) => {
 });
 ```
 
-> TIP: Promise Shortcuts
-* Quickly creating an already resolved promise: `Promise.resolve(result)`
-* Quickly creating an already rejected promise: `Promise.reject(error)`
+> ヒント：約束のショートカット
+* すでに約束されている約束をすばやく作成する： `Promise.resolve（result）`
+* 既に拒否されている約束をすばやく作成する： `Promise.reject（error）`
 
-### Chain-ability of Promises
-The chain-ability of promises **is the heart of the benefit that promises provide**. Once you have a promise, from that point on, you use the `then` function to create a chain of promises.
+### 約束の連鎖性
+約束**の連鎖能力は、約束**が提供するメリットの中心です。その時点から約束が得られれば、 `then`関数を使って約束を作ることができます。
 
-* If you return a promise from any function in the chain, `.then` is only called once the value is resolved:
+* チェーン内の関数から約束を返すと、値が解決されたときにのみ `.then`が呼び出されます：
 
 ```ts
 Promise.resolve(123)
@@ -237,7 +237,7 @@ Promise.resolve(123)
     })
 ```
 
-* You can aggregate the error handling of any preceding portion of the chain with a single `catch`:
+* チェーンの前の部分のエラー処理を単一の `catch`で集約することができます：
 
 ```ts
 // Create a rejected promise
@@ -259,7 +259,7 @@ Promise.reject(new Error('something bad happened'))
     });
 ```
 
-* The `catch` actually returns a new promise (effectively creating a new promise chain):
+* `catch 'は実際に新しい約束を返します（効果的に新しい約束を作り出します）：
 
 ```ts
 // Create a rejected promise
@@ -277,7 +277,7 @@ Promise.reject(new Error('something bad happened'))
     })
 ```
 
-* Any synchronous errors thrown in a `then` (or `catch`) result in the returned promise to fail:
+* `then`（または`catch`）でスローされた同期エラーは、返された約束が失敗する結果になります：
 
 ```ts
 Promise.resolve(123)
@@ -294,7 +294,7 @@ Promise.resolve(123)
     })
 ```
 
-* Only the relevant (nearest tailing) `catch` is called for a given error (as the catch starts a new promise chain).
+* 関連する（最も近いテーリング） `catch`だけが与えられたエラーに対して呼び出されます（catchが新しい約束を開始するとき）。
 
 ```ts
 Promise.resolve(123)
@@ -315,7 +315,7 @@ Promise.resolve(123)
     })
 ```
 
-* A `catch` is only called in case of an error in the preceding chain:
+* `catch`は前のチェーンのエラーの場合にのみ呼び出されます：
 
 ```ts
 Promise.resolve(123)
@@ -327,16 +327,16 @@ Promise.resolve(123)
     })
 ```
 
-The fact that:
+事実：
 
-* errors jump to the tailing `catch` (and skip any middle `then` calls) and
-* synchronous errors also get caught by any tailing `catch`.
+* エラーはtailingの `catch`にジャンプします（そして`then`コールは途中でスキップします）。
+* 同期エラーはまた、どんなテーリング `catch`でも捕捉されます。
 
-effectively provides us with an async programming paradigm that allows better error handling than raw callbacks. More on this below.
+実際には生のコールバックよりも優れたエラー処理を可能にする非同期プログラミングのパラダイムを効果的に提供します。もっと詳しくはこちら。
 
 
-### TypeScript and promises
-The great thing about TypeScript is that it understands the flow of values through a promise chain:
+### TypeScriptと約束
+TypeScriptの大きな点は、約束を通した価値の流れを理解することです。
 
 ```ts
 Promise.resolve(123)
@@ -350,7 +350,7 @@ Promise.resolve(123)
     });
 ```
 
-Of course it also understands unwrapping any function calls that might return a promise:
+もちろん、約束を返す可能性のある関数呼び出しのアンラッピングも理解しています。
 
 ```ts
 function iReturnPromiseAfter1Second(): Promise<string> {
@@ -371,13 +371,13 @@ Promise.resolve(123)
 ```
 
 
-### Converting a callback style function to return a promise
+### コールバックスタイル関数を約束を返すように変換する
 
-Just wrap the function call in a promise and
-- `reject` if an error occurs,
-- `resolve` if it is all good.
+関数呼び出しを約束して
+ - エラーが発生した場合は `reject`を、
+ - それがすべて良ければ `解決する`。
 
-E.g. let's wrap `fs.readFile`:
+例えば。 `fs.readFile`をラップしましょう：
 
 ```ts
 import fs = require('fs');
@@ -392,9 +392,9 @@ function readFileAsync(filename: string): Promise<any> {
 ```
 
 
-### Revisiting the JSON example
+### JSONの例を見直す
 
-Now let's revisit our `loadJSON` example and rewrite an async version that uses promises. All that we need to do is read the file contents as a promise, then parse them as JSON and we are done. This is illustrated in the below example:
+次に、 `loadJSON`の例を見直して、約束を使う非同期バージョンを書き直しましょう。私たちがする必要があるのは、ファイルの内容を約束として読み、それをJSONとして解析して完了したことだけです。これは以下の例に示されています。
 
 ```ts
 function loadJSONAsync(filename: string): Promise<any> {
@@ -405,7 +405,7 @@ function loadJSONAsync(filename: string): Promise<any> {
 }
 ```
 
-Usage (notice how similar it is to the original `sync` version introduced at the start of this section 🌹):
+使用法（このセクションの始めに導入された元の `sync`バージョンとどれほど似ているか注意してください。）：
 ```ts
 // good json file
 loadJSONAsync('good.json')
@@ -433,12 +433,12 @@ loadJSONAsync('good.json')
     });
 ```
 
-The reason why this function was simpler is because the "`loadFile`(async) + `JSON.parse` (sync) => `catch`" consolidation was done by the promise chain. Also the callback was not called by *us* but called by the promise chain so we didn't have the chance of making the mistake of wrapping it in a `try/catch`.
+この関数がより簡単だった理由は、 "loadFile`（async）+`JSON.parse`（sync）=> `catch`"の連結が約束チェーンによって行われたためです。また、コールバックは* us *によって呼び出されませんでしたが、約束チェーンによって呼び出されたので、 `try / catch`でラップする間違いの可能性はありませんでした。
 
-### Parallel control flow
-We have seen how trivial doing a serial sequence of async tasks is with promises. It is simply a matter of chaining `then` calls.
+### 並列制御フロー
+私たちは、非同期タスクのシリアルシーケンスを行うことが約束どおりにいかに簡単であるかを見てきました。それは単に `then`呼び出しを連鎖させることの問題です。
 
-However, you might potentially want to run a series of async tasks and then do something with the results of all of these tasks. `Promise` provides a static `Promise.all` function that you can use to wait for `n` number of promises to complete. You provide it with an array of `n` promises and it gives you an array of `n` resolved values. Below we show Chaining as well as Parallel:
+しかし、一連の非同期タスクを実行し、これらのタスクのすべての結果を使用して何かを実行する可能性があります。 `Promise`は静的な`Promise.all`関数を提供します。この関数は、 `n`回の約束が完了するまで待つことができます。あなたは `n`約束の配列を提供し、`n`個の解決された値の配列を返します。以下では、連鎖と同様に連鎖を示します。
 
 ```ts
 // an async function to simulate loading an item from some server
@@ -471,7 +471,7 @@ Promise.all([loadItem(1), loadItem(2)])
     }); // overall time will be around 1s
 ```
 
-Sometimes, you want to run a series of async tasks, but you get all you need as long as any one of these tasks is settled. `Promise` provides a static `Promise.race` function for this scenario:
+場合によっては、一連の非同期タスクを実行したい場合もありますが、これらのタスクのいずれかが解決されている限り、必要なものはすべて得られます。 `Promise`は、このシナリオに対して静的な`Promise.race`関数を提供します：
 
 ```ts
 var task1 = new Promise(function(resolve, reject) {
@@ -487,15 +487,15 @@ Promise.race([task1, task2]).then(function(value) {
 });
 ```
 
-### Converting callback functions to promise
+### コールバック関数を約束するように変換する
 
-The most reliable way to do this is to hand write it. e.g. converting `setTimeout` into a promisified `delay` function is super easy:
+これを行う最も信頼できる方法は、手書きで書くことです。例えば`setTimeout`をpromisified`delay`関数に変換するのは簡単です：
 
 ```ts
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 ```
 
-Note that there is a handy dandy function in NodeJS that does this `node style function => promise returning function` magic for you:
+NodeJSには、この `node style function =>関数を返す`という魔法を使う便利なダンディー関数があることに注意してください。
 
 ```ts
 /** Sample usage */
@@ -504,4 +504,4 @@ import util = require('util');
 const readFile = util.promisify(fs.readFile);
 ```
 
-[polyfill]:https://github.com/stefanpenner/es6-promise
+[polyfill]：https：//github.com/stefanpenner/es6-promise

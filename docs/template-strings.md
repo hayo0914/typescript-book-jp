@@ -1,59 +1,59 @@
-### Template Strings
-Syntactically these are strings that use backticks ( i.e. \` ) instead of single (') or double (") quotes. The motivation of Template Strings is three fold:
+### テンプレート文字列
+構文的には、単一引用符（ '）または二重引用符（ "）の代わりにバッククォート（すなわち、\`）を使用する文字列です。
 
-* String Interpolation
-* Multiline Strings
-* Tagged Templates
+* 文字列の補間
+* 複数行の文字列
+* タグ付きテンプレート
 
-#### String Interpolation
-Another common use case is when you want to generate some string out of some static strings + some variables. For this you would need some *templating logic* and this is where *template strings* get their name from. Here's how you would potentially generate an html string previously:
+#### 文字列の補間
+別の一般的な使用例は、いくつかの静的な文字列+いくつかの変数からいくつかの文字列を生成したいときです。このためには*テンプレートロジック*が必要です。これはテンプレート文字列*の名前を取得する場所です。以前はHTML文字列を生成する可能性があります：
 
 ```ts
 var lyrics = 'Never gonna give you up';
 var html = '<div>' + lyrics + '</div>';
 ```
-Now with template strings you can just do:
+テンプレート文字列を使用すると、次のことができます。
 
 ```ts
 var lyrics = 'Never gonna give you up';
 var html = `<div>${lyrics}</div>`;
 ```
 
-Note that any placeholder inside the interpolation (`${` and `}`) is treated as a JavaScript expression and evaluated as such e.g. you can do fancy math.
+補間（ `$ {`と `}`）内の任意のプレースホルダは、JavaScript式として扱われ、評価されます。あなたは空想の数学をすることができます。
 
 ```ts
 console.log(`1 and 1 make ${1 + 1}`);
 ```
 
-#### Multiline Strings
-Ever wanted to put a newline in a JavaScript string? Perhaps you wanted to embed some lyrics? You would have needed to *escape the literal newline* using our favorite escape character `\`, and then put a new line into the string manually `\n` at the next line. This is shown below:
+#### 複数の文字列
+JavaScriptの文字列に改行を入れたかったのですか？おそらく、あなたはいくつかの歌詞を埋め込むことを望んでいたでしょうか？あなたは*好きなエスケープ文字 `\`を使ってリテラル改行*をエスケープし、次の行で文字列に新しい行を手動で `\ n`する必要がありました。これを以下に示します。
 
 ```ts
 var lyrics = "Never gonna give you up \
 \nNever gonna let you down";
 ```
 
-With TypeScript you can just use a template string:
+TypeScriptではテンプレート文字列を使うことができます：
 
 ```ts
 var lyrics = `Never gonna give you up
 Never gonna let you down`;
 ```
 
-#### Tagged Templates
+#### タグ付きテンプレート
 
-You can place a function (called a `tag`) before the template string and it gets the opportunity to pre process the template string literals plus the values of all the placeholder expressions and return a result. A few notes:
-* All the static literals are passed in as an array for the first argument.
-* All the values of the placeholders expressions are passed in as the remaining arguments. Most commonly you would just use rest parameters to convert these into an array as well.
+テンプレート文字列の前に関数（ `tag`と呼ばれる）を置くことができ、テンプレート文字列リテラルとすべてのプレースホルダー式の値を前処理して結果を返す機会を得ます。いくつかのメモ：
+* すべての静的リテラルは、最初の引数の配列として渡されます。
+* プレースホルダ式のすべての値は、残りの引数として渡されます。最も一般的には、残りのパラメータを使用してこれらを配列に変換するだけです。
 
-Here is an example where we have a tag function (named `htmlEscape`) that escapes the html from all the placeholders:
+ここでは、すべてのプレースホルダからhtmlをエスケープするタグ関数（htmlEscapeという名前）がある例を示します。
 
 ```ts
 var say = "a bird in hand > two in the bush";
 var html = htmlEscape `<div> I would just like to say : ${say}</div>`;
 
 // a sample tag function
-function htmlEscape(literals: TemplateStringsArray, ...placeholders: string[]) {
+function htmlEscape(literals, ...placeholders) {
     let result = "";
 
     // interleave the literals with the placeholders
@@ -72,10 +72,9 @@ function htmlEscape(literals: TemplateStringsArray, ...placeholders: string[]) {
     return result;
 }
 ```
-> Note: You can annotate `placeholders` to be any `[]`. Whatever you annotate it as, TypeScript will type check to make sure the placeholders used to call the tag match the annotation. For example if you expect to deal with `string` or `number`s you can annotate `...placeholders:(string | number)[]`
 
-#### Generated JS
-For pre ES6 compile targets the code is fairly simple. Multiline strings become escaped strings. String interpolation becomes *string concatenation*. Tagged Templates become function calls.
+#### 生成されたJS
+ES6以前のコンパイルの場合、コードはかなりシンプルです。複数行の文字列はエスケープ文字列になります。文字列補間は*文字列連結*になります。タグ付きテンプレートは関数呼び出しになります。
 
-#### Summary
-Multiline strings and string interpolation are just great things to have in any language. It's great that you can now use them in your JavaScript (thanks TypeScript!). Tagged templates allow you to create powerful string utilities.
+#### 要約
+複数行の文字列と文字列の補間は、あらゆる言語で使用するのに最適です。 JavaScriptでこれを使用できるようになりました（TypeScriptに感謝します）。タグ付きテンプレートを使用すると、強力な文字列ユーティリティを作成できます。

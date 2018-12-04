@@ -1,15 +1,15 @@
-## Generics
+## ジェネリックス
 
-The key motivation for generics is to provide meaningful type constraints between members. The members can be:
+ジェネリックの主な動機は、メンバー間で意味のある型制約を提供することです。メンバーには以下のものがあります：
 
-* Class instance members
-* Class methods
-* function arguments
-* function return value
+* クラスインスタンスメンバ
+* クラスメソッド
+* 関数の引数
+* 関数の戻り値
 
-## Motivation and samples
+## 動機づけとサンプル
 
-Consider the simple `Queue` (first in, first out) data structure implementation. A simple one in TypeScript / JavaScript looks like:
+単純な `Queue`（先入れ先出し）データ構造の実装を考えてみましょう。 TypeScript / JavaScriptの単純なものは以下のようになります：
 
 ```ts
 class Queue {
@@ -19,7 +19,7 @@ class Queue {
 }
 ```
 
-One issue with this implementation is that it allows people to add *anything* to the queue and when they pop it - it can be *anything*. This is shown below, where someone can push a `string` onto the queue while the usage actually assumes that only `numbers` were pushed in:
+この実装での1つの問題は、キューに*何かを追加できるようにすることです。キューをポップすると、*何でも*できます。これは以下に示されています。ここでは、 `string`をキューにプッシュすることができますが、実際に`numbers`だけがプッシュされていると仮定しています。
 
 ```ts
 class Queue {
@@ -37,7 +37,7 @@ console.log(queue.pop().toPrecision(1));
 console.log(queue.pop().toPrecision(1)); // RUNTIME ERROR
 ```
 
-One solution (and in fact the only one in languages that don't support generics) is to go ahead and create *special* classes just for these constraints. E.g. a quick and dirty number queue:
+1つの解決策（実際にはジェネリックをサポートしていない言語の唯一の解決策）は、これらの制約のために*特別なクラスを作成することです。例えば。クイックで汚れた番号のキュー：
 
 ```ts
 class QueueNumber {
@@ -53,7 +53,7 @@ queue.push("1"); // ERROR : cannot push a string. Only numbers allowed
 // ^ if that error is fixed the rest would be fine too
 ```
 
-Of course this can quickly become painful e.g. if you want a string queue you have to go through all that effort again. What you really want is a way to say that whatever the type is of the stuff getting *pushed* it should be the same for whatever gets *popped*. This is done easily with a *generic* parameter (in this case, at the class level):
+もちろん、これは急速に痛みを伴う可能性があります。文字列キューが必要な場合は、そのすべての作業をやり直す必要があります。あなたが本当に欲しいのは、タイプが*プッシュ*されているもののタイプが何であれ、*ポップされたものは何でも同じでなければならないと言う方法です。これは、*ジェネリック*パラメータ（この場合はクラスレベル）で簡単に行えます：
 
 ```ts
 /** A class definition with a generic parameter */
@@ -71,7 +71,7 @@ queue.push("1"); // ERROR : cannot push a string. Only numbers allowed
 // ^ if that error is fixed the rest would be fine too
 ```
 
-Another example that we have already seen is that of a *reverse* function, here the constraint is between what gets passed into the function and what the function returns:
+すでに見たもう一つの例は、* reverse *関数の例です。ここでは、関数に渡されるものと関数が返すものの間の制約があります。
 
 ```ts
 function reverse<T>(items: T[]): T[] {
@@ -94,7 +94,7 @@ reversed[0] = 1;       // Okay
 reversed = [1, 2];     // Okay
 ```
 
-In this section you have seen examples of generics being defined *at class level* and at *function level*. One minor addition worth mentioning is that you can have generics created just for a member function. As a toy example consider the following where we move the `reverse` function into a `Utility` class:
+このセクションでは、クラスレベル*と*関数レベル*で定義されているジェネリックの例を見てきました。言及する価値のあるマイナーな追加点は、メンバ関数のためだけにジェネリックを作成できるということです。おもちゃの例として、 `reverse`関数を`Utility`クラスに移したところで、次のことを考えてみましょう：
 
 ```ts
 class Utility {
@@ -108,30 +108,30 @@ class Utility {
 }
 ```
 
-> TIP: You can call the generic parameter whatever you want. It is conventional to use `T`, `U`, `V` when you have simple generics. If you have more than one generic argument try to use meaningful names e.g. `TKey` and `TValue` (conventional to prefix with `T` as generics are also called *templates* in other languages e.g. C++).
+> ヒント：必要に応じてジェネリックパラメータを呼び出すことができます。単純なジェネリックスを持つときは `T`、`U`、 `V`を使うのが普通です。複数の汎用引数がある場合は、意味のある名前を使用してください。 `TKey`と`TValue`（一般に `T`を接頭辞として使用することは、他の言語、例えばC ++の*テンプレート*とも呼ばれます）です。
 
-## Useless Generic
+## 役に立たずのジェネリック
 
-I've seen people use generics just for the heck of it. The question to ask is *what constraint are you trying to describe*. If you can't answer it easily you might have a useless generic. E.g. the following function
+私は人々がジェネリック薬をちょうど使用しているのを見ました。尋ねる質問は、あなたが何を記述しようとしているのか*です。あなたが簡単にそれに答えることができない場合は、役に立たないジェネリックを持つかもしれません。例えば。次の関数
 
 ```ts
 declare function foo<T>(arg: T): void;
 ```
-Here the generic `T` is completely useless as it is only used in a *single* argument position. It might as well be: 
+ここでは、一般的な `T`は、* single *引数の位置でのみ使用されるので完全に無用です。次のようなこともあります。
 
 ```ts
 declare function foo(arg: any): void;
 ```
 
-### Design Pattern: Convenience generic
+### デザインパターン：便利な汎用
 
-Consider the function: 
+次の関数を考えてみましょう。
 
 ```ts
 declare function parse<T>(name: string): T;
 ```
 
-In this case you can see that the type `T` is only used in one place. So there is no constraint *between* members. This is equivalent to a type assertion in terms of type safety:
+この場合、タイプ「T」は1つの場所でのみ使用されていることがわかります。したがって、メンバー間に制約はありません。これは、型の安全性に関する型宣言に相当します。
 
 ```ts
 declare function parse(name: string): any;
@@ -139,9 +139,9 @@ declare function parse(name: string): any;
 const something = parse('something') as TypeOfSomething;
 ```
 
-Generics used *only once* are no better than an assertion in terms of type safety. That said they do provide *convenience* to your API.
+* 使用されているジェネリックは、型の安全性に関してアサーションよりも優れていません。それはあなたのAPIに*便利*を提供していると言いました。
 
-A more obvious example is a function that loads a json response. It returns a promise of *whatever type you pass in*:
+より明白な例は、jsonレスポンスをロードする関数です。それは*あなたが渡したどんな型でも*の約束を返します：
 ```ts
 const getJSON = <T>(config: {
     url: string,
@@ -158,7 +158,7 @@ const getJSON = <T>(config: {
   }
 ```
 
-Note that you still have to explicitly annotate what you want, but the `getJSON<T>` signature `(config) => Promise<T>` saves you a few key strokes (you don't need to annotate the return type of `loadUsers` as it can be inferred):
+`getJSON <T>`シグネチャ `（config）=> Promise <T>`は、いくつかのキーストロークを保存します（戻り値の型を注釈する必要はありません）。推測できるように `loadUsers`）：
 
 ```ts
 type LoadUsersResponse = {
@@ -172,4 +172,4 @@ function loadUsers() {
 }
 ```
 
-Also `Promise<T>` as a return value is definitely better than alternatives like `Promise<any>`.
+戻り値として `Promise <T>`も `Promise <any>`のような選択肢よりも優れています。

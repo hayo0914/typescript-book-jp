@@ -1,6 +1,6 @@
 # `strictNullChecks`
 
-By default `null` and `undefined` are assignable to all types in TypeScript e.g.
+デフォルトでは、 `null`と`undefined`はTypeScriptのすべての型に割り当てられます。
 
 ```ts
 let foo: number = 123;
@@ -8,16 +8,16 @@ foo = null; // Okay
 foo = undefined; // Okay
 ```
 
-This is modelled after how a lot of people write JavaScript. However, like all things, TypeScript allows you to be *explicit* about what *can and cannot be* assigned a `null` or `undefined`.
+これは、多くの人々がどのようにJavaScriptを書くかをモデルにしています。しかし、すべてのものと同様に、TypeScriptでは、 `null`か`undefined`を*割り当てることができないか*明示する*ことができます。
 
-In strict null checking mode, `null` and `undefined` are different:
+厳密なヌルチェックモードでは、 `null`と`undefined`は異なります：
 
 ```ts
 let foo = undefined;
 foo = null; // NOT Okay
 ```
 
-Let's say we have a `Member` interface:
+`Member`インターフェースを持っているとしましょう：
 
 ```ts
 interface Member {
@@ -26,9 +26,9 @@ interface Member {
 }
 ```
 
-Not every `Member` will provide their age, so `age` is an optional property, meaning the value of `age` may or may not be `undefined`.
+全ての `メンバー 'が彼らの年齢を提供するわけではないので、`age`はオプションのプロパティです。 `age`の値は`undefined`かもしれません。
 
-`undefined` is the root of all evil. It often leads to runtime errors. It is easy to write code that will throw `Error` at runtime:
+`undefined`はすべての悪の根です。ランタイムエラーが発生することがよくあります。実行時に `Error`をスローするコードを書くのは簡単です：
 
 ```ts
 getMember()
@@ -37,7 +37,7 @@ getMember()
   })
 ```
 
-But in strict null checking mode, this error will be caught at compile time:
+しかし、厳密なヌル・チェック・モードでは、このエラーはコンパイル時に捕捉されます。
 
 ```ts
 getMember()
@@ -46,9 +46,9 @@ getMember()
   })
 ```
 
-## Non-Null Assertion Operator
+## Nullアサーション演算子
 
-A new `!` post-fix expression operator may be used to assert that its operand is non-null and non-undefined in contexts where the type checker is unable to conclude that fact. For example:
+新しい `！`ポストフィックス式演算子を使用して、型チェッカがその事実を結論できない文脈でそのオペランドが非ヌルでかつ非定義であることをアサートすることができる。例えば：
 
 ```ts
 // Compiled with --strictNullChecks
@@ -63,11 +63,11 @@ function processEntity(e?: Entity) {
 }
 ```
 
-> Note that it is just an assertion, and just like type assertions *you are responsible* for making sure the value is not null. A non-null assertion is essentially you telling the compiler "I know it's not null so let me use it as though it's not null".
+> これは単なるアサーションであり、型アサーションと同じ*値がnullでないことを確認する責任があることに注意してください。非nullアサーションは、本質的にコンパイラに「nullではないことを知っているので、ヌルではないかのように使用します」と伝えます。
 
-### Definite Assignment Assertion Operator
+### 完全な代入アサーション演算子
 
-TypeScript will also complain about properties in classes not being initialized e.g.:
+TypeScriptは、初期化されていないクラスのプロパティについても不平を言う。
 
 ```ts
 class C {
@@ -80,7 +80,7 @@ class C {
 }
 ```
 
-You can use the definite assignment assertion postfixed to the property name to tell TypeScript that you are initializing it somewhere other than the constructor e.g.
+プロパティ名に後置された確定割り当てアサーションを使用して、コンストラクタ以外の場所で初期化することをTypeScriptに通知することができます。
 
 ```ts
 class C {
@@ -98,7 +98,7 @@ class C {
 }
 ```
 
-You can also use this assertion with simple variable declarations e.g.:
+単純な変数宣言でこのアサーションを使用することもできます（例：
 
 ```ts
 let a: number[]; // No assertion
@@ -115,4 +115,4 @@ function initialize() {
 }
 ```
 
-> Like all assertions, you are telling the compiler to trust you. The compiler will not complain even if the code doesn't actually always assign the property.
+> すべてのアサーションと同様に、コンパイラに信頼するように指示しています。コンパイラは、コードが実際にプロパティを常に割り当てていなくても、不平を言うことはありません。

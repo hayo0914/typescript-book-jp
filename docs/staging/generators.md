@@ -1,7 +1,7 @@
-### Generators
-Also called `function *`, generators allow you to create functions whose execution can be paused and then later resumed maintaining the state between pause-resume transitions. The value returned from a generator is called an `iterator` and can be used to control this `pause-resume` transition.
+### 発電機
+`function *`とも呼ばれるジェネレータを使うと、実行を一時停止した後、一時停止/再開の遷移の間の状態を維持したまま再開することができる関数を作成することができます。ジェネレータから返される値は `iterator`と呼ばれ、この`pause-resume`遷移を制御するために使用できます。
 
-Here is a simple example of a generator function that generates an *infinite* list of whole numbers.
+ここでは、整数の*無限*リストを生成するジェネレータ関数の簡単な例を示します。
 
 ```ts
 function* wholeNumbers() {
@@ -12,7 +12,7 @@ function* wholeNumbers() {
 }
 ```
 
-The `yield` contextual keyword is used to return control from a generator (effectively pausing function execution) along with an optional value (here `current`). You can get access to this value using the `iterator`'s `.next()` member function, this is shown below:
+`yield`コンテキストキーワードは、オプションの値（ここでは`current`）とともにジェネレータからの制御を戻す（事実上関数の実行を一時停止する）ために使用されます。 `iterator`の`.next（） `メンバ関数を使ってこの値にアクセスできます。これは以下の通りです：
 
 ```ts
 function* wholeNumbers() {
@@ -28,10 +28,10 @@ console.log(iterator.next()); // 2
 // so on till infinity....
 ```
 
-Now that you have seen `function*`, `yield` and `.next()` we can dig deeper.
+これで `function *`、 `yield`、`.next（） `を見てきました。
 
-#### Catching Errors
-Any errors thrown (intentially using `throw` or unintentionally due to error) from the generator can be caught using `try/catch` just like normal function executions. This is demonstrated below:
+#### キャッチエラー
+ジェネレータからスローされた（意図的に `スロー`または意図せずにエラーが発生したために）スローされたエラーは、通常の関数の実行と同様に `try / catch 'を使って捕捉できます。これは以下のとおりです：
 
 ```ts
 function* wholeNumbers() {
@@ -55,7 +55,7 @@ catch(ex) {
 }
 ```
 
-#### Controlling function execution externally
-The iterator returned from the generator function can be used to control the state *inside* the generator function as well.
+#### 外部で関数の実行を制御する
+ジェネレータ関数から返されたイテレータは、ジェネレータ関数の状態*を制御するためにも使用できます。
 
-// TODO: example
+// TODO：example

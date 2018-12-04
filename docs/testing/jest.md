@@ -1,29 +1,29 @@
-# Using Jest with TypeScript
+# TypeScriptでJestを使う
 
-> [Pro egghead lesson on Jest / TypeScript](https://egghead.io/lessons/typescript-getting-started-with-jest-using-typescript)
+> [Jest / TypeScriptのプロの卵ヘッドレッスン]（https://egghead.io/lessons/typescript-getting-started-with-jest-using-typescript）
 
-No testing solution out there is perfect. That said, jest is an excellent unit testing option which provides great TypeScript support.
+アウトテストソリューションは完璧です。つまり、jestは優れたTypeScriptサポートを提供する優れたユニットテストオプションです。
 
-> Note: We assume you start off with a simple node package.json setup. Also all TypeScript files should be in a `src` folder which is always recommended (even without Jest) for a clean project setup.
+> 注意：単純なノードpackage.json setupで始めることを前提としています。また、すべてのTypeScriptファイルは `src`フォルダに置かれていなければなりません。このフォルダは、きれいなプロジェクト設定のために（Jestを使わなくても）常に推奨されます。
 
-## Step 1: Install
+## ステップ1：インストール
 
-Install the following using npm:
+npmを使用して次をインストールします。
 
 ```shell
 npm i jest @types/jest ts-jest -D
 ```
 
-Explanation:
+説明：
 
-* Install `jest` framework (`jest`)
-* Install the types for `jest` (`@types/jest`)
-* Install the TypeScript preprocessor for jest (`ts-jest`) which allows jest to transpile TypeScript on the fly and have source-map support built in.
-* Save all of these to your dev dependencies (testing is almost always a npm dev-dependency)
+* `jest`フレームワークをインストールします（`jest`）
+* `jest`の型をインストールしてください（`@ types / jest`）
+* Jest（ `ts-jest`）用のTypeScriptプリプロセッサをインストールしてください。これにより、Jestはその場でTypeScriptを翻訳し、ソースマップのサポートを組み込みます。
+* これらのすべてをあなたのdevの依存関係に保存してください（テストはほとんど常にnpmの依存関係です）
 
-## Step 2: Configure Jest
+## ステップ2：Jestを設定する
 
-Add the following `jest.config.js` file to the root of your project:
+次の `jest.config.js`ファイルをプロジェクトのルートに追加します：
 
 ```js
 module.exports = {
@@ -45,20 +45,20 @@ module.exports = {
 }
 ```
 
-Explanation:
+説明：
 
-* We always recommend having *all* TypeScript files in a `src` folder in your project. We assume this is true and specify this using the `roots` option.
-* The `transform` config just tells `jest` to use `ts-jest` for ts / tsx files.
-* The `testRegex` tells Jest to look for tests in any `__tests__` folder AND also any files anywhere that use the `(.test|.spec).(ts|tsx)` extension e.g. `asdf.test.tsx` etc.
-* The `moduleFileExtensions` tells jest to recognize our file extensions. This is needed as we add `ts`/`tsx` into the defaults (`js|jsx|json|node`).
+* すべての* TypeScriptファイルをプロジェクトの `src`フォルダに入れることを常にお勧めします。これが真であると仮定し、 `roots`オプションを使用してこれを指定します。
+* `transform`設定は、`jest`にts / tsxファイルに対して `ts-jest`を使うように指示します。
+* `testRegex`はJestに`__tests__`フォルダ内のテストを検索するよう指示します。また `（.test | .spec）。（ts | tsx）`拡張子を使用する任意のファイルを検索します。 `asdf.test.tsx`など
+* `moduleFileExtensions`はjestにファイル拡張子を認識させます。これは `ts`/` tsx`をデフォルト（ `js | jsx | json | node`）に追加するときに必要です。
 
-## Step 3: Run tests
+## 手順3：テストを実行する
 
-Run `npx jest` from your project root and jest will execute any tests you have.
+あなたのプロジェクトのルートから `npx jest`を実行すると、jestはあなたが持っているテストを実行します。
 
-### Optional: Add script target for npm scripts
+### オプション：npmスクリプトのスクリプトターゲットを追加する
 
-Add `package.json`:
+`package.json`を追加してください：
 
 ```json
 {
@@ -66,16 +66,16 @@ Add `package.json`:
 }
 ```
 
-* This allows you to run the tests with a simple `npm t`.
-* And even in watch mode with `npm t -- --watch`.
+* これにより、簡単な `npm t 'でテストを実行できます。
+* また、 `npm t --watch`の時計モードでも。
 
-### Optional: Run jest in watch mode
+### オプション：時計モードでjestを実行する
 
 * `npx jest --watch`
 
-### Example
+### 例
 
-* For a file `foo.ts`:
+* `foo.ts`ファイルの場合：
 
 ```js
 export const sum
@@ -83,7 +83,7 @@ export const sum
     a.reduce((acc, val) => acc + val, 0);
 ```
 
-* A simple `foo.test.ts`:
+* 単純な `foo.test.ts`：
 
 ```js
 import { sum } from '../';
@@ -97,14 +97,14 @@ test('basic again', () => {
 });
 ```
 
-Notes:
+ノート：
 
-* Jest provides the global `test` function.
-* Jest comes prebuilt with assertions in the form of the global `expect`.
+* Jestは、グローバルな `test`関数を提供します。
+* Jestには、グローバルな `expect`の形でアサーションがあらかじめ組み込まれています。
 
 ### Example async
 
-Jest has built-in async/await support. e.g.
+Jestには、非同期/待機サポートが組み込まれています。例えば
 
 ```js
 test('basic',async () => {
@@ -116,14 +116,14 @@ test('basic again', async () => {
 }, 1000 /* optional timeout */);
 ```
 
-### Example enzyme
+### 酵素の例
 
-> [Pro egghead lesson on Enzyme / Jest / TypeScript](https://egghead.io/lessons/react-test-react-components-and-dom-using-enzyme)
+> [酵素/ Jest / TypeScriptのプロの卵レッスン]（https://egghead.io/lessons/react-test-react-components-and-dom-using-enzyme）
 
-Enzyme allows you to test react components with dom support. There are three steps to setting up enzyme:
+酵素では、反応成分をDOMサポートでテストすることができます。酵素を設定するには3つのステップがあります：
 
-1. Install enzyme, types for enzyme, a better snapshot serializer for enzyme, enzyme-adapter-react for your react version `npm i enzyme @types/enzyme enzyme-to-json enzyme-adapter-react-16 -D`
-2. Add `"snapshotSerializers"` and `"setupTestFrameworkScriptFile"` to your `jest.config.js`:  
+1. 酵素の種類、酵素の種類、酵素のスナップショットシリアライザ、酵素 - アダプター - あなたの反応のバージョン `npm i酵素/酵素-json酵素 - アダプター - 反応-16 -D`
+2. ``snapshotSerializers ``と ``setupTestFrameworkScriptFile '`を`jest.config.js`に追加します：
 
 ```js
 module.exports = {
@@ -135,7 +135,7 @@ module.exports = {
 }
 ```
 
-3. Create `src/setupEnzyme.ts` file.
+3. `src / setupEnzyme.ts`ファイルを作成します。
 
 ```js
 import { configure } from 'enzyme';
@@ -143,9 +143,9 @@ import * as EnzymeAdapter from 'enzyme-adapter-react-16';
 configure({ adapter: new EnzymeAdapter() });
 ```
 
-Now here is an example react component and test:
+次に、反応コンポーネントとテストの例を示します。
 
-* `checkboxWithLabel.tsx`:
+* `checkboxWithLabel.tsx`：
 
 ```ts
 import * as React from 'react';
@@ -181,7 +181,7 @@ export class CheckboxWithLabel extends React.Component<{
 
 ```
 
-* `checkboxWithLabel.test.tsx`:
+* `checkboxWithLabel.test.tsx`：
 
 ```ts
 import * as React from 'react';
@@ -197,17 +197,17 @@ test('CheckboxWithLabel changes the text after click', () => {
   expect(checkbox.text()).toEqual('On');
   
   // Snapshot demo
-  expect(checkbox).toMatchSnapshot();
+  expect(shallow).toMatchSnapshot();
 });
 ```
 
-## Reasons why we like jest
+## 私たちは冗談が好きな理由
 
-> [For details on these features see jest website](http://facebook.github.io/jest/)
+> [これらの機能の詳細についてはjest websiteを参照]（http://facebook.github.io/jest/）
 
-* Built-in assertion library.
-* Great TypeScript support.
-* Very reliable test watcher.
-* Snapshot testing.
-* Built-in coverage reports.
-* Built-in async/await support.
+* アサーションライブラリを内蔵しています。
+* 優れたTypeScriptサポート。
+* 非常に信頼できるテストウォッチャー。
+* スナップショットテスト。
+* カバレッジレポートが組み込まれています。
+* ビルトインの非同期/サポートを待っています。

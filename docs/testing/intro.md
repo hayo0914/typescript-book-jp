@@ -1,4 +1,4 @@
-# Testing
-TypeScript can be used with any JavaScript testing framework that you want. In the worst case you can always do a simple `TypeScript -> JavaScript` transform and go your merry way. 
+# テスト
+TypeScriptは、任意のJavaScriptテストフレームワークで使用できます。最悪の場合には、単純な `TypeScript  - > JavaScript`変換をいつでも実行でき、あなたの好奇心をそそることができます。
 
-That said, in this section look at options that we have enjoyed greatly 🌹
+それは、このセクションでは、私たちが大いに楽しんだオプションを見ています

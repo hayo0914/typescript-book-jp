@@ -1,5 +1,5 @@
-## Stateful Functions
-A common feature in other programming languages is usage of the `static` keyword to increase the *lifetime* (not *scope*) of a function variable to live beyond function invocations. Here is a `C` sample that achieves this:
+## ステートフル関数
+他のプログラミング言語の共通の特徴は、関数呼び出しの存続期間を超えて存続する関数変数の*寿命*（スコープではない*）を増やすための `static`キーワードの使用です。これを実現する `C`サンプルがあります：
 
 ```c
 void called() {
@@ -15,7 +15,7 @@ int main () {
 }
 ```
 
-Since JavaScript (or TypeScript) doesn't have function statics you can achieve the same thing using various abstractions that wrap over a local variable e.g. using a `class` :
+JavaScript（またはTypeScript）には関数の静的変数がないため、ローカル変数を包むさまざまな抽象化を使用して同じことを達成できます。 `class`を使って：
 
 ```ts
 const {called} = new class {
@@ -30,4 +30,4 @@ called(); // Called : 1
 called(); // Called : 2
 ```
 
-> C++ developers also try and achieve this using a pattern they call `functor` (a class that overrides the operator `()`).
+> C ++開発者は、 `functor`（演算子`（） `をオーバーライドする）というパターンを使ってこれを試してみましょう。

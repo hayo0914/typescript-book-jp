@@ -1,13 +1,13 @@
 ### `emitFiles`
-Defined in `emitter.ts` here is the function signature:
+`emitter.ts`で定義されているのは関数シグネチャです：
 ```ts
 // targetSourceFile is when users only want one file in entire project to be emitted. This is used in compileOnSave feature
 export function emitFiles(resolver: EmitResolver, host: EmitHost, targetSourceFile?: SourceFile): EmitResult {
 ```
 
-`EmitHost` is just a simplified (as in narrowed down) version of `CompilerHost` (and is at runtime actually a `CompilerHost` for many use cases).
+`EmitHost`は`CompilerHost`の簡略化された（狭められたような）バージョンです（実際には多くのユースケースでは実行時に `CompilerHost`となります）。
 
-The most interesting call stack from `emitFiles` is the following:
+`emitFiles`からの最も興味深いコールスタックは次のとおりです：
 
 ```
 emitFiles ->
@@ -16,7 +16,7 @@ emitFiles ->
 ```
 
 ### `emitJavaScript`
-There is a lot of good comments in this function so we present it below :
+この関数には多くの良いコメントがありますので、以下に示します：
 
 ```ts
 function emitJavaScript(jsFilePath: string, root?: SourceFile) {
@@ -111,7 +111,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
 }
 ```
 
-Basically it sets up a bunch of locals (these functions form the *bulk* of `emitter.ts`) and then hands off to a local function `emitSourceFile` which kicks off the emit. The `emitSourceFile` function just sets up the `currentSourceFile` and in turn hands off to a local `emit` function.
+基本的にはローカルの束を設定します（これらの関数は `emitter.ts`の* bulk *を形成します）。次にemitを起動するローカル関数`emitSourceFile`に渡します。 `emitSourceFile`関数は単に`currentSourceFile`を設定してローカルの `emit`関数に渡します。
 
 ```ts
 function emitSourceFile(sourceFile: SourceFile): void {
@@ -121,11 +121,11 @@ function emitSourceFile(sourceFile: SourceFile): void {
 }
 ```
 
-The `emit` function handles *comment* emit + *actual JavaScript* emit. The *actual JavaScript* emit is the job of `emitJavaScriptWorker` function.
+`emit`関数は* comment * emit + *実際のJavaScript * emitを処理します。 *実際のJavaScript * emitは、 `emitJavaScriptWorker`関数の仕事です。
 
 ### `emitJavaScriptWorker`
 
-The complete function:
+完全な機能：
 ```ts
 function emitJavaScriptWorker(node: Node) {
     // Check if the node can be emitted regardless of the ScriptTarget
@@ -299,7 +299,7 @@ function emitJavaScriptWorker(node: Node) {
 }
 ```
 
-Recursion is done by simply calling other `emitFoo` function from these functions as needed e.g. from `emitFunctionDeclaration` :
+再帰は、単に必要に応じてこれらの関数から他の `emitFoo`関数を呼び出すことによって行われます。 `emitFunctionDeclaration`から：
 ```ts
 function emitFunctionDeclaration(node: FunctionLikeDeclaration) {
     if (nodeIsMissing(node.body)) {

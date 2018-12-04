@@ -1,2 +1,2 @@
-# TIPs
-In this section we present a number of tips that we have collected over the course of using TypeScript in the real world.
+# ティップス
+このセクションでは、現実世界でTypeScriptを使用する過程で収集したヒントをいくつか紹介します。

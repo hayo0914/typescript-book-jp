@@ -1,40 +1,40 @@
-# TypeScript Module Resolution
+# TypeScriptモジュールの解像度
 
-TypeScript's module resolution tries to model and support the real world modules systems / loaders there (commonjs/nodejs, amd/requirejs, ES6/systemjs etc.). The most simplest lookup is relative file path lookup. After that things become a bit complex *because of the nature of magical module loading done by various module loaders*.
+TypeScriptのモジュール解決は、実際のモジュールシステム/ローダー（commonjs / nodejs、amd / requirejs、ES6 / systemjsなど）をモデル化してサポートしようとします。最も簡単なルックアップは相対ファイルパスルックアップです。その後、さまざまなモジュールローダーによって行われる魔法のモジュールロードの性質のために、少し複雑になります*。
 
-## File Extensions
+## ファイル拡張子
 
-You import modules like `foo` or `./foo`. For any file path lookup TypeScript automatically checks for a `.ts` or `.d.ts` or `.tsx` or `.js` (optionally) or `.jsx` (optionally) file in the right order depending upon context. You should **not** provide a file extension with the module name (no `foo.ts`, just `foo`).
+`foo`や`。/ foo`のようなモジュールをインポートします。任意のファイルパス検索のために、TypeScriptはコンテキストに応じて `.ts`または`.d.ts`または `.tsx`または`.js`（オプション）または `.jsx`（オプション）ファイルを正しい順序で自動的にチェックします。モジュール名をファイル拡張子で指定しないでください（ `foo.ts`、`foo`だけではありません）。
 
-## Relative File Module
+## 相対ファイルモジュール
 
-An import with a relative path e.g.:
+相対パス（例：
 
 ```ts
 import foo = require('./foo');
 ```
 
-Tells the TypeScript compiler to look for a TypeScript file at the relative location e.g. `./foo.ts` with respect to the current file. There is no further magic to this kind of import. Of course it can be a longer path e.g. `./foo/bar/bas` or `../../../foo/bar/bas` just like any other *relative paths* you are used to on disk.
+TypeScriptコンパイラに相対位置でTypeScriptファイルを探すように指示します。現在のファイルに対して `。/ foo.ts`を実行します。この種の輸入にはそれ以上の魔法はありません。もちろん、それはより長い経路にすることができる。 `。/ foo / bar / bas`や`../../../ foo / bar / bas`のように他の*相対パスと同じように*あなたはディスク上で慣れています。
 
-## Named Module
+## 名前付きモジュール
 
-The following statement:
+次の文：
 
 ```ts
 import foo = require('foo');
 ```
 
-Tells the TypeScript compiler to look for an external module in the following order:
+TypeScriptコンパイラに、次の順序で外部モジュールを検索するよう指示します。
 
-* A named [module declaration](#module-declaration) from a file already in the compilation context.
-* If still not resolved and you are compiling with `--module commonjs`  or have set `--moduleResolution node` then its looked up using the [*node modules*](#node-modules) resolution algorithm.
-* If still not resolved and you provided `baseUrl` (and optionally `paths`) then the [*path substitutions*](#path-substitutions) resolution algorithm kicks in.
+* すでにコンパイルコンテキストにあるファイルから名前付きの[module declaration]（#module-declaration）
+* まだ解決されておらず、 `--module commonjs`でコンパイルしているか、`--moduleResolution node`を設定している場合は、[* node modules *]（#node-modules）解決アルゴリズムを使って調べます。
+* まだ解決されず、 `baseUrl`（オプションで`paths`）を指定した場合、[* path substitutions *]（#path-substitution）解決アルゴリズムが起動します。
 
-Note that `"foo"` can be a longer path string e.g. `"foo/bar/bas"`. The key here is that *it does not start with `./` or `../`*.
+``foo '`はより長いパス文字列にすることができます。 ``foo / bar / bas "`となります。ここでの鍵は、 `。/`や `../`*で始まらないことです。
 
-## Module Declaration
+## モジュール宣言
 
-A module declaration looks like:
+モジュールの宣言は次のようになります：
 
 ```ts
 declare module "foo" {
@@ -45,16 +45,16 @@ declare module "foo" {
 }
 ```
 
-This makes the module `"foo"`, *importable*.
+これは、モジュールを "foo" `、* importable *にします。
 
-## Node Modules
-The node module resolution is actually pretty much the same one used by Node.js / NPM ([official nodejs docs](https://nodejs.org/api/modules.html#modules_all_together)). Here is a simple mental model I have:
+## ノードモジュール
+ノードモジュールの解像度は、Node.js / NPM（[official nodejs docs]（https://nodejs.org/api/modules.html#modules_all_together））で使用されている解像度とほぼ同じです。ここに私が持っているシンプルな精神モデルがあります：
 
-* module `foo/bar` will resolve to some file : `node_modules/foo` (the module) + `foo/bar`
+* モジュール `foo / bar`はいくつかのファイルに解決されます：`node_modules / foo`（モジュール）+ `foo / bar`
 
-## Path Substitutions
+## パスの置換
 
-TODO.
+TODO。
 
 [//Comment1]:https://github.com/Microsoft/TypeScript/issues/2338
 [//Comment2]:https://github.com/Microsoft/TypeScript/issues/5039

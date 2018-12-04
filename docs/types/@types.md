@@ -1,29 +1,29 @@
-# `@types`
+# `@ types`
 
-[Definitely Typed](https://github.com/DefinitelyTyped/DefinitelyTyped) is definitely one of TypeScript's greatest strengths. The community has effectively gone ahead and **documented** the nature of nearly 90% of the top JavaScript projects out there.
+[Definitely Typed]（https://github.com/DefinitelyTyped/DefinitelyTyped）は、間違いなくTypeScriptの最大の強みの1つです。コミュニティは効果的に先に進んで**トップJavaScriptプロジェクトのほぼ90％の性質を文書化**しました。
 
-This means that you can use these projects in a very interactive and exploratory manner, no need to have the docs open in a separate window and making sure you don't make a typo.
+これは、これらのプロジェクトを非常にインタラクティブかつ探索的な方法で使用できることを意味します。ドキュメントを別のウィンドウで開き、誤植をしないようにする必要はありません。
 
-## Using `@types`
+## `@ types`を使う
 
-Installation is fairly simple as it just works on top of `npm`. So as an example you can install type definitions for `jquery` simply as:
+インストールは `npm`の上で動作するのでかなり簡単です。例として、 `jquery`の型定義を以下のように単純にインストールすることができます：
 
 ```
 npm install @types/jquery --save-dev
 ```
 
-`@types` supports both *global* and *module* type definitions.
+`@ types`は* global *と* module *型定義の両方をサポートします。
 
 
-### Global `@types`
+### グローバル `@ types`
 
-By default any definitions that support global consumption are included automatically. E.g. for `jquery` you should be able to just start using `$` *globally* in your project.
+デフォルトでは、グローバル消費をサポートする定義は自動的に含まれます。例えば。 `jquery`のためには、あなたのプロジェクトで`$ `*をグローバルに*使うことができるはずです。
 
-However, for *libraries*  (like `jquery`) I generally recommend using *modules*:
+しかし、*ライブラリ*（ `jquery`のような）では、一般的に* modules *の使用をお勧めします：
 
-### Module `@types`
+### モジュール `@ types`
 
-After installation, no special configuration is required really. You just use it like a module e.g.:
+インストール後、実際に特別な設定は必要ありません。モジュールのように使用するだけです（例：
 
 ```ts
 import * as $ from "jquery";
@@ -31,9 +31,9 @@ import * as $ from "jquery";
 // Use $ at will in this module :)
 ```
 
-## Controlling Globals
+## グローバルの制御
 
-As can be seen, having a definition that allows global leak-in automatically can be a problem for some teams. So you can choose to *explicitly* only bring in the types that make sense using the `tsconfig.json` `compilerOptions.types` e.g.:
+わかるように、グローバルなリークインを自動的に許可する定義を持つことは、一部のチームにとっては問題になる可能性があります。したがって、 `tsconfig.json``compilerOptions.types`を使って意味を持つ型だけを明示的に取り込むように選択することができます：
 
 ```json
 {
@@ -45,4 +45,4 @@ As can be seen, having a definition that allows global leak-in automatically can
 }
 ```
 
-The above shows a sample where only `jquery` will be allowed to be used. Even if the person installs another definition like `npm install @types/node` its globals (e.g. [`process`](https://nodejs.org/api/process.html)) will not leak into your code until you add them to the `tsconfig.json` types option.
+上の例は、 `jquery`だけを使用できるサンプルを示しています。人が `npm install @ types / node`のような別の定義をインストールしても、そのグローバル（例：[`process`]（https://nodejs.org/api/process.html））はあなたが追加するまであなたのコードに漏れませんそれらを `tsconfig.json`型オプションに渡します。

@@ -1,24 +1,24 @@
-# TypeScript Type System
-We covered the main features of the TypeScript Type System back when we discussed [Why TypeScript?](../why-typescript.md). The following are a few key takeaways from that discussion which don't need further explanation:
-* The type system in TypeScript is designed to be *optional* so that *your JavaScript is TypeScript*.
-* TypeScript does not block *JavaScript emit* in the presence of Type Errors, allowing you to *progressively update your JS to TS*.
+# タイプスクリプトタイプシステム
+[Why TypeScript？]（../ why-typescript.md）について説明したとき、TypeScript Type Systemの主な機能を取り上げました。次の説明は、その説明からのさらなる説明を必要としないいくつかの主要な取り組みです：
+* typescriptの型システムは* javascriptがtypescript *になるように*オプションです*ように設計されています。
+* TypeScriptはType Errorsの存在下で* JavaScript emit *をブロックしないので、JSをTS *に徐々に更新することができます。
 
-Now let's start with the *syntax* of the TypeScript type system. This way you can start using these annotations in your code immediately and see the benefit. This will prepare you for a deeper dive later.
+では、TypeScript型システムの*構文*から始めましょう。これにより、コード内でこれらの注釈をすぐに使用して、その利点を確認することができます。これは後でより深い潜水を準備します。
 
-## Basic Annotations
-As mentioned before Types are annotated using `:TypeAnnotation` syntax. Anything that is available in the type declaration space can be used as a Type Annotation.
+## 基本アノテーション
+前述のように、型は `：TypeAnnotation`構文を使って注釈されます。型宣言空間で使用可能なものは、型注釈として使用できます。
 
-The following example demonstrates type annotations for variables, function parameters and function return values:
+次の例は、変数、関数パラメータ、および関数戻り値の型の注釈を示しています。
 
-```ts
+```
 var num: number = 123;
 function identity(num: number): number {
     return num;
 }
 ```
 
-### Primitive Types
-The JavaScript primitive types are well represented in the TypeScript type system. This means `string`, `number`, `boolean` as demonstrated below:
+### プリミティブ型
+JavaScriptプリミティブ型は、TypeScript型システムでよく表現されています。これは、以下に示すように `string`、`number`、 `boolean`を意味します：
 
 ```ts
 var num: number;
@@ -37,8 +37,8 @@ bool = false;
 bool = 'false'; // Error
 ```
 
-### Arrays
-TypeScript provides dedicated type syntax for arrays to make it easier for you to annotate and document your code. The syntax is basically postfixing `[]` to any valid type annotation (e.g. `:boolean[]`). It allows you to safely do any array manipulation that you would normally do and protects you from errors like assigning a member of the wrong type.  This is demonstrated below:
+### 配列
+TypeScriptは、配列に専用の構文を提供し、コードに注釈を付けて文書化するのを容易にします。構文は、基本的に `[]`を有効な型の注釈（例えば `：boolean []`）に後置します。これは通常行う配列操作を安全に行うことを可能にし、誤った型のメンバを割り当てるなどのエラーからあなたを守ります。これは以下のとおりです：
 
 ```ts
 var boolArray: boolean[];
@@ -54,8 +54,8 @@ boolArray = 'false'; // Error!
 boolArray = [true, 'false']; // Error!
 ```
 
-### Interfaces
-Interfaces are the core way in TypeScript to compose multiple type annotations into a single named annotation. Consider the following example:
+### インターフェイス
+インターフェイスは、複数のタイプの注釈を単一の名前付き注釈に合成するための、TypeScriptの中心的な方法です。次の例を考えてみましょう。
 
 ```ts
 interface Name {
@@ -78,10 +78,10 @@ name = {           // Error : `second` is the wrong type
 };
 ```
 
-Here we've composed the annotations `first: string` + `second: string` into a new annotation `Name` that enforces the type checks on individual members. Interfaces have a lot of power in TypeScript and we will dedicate an entire section to how you can use that to your advantage.
+ここでは、アノテーションを `first：string`+` second：string`という新しいアノテーション `Name`にまとめて、個々のメンバのタイプチェックを行います。インターフェイスはTypeScriptで多くのパワーを持っており、セクション全体をあなたの利点にどのように使うことができるかということに専念します。
 
-### Inline Type Annotation
-Instead of creating a new `interface` you can annotate anything you want *inline* using `:{ /*Structure*/ }`. The previous example presented again with an inline type:
+### インライン型注釈
+新しい `interface`を作成するのではなく、`：{/ * Structure * /} `を使って*インライン*で必要なものに注釈を付けることができます。前の例は、インライン型を再び示しました：
 
 ```ts
 var name: {
@@ -102,13 +102,13 @@ name = {           // Error : `second` is the wrong type
 };
 ```
 
-Inline types are great for quickly providing a one off type annotation for something. It saves you the hassle of coming up with (a potentially bad) type name. However, if you find yourself putting in the same type annotation inline multiple times it's a good idea to consider refactoring it into an interface (or a `type alias` covered later in this section).
+インラインタイプは、何かのためのワンタッチアノテーションを素早く提供するのに最適です。それは（潜在的に悪い）型名を考え出す手間を省きます。しかし、同じタイプの注釈を複数回インラインで入れている場合は、それをインターフェース（またはこのセクションの後半で説明する `type alias '）にリファクタリングすることを検討することをお勧めします。
 
-## Special Types
-Beyond the primitive types that have been covered there are a few types that have special meaning in TypeScript. These are `any`, `null`, `undefined`, `void`.
+## 特殊なタイプ
+カバーされているプリミティブ型以外にも、TypeScriptでは特別な意味を持ついくつかの型があります。これらは `any`、`null`、 `undefined`、`void`です。
 
-### any
-The `any` type holds a special place in the TypeScript type system. It gives you an escape hatch from the type system to tell the compiler to bugger off. `any` is compatible with *any and all* types in the type system. This means that *anything can be assigned to it* and *it can be assigned to anything*. This is demonstrated in the example below:
+### どれか
+`any`型は、TypeScript型システムにおいて特別な場所を保持します。これは、タイプシステムからのエスケープハッチを与えて、コンパイラにバグを告げるように指示します。 `any`は型システムの* any型とall型と互換性があります。これは、*何かをそれに割り当てることができることを意味します。*それは何にでも割り当てることができます*。これは以下の例で実証されています：
 
 ```ts
 var power: any;
@@ -123,11 +123,11 @@ power = num;
 num = power;
 ```
 
-If you are porting JavaScript code to TypeScript, you are going to be close friends with `any` in the beginning. However, don't take this friendship too seriously as it means that *it is up to you to ensure the type safety*. You are basically telling the compiler to *not do any meaningful static analysis*.
+JavaScriptコードをTypeScriptに移植する場合、最初は `any`と親しい友人になります。しかし、タイプセーフティを確保することはあなた次第であるため、この友情を真剣に受け止めてはいけません。基本的にコンパイラに意味のある静的解析*を行わないように指示しています。
 
-### `null` and `undefined`
+### ``ヌル `と` `未定義` `
 
-The `null` and `undefined` JavaScript literals are effectively treated by the type system the same as something of type `any`. These literals can be assigned to any other type. This is demonstrated in the below example:
+`null`と`undefined` JavaScriptリテラルは、 `any`型のものと同じ型システムによって効果的に扱われます。これらのリテラルは他のタイプに割り当てることができます。これは以下の例で示されます：
 
 ```ts
 var num: number;
@@ -138,8 +138,8 @@ num = null;
 str = undefined;
 ```
 
-### `:void`
-Use `:void` to signify that a function does not have a return type:
+### `：void`
+関数に戻り値の型がないことを示すには `：void`を使います：
 
 ```ts
 function log(message): void {
@@ -147,8 +147,8 @@ function log(message): void {
 }
 ```
 
-## Generics
-Many algorithms and data structures in computer science do not depend on the *actual type* of the object. However, you still want to enforce a constraint between various variables. A simple toy example is a function that takes a list of items and returns a reversed list of items. The constraint here is between what is passed in to the function and what is returned by the function:
+## ジェネリックス
+コンピュータサイエンスの多くのアルゴリズムとデータ構造は、オブジェクトの実際のタイプ*に依存しません。しかし、いまだにさまざまな変数の間で制約を適用したいと思っています。単純なおもちゃの例は、項目のリストを取り、逆の項目のリストを返す関数です。ここでの制約は、関数に渡されるものと関数によって返されるものの間の制約です。
 
 ```ts
 function reverse<T>(items: T[]): T[] {
@@ -171,7 +171,7 @@ reversed[0] = 1;       // Okay
 reversed = [1, 2];     // Okay
 ```
 
-Here you are basically saying that the function `reverse` takes an array (`items: T[]`) of *some* type `T` (notice the type parameter in `reverse<T>`) and returns an array of type `T` (notice `: T[]`). Because the `reverse` function returns items of the same type as it takes, TypeScript knows the `reversed` variable is also of type `number[]` and will give you Type safety. Similarly if you pass in an array of `string[]` to the reverse function the returned result is also an array of `string[]` and you get similar type safety as shown below:
+ここでは、 `reverse`関数は* some *型`T`の配列（ `items：T []`）（ `reverse <T>`の型パラメータに注意してください）を取り、型の配列を返します`T`（注意：`T [] `）。 `reverse`関数は、同じ型の項目を返すので、`reversed`変数も `number []`型であることを知り、型の安全性を与えます。同様に `string []`の配列をリバース関数に渡すと、返される結果も `string []`の配列になり、以下に示すような型安全性が得られます：
 
 ```ts
 var strArr = ['1', '2'];
@@ -180,7 +180,7 @@ var reversedStrs = reverse(strArr);
 reversedStrs = [1, 2]; // Error!
 ```
 
-In fact JavaScript arrays already have a `.reverse` function and TypeScript does indeed use generics to define its structure:
+実際、JavaScript配列には既に `.reverse`関数があり、TypeScriptは実際にその構造を定義するためにジェネリックを使用します：
 
 ```ts
 interface Array<T> {
@@ -189,7 +189,7 @@ interface Array<T> {
 }
 ```
 
-This means that you get type safety when calling `.reverse` on any array as shown below:
+これは、以下のように任意の配列で `.reverse`を呼び出すときに型の安全性を得ることを意味します：
 
 ```ts
 var numArr = [1, 2];
@@ -198,10 +198,10 @@ var reversedNums = numArr.reverse();
 reversedNums = ['1', '2']; // Error!
 ```
 
-We will discuss more about the `Array<T>` interface later when we present `lib.d.ts` in the section **Ambient Declarations**.
+後で、 `Ambient Declarations ** 'の節で`lib.d.ts`を提示するときに、 `Array <T>'インターフェースについてもっと議論します。
 
-## Union Type
-Quite commonly in JavaScript you want to allow a property to be one of multiple types e.g. *a `string` or a `number`*. This is where the *union type* (denoted by `|` in a type annotation e.g. `string|number`) comes in handy. A common use case is a function that can take a single object or an array of the object e.g.:
+## ユニオンタイプ
+JavaScriptでは多くの場合、プロパティを複数のタイプのうちの1つにする必要があります。 * `string`または`number` *です。これは、* union type *（型アノテーションの `|`で示される `string | number`）が便利な場所です。一般的な使用例は、単一のオブジェクトまたはオブジェクトの配列をとることができる関数です。
 
 ```ts
 function formatCommandline(command: string[]|string) {
@@ -216,8 +216,8 @@ function formatCommandline(command: string[]|string) {
 }
 ```
 
-## Intersection Type
-`extend` is a very common pattern in JavaScript where you take two objects and create a new one that has the features of both these objects. An **Intersection Type** allows you to use this pattern in a safe way as demonstrated below:
+## 交差点タイプ
+`extend`はJavaScriptで非常に一般的なパターンです。ここでは2つのオブジェクトを取得し、これらのオブジェクトの両方の機能を持つ新しいオブジェクトを作成します。 ** Intersection Type **では、以下に示すようにこのパターンを安全な方法で使用できます。
 
 ```ts
 function extend<T, U>(first: T, second: U): T & U {
@@ -240,8 +240,8 @@ var a = x.a;
 var b = x.b;
 ```
 
-## Tuple Type
-JavaScript doesn't have first class tuple support. People generally just use an array as a tuple. This is exactly what the TypeScript type system supports. Tuples can be annotated using `: [typeofmember1, typeofmember2]` etc. A tuple can have any number of members. Tuples are demonstrated in the below example:
+## タプルタイプ
+JavaScriptには、ファーストクラスタプルのサポートがありません。人々は一般にタプルとして配列を使用します。これはまさにTypeScript型システムがサポートしているものです。タプルは、 `：[typeofmember1、typeofmember2]`などを使って注釈を付けることができます。タプルには、任意の数のメンバを含めることができます。タプルは以下の例で示されます：
 
 ```ts
 var nameNumber: [string, number];
@@ -253,7 +253,7 @@ nameNumber = ['Jenny', 8675309];
 nameNumber = ['Jenny', '867-5309'];
 ```
 
-Combine this with the destructuring support in TypeScript, tuples feel fairly first class despite being arrays underneath:
+これをTypeScriptの非構造化サポートと組み合わせると、タプルは配列の下にあってもかなりファーストクラスだと感じます：
 
 ```ts
 var nameNumber: [string, number];
@@ -262,8 +262,8 @@ nameNumber = ['Jenny', 8675309];
 var [name, num] = nameNumber;
 ```
 
-## Type Alias
-TypeScript provides convenient syntax for providing names for type annotations that you would like to use in more than one place. The aliases are created using the `type SomeName = someValidTypeAnnotation` syntax. An example is demonstrated below:
+## 型エイリアス
+TypeScriptは、複数の場所で使用したいタイプ注釈の名前を提供するための便利な構文を提供します。エイリアスは `type SomeName = someValidTypeAnnotation`構文を使用して作成されます。例を以下に示します。
 
 ```ts
 type StrOrNum = string|number;
@@ -277,7 +277,7 @@ sample = '123';
 sample = true; // Error!
 ```
 
-Unlike an `interface` you can give a type alias to literally any type annotation (useful for stuff like union and intersection types). Here are a few more examples to make you familiar with the syntax:
+`interface`とは違って、文字通り型アノテーションに型エイリアスを与えることができます（共用体や交差型のようなものに便利です）。構文に慣れ親しむための例をいくつか次に示します。
 
 ```ts
 type Text = string | { text: string };
@@ -285,9 +285,9 @@ type Coordinates = [number, number];
 type Callback = (data: string) => void;
 ```
 
-> TIP: If you need to have hierarchies of Type annotations use an `interface`. They can be used with `implements` and `extends`
+> ヒント：Typeアノテーションの階層を持つ必要がある場合は、 `interface`を使います。それらは `implements`と`extends`で使うことができます
 
-> TIP: Use a type alias for simpler object structures (like `Coordinates`) just to give them a semantic name. Also when you want to give semantic names to Union or Intersection types, a Type alias is the way to go.
+> ヒント：より単純なオブジェクト構造（ `Coordinates`のような）のために、型名を使ってセマンティックな名前を付けるだけです。また、連合型や交差型にセマンティクス名を付ける場合は、型エイリアスを使用します。
 
-## Summary
-Now that you can start annotating most of your JavaScript code we can jump into the nitty gritty details of all the power available in TypeScript's Type System.
+## まとめ
+これで、ほとんどのJavaScriptコードに注釈を付けることができるようになりました。これは、TypeScriptのタイプシステムで使用可能なすべての機能の詳細にジャンプできます。

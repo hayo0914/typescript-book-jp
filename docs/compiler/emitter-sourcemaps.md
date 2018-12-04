@@ -1,6 +1,6 @@
-### Emitter SourceMaps
+### エミッタソースマップ
 
-We said that the bulk of the `emitter.ts` is the local function `emitJavaScript` (we showed the initialization routine of this function before). It basically sets up a bunch of locals and hits off to `emitSourceFile`. The following is a revisiting of the function, this time focusing on `SourceMap` stuff:
+`emitter.ts`の大部分はローカル関数`emitJavaScript`です（この関数の初期化ルーチンを前に示しました）。それは基本的に地元の人々の集合を設定し、 `emitSourceFile`にヒットします。以下はこの関数の再訪です。今回は `SourceMap`に焦点を当てています：
 
 ```ts
 function emitJavaScript(jsFilePath: string, root?: SourceFile) {
@@ -63,7 +63,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
     /// BUNCH OF LOCAL FUNCTIONS
 ```
 
-The important function call here : `initializeEmitterWithSourceMaps` which is a function local to `emitJavaScript` that overrides some locals that were already defined here. At the bottom of `initializeEmitterWithSourceMaps` you will notice the overriding:
+ここで重要な関数は、 `initializeEmitterWithSourceMaps`です。ここで既に定義されているいくつかのローカルを上書きする`emitJavaScript`のローカル関数です。 `initializeEmitterWithSourceMaps`の一番下には、オーバーライドがあります。
 
 ```ts
     // end of `initializeEmitterWithSourceMaps`
@@ -78,4 +78,4 @@ The important function call here : `initializeEmitterWithSourceMaps` which is a 
     writeComment = writeCommentRangeWithMap;
 ```
 
-This means that the bulk of emitter code can not care about `SourceMap` and just use these local functions the same way with or without SourceMaps.
+つまり、大量のエミッタコードは `SourceMap`を気にすることができず、SourceMapsの有無にかかわらずこれらのローカル関数を同じ方法で使用します。

@@ -1,6 +1,6 @@
-# Static Constructors in TypeScript
+# TypeScriptの静的コンストラクタ
 
-TypeScript `class` (like JavaScript `class`) cannot have a static constructor. However, you can get the same effect quite easily by just calling it yourself: 
+TypeScript `class`（JavaScriptの`class`のような）は静的なコンストラクタを持つことはできません。しかし、自分で呼び出すだけで、同じ効果を得ることができます。
 
 ```ts
 class MyClass {

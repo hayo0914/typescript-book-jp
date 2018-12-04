@@ -1,17 +1,17 @@
-## Emitter
-There are two `emitters` provided with the TypeScript compiler:
+## エミッタ
+TypeScriptコンパイラには、2つの「エミッタ」が用意されています。
 
-* `emitter.ts`: this is the emitter you are most likely to be interested in. Its the TS -> JavaScript emitter.
-* `declarationEmitter.ts`: this is the emitter used to create a *declaration file* (a `.d.ts`) for a *TypeScript source file* (a `.ts` file).
+* `emitter.ts`：これはあなたが最も興味を持っているエミッタです。そのTS  - > JavaScriptエミッタです。
+* `declarationEmitter.ts`：これは* TypeScriptソースファイル*（`.ts`ファイル）の*宣言ファイル*（ `.d.ts`）を生成するために使用されるエミッタです。
 
-We will look at `emitter.ts` in this section.
+このセクションでは `emitter.ts`を見ていきます。
 
-### Usage by `program`
-Program provides an `emit` function. This function primarily delegates to `emitFiles` function in `emitter.ts`. Here is the call stack:
+### プログラムによる使用法
+プログラムは `emit`関数を提供します。この関数は主に `emitter.ts`の`emitFiles`関数に委譲します。コールスタックは次のとおりです。
 
 ```
 Program.emit ->
     `emitWorker` (local in program.ts createProgram) ->
         `emitFiles` (function in emitter.ts)
 ```
-One thing that the `emitWorker` provides to the emitter (via an argument to `emitFiles`) is an `EmitResolver`. `EmitResolver` is provided by the program's TypeChecker, basically it is a subset of *local* functions from `createChecker`.
+`emitWorker`がエミッタに（emitFiles`への引数を介して）提供するものの1つは`EmitResolver`です。 `EmitResolver`はプログラムのTypeCheckerによって提供され、基本的に`createChecker`の* local *関数のサブセットです。

@@ -1,8 +1,8 @@
-# Function Parameters
+# 関数のパラメータ
 
-If you have a function that takes too many parameters, or parameters of the same type, then you might want to consider changing the function to take an object instead. 
+あまりにも多くのパラメータや同じ型のパラメータを取る関数がある場合は、代わりにオブジェクトを取るように関数を変更することを検討してください。
 
-Consider the following function:
+以下の関数を考えてみましょう：
 
 ```ts
 function foo(flagA: boolean, flagB: boolean) {
@@ -10,9 +10,9 @@ function foo(flagA: boolean, flagB: boolean) {
 }
 ```
 
-With such a function definition it's quite easy to invoke it incorrectly e.g. `foo(flagB, flagA)` and you would get no help from the compiler. 
+このような関数定義では、それを間違って呼び出すのはかなり簡単です。 `foo（flagB、flagA）`を呼び出すと、コンパイラの助けを借りることができません。
 
-Instead, convert the function to take an object: 
+代わりに、オブジェクトを取得する関数を変換します。
 
 ```ts
 function foo(config: {flagA: boolean, flagB: boolean}) {
@@ -20,6 +20,6 @@ function foo(config: {flagA: boolean, flagB: boolean}) {
   // your awesome function body 
 }
 ```
-Now the function calls will look like `foo({flagA, flagB})` which makes it much easier to spot mistakes and code review.
+関数呼び出しは `foo（{flagA、flagB}）`のようになりますので、間違いやコードレビューを簡単に見つけることができます。
 
-> Note : If your function is simple enough, and you don't expect much churn, then feel free to ignore this advice 🌹.
+> 注意：あなたの機能が十分にシンプルで、チャーンをあまり期待していない場合は、このアドバイスを無視してください。

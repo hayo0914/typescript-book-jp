@@ -1,15 +1,15 @@
-* [Enums](#enums)
-* [Number Enums and numbers](#number-enums-and-numbers)
-* [Number Enums and strings](#number-enums-and-strings)
-* [Changing the number associated with a number enum](#changing-the-number-associated-with-a-number-enum)
-* [Enums are open ended](#enums-are-open-ended)
-* [Number Enums as flags](#number enums-as-flags)
-* [String Enums](#string-enums)
-* [Const enums](#const-enums)
-* [Enum with static functions](#enum-with-static-functions)
+* [Enums]（#enums）
+* [Number Enums and numbers]（#number-enums-and-numbers）
+* [Number Enums and strings]（#number-enums-and-strings）
+* [数値列挙型に関連付けられた番号の変更]（#番号付き列挙型変更）
+* [Enums are open ended]（#enums-are-open-ended）
+* [Number Enums as flags]（#number enums-as-flags）
+* [String Enums]（#string-enums）
+* [Const enums]（#const-enums）
+* [静的関数を持つ列挙型]（#列挙型静的関数）
 
 ### Enums
-An enum is a way to organize a collection of related values. Many other programming languages (C/C#/Java) have an `enum` data type but JavaScript does not. However, TypeScript does. Here is an example definition of a TypeScript enum:
+列挙型は、関連する値の集合を編成する方法です。他の多くのプログラミング言語（C / C#/ Java）は `enum`データ型を持っていますが、JavaScriptはありません。しかし、TypeScriptはそうです。 TypeScript列挙型の定義例を次に示します。
 
 ```ts
 enum CardSuit {
@@ -26,10 +26,10 @@ var card = CardSuit.Clubs;
 card = "not a member of card suit"; // Error : string is not assignable to type `CardSuit`
 ```
 
-These enums values are `number`s so I'll call them Number Enums from hence forth.
+これらのenum値は `number`sなので、私はNumber Enumsと呼んでいます。
 
-#### Number Enums and Numbers
-TypeScript enums are number based. This means that numbers can be assigned to an instance of the enum, and so can anything else that is compatible with `number`.
+#### 列挙数と数値
+TypeScript列挙型は数値ベースです。これは、数値を列挙型のインスタンスに割り当てることができることを意味し、 `number`と互換性のあるものもそうです。
 
 ```ts
 enum Color {
@@ -41,8 +41,8 @@ var col = Color.Red;
 col = 0; // Effectively same as Color.Red
 ```
 
-#### Number Enums and Strings
-Before we look further into enums let's look at the JavaScript that it generates, here is a sample TypeScript:
+#### 数値列挙と文字列
+列挙型をさらに詳しく調べる前に、生成するJavaScriptを見てみましょう。ここにはサンプルのTypeScriptがあります：
 
 ```ts
 enum Tristate {
@@ -51,7 +51,7 @@ enum Tristate {
     Unknown
 }
 ```
-generates the following JavaScript:
+次のJavaScriptを生成します。
 
 ```js
 var Tristate;
@@ -62,7 +62,7 @@ var Tristate;
 })(Tristate || (Tristate = {}));
 ```
 
-let's focus on the line `Tristate[Tristate["False"] = 0] = "False";`. Within it `Tristate["False"] = 0` should be self explanatory, i.e. sets `"False"` member of `Tristate` variable to be `0`. Note that in JavaScript the assignment operator returns the assigned value (in this case `0`). Therefore the next thing executed by the JavaScript runtime is `Tristate[0] = "False"`. This means that you can use the `Tristate` variable to convert a string version of the enum to a number or a number version of the enum to a string. This is demonstrated below:
+`Tristate [Talseate [" False "] = 0] =" False ";という行に焦点を当てましょう。 `Tristate [" False "] = 0`は自己説明的でなければなりません。つまり、`Tristate`変数の ``False``メンバを ``0 ''に設定します。 JavaScriptでは、代入演算子は割り当てられた値（この場合は `0`）を返します。したがって、JavaScriptランタイムによって次に実行されるのは、 `Tristate [0] =" False "`です。これは、 `Tristate`変数を使用して、列挙型の文字列バージョンを列挙型の数値または数値バージョンに変換することができることを意味します。これは以下のとおりです：
 
 ```ts
 enum Tristate {
@@ -75,8 +75,8 @@ console.log(Tristate["False"]); // 0
 console.log(Tristate[Tristate.False]); // "False" because `Tristate.False == 0`
 ```
 
-#### Changing the number associated with a Number Enum
-By default enums are `0` based and then each subsequent value increments by 1 automatically. As an example consider the following:
+#### Number Enumに関連付けられた番号を変更する
+デフォルトでは列挙型は「0」に基づいており、その後の各値は自動的に1ずつ増加します。例として、次の点を考慮してください。
 
 ```ts
 enum Color {
@@ -86,7 +86,7 @@ enum Color {
 }
 ```
 
-However, you can change the number associated with any enum member by assigning to it specifically. This is demonstrated below where we start at 3 and start incrementing from there:
+ただし、任意の列挙型メンバーに関連付けられた番号を、それに特に割り当てて変更することはできます。これは、3で始まりそこからインクリメントを開始するところで以下に説明されています：
 
 ```ts
 enum Color {
@@ -96,10 +96,10 @@ enum Color {
 }
 ```
 
-> TIP: I quite commonly initialize the first enum with ` = 1` as it allows me to do a safe truthy check on an enum value.
+> ヒント：最初の列挙型を `= 1`で初期化するのは、列挙型の値を安全に真理チェックするためです。
 
-#### Number Enums as flags
-One excellent use of enums is the ability to use enums as `Flags`. Flags allow you to check if a certain condition from a set of conditions is true. Consider the following example where we have a set of properties about animals:
+#### フラグとしての数値列挙型
+列挙型の優れた使い方は、列挙型を `Flags`として使用することです。フラグを使用すると、一連の条件から特定の条件が真であるかどうかを確認できます。動物に関する一連のプロパティがある次の例を考えてみましょう。
 
 ```ts
 enum AnimalFlags {
@@ -111,19 +111,17 @@ enum AnimalFlags {
 }
 ```
 
-Here we are using the left shift operator to move `1` around a certain level of bits to come up with bitwise disjoint numbers `0001`, `0010`, `0100` and `1000` (these are decimals `1`,`2`,`4`,`8` if you are curious). The bitwise operators `|` (or) / `&` (and) / `~` (not) are your best friends when working with flags and are demonstrated below:
+ここでは、左シフト演算子を使用して、特定のビットレベルの周りに「1」を移動して、ビット単位の「0001」、「0010」、「0100」および「1000」（これらは小数点「1」、好奇心が強い場合は2、4、8）。ビット演算子 `|`（または）/ `＆`（と）/ `〜`（そうでない）は、フラグを使って作業するときの親友です。
 
 ```ts
+
 enum AnimalFlags {
     None           = 0,
     HasClaws       = 1 << 0,
     CanFly         = 1 << 1,
 }
-type Animal = {
-    flags: AnimalFlags
-}
 
-function printAnimalAbilities(animal: Animal) {
+function printAnimalAbilities(animal) {
     var animalFlags = animal.flags;
     if (animalFlags & AnimalFlags.HasClaws) {
         console.log('animal has claws');
@@ -136,7 +134,7 @@ function printAnimalAbilities(animal: Animal) {
     }
 }
 
-let animal: Animal = { flags: AnimalFlags.None };
+var animal = { flags: AnimalFlags.None };
 printAnimalAbilities(animal); // nothing
 animal.flags |= AnimalFlags.HasClaws;
 printAnimalAbilities(animal); // animal has claws
@@ -146,12 +144,12 @@ animal.flags |= AnimalFlags.HasClaws | AnimalFlags.CanFly;
 printAnimalAbilities(animal); // animal has claws, animal can fly
 ```
 
-Here:
-* we used `|=` to add flags
-* a combination of `&=` and `~` to clear a flag
-* `|` to combine flags
+ここに：
+* `| =`を使ってフラグを追加しました
+* フラグをクリアするための `＆=`と `〜`の組み合わせ
+* フラグを結合する ``| `
 
-> Note: you can combine flags to create convenient shortcuts within the enum definition e.g. `EndangeredFlyingClawedFishEating` below:
+> 注：フラグを組み合わせて、列挙型定義内の便利なショートカットを作成することができます。 `EndangeredFlyingClawedFishEating`以下のようになります：
 
 ```ts
 enum AnimalFlags {
@@ -165,8 +163,8 @@ enum AnimalFlags {
 }
 ```
 
-#### String Enums
-We've only looked at enums where the member values are `number`s. You are actually allowed to have enum members with string values as well. e.g. 
+#### 文字列列挙型
+メンバーの値が `number`のenumを見てきました。実際には文字列値を持つ列挙型メンバを持つこともできます。例えば
 
 ```ts
 export enum EvidenceTypeEnum {
@@ -179,9 +177,9 @@ export enum EvidenceTypeEnum {
 }
 ```
 
-These can be easier to deal with and debug as they provide meaningful / debuggable string values. 
+これらは、有意義な/デバッグ可能な文字列値を提供するので、対処しやすく、デバッグすることができます。
 
-You can use these values to do simple string comparisons. e.g. 
+これらの値を使用して簡単な文字列の比較を行うことができます。例えば
 
 ```ts
 // Where `someStringFromBackend` will be '' | 'passport_visa' | 'passport' ... etc.
@@ -196,7 +194,7 @@ if (value === EvidenceTypeEnum.PASSPORT){
 
 #### Const Enums
 
-If you have an enum definition like the following:
+次のような列挙型定義がある場合：
 
 ```ts
 enum Tristate {
@@ -208,7 +206,7 @@ enum Tristate {
 var lie = Tristate.False;
 ```
 
-The line `var lie = Tristate.False` is compiled to the JavaScript `var lie = Tristate.False` (yes, output is same as input). This means that at execution the runtime will need to lookup `Tristate` and then `Tristate.False`. To get a performance boost here you can mark the `enum` as a `const enum`. This is demonstrated below:
+`var lie = Tristate.False`という行はJavaScriptの`var lie = Tristate.False`にコンパイルされます（出力は入力と同じです）。つまり、実行時にランタイムは `Tristate`と`Tristate.False`をルックアップする必要があります。ここでパフォーマンスを向上させるには、 `enum`を`const enum`としてマークできます。これは以下のとおりです：
 
 ```ts
 const enum Tristate {
@@ -220,21 +218,21 @@ const enum Tristate {
 var lie = Tristate.False;
 ```
 
-generates the JavaScript:
+JavaScriptを生成する：
 
 ```js
 var lie = 0;
 ```
 
-i.e. the compiler:
-1. *Inlines* any usages of the enum (`0` instead of `Tristate.False`).
-1. Does not generate any JavaScript for the enum definition (there is no `Tristate` variable at runtime) as its usages are inlined.
+コンパイラ：
+1. * Inlines *列挙型のあらゆる用途（ 'Tristate.False`ではなく' 0`）。
+1. enum定義用のJavaScriptを生成しません（実行時に `Tristate`変数はありません）。その用途はインライン展開されています。
 
 ##### Const enum preserveConstEnums
-Inlining has obvious performance benefits. The fact that there is no `Tristate` variable at runtime is simply the compiler helping you out by not generating JavaScript that is not actually used at runtime. However, you might want the compiler to still generate the JavaScript version of the enum definition for stuff like *number to string* or *string to number* lookups as we saw. In this case you can use the compiler flag `--preserveConstEnums` and it will still generate the `var Tristate` definition so that you can use `Tristate["False"]` or `Tristate[0]` manually at runtime if you want. This does not impact *inlining* in any way.
+インライン化には明らかなパフォーマンス上の利点があります。実行時に `Tristate`変数がないという事実は、実行時に実際には使用されないJavaScriptを生成しないことによって、コンパイラを助けることです。しかし、コンパイラが* number to string *や* string to number *ルックアップのようなものの列挙型定義のJavaScriptバージョンを引き続き生成することをお勧めします。この場合、コンパイラフラグ `--preserveConstEnums`を使用することができます。また`var Tristate`定義を生成するので、実行時に `Tristate [" False "]`や `Tristate [0]`を手動で使用することができます欲しいです。これは決してインライン展開*には影響しません。
 
-### Enum with static functions
-You can use the declaration `enum` + `namespace` merging to add static methods to an enum. The following demonstrates an example where we add a static member `isBusinessDay` to an enum `Weekday`:
+### 静的関数を持つ列挙型
+宣言 `enum`+` namespace`マージを使用して、静的メソッドを列挙型に追加することができます。以下は、静的メンバー `isBusinessDay`を列挙型`Weekday`に追加する例を示しています：
 
 ```ts
 enum Weekday {
@@ -264,11 +262,11 @@ console.log(Weekday.isBusinessDay(mon)); // true
 console.log(Weekday.isBusinessDay(sun)); // false
 ```
 
-#### Enums are open ended
+#### 列挙は開いたままです
 
-> NOTE: open ended enums are only relevant if you are not using modules. You should be using modules. Hence this section is last.
+> 注：開いている列挙型は、モジュールを使用していない場合にのみ関係します。モジュールを使用する必要があります。したがって、このセクションは最後です。
 
-Here is the generated JavaScript for an enum shown again:
+ここに再び表示される列挙型のJavaScriptが生成されます：
 
 ```js
 var Tristate;
@@ -279,9 +277,9 @@ var Tristate;
 })(Tristate || (Tristate = {}));
 ```
 
-We already explained the `Tristate[Tristate["False"] = 0] = "False";` portion. Now notice the surrounding code `(function (Tristate) { /*code here */ })(Tristate || (Tristate = {}));` specifically the `(Tristate || (Tristate = {}));` portion. This basically captures a local variable `TriState` that will either point to an already defined `Tristate` value or initialize it with a new empty `{}` object.
+`Tristate [Talseate [" False "] = 0] =" False ";部分についてすでに説明しました。 Tristate ||（Tristate = {}））; `具体的に`（Tristate ||（Tristate = {}））; `部分。これは、基本的に既に定義された `Tristate`値を指し示すか、新しい空の`{} `オブジェクトで初期化するローカル変数`TriState`を取得します。
 
-This means that you can split (and extend) an enum definition across multiple files. For example below we have split the definition for `Color` into two blocks
+つまり、列挙型定義を複数のファイルに分割（および拡張）することができます。たとえば、以下の例では、 `Color`の定義を2つのブロックに分割しています
 
 ```ts
 enum Color {
@@ -297,4 +295,4 @@ enum Color {
 }
 ```
 
-Note that you *should* reinitialize the first member (here `DarkRed = 3`) in a continuation of an enum to get the generated code not clobber values from a previous definition (i.e. the `0`, `1`, ... so on values). TypeScript will warn you if you don't anyways (error message `In an enum with multiple declarations, only one declaration can omit an initializer for its first enum element.`).
+注意しなければならないのは、生成されたコードを以前の定義（つまり、 `0`、`1`、...）から取り除くために、列挙の継続中の最初のメンバ（ここでは `DarkRed = 3`）を再初期化すべきです。値についても同様）。とにかくしないと、TypeScriptは警告します（エラーメッセージ `複数の宣言を含む列挙型では、1つの宣言だけが最初の列挙型要素の初期化子を省略できます）。

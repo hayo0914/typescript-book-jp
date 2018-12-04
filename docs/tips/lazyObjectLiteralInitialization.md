@@ -1,6 +1,6 @@
-## Lazy Object Literal Initialization
+## 遅延オブジェクトのリテラルの初期化
 
-Quite commonly in JavaScript code bases you would initialize object literals in the following manner:
+JavaScriptコードベースでは、以下のようにしてオブジェクトリテラルを初期化します。
 
 ```ts
 let foo = {};
@@ -8,7 +8,7 @@ foo.bar = 123;
 foo.bas = "Hello World";
 ```
 
-As soon as you move the code to TypeScript you will start to get Errors like the following:
+コードをTypeScriptに移動すると、次のようなエラーが表示されます。
 
 ```ts
 let foo = {};
@@ -16,11 +16,11 @@ foo.bar = 123; // Error: Property 'bar' does not exist on type '{}'
 foo.bas = "Hello World"; // Error: Property 'bas' does not exist on type '{}'
 ```
 
-This is because from the state `let foo = {}`, TypeScript *infers* the type of `foo` (left hand side of initializing assignment) to be the type of the right hand side `{}` (i.e. an object with no properties). So, it error if you try to assign to a property it doesn't know about.
+これは、 `let foo = {}`の状態から、TypeScript *は `foo`の型（初期化代入の左辺）を右辺`{} `の型に推論するためですプロパティなし）。それで、あなたが知らないプロパティに割り当てようとするとエラーになります。
 
-### Ideal Fix
+### 理想的な修正
 
-The *proper* way to initialize an object in TypeScript is to do it in the assignment:
+TypeScriptでオブジェクトを初期化する*適切な方法は、割り当てでそれを行うことです。
 
 ```ts
 let foo = {
@@ -29,13 +29,13 @@ let foo = {
 };
 ```
 
-This is also great for code review and code maintainability purposes.
+これは、コードのレビューとコードのメンテナンスの目的にも最適です。
 
-> The quick fix and middle ground *lazy* initialization patterns described below suffer from *mistakenly forgetting to initialize a property*. 
+> 以下で説明するクイックフィックスとミドルグラウンド*レイジー*初期化パターンは、*誤ってプロパティを初期化することを忘れています*。
 
-### Quick Fix
+### クイックフィックス
 
-If you have a large JavaScript code base that you are migrating to TypeScript the ideal fix might not be a viable solution for you. In that case you can carefully use a *type assertion* to silence the compiler:
+TypeScriptに移行するJavaScriptコードベースが大きい場合は、理想的な修正が実行可能な解決策ではない可能性があります。その場合、*型アサーション*を慎重に使用してコンパイラをサイレントにすることができます：
 
 ```ts
 let foo = {} as any;
@@ -43,14 +43,14 @@ foo.bar = 123;
 foo.bas = "Hello World";
 ```
 
-### Middle Ground
+### ミドルグラウンド
 
-Of course using the `any` assertion can be very bad as it sort of defeats the safety of TypeScript. The middle ground fix is to create an `interface` to ensure
+もちろん、 `any`アサーションを使用することは、TypeScriptの安全性を損なうため、非常に悪いことがあります。中盤の修正は `インターフェースを作成して確実に
 
-* Good Docs
-* Safe assignment
+* 良いドキュメント
+* 安全な割り当て
 
-This is shown below:
+これを以下に示します。
 
 ```ts
 interface Foo {
@@ -63,7 +63,7 @@ foo.bar = 123;
 foo.bas = "Hello World";
 ```
 
-Here is a quick example that shows the fact that using the interface can save you:
+インターフェイスを使用するとあなたを救うことができるという事実を示す簡単な例です：
 
 ```ts
 interface Foo {

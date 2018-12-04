@@ -1,27 +1,26 @@
-* [Getting Started with TypeScript](#getting-started-with-typescript)
-* [TypeScript Version](#typescript-version)
+* [TypeScript入門]（#getting-started-with-typescript）
+* [TypeScriptのバージョン]（#typescript-version）
 
-# Getting Started With TypeScript
+# TypeScriptを始めとする
 
-TypeScript compiles into JavaScript. JavaScript is what you are actually going to execute (either in the browser or on the server). So you are going to need the following:
+TypeScriptはJavaScriptにコンパイルされます。実際に実行されるのは、JavaScriptです（ブラウザ上、でも、サーバー上で）。したが、次のものが必要です：
 
-* TypeScript compiler (OSS available [in source](https://github.com/Microsoft/TypeScript/) and on [NPM](https://www.npmjs.com/package/typescript))
-* A TypeScript editor (you can use notepad if you want but I use [vscode 🌹](https://code.visualstudio.com/) with an [extension I wrote](https://marketplace.visualstudio.com/items?itemName=basarat.god). Also [lots of other IDES support it as well]( https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support))
+* TypeScriptコンパイラ（OSSが[ソース]（https://github.com/Microsoft/TypeScript/）および[NPM]（https://www.npmjs.com/package/typescript）で利用可能）
+* TypeScriptエディタ（望めばメモ帳を使えますが、私は[vscode🌹]（https://code.visualstudio.com/）を[私が作成したプラグイン]を一緒に使います（https：// marketplace.visualstudio.com/items?itemName=basarat.god）また、[様々なIDE]（https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support）がサポートされています。）
 
 
-## TypeScript Version
+## TypeScriptのバージョン
+安定版のTypeScriptコンパイラを使用する代わらに、本書ではバージョン番号に関連付けられていないたくさんの新しいものを紹介します。コンパイラのテスト環境は時間経過とともにより多くのバグを見つけたため、私は一般的ですに夜間ビルドの最新版を使用することを勧めます。
 
-Instead of using the *stable* TypeScript compiler we will be presenting a lot of new stuff in this book that may not be associated with a version number yet. I generally recommend people to use the nightly version because **the compiler test suite only catches more bugs over time**.
-
-You can install it on the command line as
+次のコマンドでインストールができます。
 
 ```
 npm install -g typescript@next
 ```
 
-And now the command line `tsc` will be the latest and greatest. Various IDEs support it too, e.g.
+今、 `tsc`コマンドは最新かつ最高のものです。あらゆるIDEもサポートしています。
 
-* You can ask vscode to use this version by creating `.vscode/settings.json` with the following contents:
+* vscodeで利用するTypeScriptのバージョンは `.vscode / settings.json`に以下の内容を保存することで指定できます
 
 ```json
 {
@@ -29,12 +28,13 @@ And now the command line `tsc` will be the latest and greatest. Various IDEs sup
 }
 ```
 
-## Getting the Source Code
-The source for this book is available in the books github repository https://github.com/basarat/typescript-book/tree/master/code most of the code samples can be copied into vscode and you can play with them as is. For code samples that need additional setup (e.g. npm modules), we will link you to the code sample before presenting the code. e.g.
+## ソーコード取得
+この書籍のソースは、githubのリポジトリhttps://github.com/basarat/typescript-book/tree/master/codeにあります。
+ほっとんどのコードサンプルをvscodeにコピーしてそのまま使用することができます。追加設定が必要なコードサンプル（例：npmモジュール）で、コードを表示する前にサンプルにのリンクを提示します。例えば
 
-`this/will/be/the/link/to/the/code.ts`
+`this / will / be / the / link / to / the / code.ts`
 ```ts
-// This will be the code under discussion
+// 議論中のコード
 ```
 
-With a dev setup out of the way let's jump into TypeScript syntax.
+開発用設定をして、TypeScriptのシンタックスを見ていきましょう。

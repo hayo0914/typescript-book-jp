@@ -1,13 +1,13 @@
-* [Parameter Annotations](#parameter-annotations)
-* [Return Type Annotation](#return-type-annotation)
-* [Optional Parameters](#optional-parameters)
-* [Overloading](#overloading)
+* [パラメータ注釈]（#パラメータ注釈）
+* [リターン型アノテーション]（#return-type-annotation）
+* [オプションのパラメータ]（#オプションのパラメータ）
+* [オーバーロード]（#オーバーロード）
 
-## Functions
-The TypeScript type system pays a lot of love to functions, after all they are the core building blocks of a composable system.
+## 関数
+TypeScript型システムは、構成可能なシステムの核となるビルディングブロックであり、機能に多くの恩恵を払っています。
 
-### Parameter annotations
-Of course you can annotate function parameters just like you can annotate other variables:
+### パラメータの注釈
+もちろん、他の変数に注釈を付けることができるように、関数のパラメータに注釈を付けることもできます。
 
 ```ts
 // variable annotation
@@ -17,11 +17,11 @@ var sampleVariable: { bar: number }
 function foo(sampleParameter: { bar: number }) { }
 ```
 
-Here I used inline type annotations. Of course you can use interfaces etc.
+ここでは、インライン型アノテーションを使用しました。もちろん、インターフェイスなどを使用することができます
 
-### Return type annotation
+### 戻り型アノテーション
 
-You can annotate the return type after the function parameter list with the same style as you use for a variable, e.g. `: Foo` in the below example:
+戻り値の型には、変数に使用するのと同じスタイルの関数パラメータリストの後に注釈を付けることができます。 `：Foo`の例です：
 
 ```ts
 interface Foo {
@@ -34,9 +34,9 @@ function foo(sample: Foo): Foo {
 }
 ```
 
-Of course I used an `interface` here, but you are free to use other annotations e.g. inline annotations.
+もちろん、ここでは「インターフェース」を使用しましたが、他の注釈を自由に使用できます。インライン注釈。
 
-Quite commonly you don't *need* to annotate the return type of a function as it can generally be inferred by the compiler.
+関数の戻り値の型をアノテートするためには、一般的にコンパイラが推論できるように*必要はありません。
 
 ```ts
 interface Foo {
@@ -48,7 +48,7 @@ function foo(sample: Foo) {
 }
 ```
 
-However, it is generally a good idea to add these annotation to help with errors e.g.:
+しかし、一般的には、これらのアノテーションを追加してエラーを助けるのが良い考えです。例：
 
 ```ts
 function foo() {
@@ -58,10 +58,10 @@ function foo() {
 sendAsJSON(foo());
 ```
 
-If you don't plan to return anything from a function, you can annotate it as `:void`. You can generally drop `:void` and leave it to the inference engine though.
+関数から何かを返す予定がないなら、 `：void`と注釈を付けることができます。通常、 `：void`を落として推論エンジンに残すことができます。
 
-### Optional Parameters
-You can mark a parameter as optional:
+### オプションのパラメータ
+パラメータをオプションとしてマークすることができます：
 
 ```ts
 function foo(bar: number, bas?: string): void {
@@ -72,7 +72,7 @@ foo(123);
 foo(123, 'hello');
 ```
 
-Alternatively you can even provide a default value (using `= someValue` after the parameter declaration) which is injected for you if the caller doesn't provide that argument:
+あるいは、パラメータ宣言の後に `= someValue`を使用してデフォルト値を提供することもできます。これは、呼び出し元がその引数を提供しない場合に注入されます。
 
 ```ts
 function foo(bar: number, bas: string = 'hello') {
@@ -83,8 +83,8 @@ foo(123);           // 123, hello
 foo(123, 'world');  // 123, world
 ```
 
-### Overloading
-TypeScript allows you to *declare* function overloads. This is useful for documentation + type safety purpose. Consider the following code:
+### オーバーロード
+TypeScriptでは、関数のオーバーロードを宣言できます。これは、ドキュメント+型の安全性の目的に役立ちます。次のコードを考えてみましょう：
 
 ```ts
 function padding(a: number, b?: number, c?: number, d?: any) {
@@ -104,9 +104,9 @@ function padding(a: number, b?: number, c?: number, d?: any) {
 }
 ```
 
-If you look at the code carefully you realize the meaning of `a`,`b`,`c`,`d` changes based on how many arguments are passed in. Also the function only expects `1`, `2` or `4` arguments. These constraints can be *enforced* and *documented* using function overloading. You just declare the function header multiple times. The last function header is the one that is actually active *within* the function body but is not available to the outside world.
+コードを注意深く見ると、 `a`、`b`、 `c`、d`の意味は、渡される引数の数に応じて変化することがわかります。関数は`1`、 `2`、または` `4`引数。これらの制約は、関数のオーバーロードを使用して*施行*および*文書化*することができます。関数ヘッダを複数回宣言するだけです。最後の関数ヘッダーは、関数本体内で実際にアクティブ*ですが、外界では使用できません。
 
-This is shown below:
+これを以下に示します。
 
 ```ts
 // Overloads
@@ -131,7 +131,7 @@ function padding(a: number, b?: number, c?: number, d?: number) {
 }
 ```
 
-Here the first three function headers are available as valid calls to `padding`:
+ここで最初の3つの関数ヘッダは `padding`への有効な呼び出しとして利用できます：
 
 ```ts
 padding(1); // Okay: all
@@ -141,11 +141,11 @@ padding(1,1,1,1); // Okay: top, right, bottom, left
 padding(1,1,1); // Error: Not a part of the available overloads
 ```
 
-Of course it's important for the final declaration (the true declaration as seen from inside the function) to be compatible with all the overloads. This is because that is the true nature of the function calls that the function body needs to account for.
+もちろん、最終宣言（関数内部から見た真の宣言）はすべてのオーバーロードと互換性があることが重要です。これは、それが関数本体が本当に必要とする関数呼び出しの性質であるからです。
 
-> Function overloading in TypeScript doesn't come with any runtime overhead. It just allows you to document the manner you expect the function to be called in and the compiler holds the rest of your code in check.
+> TypeScriptの関数オーバーロードにランタイムオーバーヘッドはありません。関数が呼び出されると予想される方法を文書化するだけで、コンパイラはコードの残りの部分をチェックします。
 
-[](### Declaring Functions)
-[](With lambda, with interfaces which allow overloading declarations)
+[]（###宣言関数）
+[]（オーバーラッピング宣言を可能にするインタフェースを持つラムダで）
 
-[](### Type Compatibility)
+[]（###型の互換性）

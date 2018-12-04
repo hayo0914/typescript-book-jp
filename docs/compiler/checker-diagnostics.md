@@ -1,5 +1,5 @@
-### Checker error reporting
-The checker uses the local `error` function to report errors. Here is the function:
+### チェッカーエラーの報告
+チェッカーはローカルの `error`関数を使用してエラーを報告します。ここに関数があります：
 
 ```ts
 function error(location: Node, message: DiagnosticMessage, arg0?: any, arg1?: any, arg2?: any): void {

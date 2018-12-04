@@ -1,22 +1,22 @@
-# Mixins
+# ミックスイン
 
-TypeScript (and JavaScript) classes support strict single inheritance. So you *cannot* do:
+TypeScript（およびJavaScript）クラスは、厳密な単一継承をサポートします。あなたは*することはできません：
 
 ```ts
 class User extends Tagged, Timestamped { // ERROR : no multiple inheritance
 }
 ```
 
-Another way of building up classes from reusable components is to build them by combining simpler partial classes called mixins.
+再使用可能なコンポーネントからクラスを構築する別の方法は、mixinと呼ばれるより単純な部分クラスを組み合わせてそれらを構築することです。
 
-The idea is simple, instead of a *class A extending class B* to get its functionality, *function B takes class A* and returns a new class with this added functionality. Function `B` is a mixin.  
+そのアイデアは、機能を得るためにクラスAを拡張する*クラスAの代わりに単純です。*関数BはクラスA *を取り、この追加された機能を持つ新しいクラスを返します。関数 `B`はミックスインです。
 
-> [A mixin is] a function that
- 1. takes a constructor,
- 1. creates a class that extends that constructor with new functionality
- 1. returns the new class
+> [mixinは]
+ 1.コンストラクタをとり、
+ 1.新機能でそのコンストラクタを拡張するクラスを作成する
+ 1.新しいクラスを返す
 
-A complete example
+完全な例
 
 ```ts
 // Needed for all mixins
@@ -76,20 +76,20 @@ console.log(timestampedActivatableUserExample.isActivated);
 
 ```
 
-Let's decompose this example.
+この例を分解してみましょう。
 
-## Take a constructor
+## コンストラクタを取る
 
-Mixins take a class and extend it with new functionality. So we need to define what is a *constructor*. Easy as:
+ミックスインはクラスを取り、それを新しい機能で拡張します。したがって、*コンストラクタ*を定義する必要があります。簡単に：
 
 ```ts
 // Needed for all mixins
 type Constructor<T = {}> = new (...args: any[]) => T;
 ```
 
-## Extend the class and return it
+## クラスを拡張して返します
 
-Pretty easy:
+とても簡単：
 
 ```ts
 // A mixin that adds a property
@@ -100,4 +100,4 @@ function Timestamped<TBase extends Constructor>(Base: TBase) {
 }
 ```
 
-And that is it 🌹
+それが🌹です

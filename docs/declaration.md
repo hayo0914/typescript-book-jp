@@ -1,1 +1,1 @@
-analogy with c headers
+cヘッダとの類推

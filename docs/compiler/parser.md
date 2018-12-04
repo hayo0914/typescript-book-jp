@@ -1,14 +1,14 @@
-## Parser
-The sourcecode for the TypeScript parser is located entirely in `parser.ts`. Scanner is *controlled* internally by the `Parser` to convert the source code to an AST. Here is a review of what the desired outcome is.
+## パーサー
+TypeScriptパーサーのソースコードは完全に `parser.ts`にあります。スキャナはソースコードをASTに変換するために `Parser`によって内部的に*制御されます。ここでは、望ましい結果が何であるかのレビューです。
 
 ```
 SourceCode ~~ scanner ~~> Token Stream ~~ parser ~~> AST
 ```
 
-The parser is implemented as a singleton (similar reasons to `scanner`, don't want to recreate it if we can reinit it). It is actually implemented as `namespace Parser` which contains *state* variables for the Parser as well as a singleton `scanner`. As mentioned before it contains a `const scanner`. The parser functions manage this scanner.
+パーサーはシングルトンとして実装されています（ `scanner`と同様の理由、再作成が可能な場合は再作成したくありません）。実際には、Parserのための* state *変数とシングルトン `scanner`を含む`namespace Parser`として実装されています。前に述べたように、 `const scanner`を含んでいます。パーサ関数はこのスキャナを管理します。
 
-### Usage by program
-Parser is driven indirectly by Program (indirectly as its actually by `CompilerHost` which we mentioned previously). Basically this is the simplified call stack:
+### プログラムによる使用
+パーサーはプログラムによって間接的に駆動されます（間接的に、実際には前述の `CompilerHost`によって実際に実行されます）。基本的にこれは単純化されたコールスタックです：
 
 ```
 Program ->
@@ -17,12 +17,12 @@ Program ->
             Parser.parseSourceFile
 ```
 
-The `parseSourceFile` not only primes the state for the Parser but also primes the state for the `scanner` by calling `initializeState`. It then goes on to parse the source file using `parseSourceFileWorker`.
+`parseSourceFile`は、Parserの状態を準備するだけでなく、`initializeState`を呼び出すことによって `scanner`の状態を準備します。その後、 `parseSourceFileWorker`を使ってソースファイルを解析します。
 
-### Sample Usage
-Before we dig too deep into the parser internals, here is a sample code that uses the TypeScript's parser to get the AST of a source file (using `ts.createSourceFile`), and then print it.
+### サンプルの使用法
+パーザ内部を深く掘り下げる前に、（ts.createSourceFile`を使用して）ソースファイルのASTを取得するためにTypeScriptのパーサを使用するサンプルコードを次に示します。
 
-`code/compiler/parser/runParser.ts`
+`code / compiler / parser / runParser.ts`
 ```ts
 import * as ts from "ntypescript";
 
@@ -40,7 +40,7 @@ var sourceFile = ts.createSourceFile('foo.ts', sourceCode, ts.ScriptTarget.ES5, 
 printAllChildren(sourceFile);
 ```
 
-This will print out the following:
+これは以下を出力します：
 
 ```ts
 SourceFile 0 14
@@ -56,4 +56,4 @@ SourceFile 0 14
 ------------ SemicolonToken 13 14
 ---- EndOfFileToken 14 14
 ```
-This looks like a (very right sided) tree if you tilt your head to the left.
+あなたの頭を左に傾けると、これは非常に右側の木のように見えます。

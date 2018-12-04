@@ -1,14 +1,14 @@
-## Bind is Harmful
+## 束縛は有害である
 
-This is the definition of `bind` in `lib.d.ts`:
+これは `lib.d.ts`の`bind`の定義です：
 
 ```ts
 bind(thisArg: any, ...argArray: any[]): any;
 ```
 
-As you can see it returns **any**! That means that calling `bind` on a function will cause you to completely lose any type safety of the original function signature.
+あなたが見ることができるように、** any **を返します！つまり、関数の `bind`を呼び出すと、元の関数の署名の型の安全性が完全に失われます。
 
-For example the following compiles:
+たとえば、次のようにコンパイルします。
 
 ```ts
 function twoParams(a:number,b:number) {
@@ -19,7 +19,7 @@ curryOne(456); // Okay but is not type checked!
 curryOne('456'); // Allowed because it wasn't type checked!
 ```
 
-A better way to write it would be with a simple [arrow function](../arrow-functions.md) with an explicit type annotation:
+それを書くためのよりよい方法は、明示的な型の注釈を持つ単純な[arrow関数]（../ arrow-functions.md）です。
 ```ts
 function twoParams(a:number,b:number) {
     return a + b;
@@ -29,12 +29,12 @@ curryOne(456); // Okay and type checked!
 curryOne('456'); // Error!
 ```
 
-But if you expect a curried function [there is a better pattern for that](./currying.md).
+しかし、あなたがカレー化された機能を望むなら（それにはより良いパターンがあります）（./ currying.md）。
 
-### Class Members
-Another common use is to use `bind` to ensure the correct value of `this` when passing around class functions. Don't do that!
+### クラスメンバー
+別の一般的な使い方は、クラス関数を渡すときに `this`の正しい値を保証するために`bind`を使うことです。それをしないでください！
 
-The following demonstrates the fact that you lose parameter type safety if you use `bind`:
+次の例は、 `bind`を使うとパラメータ型の安全性を失うという事実を示しています：
 
 ```ts
 class Adder {
@@ -54,7 +54,7 @@ useAdd(adder.add.bind(adder)); // No compile error!
 useAdd((x) => adder.add(x)); // Error: number is not assignable to string
 ```
 
-If you have a class member function that you **expect** to pass around, [use an arrow function in the first place](../arrow-functions.md) e.g one would write the same `Adder` class as:
+あなたが**期待している** **クラスメンバー関数を持っているなら、[最初の矢印関数を使う]（../ arrow-functions.md）のように、同じ `Adder`クラスを書くでしょう：
 
 ```ts
 class Adder {
@@ -67,7 +67,7 @@ class Adder {
 }
 ```
 
-Another alternative is to *manually* specify the type of the variable you are binding e.g. 
+もう1つの方法は、バインドする変数のタイプを手動で指定することです。
 
 ```ts
 const add: typeof adder.add = adder.add.bind(adder);

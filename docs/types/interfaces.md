@@ -1,8 +1,8 @@
-## Interfaces
+## インタフェース
 
-Interfaces have *zero* runtime JS impact. There is a lot of power in TypeScript interfaces to declare the structure of variables.
+インタフェースには*実行時JSの影響がありません。変数の構造を宣言するには、TypeScriptインターフェイスに多くの機能があります。
 
-The following two are equivalent declarations, the first uses an *inline annotation*, the second uses an *interface*:
+次の2つは同等の宣言で、最初は*インライン注釈*を使用し、2つ目は*インタフェース*を使用します。
 
 ```ts
 // Sample A
@@ -15,7 +15,7 @@ interface Point {
 declare var myPoint: Point;
 ```
 
-However, the beauty of *Sample B* is that if someone authors a library that builds on the `myPoint` library to add new members, they can easily add to the existing declaration of `myPoint`:
+しかし、*サンプルB *の美しさは、新しいメンバを追加するために `myPoint`ライブラリ上に構築されたライブラリを作成する人は、`myPoint`の既存の宣言に簡単に追加することができます：
 
 ```ts
 // Lib a.d.ts
@@ -33,12 +33,12 @@ interface Point {
 var myPoint.z; // Allowed!
 ```
 
-This is because **interfaces in TypeScript are open ended**. This is a vital tenet of TypeScript that it allows you to mimic the extensibility of JavaScript using *interfaces*.
+これは、TypeScriptの**インターフェースがオープンエンド**であるためです。これはTypeScriptの重要な教えで、* interfaces *を使ってJavaScriptの拡張性を模倣することができます。
 
 
-## Classes can implement interfaces
+## クラスはインタフェースを実装できます
 
-If you want to use *classes* that must follow an object structure that someone declared for you in an `interface` you can use the `implements` keyword to ensure compatibility:
+誰かがあなたのために `interface`で宣言したオブジェクト構造に従わなければならない* classes *を使いたい場合、互換性を保証するために`implements`キーワードを使うことができます：
 
 ```ts
 interface Point {
@@ -50,7 +50,7 @@ class MyPoint implements Point {
 }
 ```
 
-Basically in the presence of that `implements`, any changes in that external `Point` interface will result in a compile error in your code base so you can easily keep it in sync:
+基本的には `implements`の存在下で、その外部`Point`インターフェースの変更はあなたのコードベースでコンパイルエラーになりますので、簡単に同期させることができます：
 
 ```ts
 interface Point {
@@ -63,22 +63,22 @@ class MyPoint implements Point { // ERROR : missing member `z`
 }
 ```
 
-Note that `implements` restricts the structure of the class *instances* i.e.:
+`implements`はクラス*インスタンス*の構造を制限することに注意してください。
 
 ```ts
 var foo: Point = new MyPoint();
 ```
 
-And stuff like `foo: Point = MyPoint` is not the same thing.
+`foo：Point = MyPoint`のようなものは同じものではありません。
 
 
-## TIPs
+## ヒント
 
-### Not every interface is implementable easily
+### すべてのインターフェイスが簡単に実装可能ではありません
 
-Interfaces are designed to declare *any arbitrarily crazy* structure that might be present in JavaScript.
+インタフェースは、JavaScriptに存在するかもしれない任意のクレイジー構造を宣言するように設計されています。
 
-Consider the following interface where something is callable with `new`:
+何かが `new`で呼び出し可能な次のインターフェースを考えてみましょう：
 
 ```ts
 interface Crazy {
@@ -88,7 +88,7 @@ interface Crazy {
 }
 ```
 
-You would essentially have something like:
+基本的には次のようなものがあります：
 
 ```ts
 class CrazyClass implements Crazy {
@@ -100,4 +100,4 @@ class CrazyClass implements Crazy {
 const crazy = new CrazyClass(); // crazy would be {hello:123}
 ```
 
-You can *declare* all the crazy JS out there with interfaces and even use them safely from TypeScript. Doesn't mean you can use TypeScript classes to implement them.
+あなたはインターフェイスを使ってすべてのクレイジーなJSを宣言し、TypeScriptから安全に使用することもできます。 TypeScriptクラスを使用してそれらを実装できるわけではありません。

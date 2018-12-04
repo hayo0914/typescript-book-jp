@@ -1,21 +1,21 @@
-### Binder function
-Two critical binder functions are `bindSourceFile` and `mergeSymbolTable`. We will take a look at these next.
+### バインダー関数
+2つの重要なバインダー関数は `bindSourceFile`と`mergeSymbolTable`です。これらを次に見ていきます。
 
 #### `bindSourceFile`
-Basically checks if `file.locals` is defined, if not it hands over to (a local function) `bind`.
+基本的に `file.locals`が定義されているかどうかを確認し、そうでなければ（ローカル関数）`bind`に渡します。
 
-Note: `locals` is defined on `Node` and is of type `SymbolTable`. Note that `SourceFile` is also a `Node` (in fact a root node in the AST).
+注： `locals`は`Node`で定義され、 `SymbolTable`型です。 `SourceFile`も`Node`（実際にはASTのルートノード）であることに注意してください。
 
-TIP: local functions are used heavily within the TypeScript compiler. A local function very likely uses variables from the parent function (captured by closure). In the case of `bind` (a local function within `bindSourceFile`) it (or a function it calls) will setup the `symbolCount` and `classifiableNames` among others, that are then stored on the returned `SourceFile`.
+ヒント：ローカル関数は、TypeScriptコンパイラで頻繁に使用されます。局所関数は親関数（閉包によって捕捉された）からの変数を使用する可能性が非常に高い。 `bind`（`bindSourceFile`内のローカル関数）の場合、それ（またはそれが呼び出す関数）は `symbolCount`と`classifiableNames`を設定し、返された `SourceFile`に格納されます。
 
 #### `bind`
-Bind takes any `Node` (not just `SourceFile`). First thing it does is assign the `node.parent` (if `parent` variable has been setup ... which again is something the binder does during its processing within the `bindChildren` function), then hands off to `bindWorker` which does the *heavy* lifting. Finally it calls `bindChildren` (a function that simply stores the binder state e.g. current `parent` within its function local vars, then calls `bind` on each child, and then restores the binder state). Now let's look at `bindWorker` which is the more interesting function.
+Bindは（ `SourceFile`だけでなく）`Node`を取ります。最初に行うことは、 `node.parent`（もし`parent`変数が設定されていれば... bindChildren`関数内で処理中にバインダーが何かすることです）を割り当て、 `bindWorker`に渡します。 *重い*持ち上げますか？最後に、これは `bindChildren`（単にバインダー状態、例えば現在の`parent`をその関数のローカル変数に格納し、各子に `bind`を呼び出してバインダー状態を復元する関数）を呼び出します。もっと興味深い関数である `bindWorker`を見てみましょう。
 
 #### `bindWorker`
-This function switches on `node.kind` (of type `SyntaxKind`) and delegates work to the appropriate `bindFoo` function (also defined within `binder.ts`). For example if the `node` is a `SourceFile` it calls (eventually and only if its an external file module) `bindAnonymousDeclaration`
+この関数は（ `SyntaxKind`型の）`node.kind`を有効にし、適切な `bindFoo`関数（`binder.ts`で定義されています）に作業を委譲します。例えば ​​`node`が`SourceFile`であれば（最終的には外部ファイルモジュールである場合のみ） `bindAnonymousDeclaration`
 
-#### `bindFoo` functions
-There are a few patterns common to `bindFoo` functions as well as some utility functions that these use. One function that is almost always used is the `createSymbol` function. It is presented in its entirety below:
+#### `bindFoo`関数
+`bindFoo`関数に共通するパターンと、これらが使用するいくつかのユーティリティ関数があります。ほぼ常に使用される関数の1つは、 `createSymbol`関数です。以下にその全体を示す。
 
 ```ts
 function createSymbol(flags: SymbolFlags, name: string): Symbol {
@@ -23,4 +23,4 @@ function createSymbol(flags: SymbolFlags, name: string): Symbol {
     return new Symbol(flags, name);
 }
 ```
-As you can see it is simply keeping the `symbolCount` (a local to `bindSourceFile`) up to date and creating the symbol with the specified parameters.
+ご覧のとおり、 `symbolCount`（`bindSourceFile`のローカル）を最新の状態に保ち、指定されたパラメータでシンボルを作成しています。

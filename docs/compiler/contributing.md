@@ -1,9 +1,9 @@
-## Contributing
+## 寄稿
 
-TypeScript is [OSS and on GitHub](https://github.com/Microsoft/TypeScript) and the team welcomes community input.
+TypeScriptは[OSS and GitHub]（https://github.com/Microsoft/TypeScript）であり、チームはコミュニティの入力を歓迎する。
 
-### Setup
-Super easy:
+### セットアップ
+超簡単：
 
 ```bash
 git clone https://github.com/Microsoft/TypeScript.git
@@ -12,8 +12,8 @@ npm install -g jake
 npm install
 ```
 
-### Setup Fork
-You would obviously need to setup Microsoft/TypeScript as an `upstream` remote and your own *fork* (use the GitHub *fork* button) as `origin`:
+### セットアップフォーク
+明らかに、Microsoft / TypeScriptを `上流 'のリモートと独自の* fork *（GitHub * fork *ボタンを使用）を`origin`としてセットアップする必要があります。
 
 ```bash
 git remote rm origin
@@ -21,48 +21,48 @@ git remote rm upstream
 git remote add upstream https://github.com/Microsoft/TypeScript.git
 git remote add origin https://github.com/basarat/TypeScript.git
 ```
-Additionally I like to work off branches like `bas/` to have it show up cleaner in the branch listings.
+さらに、私は `bas /`のようなブランチを使って、ブランチリストにクリーナーを表示させたいと思っています。
 
-### Running Tests
-There are lots of `test` and `build` options in their JakeFile. You can run *all* tests with `jake runtests`
+### ランニングテスト
+JakeFileにはたくさんの `test`オプションと`build`オプションがあります。 `すべてのテストを`jake runtests`で実行することができます
 
-### Baselines
-Baselines are used to manage if there are any changes in the *expected* output of the TypeScript compiler. Baselines are located in `tests/baselines`.
+### ベースライン
+ベースラインは、TypeScriptコンパイラの* expected *出力に変更があるかどうかを管理するために使用されます。ベースラインは `テスト/ベースライン`に位置しています。
 
-* Reference (*expected*) baselines: `tests/baselines/reference`
-* Generated (*in this test run*) baselines : `tests/baselines/local` (this folder is in **.gitignore**)
+* Reference（* expected *）ベースライン： `tests / baselines / reference`
+* ベースライン： `テスト/ベースライン/ローカル`（このフォルダは**。gitignore **にあります）
 
-> If there are any differences between these folders tests will fail. You can diff the two folders with tools like BeyondCompare or KDiff3.
+> これらのフォルダ間に相違がある場合、テストは失敗します。 BeyondCompareやKDiff3のようなツールで2つのフォルダを比較することができます。
 
-If you think these changes in generated files are valid then accept baselines using `jake baseline-accept`. The changes to `reference` baselines will now show as a git diff you can commit.
+生成されたファイルのこれらの変更が有効であると思うなら、 `jake baseline-accept`を使ってベースラインを受け入れます。 `参照`ベースラインへの変更はコミットできるgit diffとして表示されます。
 
-> Note that if you don't run *all* tests then use `jake baseline-accept[soft]` which will only copy over the new files and not delete the whole `reference` directory.
+> *すべての*テストを実行しない場合は、 `jake baseline-accept [soft]`を使用します。これは新しいファイルをコピーし、 `reference`ディレクトリ全体を削除しないことに注意してください。
 
-### Test Categories
+### テストカテゴリ
 
-There are different categories for different scenarios and even different test infrastructures. Here are a few of these explained.
+さまざまなシナリオやさまざまなテストインフラストラクチャにもさまざまなカテゴリがあります。これらはいくつか説明されています。
 
-#### Compiler Tests
+#### コンパイラのテスト
 
-These ensure that compiling a file :
+これらはファイルをコンパイルすることを保証します：
 
-* generates errors as expected
-* generated JS as expected
-* types are identified as expected
-* symbols are identified as expected
+* 期待どおりのエラーを生成する
+* 期待通りにJSを生成
+* タイプは期待どおりに識別されます
+* シンボルは期待どおりに識別されます
 
-These expectations are validated using the baselines infrastructure.
+これらの期待は、ベースラインインフラストラクチャを使用して検証されます。
 
-##### Creating a Compiler Test
-Test can be created by adding a new file `yourtest.ts` to `tests/cases/compiler`. As soon as you do so and run the tests you should get baseline failure. Accept these baselines (to get them to show up in git), and tweak them to be what you *expect* them to be ... now get the tests to pass.
+##### コンパイラテストの作成
+テストは `tests / cases / compiler`に新しいファイル`yourtest.ts`を追加することで作成できます。テストを実行するとすぐに、ベースラインに失敗するはずです。これらのベースラインを受け入れて（gitでそれらを表示させる）、それらがあなたが*期待しているものになるように微調整してください...今テストをパスしてください。
 
-Run all of these in isolation using `jake runtests tests=compiler`, or just your new file using `jake runtests tests=compiler/yourtest`
+`jake runtests tests = compiler`を使ってこれらをすべて単独で実行するか、`jake runtests tests = compiler / yourtest`を使って新しいファイルだけを実行してください
 
-I will even often do `jake runtests tests=compiler/yourtest || jake baseline-accept[soft]` and get the diff in `git`.
+私はしばしば `jake runtests tests = compiler / yourtest || jake baseline-accept [soft] `を実行し、`git`でdiffを取得します。
 
-### Debugging Tests
+### テストのデバッグ
 
-`jake runtests-browser tests=theNameOfYourTest` and debugging in-browser usually works pretty well.
+`jake runtests-browser tests = theNameOfYourTest`とブラウザ内のデバッグは、通常かなりうまく動作します。
 
-### More 
-* An article by Remo : https://dev.to/remojansen/learn-how-to-contribute-to-the-typescript-compiler-on-github-through-a-real-world-example-4df0 🌹
+### もっと
+* Remoの記事：https://dev.to/remojansen/learn-how-to-contribute-to-the-typescript-compiler-on-github-through-a-real-world-example-4df0

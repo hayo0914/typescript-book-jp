@@ -1,13 +1,13 @@
-# Type Inference in TypeScript
+TypeScriptの#型推論
 
-TypeScript can infer (and then check) the type of a variable based on a few simple rules. Because these rules
-are simple you can train your brain to recognize safe / unsafe code (it happened for me and my teammates quite quickly).
+TypeScriptは、いくつかの簡単なルールに基づいて変数の型を推論（およびチェック）できます。これらのルール
+シンプルなので、安全で安全でないコードを認識するために脳を鍛えることができます（これは私と私のチームメイトにとって非常に迅速に起こりました）。
 
-> The types flowing is just how I imagine in my brain the flow of type information.
+> 流れるタイプは、私の脳内でタイプ情報の流れを想像するだけです。
 
-## Variable Definition
+## 変数の定義
 
-Types of a variable are inferred by definition.
+変数の型は、定義によって推論されます。
 
 ```ts
 let foo = 123; // foo is a `number`
@@ -15,11 +15,11 @@ let bar = "Hello"; // bar is a `string`
 foo = bar; // Error: cannot assign `string` to a `number`
 ```
 
-This is an example of types flowing from right to left.
+これは右から左に流れるタイプの例です。
 
-## Function Return Types
+## 関数の戻り値の型
 
-The return type is inferred by the return statements e.g. the following function is inferred to return a `number`.
+戻り値の型は、return文によって推測されます。次の関数は `number`を返すと推測されます。
 
 ```ts
 function add(a: number, b: number) {
@@ -27,18 +27,18 @@ function add(a: number, b: number) {
 }
 ```
 
-This is an example of types flowing bottom out.
+これは底部に流出するタイプの例です。
 
-## Assignment
+## 課題
 
-The type of function parameters / return values can also be inferred by assignment e.g. here we say that `foo` is an `Adder`, that makes `number` the type of `a` and `b`.
+関数のパラメータ/戻り値の型は、代入によっても推論することができる。 `foo`は`Adder`で、 `number`は`a`と `b`の型になります。
 
 ```ts
 type Adder = (a: number, b: number) => number;
 let foo: Adder = (a, b) => a + b;
 ```
 
-This fact can be demonstrated by the below code which raises an error as you would hope:
+この事実は、あなたが望むようにエラーを発生させる以下のコードによって実証することができます：
 
 ```ts
 type Adder = (a: number, b: number) => number;
@@ -48,9 +48,9 @@ let foo: Adder = (a, b) => {
 }
 ```
 
-This is an example of types flowing from left to right.
+これは、左から右に流れるタイプの例です。
 
-The same *assignment* style type inference works if you create a function for a callback argument. After all an `argument -> parameter`is just another form of variable assignment.
+コールバック引数の関数を作成する場合、同じ*代入*スタイル型の推論が機能します。結局のところ、 `argument  - > parameter`は単に変数代入の別の形です。
 
 ```ts
 type Adder = (a: number, b: number) => number;
@@ -63,9 +63,9 @@ iTakeAnAdder((a, b) => {
 })
 ```
 
-## Structuring
+## 構造化
 
-These simple rules also work in the presence of **structuring** (object literal creation). For example in the following case the type of `foo` is inferred to be `{a:number, b:number}`
+これらの単純なルールは、**構造化**（オブジェクトリテラル作成）の存在下でも機能します。たとえば、次のような場合、 `foo`の型は`{a：number、b：number} `と推測されます。
 
 ```ts
 let foo = {
@@ -75,14 +75,14 @@ let foo = {
 // foo.a = "hello"; // Would Error: cannot assign `string` to a `number`
 ```
 
-Similarly for arrays:
+同様に配列について：
 
 ```ts
 const bar = [1,2,3];
 // bar[0] = "hello"; // Would error: cannot assign `string` to a `number`
 ```
 
-And of course any nesting:
+そしてもちろんどんなネスティングでも：
 
 ```ts
 let foo = {
@@ -91,9 +91,9 @@ let foo = {
 // foo.bar[0] = 'hello'; // Would error: cannot assign `string` to a `number`
 ```
 
-## Destructuring
+## 破壊
 
-And of course, they also work with destructuring, both objects:
+そしてもちろん、彼らはまた、両方のオブジェクトを破壊する作業をします：
 
 ```ts
 let foo = {
@@ -104,7 +104,7 @@ let {a} = foo;
 // a = "hello"; // Would Error: cannot assign `string` to a `number`
 ```
 
-and arrays:
+配列：
 
 ```ts
 const bar = [1, 2];
@@ -112,7 +112,7 @@ let [a, b] = bar;
 // a = "hello"; // Would Error: cannot assign `string` to a `number`
 ```
 
-And if the function parameter can be inferred, so can its destructured properties. For example here we destructure the argument into its `a`/`b` members.
+関数のパラメータが推定できれば、その構造化されたプロパティも推定できます。例えばここでは引数を `a`/` b`のメンバーに分解します。
 
 ```ts
 type Adder = (numbers: { a: number, b: number }) => number;
@@ -125,30 +125,30 @@ iTakeAnAdder(({a, b}) => { // Types of `a` and `b` are inferred
 })
 ```
 
-## Type Guards
+## ガードの種類
 
-We have already seen how [Type Guards](./typeGuard.md) help change and narrow down types (particularly in the case of unions). Type guards are just another form of type inference for a variable in a block.
+[Type Guards]（./ typeGuard.md）がどのように（特に組合の場合に）型を変更したり絞り込んだりするのを見てきました。型ガードは、ブロック内の変数の型推論の別の形式です。
 
-## Warnings
+## 警告
 
-### Be careful around parameters
+### パラメータの周りに注意してください
 
-Types do not flow into the function parameters if it cannot be inferred from an assignment. For example in the following case the compiler does not know the type of `foo` so it cannot infer the type of `a` or `b`.
+代入から推論できない場合、型は関数パラメータに流れません。たとえば次のような場合、コンパイラは `foo`の型を知らないので、`a`や `b`の型を推論することはできません。
 
 ```ts
 const foo = (a,b) => { /* do something */ };
 ```
 
-However, if `foo` was typed the function parameters type can be inferred (`a`,`b` are both inferred to be of type `number` in the example below).
+しかし、 `foo`がタイプされた場合、関数パラメータの型を推論することができます（`a`、 `b`は両方とも以下の例では`number`型であると推測されます）。
 
 ```ts
 type TwoNumberFunction = (a: number, b: number) => void;
 const foo: TwoNumberFunction = (a, b) => { /* do something */ };
 ```
 
-### Be careful around return
+### 返品については注意してください
 
-Although TypeScript can generally infer the return type of a function, it might not be what you expect. For example here function `foo` has a return type of `any`.
+TypeScriptは一般的に関数の戻り値の型を推測することができますが、期待どおりではない可能性があります。例えば、ここでは関数 `foo`は`any`の戻り値の型を持っています。
 
 ```ts
 function foo(a: number, b: number) {
@@ -160,15 +160,15 @@ function addOne(a) {
 }
 ```
 
-This is because the return type is impacted by the poor type definition for `addOne` (`a` is `any` so the return of `addOne` is `any` so the return of `foo` is `any`).
+これは、戻り値の型が `addOne`（`a`は `any`なので`addOne`の戻り値は `any`なので`foo`の戻り値は `any`）の型定義が悪いためです。
 
-> I find it simplest to always be explicit about function returns. After all, these annotations are a theorem and the function body is the proof.
+> 関数の返り値を明示するのが最も簡単だと分かります。結局のところ、これらの注釈は定理であり、関数本体は証明である。
 
-There are other cases that one can imagine, but the good news is that there is a compiler flag that can help catch such bugs.
+想像できる他のケースもありますが、良いニュースは、そのようなバグを捕まえるのに役立つコンパイラフラグがあることです。
 
 ## `noImplicitAny`
 
-The flag `noImplicitAny` instructs the compiler to raise an error if it cannot infer the type of a variable (and therefore can only have it as an *implicit* `any` type). You can then
+フラグ `noImplicitAny`は、変数の型を推測できない場合（したがって、暗黙の*`any`型としてしか持つことができない場合）、エラーを発生させるようにコンパイラに指示します。そうすることができます
 
-* either say that *yes I want it to be of type `any`* by *explicitly* adding an `: any` type annotation
-* help the compiler out by adding a few more *correct* annotations.
+* どちらかと言うと*どちらかというと、 `：any '型の注釈を明示的に*加えることで`any`型にしたい
+* いくつかの*正しい*注釈を追加することによってコンパイラを助けます。

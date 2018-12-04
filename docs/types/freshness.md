@@ -1,13 +1,13 @@
 
-* [Freshness](#freshness)
-* [Allowing extra properties](#allowing-extra-properties)
-* [Use Case: React](#use-case-react-state)
+* [鮮度]（新鮮度）
+* [追加のプロパティを許可する]（#allow-extra-properties）
+* [ユースケース：反応]（#ユースケース反応状態）
 
-## Freshness
+## フレッシュネス
 
-TypeScript provides a concept of **Freshness** (also called *strict object literal checking*) to make it easier to type check object literals that would otherwise be structurally type compatible.
+TypeScriptは、構造的に型互換性のあるオブジェクトリテラルのチェックを簡単に入力できるように、** Freshness **（*厳密なオブジェクトリテラルチェック*とも呼ばれます）のコンセプトを提供します。
 
-Structural typing is *extremely convenient*. Consider the following piece of code. This allows you to *very conveniently* upgrade your JavaScript to TypeScript while still preserving a level of type safety:
+構造タイピングは非常に便利です*。次のコードを考えてみましょう。これにより、タイプセーフティのレベルを維持しながら、JavaScriptをTypeScriptに非常に便利に*アップグレードすることができます：
 
 ```ts
 function logName(something: { name: string }) {
@@ -23,7 +23,7 @@ logName(animal); // okay
 logName(random); // Error: property `name` is missing
 ```
 
-However, *structural* typing has a weakness in that it allows you to misleadingly think that something accepts more data than it actually does. This is demonstrated in the following code which TypeScript will error on as shown:
+しかし、*構造型の入力は、実際に比べて何かがより多くのデータを受け入れると誤解して考えることができるという弱点があります。これは、次のコードで示されています。これは、TypeScriptが次のようにエラーになります。
 
 ```ts
 function logName(something: { name: string }) {
@@ -34,9 +34,9 @@ logName({ name: 'matt' }); // okay
 logName({ name: 'matt', job: 'being awesome' }); // Error: object literals must only specify known properties. `job` is excessive here.
 ```
 
-Note that this error *only happens on object literals*. Without this error one might look at the call `logName({ name: 'matt', job: 'being awesome' })` and think that *logName* would do something useful with `job` where as in reality it will completely ignore it.
+このエラー*はオブジェクトリテラル*でのみ発生することに注意してください。このエラーがなければ、 `logName（{name： 'matt'、job： 'awesome'}）`という呼び出しを見て、* logName *が `job`で有用な何かを実行すると思うかもしれません。それ。
 
-Another big use case is with interfaces that have optional members, without such object literal checking, a typo would type check just fine. This is demonstrated below:
+もう1つの大きなユースケースは、オプションのメンバを持つインターフェイスで、このようなオブジェクトのリテラルチェックなしでは、タイプミスはちょうど良いとタイプされます。これは以下のとおりです：
 
 ```ts
 function logIfHasName(something: { name?: string }) {
@@ -52,20 +52,20 @@ logIfHasName(animal); // okay
 logIfHasName({neme: 'I just misspelled name to neme'}); // Error: object literals must only specify known properties. `neme` is excessive here.
 ```
 
-The reason why only object literals are type checked this way is because in this case additional properties *that aren't actually used* is almost always a typo or a misunderstanding of the API.
+このようにしてオブジェクトリテラルだけを型チェックする理由は、実際には使用されない追加のプロパティ*は、ほとんどの場合、APIのタイプミスまたは誤解のためです。
 
-### Allowing extra properties
+### 追加のプロパティを許可する
 
-A type can include an index signature to explicitly indicate that excess properties are permitted:
+型には、過剰なプロパティが許可されていることを明示的に示すインデックスシグネチャを含めることができます。
 
 ```ts
 var x: { foo: number, [x: string]: any };
 x = { foo: 1, baz: 2 };  // Ok, `baz` matched by index signature
 ```
 
-### Use Case: React State
+### ユースケース：反応状態
 
-[Facebook ReactJS](https://facebook.github.io/react/) offers a nice use case for object freshness. Quite commonly in a component you call `setState` with only a few properties instead of passing in all the properties, i.e.: 
+[Facebook ReactJS]（https://facebook.github.io/react/）は、オブジェクトの新鮮さの良いユースケースを提供します。コンポーネント内では、通常、すべてのプロパティを渡すのではなく、少数のプロパティだけを使って `setState`を呼び出します。
 
 ```ts
 // Assuming
@@ -81,7 +81,7 @@ this.setState({foo: "Hello"}); // Error: missing property bar
 this.setState({foo: "Hello", bar: this.state.bar}};
 ```
 
-Using the idea of freshness you would mark all the members as optional and *you still get to catch typos*!: 
+フレッシュさのアイデアを使用すると、すべてのメンバーをオプションとマークします*あなたはまだタイプミスをキャッチする*！：
 
 ```ts
 // Assuming

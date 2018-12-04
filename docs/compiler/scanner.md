@@ -1,16 +1,16 @@
-## Scanner
-The source code for the TypeScript scanner is located entirely in `scanner.ts`. Scanner is *controlled* internally by the `Parser` to convert the source code to an AST. Here is what the desired outcome is.
+## スキャナ
+TypeScriptスキャナのソースコードは、完全に `scanner.ts`にあります。スキャナはソースコードをASTに変換するために `Parser`によって内部的に*制御されます。ここでは、望ましい結果が何であるかです。
 
 ```
 SourceCode ~~ scanner ~~> Token Stream ~~ parser ~~> AST
 ```
 
-### Usage by Parser
-There is a *singleton* `scanner` created in `parser.ts` to avoid the cost of creating scanners over and over again. This scanner is then *primed* by the parser on demand using the `initializeState` function.
+### パーサーによる使用法
+スキャナーを何度も作成するコストを避けるために、 `parser.ts`に*シングルトン*`scanner`が作成されています。このスキャナは、 `initializeState`関数を使ってオンデマンドでパーサーによってプリムされます。
 
-Here is a *simplied* version of the actual code in the parser that you can run demonstrating this concept:
+ここでは、このコンセプトを実証できるパーザー内の実際のコードの*シンプル*バージョンを示します：
 
-`code/compiler/scanner/runScanner.ts`
+`code / compiler / scanner / runScanner.ts`
 ```ts
 import * as ts from "ntypescript";
 
@@ -40,7 +40,7 @@ while (token != ts.SyntaxKind.EndOfFileToken) {
 }
 ```
 
-This will print out the following :
+これは以下を出力します：
 
 ```
 VarKeyword
@@ -50,10 +50,10 @@ FirstLiteralToken
 SemicolonToken
 ```
 
-### Scanner State
-After you call `scan` the scanner updates its local state (position in the scan, current token details etc). The scanner provides a bunch of utility functions to get the current scanner state. In the below sample we create a scanner and then use it to identify the tokens as well as their positions in the code.
+### スキャナの状態
+`scan`を呼び出すと、スキャナはローカル状態（スキャン中の位置、現在のトークンの詳細など）を更新します。スキャナには、現在のスキャナの状態を取得するためのユーティリティ機能が用意されています。以下のサンプルでは、​​スキャナを作成し、それを使用してコード内のトークンとその位置を特定しています。
 
-`code/compiler/scanner/runScannerWithPosition.ts`
+`code / compiler / scanner / runScannerWithPosition.ts`
 ```ts
 // Sample usage
 initializeState(`
@@ -71,7 +71,7 @@ while (token != ts.SyntaxKind.EndOfFileToken) {
 }
 ```
 
-This will print out the following:
+これは以下を出力します：
 ```
 VarKeyword 0 3
 Identifier 3 7
@@ -80,5 +80,5 @@ FirstLiteralToken 9 13
 SemicolonToken 13 14
 ```
 
-### Standalone scanner
-Even though the TypeScript parser has a singleton scanner you can create a standalone scanner using `createScanner` and use its `setText`/`setTextPos` to scan at different points in a file for your amusement.
+### スタンドアロンスキャナ
+typescriptパーサーはシングルトンスキャナーを持っていますが、 `createScanner`を使ってスタンドアロンスキャナーを作成し、`setText` / `setTextPos`を使って、アミューズメントのためにファイル内の異なる点をスキャンすることができます。

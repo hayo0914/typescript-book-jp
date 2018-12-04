@@ -1,17 +1,17 @@
-### Parser Functions
+### パーサー関数
 
-As mentioned `parseSourceFile` sets up the initial state and passes the work onto `parseSourceFileWorker` function.
+前述のように `parseSourceFile`は初期状態を設定し、`parseSourceFileWorker`関数に渡します。
 
 #### `parseSourceFileWorker`
 
-Starts by creating a `SourceFile` AST node. Then it goes into parsing source code starting from the `parseStatements` function. Once that returns, it then completes the `SourceFile` node with additional information such as its `nodeCount`, `identifierCount` and such.
+`SourceFile`ASTノードを作成します。次に、 `parseStatements`関数から始まるソースコードを解析します。それが返ってくると、 `nodeFount`、`identifierCount`などの追加情報を含む `SourceFile`ノードを完成させます。
 
 #### `parseStatements`
-One of the most significant `parseFoo` style functions (a concept we cover next). It switches by the the current `token` returned from the scanner. E.g. if the current token is a `SemicolonToken` it will call out to `parseEmptyStatement` to create an AST node for an empty statement.
+最も重要な `parseFoo`スタイル関数の1つです（次のコンセプト）。これは、スキャナから返された現在のトークンによって切り替えられます。例えば。現在のトークンが `SemicolonToken`であれば`parseEmptyStatement`を呼び出して空文のASTノードを作成します。
 
-### Node creation
+### ノードの作成
 
-The parser has a bunch of `parserFoo` functions with bodies that create `Foo` nodes. These are generally called (from other parser functions) at a time where a `Foo` node is expected. A typical sample of this process is the `parseEmptyStatement()` function which is used to parse out empty statements like `;;;;;;`. Here is the function in its entirety
+パーサには、 `Foo`ノードを生成する本体を持つ`parserFoo`関数がたくさんあります。これらは一般的に `Foo`ノードが期待される時点で（他のパーサー関数から）呼び出されます。このプロセスの典型的なサンプルは、 `;;;;;;のような空文を解析するために使われる`parseEmptyStatement（） `関数です。ここには、その全体の機能があります
 
 ```ts
 function parseEmptyStatement(): Statement {
@@ -21,13 +21,13 @@ function parseEmptyStatement(): Statement {
 }
 ```
 
-It shows three critical functions `createNode`, `parseExpected` and `finishNode`.
+これは、3つの重要な関数 `createNode`、`parseExpected`と `finishNode`を示しています。
 
 #### `createNode`
-The parser's `createNode` function `function createNode(kind: SyntaxKind, pos?: number): Node` is responsible for creating a Node, setting up its `SyntaxKind` as passed in, and set the initial position if passed in (or use the position from the current scanner state).
+パーサの `createNode`関数`function createNode（kind：SyntaxKind、pos ?: number）：Node`はノードの作成、渡されたときの `SyntaxKind`の設定、渡された場合の初期位置の設定を行います現在のスキャナ状態からの位置）。
 
 #### `parseExpected`
-The parser's `parseExpected` function `function parseExpected(kind: SyntaxKind, diagnosticMessage?: DiagnosticMessage): boolean` will check that the current token in the parser state matches the desired `SyntaxKind`. If not it will either report the `diagnosticMessage` sent in or create a generic one of the form `foo expected`. It internally uses the `parseErrorAtPosition` function (which uses the scanning positions) to give good error reporting.
+パーサーの `parseExpected`関数`function parseExpected（kind：SyntaxKind、diagnosticMessage ?: DiagnosticMessage）：boolean`は、パーサ状態の現在のトークンが目的の `SyntaxKind`と一致することをチェックします。そうでなければ、送られた `diagnosticMessage`を報告するか、`foo expected`の形式の一般的なものを作成します。これは内部的に `parseErrorAtPosition`関数（走査位置を使用します）を使用して良いエラー報告を行います。
 
 ### `finishNode`
-The parser's `finishNode` function `function finishNode<T extends Node>(node: T, end?: number): T` sets up the `end` position for the node and additional useful stuff like the `parserContextFlags` it was parsed under as well as if there were any errors before parsing this node (if there were then we cannot reuse this AST node in incremental parsing).
+パーサーの `finishNode`関数`function finishNode <T extends Node>（node：T、end ?:: number）：T`はノードの `end`位置を設定し、`parserContextFlags`のようにこのノードを解析する前にエラーがあった場合（インクリメンタル解析でこのASTノードを再利用できない場合）

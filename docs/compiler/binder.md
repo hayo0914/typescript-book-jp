@@ -1,14 +1,14 @@
-## Binder
-Most JavaScript transpilers out there are simpler than TypeScript because they provide little in the way of code analysis. The typical JavaScript transpilers only have the following flow:
+## バインダー
+ほとんどのJavaScriptトランスパイラは、コード解析の方法がほとんどないため、TypeScriptよりもシンプルです。典型的なJavaScriptのトランスパイライザーは、次のような流れしかありません：
 
 ```ts
 SourceCode ~~Scanner~~> Tokens ~~Parser~~> AST ~~Emitter~~> JavaScript
 ```
 
-While the above architecture is true as a simplified understanding of TypeScript js generation, a key feature of TypeScript is its *Semantic* system. In order to assist type checking (performed by the `checker`), the `binder` (in `binder.ts`) is used to connect the various parts of the source code into a coherent type system that can then be used by the `checker`. The main responsibility of the binder is to create _Symbols_.
+上記のアーキテクチャーはTypeScript js世代の単純化された理解として真実ですが、TypeScriptの主な特徴は* Semantic *システムです。 （ `checker 'によって実行される）型チェックを助けるために、バインダ`（binder.ts内）は、ソースコードの様々な部分をコヒーレント型システムに接続するために使用されます。 `チェッカー`バインダーの主な責任は_Symbols_を作成することです。
 
-### Symbol
-Symbols connect declaration nodes in the AST to other declarations contributing to the same entity. Symbols are the basic building blocks of the Semantic system. The symbol constructor is defined in `core.ts` (and `binder` actually uses the `objectAllocator.getSymbolConstructor` to get its hands on it). Here is the symbol constructor:
+### シンボル
+シンボルは、AST内の宣言ノードを、同じエンティティに寄与する他の宣言に接続します。シンボルは、セマンティックシステムの基本的なビルディングブロックです。シンボルコンストラクタは `core.ts`で定義されています（そして`バインダ `は実際に`objectAllocator.getSymbolConstructor`を使ってそれを手に入れます）。以下はシンボルコンストラクタです：
 
 ```ts
 function Symbol(flags: SymbolFlags, name: string) {
@@ -18,10 +18,10 @@ function Symbol(flags: SymbolFlags, name: string) {
 }
 ```
 
-`SymbolFlags` is a flag enum and is really used to identify additional classifications of the symbol (e.g. variable scope flags `FunctionScopedVariable` or `BlockScopedVariable` among others)
+`SymbolFlags`はフラグ列挙型であり、シンボルの追加の分類を識別するために実際に使用されます（例えば、可変スコープフラグ`FunctionScopedVariable`や `BlockScopedVariable`など）
 
-### Usage by Checker
-The `binder` is actually used internally by the type `checker` which in turn is used by the `program`. The simplified call stack looks like:
+### Checkerによる使用法
+`バインダー`は実際に `checker`型で内部的に使用され、`プログラム `によって使用されます。単純化されたコールスタックは次のようになります。
 ```
 program.getTypeChecker ->
     ts.createTypeChecker (in checker)->
@@ -30,4 +30,4 @@ program.getTypeChecker ->
             // followed by
             for each SourceFile `ts.mergeSymbolTable` (in checker)
 ```
-The unit of work for the binder is a SourceFile. The `binder.ts` is driven by `checker.ts`.
+バインダーの作業単位はSourceFileです。 `binder.ts`は`checker.ts`によって駆動されます。

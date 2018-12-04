@@ -1,4 +1,4 @@
-// mention Pinned comments
+//固定コメント
 
 ```ts
 /*!

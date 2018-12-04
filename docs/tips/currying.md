@@ -1,6 +1,6 @@
-## Currying
+## カリング
 
-Just use a chain of fat arrow functions:
+ちょうど太い矢印の連鎖を使用してください：
 
 ```ts
 // A curried function

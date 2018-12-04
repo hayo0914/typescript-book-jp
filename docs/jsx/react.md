@@ -1,25 +1,25 @@
 # React JSX
 
-> [PRO Egghead course on TypeScript and React](https://egghead.io/courses/use-typescript-to-develop-react-applications)
+> [Type ScriptとReactのPRO Eggheadコース]（https://egghead.io/courses/use-typescript-to-develop-react-applications）
 
-## Setup
+## セットアップ
 
-Our [browser quickstart already sets you up to develop react applications](../quick/browser.md). Here are the key highlights.
+私たちのブラウザクイックスタートでは、すでに反応アプリケーションの開発をセットアップしています（../ quick / browser.md）。ここに主要なハイライトがあります。
 
-* Use files with the extension `.tsx` (instead of `.ts`).
-* Use `"jsx" : "react"` in your `tsconfig.json`'s `compilerOptions`.
-* Install the definitions for JSX and React into your project : (`npm i -D @types/react @types/react-dom`).
-* Import react into your `.tsx` files (`import * as React from "react"`).
+* ファイル拡張子 `.tsx`（`.ts`の代わりに）を使用してください。
+* あなたの `tsconfig.json`の`compilerOptions`で `` jsx "：" react "を使ってください。
+* JSXとReactの定義をあなたのプロジェクトにインストールします：（ `npm i -D @ types / react @ types / react-dom`）。
+* Importは、あなたの `.tsx`ファイルに反応します（` import *はReactから "react"となります）。
 
-## HTML Tags vs. Components
+## HTMLタグとコンポーネント
 
-React can either render HTML tags (strings) or React components (classes). The JavaScript emit for these elements is different (`React.createElement('div')` vs. `React.createElement(MyComponent)`). The way this is determined is by the *case* of the *first* letter. `foo` is treated as an HTML tag and `Foo` is treated as a component.
+Reactは、HTMLタグ（文字列）またはReactコンポーネント（クラス）をレンダリングできます。これらの要素に対するJavaScriptの発行は異なります（ `React.createElement（ 'div'）`対 `React.createElement（MyComponent）`）。これが決まる方法は*最初の*文字の* case *です。 `foo`はHTMLタグとして扱われ、`Foo`はコンポーネントとして扱われます。
 
-## Type Checking
+## 型式チェック
 
-### HTML Tags
+### HTMLタグ
 
-An HTML Tag `foo` is to be of the type `JSX.IntrinsicElements.foo`. These types are already defined for all the major tags in a file `react-jsx.d.ts` which we had you install as a part of the setup. Here is a sample of the  the contents of the file:
+HTMLタグ `foo`の型は`JSX.IntrinsicElements.foo`です。これらのタイプは、セットアップの一部としてインストールした `react-jsx.d.ts`ファイルのすべてのメジャータグに対してすでに定義されています。次に、ファイルの内容のサンプルを示します。
 
 ```ts
 declare module JSX {
@@ -34,9 +34,9 @@ declare module JSX {
 }
 ```
 
-### Stateless Functional Components
+### ステートレス機能コンポーネント
 
-You can define stateless components simply with the `React.SFC` interface e.g.
+あなたは単に `React.SFC`インターフェースでステートレスコンポーネントを定義することができます。
 
 ```ts
 type Props = {
@@ -49,11 +49,11 @@ const MyComponent: React.SFC<Props> = (props) => {
 <MyComponent foo="bar" />
 ```
 
-### Stateful Components
+### ステートフルなコンポーネント
 
-Components are type checked based on the `props` property of the component. This is modeled after how JSX is transformed i.e. the attributes become the `props` of the component.
+コンポーネントは、コンポーネントの `props`プロパティに基づいてタイプチェックされます。これは、JSXがどのように変換されるか、すなわち属性がコンポーネントの「小道具」になるようにモデル化されています。
 
-To create React Stateful components you use ES6 classes. The `react.d.ts` file defines the `React.Component<Props,State>` class which you should extend in your own class providing your own `Props` and `State` interfaces. This is demonstrated below:
+React Statefulコンポーネントを作成するには、ES6クラスを使用します。 `react.d.ts`ファイルはあなた自身の`Props`と `State`インターフェースを提供するあなたのクラスで拡張すべき`React.Component <Props、State> `クラスを定義しています。これは以下のとおりです：
 
 ```ts
 type Props = {
@@ -68,9 +68,9 @@ class MyComponent extends React.Component<Props, {}> {
 <MyComponent foo="bar" />
 ```
 
-### React JSX Tip: Interface for renderable
+### React JSX Tip：レンダリング可能なインターフェース
 
-React can render a few things like `JSX` or `string`. These are all consolidated into the type `React.ReactNode` so use it for when you want to accept renderables e.g.
+Reactは `JSX`や`string`のようなものをレンダリングすることができます。これらはすべて `React.ReactNode`型に統合されていますので、レンダラブルを受け入れる場合などに使用してください。
 
 ```ts
 type Props = {
@@ -89,9 +89,9 @@ class MyComponent extends React.Component<Props, {}> {
 <MyComponent foo="bar" />
 ```
 
-### React JSX Tip: Accept an instance of a Component
+### React JSXヒント：コンポーネントのインスタンスを受け入れる
 
-The react type definitions provide `React.ReactElement<T>` to allow you to annotate the result of a `<T/>` class component instantiation. e.g.
+反応型定義は、 `React.ReactElement <T>`を提供して、 `<T />`クラスコンポーネントのインスタンス化の結果に注釈を付けることができます。例えば
 
 ```js
 class MyAwesomeComponent extends React.Component {
@@ -104,11 +104,11 @@ const foo: React.ReactElement<MyAwesomeComponent> = <MyAwesomeComponent />; // O
 const bar: React.ReactElement<MyAwesomeComponent> = <NotMyAwesomeComponent />; // Error!
 ```
 
-> Of course you can use this as a function argument annotation and even React component prop member.
+> もちろん、これを関数の引数アノテーションやReact component prop memberとして使用することもできます。
 
-### React JSX Tip: Accept a *component* that can act on props and be rendered using JSX
+### React JSXヒント：小道具に作用し、JSXを使用してレンダリングできる* component *を受け入れる
 
-The type `React.Component<Props>` consolidates `React.ComponentClass<P> | React.StatelessComponent<P>` so you can accept *something* that takes type `Props` and renders it using JSX e.g.
+タイプ `React.Component <Props>`は `React.ComponentClass <P> |を統合します。 React.StatelessComponent <P> `で、`Props`型のJSXを使ってレンダリングするものを受け入れることができます。
 
 ```ts
 const X: React.Component<Props> = foo; // from somewhere
@@ -117,9 +117,9 @@ const X: React.Component<Props> = foo; // from somewhere
 <X {...props}/>;
 ```
 
-### React JSX Tip: Generic components
+### React JSXヒント：汎用コンポーネント
 
-It works exactly as expected. Here is an example:
+期待どおりに動作します。次に例を示します。
 
 ```ts
 /** A generic component */
@@ -130,76 +130,33 @@ class Select<T> extends React.Component<SelectProps<T>, any> { }
 const Form = () => <Select<string> items={['a','b']} />;
 ```
 
-### Generic functions
+### 汎用関数
 
-Something like the following works fine:
+次のようなものがうまくいきます：
 
 ```ts
 function foo<T>(x: T): T { return x; }
 ```
 
-However, using an arrow generic function will not:
+しかし、矢印汎用関数を使用しても、
 
 ```ts
 const foo = <T>(x: T) => x; // ERROR : unclosed `T` tag
 ```
 
-**Workaround**: Use `extends` on the generic parameter to hint the compiler that it's a generic, e.g.:
+** 回避策**：ジェネリックパラメータに `extends`を使用すると、コンパイラがジェネリックであることをヒントできます。
 
 ```ts
 const foo = <T extends {}>(x: T) => x;
 ```
 
-### React Tip: Strongly Typed Refs 
-You basically initialize a variable as a union of the ref and `null` and then initiazlie it as as callback  e.g. 
+### 型アサーション
 
-```ts
-class Example extends React.Component {
-  example() {
-    // ... something
-  }
-  
-  render() { return <div>Foo</div> }
-}
+我々が[前に述べた]（./type-assertion.md#as-foo-vs-foo）のように、タイプアサーションには `as Foo`構文を使います。
 
+## デフォルトの小道具
 
-class Use {
-  exampleRef: Example | null = null; 
-  
-  render() {
-    return <Example ref={exampleRef => this.exampleRef = exampleRef } />
-  }
-}
-```
-
-And the same with ref's for native elements e.g. 
-
-```ts
-class FocusingInput extends React.Component<{ value: string, onChange: (value: string) => any }, {}>{
-  input: HTMLInputElement | null = null;
-    
-  render() {
-    return (
-      <input
-        ref={(input) => this.input = input}
-        value={this.props.value}
-        onChange={(e) => { this.props.onChange(this.ctrls.input.value) } }
-        />
-      );
-    }
-    focus() {
-      if (this.input != null) { this.input.focus() }
-    }
-}
-```
-
-### Type Assertions
-
-Use `as Foo` syntax for type assertions as we [mentioned before](./type-assertion.md#as-foo-vs-foo).
-
-## Default Props
-
-* Stateful components with default props: You can tell TypeScript that a property will be provided externally (by React) by using a *null assertion* operator (this isn't ideal but is the simplest minimum *extra code* solution I could think of).
+* デフォルトの小道具を持ったステートフルなコンポーネント：あなたは* Nullアサーション*演算子を使ってプロパティを外部から（Reactによって）提供することをTypeScriptに伝えることができます（これは理想的ではありませんが、 ）。
 
 ```tsx
 class Hello extends React.Component<{
@@ -229,7 +186,7 @@ ReactDOM.render(
 );
 ```
 
-* SFC with default props: Recommend leveraging simple JavaScript patterns as they work well with TypeScript's type system e.g.
+* デフォルトの小道具を備えたSFC：シンプルなJavaScriptパターンを活用することをお勧めします。
 
 ```tsx
 const Hello: React.SFC<{

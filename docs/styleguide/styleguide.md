@@ -1,121 +1,121 @@
-# TypeScript StyleGuide and Coding Conventions
+# TypeScriptスタイルガイドとコーディング規約
 
-> An unofficial TypeScript StyleGuide
+> 非公式のTypeScriptスタイルガイド
 
-People have asked me for my opinions on this. Personally I don't enforce these a lot on my teams and projects but it does help to have these mentioned as a tie breaker when someone feels the need to have such strong consistency. There are other things that I feel much more strongly about and those are covered in the [tips chapter](../tips/main.md) (e.g. type assertion is bad, property setters are bad) 🌹.
+人々はこれについて私の意見を求めてきました。個人的に私は私のチームやプロジェクトにこれらのことをたくさん施行していませんが、そうした強い一貫性を持つ必要があると感じる人は、タイブレーカーとして言及することが役に立ちます。私ははるかに強く感じることがあり、[ヒントの章]（../ tips / main.md）で扱われています（例えば、タイプアサーションが悪い、プロパティーセッターが悪い）。
 
-Key Sections:
+主要セクション：
 
-* [Variable](#variable-and-function)
-* [Class](#class)
-* [Interface](#interface)
-* [Type](#type)
-* [Namespace](#namespace)
-* [Enum](#enum)
-* [`null` vs. `undefined`](#null-vs-undefined)
-* [Formatting](#formatting)
-* [Single vs. Double Quotes](#quotes)
-* [Tabs vs. Spaces](#spaces)
-* [Use semicolons](#semicolons)
-* [Annotate Arrays as `Type[]`](#array)
-* [File Names](#filename)
-* [`type` vs `interface`](#type-vs-interface)
+* [変数]（#変数と関数）
+* [クラス]（#クラス）
+* [インタフェース]（#インタフェース）
+* [タイプ]（#タイプ）
+* [名前空間]（#名前空間）
+* [Enum]（#enum）
+* [`null`と`undefined`]（#null-vs-undefined）
+* [書式設定]（#書式設定）
+* [一重引用符と二重引用符]（#引用符）
+* [Tabs vs. Spaces]（スペース数）
+* [セミコロンを使用]（セミコロン）
+* [配列を `Type []`として注釈する（#配列）
+* [ファイル名]（#filename）
+* [`type`対`interface`]（#type-vs-interface）
 
-## Variable and Function
-* Use `camelCase` for variable and function names
+## 変数と関数
+* 変数と関数名には `camelCase`を使います
 
-> Reason: Conventional JavaScript
+> 理由：従来のJavaScript
 
-**Bad**
+** 悪い**
 ```ts
 var FooVar;
 function BarFunc() { }
 ```
-**Good**
+** 良い**
 ```ts
 var fooVar;
 function barFunc() { }
 ```
 
-## Class
-* Use `PascalCase` for class names.
+## クラス
+* クラス名には `PascalCase`を使います。
 
-> Reason: This is actually fairly conventional in standard JavaScript.
+> 理由：これは実際には標準のJavaScriptではかなり一般的です。
 
-**Bad**
+** 悪い**
 ```ts
 class foo { }
 ```
-**Good**
+** 良い**
 ```ts
 class Foo { }
 ```
-* Use `camelCase` of class members and methods
+* クラスメンバーとメソッドの `camelCase`を使う
 
-> Reason: Naturally follows from variable and function naming convention.
+> 理由：当然のことながら、変数と関数の命名規則に従います。
 
-**Bad**
+** 悪い**
 ```ts
 class Foo {
     Bar: number;
     Baz() { }
 }
 ```
-**Good**
+** 良い**
 ```ts
 class Foo {
     bar: number;
     baz() { }
 }
 ```
-## Interface
+## インタフェース
 
-* Use `PascalCase` for name.
+* 名前には `PascalCase`を使います。
 
-> Reason: Similar to class
+> 理由：クラスに似ています
 
-* Use `camelCase` for members.
+* メンバーには `camelCase`を使います。
 
-> Reason: Similar to class
+> 理由：クラスに似ています
 
-* **Don't** prefix with `I`
+* **プレフィックスに `I`をつけないでください
 
-> Reason: Unconventional. `lib.d.ts` defines important interfaces without an `I` (e.g. Window, Document etc).
+> Reason：Unconventional。 `lib.d.ts`は`I`のない重要なインターフェース（例えば、Window、Documentなど）を定義します。
 
-**Bad**
+** 悪い**
 ```ts
 interface IFoo {
 }
 ```
-**Good**
+** 良い**
 ```ts
 interface Foo {
 }
 ```
 
-## Type
+## タイプ
 
-* Use `PascalCase` for name.
+* 名前には `PascalCase`を使います。
 
-> Reason: Similar to class
+> 理由：クラスに似ています
 
-* Use `camelCase` for members.
+* メンバーには `camelCase`を使います。
 
-> Reason: Similar to class
+> 理由：クラスに似ています
 
 
-## Namespace
+## 名前空間
 
-* Use `PascalCase` for names
+* 名前に `PascalCase`を使用する
 
-> Reason: Convention followed by the TypeScript team. Namespaces are effectively just a class with static members. Class names are `PascalCase` => Namespace names are `PascalCase`
+> 理由：TypeScriptチームに続くコンベンション。名前空間は事実上静的メンバーを持つクラスです。クラス名は `PascalCase`=>名前空間名は` PascalCase`です
 
-**Bad**
+** 悪い**
 ```ts
 namespace foo {
 }
 ```
-**Good**
+** 良い**
 ```ts
 namespace Foo {
 }
@@ -123,153 +123,153 @@ namespace Foo {
 
 ## Enum
 
-* Use `PascalCase` for enum names
+* enum名には `PascalCase`を使います
 
-> Reason: Similar to Class. Is a Type.
+> 理由：クラスに似ています。タイプです。
 
-**Bad**
+** 悪い**
 ```ts
 enum color {
 }
 ```
-**Good**
+** 良い**
 ```ts
 enum Color {
 }
 ```
 
-* Use `PascalCase` for enum member
+* enumメンバーに `PascalCase`を使用する
 
-> Reason: Convention followed by TypeScript team i.e. the language creators e.g `SyntaxKind.StringLiteral`. Also helps with translation (code generation) of other languages into TypeScript.
+> 理由：文字列作成者、例えばSyntaxKind.StringLiteralのようなTypeScriptチームに続くコンベンション。他の言語の翻訳（コード生成）をTypeScriptにも役立ちます。
 
-**Bad**
+** 悪い**
 ```ts
 enum Color {
     red
 }
 ```
-**Good**
+** 良い**
 ```ts
 enum Color {
     Red
 }
 ```
 
-## Null vs. Undefined
+## Null対Undefined
 
-* Prefer not to use either for explicit unavailability
+* 明示的に使用不可能にするためにどちらも使用しないことを推奨します。
 
-> Reason: these values are commonly used to keep a consistent structure between values. In TypeScript you use *types* to denote the structure
+> 理由：これらの値は、値間の一貫した構造を維持するためによく使用されます。 TypeScriptでは* types *を使用して構造体を表します
 
-**Bad**
+** 悪い**
 ```ts
 let foo = {x:123,y:undefined};
 ```
-**Good**
+** 良い**
 ```ts
 let foo:{x:number,y?:number} = {x:123};
 ```
 
-* Use `undefined` in general (do consider returning an object like `{valid:boolean,value?:Foo}` instead)
+* 一般的に `undefined`を使用してください（代わりに`{valid：boolean、value？：Foo} `のようなオブジェクトを返すことを検討してください）
 
-***Bad***
+*** 悪い***
 ```ts
 return null;
 ```
-***Good***
+*** 良い***
 ```ts
 return undefined;
 ```
 
-* Use `null` where its a part of the API or conventional
+* APIまたは従来のAPIの一部である場合は `null 'を使用します
 
-> Reason: It is conventional in Node.js e.g. `error` is `null` for NodeBack style callbacks.
+> 理由：Node.jsでは従来通りです。 NodeBackスタイルコールバックの `error`は`null`です。
 
-**Bad**
+** 悪い**
 ```ts
 cb(undefined)
 ```
-**Good**
+** 良い**
 ```ts
 cb(null)
 ```
 
-* Use *truthy* check for **objects** being `null` or `undefined`
+* * truthy *を使用すると、**オブジェクト**が `null`または`undefined`であるかどうかをチェックします。
 
-**Bad**
+** 悪い**
 ```ts
 if (error === null)
 ```
-**Good**
+** 良い**
 ```ts
 if (error)
 ```
 
-* Use `== undefined` / `!= undefined` (not `===` / `!==`) to check for `null` / `undefined` on primitives as it works for both `null`/`undefined` but not other falsy values (like `''`,`0`,`false`) e.g.
+* プリミティブに ``null` / `undefined`をチェックするには、`== undefined` / `！= undefined`（`=== `/`！== ` `` `、`0`、 `false`のような）他の偽の値ではありません。
 
-**Bad**
+** 悪い**
 ```ts
 if (error !== null)
 ```
-**Good**
+** 良い**
 ```ts
 if (error != undefined)
 ```
 
-## Formatting
-The TypeScript compiler ships with a very nice formatting language service. Whatever output it gives by default is good enough to reduce the cognitive overload on the team.
+## フォーマット
+TypeScriptコンパイラには、非常に優れた書式言語サービスが付属しています。デフォルトで出力される出力は、チームの認知負荷を軽減するのに十分です。
 
-Use [`tsfmt`](https://github.com/vvakame/typescript-formatter) to automatically format your code on the command line. Also your IDE (atom/vscode/vs/sublime) already has formatting support built-in.
+コマンドラインでコードを自動的にフォーマットするには、[`tsfmt`]（https://github.com/vvakame/typescript-formatter）を使います。また、あなたのIDE（atom / vscode / vs / sublime）には、すでにフォーマットサポートが組み込まれています。
 
-Examples:
+例：
 ```ts
 // Space before type i.e. foo:<space>string
 const foo: string = "hello";
 ```
 
-## Quotes
+## 引用
 
-* Prefer single quotes (`'`) unless escaping.
+* エスケープしない限り、一重引用符（ ``）を使用することをお勧めします。
 
-> Reason: More JavaScript teams do this (e.g. [airbnb](https://github.com/airbnb/javascript), [standard](https://github.com/feross/standard), [npm](https://github.com/npm/npm), [node](https://github.com/nodejs/node), [google/angular](https://github.com/angular/angular/), [facebook/react](https://github.com/facebook/react)). Its easier to type (no shift needed on most keyboards). [Prettier team recommends single quotes as well](https://github.com/prettier/prettier/issues/1105)
+> 理由：他のJavaScriptチームがこれを行います（[airbnb]（https://github.com/airbnb/javascript）、[標準]（https://github.com/feross/standard）、[npm]（https： //github.com/npm/npm）、[ノード]（https://github.com/nodejs/node）、[google / angular]（https://github.com/angular/angular/）、[facebook /react](https://github.com/facebook/react））。入力が簡単です（ほとんどのキーボードでシフトが必要ありません）。 [Prettierチームは一重引用符もお勧めします]（https://github.com/prettier/prettier/issues/1105）
 
-> Double quotes are not without merit: Allows easier copy paste of objects into JSON. Allows people to use other languages to work without changing their quote character. Allows you to use apostrophes e.g. `He's not going.`. But I'd rather not deviate from where the JS Community is fairly decided.
+> 二重引用符にはメリットがありません：オブジェクトをJSONに簡単にコピーできます。ユーザーが他の言語を使用して、引用文字を変更せずに作業できるようにします。たとえばアポストロフィを使用できます。 「彼は行かない。しかし、私は、JSコミュニティが公正に決定された場所から逸脱することはありません。
 
-* When you can't use double quotes, try using back ticks (\`).
+* 二重引用符を使用できない場合は、バックティック（\ `）を使用してみてください。
 
-> Reason: These generally represent the intent of complex enough strings.
+> 理由：これらは一般に、複雑な文字列の意図を表しています。
 
-## Spaces
+## スペース
 
-* Use `2` spaces. Not tabs.
+* `2 'スペースを使います。タブではありません。
 
-> Reason: More JavaScript teams do this (e.g. [airbnb](https://github.com/airbnb/javascript), [idiomatic](https://github.com/rwaldron/idiomatic.js), [standard](https://github.com/feross/standard), [npm](https://github.com/npm/npm), [node](https://github.com/nodejs/node), [google/angular](https://github.com/angular/angular/), [facebook/react](https://github.com/facebook/react)). The TypeScript/VSCode teams use 4 spaces but are definitely the exception in the ecosystem.
+> 理由：他のJavaScriptチームがこれを行います（[airbnb]（https://github.com/airbnb/javascript）、[idiomatic]（https://github.com/rwaldron/idiomatic.js）、[標準]（ https://github.com/feross/standard）、[npm]（https://github.com/npm/npm）、[node]（https://github.com/nodejs/node）、[google / （https://github.com/angular/angular/）、[facebook / react]（https://github.com/facebook/react）を参照してください）。 TypeScript / VSCodeチームは4つのスペースを使用しますが、間違いなくエコシステムの例外です。
 
-## Semicolons
+## セミコロン
 
-* Use semicolons.
+* セミコロンを使用してください。
 
-> Reasons: Explicit semicolons helps language formatting tools give consistent results. Missing ASI (automatic semicolon insertion) can trip new devs e.g. `foo() \n (function(){})` will be a single statement (not two). Recommended by TC39 as well.
+> 理由：明示的なセミコロンは、言語書式設定ツールで一貫した結果を得るのに役立ちます。不足しているASI（自動セミコロン挿入）は、新しい開発者を旅行させることができます。 `foo（）\ n（function（）{}）`は1つのステートメント（2つではない）です。 TC39でもお勧めします。
 
-## Array
+## 配列
 
-* Annotate arrays as `foos:Foo[]` instead of `foos:Array<Foo>`.
+* 配列に `foos：Array <Foo>`の代わりに `foos：Foo []`として配列に注釈をつけます。
 
-> Reasons: Its easier to read. Its used by the TypeScript team. Makes easier to know something is an array as the mind is trained to detect `[]`.
+> 理由：読みやすい。 TypeScriptチームによって使用されます。心が `[]`を検出するように訓練されているので、何かが配列であることを知りやすくなります。
 
-## Filename
-Name files with `camelCase`. E.g. `accordian.tsx`, `myControl.tsx`, `utils.ts`, `map.ts` etc.
+## ファイル名
+`camelCase`を使ってファイルに名前を付けます。例えば。 `accordian.tsx`、`myControl.tsx`、 `utils.ts`、`map.ts`などです。
 
-> Reason: Conventional across many JS teams.
+> 理由：多くのJSチームに在籍していました。
 
-## type vs. interface
+## 型vsインタフェース
 
-* Use `type` when you *might* need a union or intersection:
+* ユニオンや交差点が必要な場合には `type`を使います：
 
 ```
 type Foo = number | { someProperty: number }
 ```
-* Use `interface` when you want `extends` or `implements` e.g
+* `extend`や`implements`をしたいときは `interface`を使います。
 
 ```
 interface Foo {
@@ -283,4 +283,4 @@ class X implements FooBar {
   bar: string;
 }
 ```
-* Otherwise use whatever makes you happy that day.
+* そうでなければ、その日あなたを幸せにするものを使用してください。

@@ -1,10 +1,10 @@
 # globals.d.ts
 
-We discussed *global* vs. *file* modules when covering [projects](./modules.md) and recommended using file based modules and not polluting the global namespace.
+[projects]（./ modules.md）をカバーし、ファイルベースのモジュールを使用し、グローバル名前空間を汚染しないことを推奨したときに* global * vs * file *モジュールについて議論しました。
 
-Nevertheless, if you have beginning TypeScript developers you can give them a `globals.d.ts` file to put interfaces / types in the global namespace to make it easy to have some *types* just *magically* available for consumption in *all* your TypeScript code.
+それにもかかわらず、TypeScriptの開発者がいる場合は、globals.d.tsファイルを与えてグローバルな名前空間にインターフェイス/タイプを入れて、*すべて* *あなたのTypeScriptコード。
 
-> For any code that is going to generate *JavaScript* we highly recommend using *file modules*.
+> * JavaScript *を生成するコードについては、*ファイルモジュール*の使用を強くお勧めします。
 
-* `globals.d.ts` is great for adding extensions to `lib.d.ts` if you need to.
-* It's good for quick `declare module "some-library-you-dont-care-to-get-defs-for";` when doing TS to JS migrations.
+* `globals.d.ts`は、必要に応じて`lib.d.ts`に拡張機能を追加するのに最適です。
+* TSからJSへのマイグレーションを行う際には、簡単な `宣言モジュール 'をいくつかのライブラリに分けて、気にする必要はありません。

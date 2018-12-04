@@ -2,15 +2,15 @@
 
 
 
-# Functions
+# 関数
 
-## Optional
-The `?` annotation can be used before a function argument or member of an interface to denote that a member is optional. That is to say that you can provide it if you want (and it will be type checked), but if it is ommited its *okay*. This is shown in the following example:
+## オプション
+`？ 'アノテーションは、メンバがオプションであることを示すために、関数の引数またはインタフェースのメンバの前に使用できます。つまり、あなたが望むならそれを提供することができます（そしてそれはタイプチェックされます）。しかし、それが省略されていれば* okay *です。これは次の例に示されています。
 
-## Specialized Parameters
+## 特殊化されたパラメータ
 
-## Function Overloads
-The JavaScript runtime does not have runtime support for function overloading. There can be only a single function body for any given name in scope. However, people do support function overloading by utilizing the highly dynamic nature of JavaScript e.g. a getter and a setter:
+## 関数のオーバーロード
+JavaScriptランタイムは、関数オーバーロードの実行時サポートを持っていません。スコープ内の指定された名前には、単一の関数本体のみが存在します。しかし、人々はJavaScriptの非常に動的な性質を利用して関数のオーバーロードをサポートしています。ゲッターとセッター：
 
 ```ts
 var _value;
@@ -26,7 +26,7 @@ getOrSet(1); // set : 1
 console.log(getOrSet()); // get : 1
 ```
 
-Such implementation can be captured by the TypeScript's type system by providing function signatures before the function implementation:
+このような実装は、関数の実装の前に関数のシグネチャを提供することによって、TypeScriptの型システムによって取得できます。
 
 ```ts
 var _value;
@@ -44,7 +44,7 @@ getOrSet(1); // set : 1
 console.log(getOrSet()); // get : 1
 ```
 
-Note that when you define function overloads this way, *the last signature is actually not callable*. You have to provide it however, to help the implementer of the function be aware of the consequences of his overload signatures. For example, in the following example the function with the signature `function callMe(v1?: any, v2?: any): any` is not open to public use:
+関数のオーバーロードをこのように定義すると、最後のシグネチャは実際にはコール可能ではないことに注意してください*。しかし、機能の実装者が彼の過負荷署名の結果を認識するのを助けるために、それを提供しなければなりません。たとえば、次の例では、 `function callMe（v1 ?: any、v2 ?: any）：any`という署名を持つ関数は公開されていません。
 
 ```ts
 function callMe(): number;
@@ -64,59 +64,59 @@ callMe('jenny');
 callMe('jenny', '5309');
 ```
 
-TIP: Note that there is a slight overlap between union types and function overloading. If two function signatures only differ by a single parameter having different types just use a union type for that parameter instead of creating an overload signature.
+ヒント：共用体の型と関数のオーバーロードには若干の重複があることに注意してください。 2つの関数シグネチャが異なる型を持つ単一のパラメータによって異なる場合は、オーバーロードシグネチャを作成する代わりに、そのパラメータにユニオン型を使用するだけです。
 
 
-# Interfaces
+# インターフェース
 
-Interfaces have a lot of power in TypeScript. This is because they are designed to capture all the complexity of
-
-
+インターフェイスはTypeScriptで多くのパワーを持っています。これは、それらのすべての複雑さを捉えるように設計されているからです。
 
 
-# Ambient Declarations
-
-We previously had a brief look at ambient declarations in the section *why typescript?*. One of the core design goals of TypeScript is to allow easy consumption of existing JavaScript libraries. You can declare the type information for existing JavaScript using *ambient declarations*. You declare ambient stuff using the `declare` keyword. In fact this is how a bunch of stuff available by default in a browser environment (e.g `window`, `document` etc) is declared in a file called `lib.d.ts`
 
 
-Note: You can find type definitions for nearly 90% of the most popular JavaScript libraries at [DefinitelyTyped](https://github.com/borisyankov/DefinitelyTyped) with contributions from [lots of  developers](https://github.com/borisyankov/DefinitelyTyped/graphs/contributors).
+# アンビエント宣言
+
+以前は、なぜtypescript？*というセクションのアンビエント宣言について簡単に見てきました。 TypeScriptの主要な設計目標の1つは、既存のJavaScriptライブラリを簡単に使用できるようにすることです。 * ambient宣言*を使用して、既存のJavaScriptの型情報を宣言することができます。あなたは `declare`キーワードを使って周囲のものを宣言します。実際、これは、ブラウザ環境（例えば `window`、`document`など）でデフォルトで利用できるたくさんのものが `lib.d.ts`というファイルでどのように宣言されているかです
+
+
+注：[DefinitelyTyped]（https://github.com/borisyankov/DefinitelyTyped）には、最も人気のあるJavaScriptライブラリのほぼ90％のタイプ定義が[たくさんの開発者]（https://github.com）から寄せられています/ borisyankov / DefinitelyTyped /グラフ/投稿者）。
 
 
 
 ### lib.d.ts
 
-# Interfaces
+# インターフェース
 
 
 
-### Interfaces for primitive types
+### プリミティブ型のインタフェース
 
-### Interface for array
+### 配列のインタフェース
 
-## Type Alias
+## 型エイリアス
 
-## Union Types
-needed for configuration objects
+## 連合の種類
+構成オブジェクトに必要
 
-## Type Inference
-It tries to *infer* as much as it can *so that you don't need to explicitly type* your code.
+## 型推論
+* あなたのコードを明示的にタイプする必要がないように、*可能な限り*推論しようとします。
 
-## Function Signatures
+## 機能シグネチャ
 
-Specialized
+スペシャライズド
 
-## Type Assertion
+## 型アサーション
 
-If A is a subtype of B or B is a subtype of A.
-
-
-
-
+AがBのサブタイプである場合、またはBはAのサブタイプです。
 
 
 
 
-[more on interfaces]
-Structural so more information is okay, but less information is an error. Duck typing is baked deep into the language design.
-Open Ended
-Type Compatibility
+
+
+
+
+[インタフェースについての詳細]
+構造的にはより多くの情報は大丈夫ですが、情報が少なくてもエラーです。ダックタイピングは、言語デザインの深いところまで焼き付けられています。
+オープンエンド
+タイプの互換性

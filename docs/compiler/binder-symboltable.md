@@ -1,6 +1,6 @@
 ### SymbolTable
 
-SymbolTable is implemented as a simple HashMap. Here is the interface (`types.ts`):
+SymbolTableは単純なHashMapとして実装されています。ここにインターフェイスがあります（ `types.ts`）：
 
 ```ts
 interface SymbolTable {
@@ -8,24 +8,24 @@ interface SymbolTable {
 }
 ```
 
-SymbolTables are initialized by binding. There are a few SymbolTables used by the compiler:
+シンボルテーブルはバインディングで初期化されます。コンパイラで使用されるいくつかのSymbolTableがあります：
 
-On `Node`:
+`Node`について：
 ```ts
 locals?: SymbolTable;                   // Locals associated with node
 ```
 
-On `Symbol`:
+`Symbol`について：
 
 ```ts
 members?: SymbolTable;                  // Class, interface or literal instance members
 exports?: SymbolTable;                  // Module exports
 ```
 
-Note: We saw `locals` getting initialized (to `{}`) by `bindChildren` based on `ContainerFlags`.
+注： `ContainerFlags`に基づいて`bindChildren`によって `locals`が（{}}に）初期化されているのを見ました。
 
-#### SymbolTable population
-SymbolTables are populated with `Symbols` primarily by a call to `declareSymbol`. This function is presented below in entirety:
+#### シンボルテーブルの人口
+SymbolTablesは主に `declareSymbol`の呼び出しによって`Symbols`で埋められます。この機能の全体を以下に示す：
 
 ```ts
 /**
@@ -100,7 +100,7 @@ function declareSymbol(symbolTable: SymbolTable, parent: Symbol, node: Declarati
 }
 ```
 
-Which SymbolTable is populated is driven by the first argument to this function. e.g. when adding a declaration to a *container* of kind `SyntaxKind.ClassDeclaration` or `SyntaxKind.ClassExpression` the function `declareClassMember` will get called which has the following code:
+どのSymbolTableが実装されるかは、この関数の最初の引数によって決まります。例えば`SyntaxKind.ClassDeclaration`または`SyntaxKind.ClassExpression`の* container *に宣言を追加すると、 `declareClassMember`関数が呼び出され、次のコードを持ちます：
 
 ```ts
 function declareClassMember(node: Declaration, symbolFlags: SymbolFlags, symbolExcludes: SymbolFlags) {

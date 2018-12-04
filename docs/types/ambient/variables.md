@@ -1,19 +1,19 @@
-### Variables
-For example to tell TypeScript about the [`process` variable](https://nodejs.org/api/process.html) you *can* do:
+### 変数
+例えば、あなたができる* [`process`変数]（https://nodejs.org/api/process.html）についてTypeScriptに伝えるために：
 
 ```ts
 declare var process: any;
 ```
 
-> You don't *need* to do this for `process` as there is already a [community maintained `node.d.ts`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/node/index.d.ts).
+> すでに `コミュニティが`node.d.ts`を維持しているので、 `process`のためにこれを行う必要はありません（https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/ノード/ index.d.ts）。
 
-This allows you to use the `process` variable without TypeScript complaining:
+これにより、TypeScriptを使わずに `process`変数を使うことができます：
 
 ```ts
 process.exit();
 ```
 
-We recommend using an interface wherever possible e.g.:
+可能な限りインターフェースを使用することをおすすめします。例：
 
 ```ts
 interface Process {
@@ -22,7 +22,7 @@ interface Process {
 declare var process: Process;
 ```
 
-This allows other people to *extend* the nature of these global variables while still telling TypeScript about such modifications. E.g. consider the following case where we add an `exitWithLogging` function to process for our amusement:
+これにより、他の人がこれらのグローバル変数の性質を拡張して、そのような変更についてTypeScriptに伝えることができます。例えば。アミューズメントを処理するためのexitWithLogging関数を追加する次のような場合を考えてみましょう。
 
 ```ts
 interface Process {
@@ -34,4 +34,4 @@ process.exitWithLogging = function() {
 };
 ```
 
-Let's look at interfaces in a bit more detail next.
+次はインターフェイスを少し詳しく見ていきましょう。

@@ -1,48 +1,48 @@
-### Trivia
-Trivia (called that because it's `trivial`) represent the parts of the source text that are largely insignificant for normal understanding of the code. For example; whitespace, comments, and even conflict markers. Trivia is *not stored* in the AST (to keep it lightweight). However, it can be fetched *on demand* using a few `ts.*` APIs. 
+### トリビア
+トリビア（それは「些細な理由」と呼ばれる）は、コードの正常な理解のためにはほとんど重要でないソーステキストの部分を表します。例えば;空白、コメント、さらには競合マーカーが含まれます。トリビアはASTに保存されません*（軽量に保つため）。しかし、いくつかの `ts。* 'APIを使用してオンデマンドで*フェッチすることができます。
 
-Before we show them you need to understand the following:
+それらを表示する前に、以下を理解する必要があります。
 
-#### Trivia Ownership
-In General:
-* A token owns any trivia after it on the *same* line *upto* the next token.
-* Any comment *after that line* is associated with the following token.
+#### トリビアの所有権
+一般に：
+* トークンは、同じ行*の後のトリビアを次のトークンまで*所有します。
+* その行の後のコメント*は、次のトークンに関連付けられます。
 
-For leading and ending comments in a file:
-* The first token in the source file gets all the initial trivia.
-* The last sequence of trivia in the file is tacked onto the end-of-file token, which otherwise has zero width.
+ファイル内の先頭と末尾のコメント：
+* ソースファイルの最初のトークンはすべて初期トリビアを取得します。
+* ファイル内のトリビアの最後のシーケンスは、ファイルの終わりのトークンに付けられます。それ以外の場合は、幅はゼロです。
 
-#### Trivia APIs
-For most basic uses, comments are the "interesting" trivia. The comments that belong to a Node can be fetched through the following functions:
+#### トリビアAPI
+ほとんどの基本的な用途では、コメントは「面白い」トリビアです。ノードに属するコメントは、次の関数を使用して取得できます。
 
-Function | Description
----------|------------
-`ts.getLeadingCommentRanges` | Given the source text and position within that text, returns ranges of comments between the first line break following the given position and the token itself (probably most useful with `ts.Node.getFullStart`).
-`ts.getTrailingCommentRanges` | Given the source text and position within that text, returns ranges of comments until the first line break following the given position (probably most useful with `ts.Node.getEnd`).
+関数|説明
+--------- | ------------
+`ts.getLeadingCommentRanges`|そのテキスト内のソーステキストと位置を指定すると、与えられた位置に続く最初の改行とトークン自体の間のコメントの範囲を返します（おそらく、 `ts.Node.getFullStart`で最も有用です）。
+`ts.getTrailingCommentRanges`|そのテキスト内のソーステキストと位置を指定すると、与えられた位置に続く最初の改行までのコメントの範囲を返します（おそらく `ts.Node.getEnd`で最も有用です）。
 
-As an example, imagine this portion of a source file:
-
-```ts
-debugger;/*hello*/
-    //bye
-  /*hi*/    function
-```
-
-`getLeadingCommentRanges` for the `function` will only return the last 2 comments `//bye` and `/*hi*/`.
-
-Appropriately, calling `getTrailingCommentRanges` on the end of the debugger statement will extract the `/*hello*/` comment.
-
-#### Token Start/Full Start
-Nodes have what is called a "token start" and a "full start".
-
-* Token Start: the more natural version, which is the position in file where the text of a token begins
-* Full Start: the point at which the scanner began scanning since the last significant token
-
-AST nodes have an API for `getStart` and `getFullStart`. In the following example:
+例として、ソースファイルのこの部分を想像してみてください：
 
 ```ts
 debugger;/*hello*/
     //bye
   /*hi*/    function
 ```
-for `function` the token start is at `function` whereas *full* start is at `/*hello*/`. Note that full start even includes the trivia that would otherwise be owned by the previous node.
+
+`function`の`getLeadingCommentRanges`は、最後の2つのコメント `/ bye`と`/ * hi * / `だけを返します。
+
+適切には、デバッガ文の最後に `getTrailingCommentRanges`を呼び出すと、`/ * hello * / `コメントが抽出されます。
+
+#### トークンの開始/フル・スタート
+ノードには、「トークン開始」と「完全開始」というものがあります。
+
+* Token Start：より自然なバージョン。トークンのテキストが始まるファイル内の位置
+* フルスタート：スキャナが最後の重要なトークンからスキャンを開始したポイント
+
+ASTノードには、 `getStart`と`getFullStart`のためのAPIがあります。次の例では、
+
+```ts
+debugger;/*hello*/
+    //bye
+  /*hi*/    function
+```
+`function`の場合、トークンstartは`function`にありますが、* full * startは `/ * hello * /`にあります。フルスタートには、それ以外の場合は前のノードが所有するトリビアも含まれます。

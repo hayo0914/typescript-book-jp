@@ -1,8 +1,8 @@
-### Discriminated Union
+### 差別化された組合
 
-If you have a class with a [*literal member*](./literal-types.md) then you can use that property to discriminate between union members.
+[* literalメンバー*]（./ literal-types.md）を持つクラスがある場合、そのプロパティを使用して、共用体メンバーを区別することができます。
 
-As an example consider the union of a `Square` and `Rectangle`, here we have a member `kind` that exists on both union members and is of a particular *literal type*:
+例として、 `Square`と`Rectangle`の和集合を考えてみましょう。ここでは、両方の共用体メンバに存在し、特定の*リテラル型のメンバ `kind`があります*：
 
 ```ts
 interface Square {
@@ -18,7 +18,7 @@ interface Rectangle {
 type Shape = Square | Rectangle;
 ```
 
-If you use a type guard style check (`==`, `===`, `!=`, `!==`) or `switch` on the *discriminant property* (here `kind`) TypeScript will realize that the object must be of the type that has that specific literal and do a type narrowing for you :)
+* discriminantプロパティ（ここで `kind`）にタイプガードスタイルチェック（`== `、`=== `、`！= `、`！== `）または`switch`を使用すると、TypeScriptはそのオブジェクトは、その特定のリテラルを持つタイプのものでなければならず、あなたのためにタイプを狭くする必要があります:)
 
 ```ts
 function area(s: Shape) {
@@ -35,8 +35,8 @@ function area(s: Shape) {
 }
 ```
 
-### Exhaustive Checks
-Quite commonly you want to make sure that all members of a union have some code(action) against them.
+### 完全なチェック
+かなり一般的には、組合のすべてのメンバーがそれらに対していくつかのコード（行動）を持っていることを確認したいと思います。
 
 ```ts
 interface Square {
@@ -60,7 +60,7 @@ interface Circle {
 type Shape = Square | Rectangle | Circle;
 ```
 
-As an example of where stuff goes bad:
+物が悪くなる場所の例として：
 
 ```ts
 function area(s: Shape) {
@@ -74,7 +74,7 @@ function area(s: Shape) {
 }
 ```
 
-You can do that by simply adding a fall through and making sure that the inferred type in that block is compatible with the `never` type. For example if you add the exhaustive check you get a nice error:
+これを行うには、フォールスルーを追加し、そのブロックの推論された型が `never`型と互換性があることを確認するだけです。たとえば、徹底的なチェックを追加すると、すばらしいエラーが発生します。
 
 ```ts
 function area(s: Shape) {
@@ -91,7 +91,7 @@ function area(s: Shape) {
 }
 ```
 
-That forces you to handle this new case : 
+それはこの新しいケースを扱うことを強いられます：
 
 ```ts
 function area(s: Shape) {
@@ -112,8 +112,8 @@ function area(s: Shape) {
 ```
 
 
-### Switch
-TIP: of course you can also do it in a `switch` statement:
+### スイッチ
+ヒント：もちろん、あなたは `switch`ステートメントでそれを行うこともできます：
 
 ```ts
 function area(s: Shape) {
@@ -126,11 +126,11 @@ function area(s: Shape) {
 }
 ```
 
-[references-discriminated-union]:https://github.com/Microsoft/TypeScript/pull/9163
+[references-discriminated-union]：https：//github.com/Microsoft/TypeScript/pull/9163
 
 ### strictNullChecks
 
-If using strictNullChecks and doing exhaustive checks, TypeScript might complain "not all code paths return a value". You can silence that by simply returning the `_exhaustiveCheck` variable (of type `never`). So:
+strictNullChecksを使用して網羅的なチェックを行っている場合、 `_exhaustiveCheck`変数（`never`型）も返さなければなりません。そうでなければ、TypeScriptは `undefined`の可能な戻り値を推論します。そう：
 
 ```ts
 function area(s: Shape) {
@@ -147,9 +147,9 @@ function area(s: Shape) {
 
 ### Redux
 
-A popular library that makes use of this is redux.
+これを利用する普及した図書館は、還元的です。
 
-Here is the [*gist of redux*](https://github.com/reactjs/redux#the-gist) with TypeScript type annotations added:
+ここに、TypeScript型アノテーションを追加した[* gist of redux *]（https://github.com/reactjs/redux#the-gist）があります：
 
 ```ts
 import { createStore } from 'redux'
@@ -191,7 +191,7 @@ let store = createStore(counter)
 
 // You can use subscribe() to update the UI in response to state changes.
 // Normally you'd use a view binding library (e.g. React Redux) rather than subscribe() directly.
-// However, it can also be handy to persist the current state in the localStorage.
+// However it can also be handy to persist the current state in the localStorage.
 
 store.subscribe(() =>
   console.log(store.getState())
@@ -207,4 +207,4 @@ store.dispatch({ type: 'DECREMENT' })
 // 1
 ```
 
-Using it with TypeScript gives you safety against typo errors, increased refactor-ability and self documenting code.
+TypeScriptで使用すると、誤植、リファクタリング能力の向上、および自己文書化コードに対する安全性が確保されます。

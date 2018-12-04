@@ -1,6 +1,6 @@
 # noImplicitAny
 
-There are some things that cannot be inferred or inferring them might result in unexpected errors. A fine example is function arguments. If you don't annotate them, its unclear what should and shouldn't be valid e.g.
+推測できないものや推測できないものがあり、予期しないエラーが発生する可能性があります。良い例は関数の引数です。注釈を付けないと、何が有効であるべきか、または無効であるべきかが明確ではない。
 
 ```ts
 function log(someArg) {
@@ -12,7 +12,7 @@ log(123);
 log('hello world');
 ```
 
-So if you don't annotate some function argument, TypeScript assumes `any` and moves on. This essentially turns off type checking for such cases, which is what a JavaScript dev would expect. But this can catch people that want high safety off guard. Hence there is an option, `noImplicitAny`, that when switched on will flag the cases where the type cannot be inferred e.g.
+だから、もしあなたがいくつかの関数の引数に注釈をつけなければ、TypeScriptは `any`とみなして動きます。これにより、JavaScriptデベロッパーが期待しているようなケースのチェックがオフになります。しかし、これは高い安全性を守ることを望む人々を捉えることができます。したがって、スイッチをオンにすると、タイプが推論できない場合にフラグを立てるオプション、noImplicitAnyがあります。
 
 ```ts
 function log(someArg) { // Error : someArg has an implicit `any` type
@@ -20,7 +20,7 @@ function log(someArg) { // Error : someArg has an implicit `any` type
 }
 ```
 
-Of course you can then go ahead and annotate:
+もちろん、次に注釈を付けることができます：
 
 ```ts
 function log(someArg: number) {
@@ -28,7 +28,7 @@ function log(someArg: number) {
 }
 ```
 
-And if you truly want *zero safety* you can mark it *explicitly* as `any`:
+あなたが本当にゼロの安全性を望むなら*明示的に `any`とマークすることができます：
 
 ```ts
 function log(someArg: any) {

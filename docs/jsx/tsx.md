@@ -1,13 +1,13 @@
-# JSX Support
+# JSXのサポート
 
-TypeScript supports JSX transpilation and code analysis. If you are unfamiliar with JSX here is an excerpt from the [official website](https://facebook.github.io/jsx/):
+TypeScriptは、JSXの翻訳とコード解析をサポートしています。 JSXに慣れていない方は、[公式サイト]（https://facebook.github.io/jsx/）の抜粋です：
 
-> JSX is an XML-like syntax extension to ECMAScript without any defined semantics. It's NOT intended to be implemented by engines or browsers. It's NOT a proposal to incorporate JSX into the ECMAScript spec itself. It's intended to be used by various preprocessors (transpilers) to transform these tokens into standard ECMAScript.
+> JSXは、定義されたセマンティクスのないECMAScriptへのXMLのような構文拡張です。エンジンやブラウザでは実装されていません。 JSXをECMAScript仕様自体に組み込むことは提案ではありません。これらのトークンを標準のECMAScriptに変換するために、さまざまなプリプロセッサ（transpilers）によって使用されることを意図しています。
 
-The motivation behind JSX is to allow users to write HTML like views *in JavaScript* so that you can:
+JSXの背後にある動機は、ユーザーがHTML *のようなHTML *をJavaScript *で記述できるようにすることです。
 
-* Have the view Type Checked by the same code that is going to check your JavaScript
-* Have the view be aware of the context it is going to operate under (i.e. strengthen the *controller-view* connection in traditional MVC).
-* Reuse JavaScript patterns for HTML maintenance e.g. `Array.prototype.map`, `?:`, `switch` etc instead of creating new (and probably poorly typed) alternatives.
+* あなたのJavaScriptをチェックしようとしている同じコードでビューのタイプをチェックする
+* ビューを操作するコンテキストを認識させる（つまり、従来のMVCでの* controller-view *接続を強化する）。
+HTMLメンテナンスのためのJavaScriptパターンの再利用`Array.prototype.map`、`？： `、`switch`などの新しい（おそらくタイプのない）代替ファイルを作成するのではなく、
 
-This decreases the chances of errors and increases the maintainability of your user interfaces. The main consumer of JSX at this point is [ReactJS from facebook](http://facebook.github.io/react/). This is the usage of JSX that we will discuss here.
+これにより、エラーの可能性が減り、ユーザーインターフェイスの保守性が向上します。この時点でのJSXの主な消費者は[ReactJS from facebook]（http://facebook.github.io/react/）です。ここではJSXの使い方について説明します。

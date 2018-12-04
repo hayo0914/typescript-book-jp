@@ -1,26 +1,26 @@
-# Why TypeScript
-There are two main goals of TypeScript:
-* Provide an *optional type system* for JavaScript.
-* Provide planned features from future JavaScript editions to current JavaScript engines
+# なぜタイプスクリプト
+TypeScriptの主な目的は2つあります。
+* JavaScriptの*オプションのシステム*を提供します。
+* 将来のJavaScript版から現在のJavaScriptエンジンまで、計画された機能を提供する
 
-The desire for these goals is motivated below.
+これらの目標のための願望は以下の動機付けをしています。
 
-## The TypeScript type system
+## TypeScript型システム
 
-You might be wondering "**Why add types to JavaScript?**"
+「** JavaScriptに型を追加する理由は？**」と思うかもしれません。
 
-Types have proven ability to enhance code quality and understandability. Large teams (Google, Microsoft, Facebook) have continually arrived at this conclusion. Specifically:
+タイプは、コードの質と理解容易性を高める能力が実証されています。大規模なチーム（Google、Microsoft、Facebook）はこの結論に絶えず着いた。具体的には：
 
-* Types increase your agility when doing refactoring. *It's better for the compiler to catch errors than to have things fail at runtime*.
-* Types are one of the best forms of documentation you can have. *The function signature is a theorem and the function body is the proof*.
+* タイプは、リファクタリングを行う際の機敏性を高めます。 *コンパイラがエラーをキャッチする方が、実行時にエラーが発生するよりも優れています*。
+* タイプは、あなたが持つことができる最良の形式の文書の1つです。 *関数の署名は定理であり、関数の本文は証明です*。
 
-However, types have a way of being unnecessarily ceremonious. TypeScript is very particular about keeping the barrier to entry as low as possible. Here's how:
+しかし、型には不必要に儀式的な方法があります。 TypeScriptは、障壁を可能な限り低く保つことに非常に特有です。方法は次のとおりです。
 
-### Your JavaScript is TypeScript
-TypeScript provides compile time type safety for your JavaScript code. This is no surprise given its name. The great thing is that the types are completely optional. Your JavaScript code `.js` file can be renamed to a `.ts` file and TypeScript will still give you back valid `.js` equivalent to the original JavaScript file. TypeScript is *intentionally* and strictly a superset of JavaScript with optional Type checking.
+### あなたのJavaScriptはTypeScriptです
+TypeScriptは、JavaScriptコードのコンパイル時の安全性を提供します。それはその名前が与えられても驚くことではありません。素晴らしいことは、タイプが完全にオプションであることです。あなたのJavaScriptコード `.js`ファイルは`.ts`ファイルに名前を変更することができ、TypeScriptは元のJavaScriptファイルと同じ有効な `.js`を返します。 TypeScriptは*意図的に*厳密にはJavaScriptのスーパーセットで、オプションの型チェックがあります。
 
-### Types can be Implicit
-TypeScript will try to infer as much of the type information as it can in order to give you type safety with minimal cost of productivity during code development. For example, in the following example TypeScript will know that foo is of type `number` below and will give an error on the second line as shown:
+### 型は暗黙的にすることができます
+TypeScriptは、コード開発中の生産性を最小限に抑えて型の安全性を確保するためにできるだけ多くの型情報を推測しようとします。たとえば、次の例では、TypeScriptはfooの型が数値の型であることを認識し、次のように2行目にエラーを返します。
 
 ```ts
 var foo = 123;
@@ -28,28 +28,28 @@ foo = '456'; // Error: cannot assign `string` to `number`
 
 // Is foo a number or a string?
 ```
-This type inference is well motivated. If you do stuff like shown in this example, then, in the rest of your code, you cannot be certain that `foo` is a `number` or a `string`. Such issues turn up often in large multi-file code bases. We will deep dive into the type inference rules later.
+このタイプの推論はうまく動機付けられています。この例のようにしてコードの残りの部分で `foo`が`number`または `string`であることを確信することはできません。このような問題は、大規模なマルチファイルコードベースで頻繁に発生します。後で型推論のルールに深く浸透します。
 
-### Types can be Explicit
-As we've mentioned before, TypeScript will infer as much as it can safely. However, you can use annotations to:
-1. Help along the compiler, and more importantly document stuff for the next developer who has to read your code (that might be future you!).
-1. Enforce that what the compiler sees, is what you thought it should see. That is your understanding of the code matches an algorithmic analysis of the code (done by the compiler).
+### 型は明示的にすることができます
+これまで述べたように、TypeScriptはできるだけ多く推論しますが、注釈を使用して以下のことを行うことができます。
+1. コンパイラに沿って、さらに重要なことに、あなたのコードを読まなければならない次の開発者のための文書を書いてください。
+1. コンパイラが見ていることを強制する、それはあなたが見なければならないと思ったものです。つまり、コードの理解は、コードのアルゴリズム分析（コンパイラによって行われる）と一致します。
 
-TypeScript uses postfix type annotations popular in other *optionally* annotated languages (e.g. ActionScript and F#).
+TypeScriptは、他の任意の*注釈付き言語（ActionScriptやF#など）で一般的なポストフィックスタイプの注釈を使用します。
 
 ```ts
 var foo: number = 123;
 ```
-So if you do something wrong the compiler will error e.g.:
+したがって、何か間違っていると、コンパイラはエラーになります。例：
 
 ```ts
 var foo: number = '123'; // Error: cannot assign a `string` to a `number`
 ```
 
-We will discuss all the details of all the annotation syntax supported by TypeScript in a later chapter.
+TypeScriptでサポートされているすべてのアノテーション構文の詳細については、後の章で説明します。
 
-### Types are structural
-In some languages (specifically nominally typed ones) static typing results in unnecessary ceremony because even though *you know* that the code will work fine the language semantics force you to copy stuff around. This is why stuff like [automapper for C#](http://automapper.org/) is *vital* for C#. In TypeScript because we really want it to be easy for JavaScript developers with a minimum cognitive overload, types are *structural*. This means that *duck typing* is a first class language construct. Consider the following example. The function `iTakePoint2D` will accept anything that contains all the things (`x` and `y`) it expects:
+### タイプは構造的です
+いくつかの言語（具体的には名目上の型付けされたもの）では、静的な型指定は、コードがうまく動作することを知っているにもかかわらず、言語セマンティクスがあなたに物事をコピーすることを強いるので、これがC#用の[automapper for C#]（http://automapper.org/）のようなものが*重要な*理由です。 TypeScriptでは、コグニティブなオーバーロードを最小限に抑えたJavaScript開発者にとって、簡単に使いたいので、タイプは*構造*です。つまり、* duck typing *はファーストクラスの言語構造です。次の例を考えてみましょう。関数 `iTakePoint2D`は、期待するすべてのもの（`x`と `y`）を含むものを受け入れます：
 
 ```ts
 interface Point2D {
@@ -70,39 +70,39 @@ iTakePoint2D(point3D); // extra information okay
 iTakePoint2D({ x: 0 }); // Error: missing information `y`
 ```
 
-### Type errors do not prevent JavaScript emit
-To make it easy for you to migrate your JavaScript code to TypeScript, even if there are compilation errors, by default TypeScript *will emit valid JavaScript* the best that it can. e.g.
+### 型エラーはJavaScriptの送出を妨げない
+コンパイルエラーがあっても、JavaScriptコードをTypeScriptに簡単に移行できるようにするため、デフォルトでTypeScript *は有効なJavaScript *を出力します。例えば
 
 ```ts
 var foo = 123;
 foo = '456'; // Error: cannot assign a `string` to a `number`
 ```
 
-will emit the following js:
+次のjsを発行します：
 
 ```ts
 var foo = 123;
 foo = '456';
 ```
 
-So you can incrementally upgrade your JavaScript code to TypeScript. This is very different from how many other language compilers work and yet another reason to move to TypeScript.
+そのため、JavaScriptコードを段階的にTypeScriptにアップグレードすることができます。これは他の多くの言語コンパイラが動作するのとは非常に異なりますが、TypeScriptに移行するもう一つの理由です。
 
-### Types can be ambient
-A major design goal of TypeScript was to make it possible for you to safely and easily use existing JavaScript libraries in TypeScript. TypeScript does this by means of *declaration*. TypeScript provides you with a sliding scale of how much or how little effort you want to put in your declarations, the more effort you put the more type safety + code intelligence you get. Note that definitions for most of the popular JavaScript libraries have already been written for you by the [DefinitelyTyped community](https://github.com/borisyankov/DefinitelyTyped) so for most purposes either:
+### 型は周囲環境である可能性があります
+TypeScriptの主要な設計目標は、TypeScriptで既存のJavaScriptライブラリを安全かつ簡単に使用できるようにすることでした。 TypeScriptはこれを*宣言*で行います。 TypeScriptは、宣言にどれくらいの労力をかけるかをスライディングスケールで提供します。より多くの型安全性+コードインテリジェンスを取り入れる努力がますます重要になります。よく使われるJavaScriptライブラリの定義は、[DefinitelyTyped community]（https://github.com/borisyankov/DefinitelyTyped）によって既に書かれているので、
 
-1. The definition file already exists.
-1. Or at the very least, you have a vast list of well reviewed TypeScript declaration templates already available
+1. 定義ファイルが既に存在します。
+1. あるいは、少なくとも既に見直されている種類豊富なTypeScript宣言テンプレートのリストがあります
 
-As a quick example of how you would author your own declaration file, consider a trivial example of [jquery](https://jquery.com/). By default (as is to be expected of good JS code) TypeScript expects you to declare (i.e. use `var` somewhere) before you use a variable
+独自の宣言ファイルを作成する方法の簡単な例として、[jquery]（https://jquery.com/）の簡単な例を考えてみましょう。デフォルトでは（良いJSコードのように）、TypeScriptは変数を使う前に宣言する（つまり、どこかで `var`を使う）ことを期待しています
 ```ts
 $('.awesome').show(); // Error: cannot find name `$`
 ```
-As a quick fix *you can tell TypeScript* that there is indeed something called `$`:
+簡単な修正*として、実際に `$`と呼ばれるものがあることをTypeScript *に伝えることができます：
 ```ts
 declare var $: any;
 $('.awesome').show(); // Okay!
 ```
-If you want you can build on this basic definition and provide more information to help protect you from errors:
+必要に応じて、この基本的な定義に基づいて構築し、エラーからあなたを守るための詳細情報を提供することができます。
 ```ts
 declare var $: {
     (selector:string): any;
@@ -111,10 +111,10 @@ $('.awesome').show(); // Okay!
 $(123).show(); // Error: selector needs to be a string
 ```
 
-We will discuss the details of creating TypeScript definitions for existing JavaScript in detail later once you know more about TypeScript (e.g. stuff like `interface` and the `any`).
+後ほど、TypeScriptの詳細を知った後で、既存のJavaScript用のTypeScript定義を作成する方法について詳しく説明します（例えば、 `interface`や`any`など）。
 
-## Future JavaScript => Now
-TypeScript provides a number of features that are planned in ES6 for current JavaScript engines (that only support ES5 etc). The TypeScript team is actively adding these features and this list is only going to get bigger over time and we will cover this in its own section. But just as a specimen here is an example of a class:
+## 将来のJavaScript =>今すぐ
+TypeScriptは、現在のJavaScriptエンジン（ES5のみをサポートする）のためにES6で計画されている多くの機能を提供します。 typescriptチームは積極的にこれらの機能を追加しています。このリストは時間の経過とともに大きくなる予定です。これについては独自のセクションで説明します。しかし、ここの標本はクラスの例です：
 
 ```ts
 class Point {
@@ -130,17 +130,17 @@ var p2 = new Point(10, 20);
 var p3 = p1.add(p2); // { x: 10, y: 30 }
 ```
 
-and the lovely fat arrow function:
+と美しい太い矢印の機能：
 
 ```ts
 var inc = x => x+1;
 ```
 
-### Summary
-In this section we have provided you with the motivation and design goals of TypeScript. With this out of the way we can dig into the nitty gritty details of TypeScript.
+### 要約
+このセクションでは、TypeScriptの動機づけと設計目標を提供しました。これで、TypeScriptのきめ細かな詳細を掘り下げることができます。
 
-[](Interfaces are open ended)
-[](Type Inferernce rules)
-[](Cover all the annotations)
-[](Cover all ambients : also that there are no runtime enforcement)
-[](.ts vs. .d.ts)
+[]（インタフェースはオープンエンド）
+[]（タイプの見越しルール）
+[]（すべての注釈をカバーする）
+[]（すべてのアンビエントをカバーする：実行時強制がないことも）
+[]（.s対.d.ts）

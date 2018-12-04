@@ -1,8 +1,8 @@
-# Index Signatures
+# インデックス署名
 
-An `Object` in JavaScript (and hence TypeScript) can be accessed with a **string** to hold a reference to any other JavaScript **object**.
+JavaScript（したがってTypeScript）の `Object`は、他のJavaScript **オブジェクト**への参照を保持する**文字列**でアクセスできます。
 
-Here is a quick example:
+ここに簡単な例があります：
 
 ```ts
 let foo:any = {};
@@ -10,7 +10,7 @@ foo['Hello'] = 'World';
 console.log(foo['Hello']); // World
 ```
 
-We store a string `"World"` under the key `"Hello"`. Remember we said it can store any JavaScript **object**, so lets store a class instance just to show the concept:
+キー "Hello"の下に文字列 "World"を格納します。私たちはJavaScript **オブジェクト**を保存できると言ったので、コンセプトを示すためにクラスインスタンスを保存することができます。
 
 ```ts
 class Foo {
@@ -25,7 +25,7 @@ foo['Hello'] = new Foo('World');
 foo['Hello'].log(); // World
 ```
 
-Also remember that we said that it can be accessed with a **string**. If you pass any other object to the index signature the JavaScript runtime actually calls `.toString` on it before getting the result. This is demonstrated below:
+また、** string **でアクセスできると言ったことを覚えておいてください。他のオブジェクトをインデックスシグネチャに渡すと、JavaScriptランタイムは実際に結果を得る前に `.toString`を呼び出します。これは以下のとおりです：
 
 ```ts
 let obj = {
@@ -41,20 +41,20 @@ console.log(foo[obj]); // toString called, World
 console.log(foo['Hello']); // World
 ```
 
-Note that `toString` will get called whenever the `obj` is used in an index position.
+`toString`は、インデックス位置で`obj`が使われるたびに呼び出されます。
 
-Arrays are slightly different. For `number` indexing JavaScript VMs will try to optimise (depending on things like is it actually an array and do the structures of items stored match etc.). So `number` should be considered as a valid object accessor in its own right (distinct from `string`). Here is a simple array example:
+配列は若干異なります。 `number`インデックスを付けるために、JavaScript VMは最適化しようとします（実際には配列であり、一致したアイテムの構造体などに応じて異なります）。だから、 `number`はそれ自身で正しいオブジェクトアクセッサーとみなされるべきです（`string`とは異なります）。以下は単純な配列の例です：
 
 ```ts
 let foo = ['World'];
 console.log(foo[0]); // World
 ```
 
-So that's JavaScript. Now let's look at TypeScript's graceful handling of this concept.
+それがJavaScriptです。ここで、このコンセプトのTypeScriptの優雅な取り扱いについて見ていきましょう。
 
-## TypeScript Index Signature
+## TypeScriptインデックスシグネチャ
 
-First off, because JavaScript *implicitly* calls `toString` on any object index signature, TypeScript will give you an error to prevent beginners from shooting themselves in the foot (I see users shooting themselves in the foot when using JavaScript all the time on stackoverflow):
+最初に、JavaScript *は暗黙のうちにどんなオブジェクトインデックスシグネチャでも `toString`を呼び出すので、初心者が足で自分を撃ってしまうのを防ぐためにエラーが出ます（私はJavaScriptをスタックオーバーフロー）：
 
 ```ts
 let obj = {
@@ -72,7 +72,7 @@ foo[obj] = 'World';
 foo[obj.toString()] = 'World';
 ```
 
-The reason for forcing the user to be explicit is because the default `toString` implementation on an object is pretty awful, e.g. on v8 it always returns `[object Object]`:
+ユーザに明示的に強制する理由は、オブジェクトのデフォルトの `toString`実装がかなりひどいためです。 v8では常に `[object Object]`を返します：
 
 ```ts
 let obj = {message:'Hello'}
@@ -85,27 +85,27 @@ foo[obj] = 'World';
 console.log(foo["[object Object]"]); // World
 ```
 
-Of course `number` is supported because
+もちろん `number`はサポートされています
 
-1. its needed for excellent Array / Tuple support.
-1. even if you use it for an `obj` its default `toString` implementation is nice (not `[object Object]`).
+1. 優れたアレイ/タプルのサポートに必要です。
+あなたが `obj`のためにそれを使うとしても、デフォルトの`toString`実装は素晴らしいです（ `[object Object]`ではなく）。
 
-Point 2 is shown below:
+ポイント2を以下に示します。
 
 ```ts
 console.log((1).toString()); // 1
 console.log((2).toString()); // 2
 ```
 
-So lesson 1:
+だからレッスン1：
 
-> TypeScript index signatures must be either `string` or `number`
+> TypeScriptのインデックスシグネチャは `string`または`number`のいずれかでなければなりません
 
-Quick note: `symbols` are also valid and supported by TypeScript. But let's not go there just yet. Baby steps.
+クイックノート： `symbols 'も有効で、TypeScriptでサポートされています。しかし、まだそこには行かないでください。赤ちゃんのステップ。
 
-### Declaring an index signature
+### インデックス署名を宣言する
 
-So we've been using `any` to tell TypeScript to let us do whatever we want. We can actually specify an *index* signature explicitly. E.g. say you want to make sure that anything that is stored in an object using a string conforms to the structure `{message: string}`. This can be done with the declaration `{ [index:string] : {message: string} }`. This is demonstrated below:
+だから私たちは、TypeScriptに私たちが望むことをさせるために `any`を使っています。実際に* index *の署名を明示的に指定できます。例えば。文字列を使ってオブジェクトに格納されているものが構造体 `{message：string}`に従っていることを確認したいとします。これは `{[index：string]：{message：string}}`宣言で行うことができます。これは以下のとおりです：
 
 ```ts
 let foo:{ [index:string] : {message: string} } = {};
@@ -127,13 +127,13 @@ foo['a'].message;
 foo['a'].messages;
 ```
 
-> TIP: the name of the index signature e.g. `index` in `{ [index:string] : {message: string} }` has no significance for TypeScript and is only for readability. e.g. if it's user names you can do `{ [username:string] : {message: string} }` to help the next dev who looks at the code (which just might happen to be you).
+> TIP：インデックス署名の名前。 `{[index：string]：{message：string}}`の `index`はTypeScriptにとって意味がなく、読みやすくするためだけです。例えばもしあなたがユーザー名であれば、コードを見ている次の開発者を助けるために `{[username：string]：{message：string}}`を実行することができます。
 
-Of course `number` indexes are also supported e.g. `{ [count: number] : SomeOtherTypeYouWantToStoreEgRebate }`
+もちろん、「数」インデックスもサポートされている。 `{[count：number]：SomeOtherTypeYouWantToStoreEgRebate}`
 
-### All members must conform to the `string` index signature
+### すべてのメンバーは `string`インデックスの署名に従わなければなりません
 
-As soon as you have a `string` index signature, all explicit members must also conform to that index signature. This is shown below:
+`string`インデックスシグネチャを持つとすぐに、すべての明示的メンバもそのインデックスシグネチャに準拠している必要があります。これを以下に示します。
 
 ```ts
 /** Okay */
@@ -150,7 +150,7 @@ interface Bar {
 }
 ```
 
-This is to provide safety so that any string access gives the same result:
+これは、すべての文字列アクセスで同じ結果が得られるように安全性を提供するためです。
 
 ```ts
 interface Foo {
@@ -167,9 +167,9 @@ let x = 'x'
 foo[x]; // number
 ```
 
-### Using a limited set of string literals
+### 文字列リテラルの限定されたセットを使用する
 
-An index signature can require that index strings be members of a union of literal strings by using *Mapped Types* e.g.:
+インデックスシグネチャでは、マップドタイプ*などを使用して、インデックス文字列をリテラル文字列のメンバーにする必要があります。
 
 ```ts
 type Index = 'a' | 'b' | 'c'
@@ -183,19 +183,19 @@ const good: FromIndex = {b:1, c:2}
 const bad: FromIndex = {b:1, c:2, d:3};
 ```
 
-This is often used together with `keyof typeof` to capture vocabulary types, described on the next page.
+これは、次のページで説明するように、 `keyof typeof`と一緒に使用されてボキャブラリータイプをキャプチャすることがよくあります。
 
-The specification of the vocabulary can be deferred generically:
+ボキャブラリの仕様は一般的に延期できます。
 
 ```ts
 type FromSomeIndex<K extends string> = { [key in K]: number }
 ```
 
-### Having both `string` and `number` indexers
+### `string`と`number`インデクサの両方を持つ
 
-This is not a common use case, but TypeScript compiler supports it nonetheless.
+これは一般的な使用例ではありませんが、それにもかかわらずTypeScriptコンパイラはこれをサポートしています。
 
-However, it has the restriction that the `string` indexer is more strict than the `number` indexer. This is intentional e.g. to allow typing stuff like:
+しかし、 `string`インデクサは`number`インデクサよりも厳格であるという制約があります。これは意図的なものです。次のようなタイプ入力を可能にする：
 
 ```ts
 interface ArrStr {
@@ -208,11 +208,11 @@ interface ArrStr {
 }
 ```
 
-### Design Pattern: Nested index signature
+### デザインパターン：ネストされたインデックスの署名
 
-> API consideration when adding index signatures
+> インデックス署名を追加する際のAPIの考慮事項
 
-Quite commonly in the JS community you will see APIs that abuse string indexers. e.g. a common pattern among CSS in JS libraries:
+JSコミュニティでは、通常、文字列インデクサーを乱用するAPIが表示されます。例えばJSライブラリのCSS間の共通パターン：
 
 ```ts
 interface NestedCSS {
@@ -228,7 +228,7 @@ const example: NestedCSS = {
 }
 ```
 
-Try not to mix string indexers with *valid* values this way. E.g. a typo in the padding will remain uncaught:
+このように、文字列インデクサーと*有効な*値を混在させないようにしてください。例えば。詰め物のタイプミスは未知のままです：
 
 ```ts
 const failsSilently: NestedCSS = {
@@ -236,7 +236,7 @@ const failsSilently: NestedCSS = {
 }
 ```
 
-Instead separate out the nesting into its own property e.g. in a name like `nest` (or `children` or `subnodes` etc.):
+代わりに、ネスティングを独自のプロパティに分離します。 `nest`（または`children`や `subnodes`など）のような名前で宣言します：
 
 ```ts
 interface NestedCSS {
@@ -260,11 +260,11 @@ const failsSilently: NestedCSS = {
 }
 ```
 
-### Excluding certain properties from the index signature
+### インデックスシグネチャから特定のプロパティを除外する
 
-Sometimes you need to combine properties into the index signature. This is not advised, and you *should* use the Nested index signature pattern mentioned above. 
+場合によっては、プロパティをインデックスシグニチャに結合する必要があります。これは勧告されておらず、上記のネストされたインデックスシグネチャパターンを使用する必要があります。
 
-However, if you are modeling *existing JavaScript* you can get around it with an intersection type. The following shows an example of the error you will encounter without using an intersection:
+ただし、既存のJavaScript *をモデリングしている場合は、交差点タイプで回避することができます。次に、交差点を使用せずに発生するエラーの例を示します。
 
 ```ts
 type FieldState = {
@@ -277,7 +277,7 @@ type FormState = {
 }
 ```
 
-Here is the workaround using an intersection type:
+交差点タイプを使用した場合の回避策は次のとおりです。
 
 ```ts
 type FieldState = {
@@ -289,7 +289,7 @@ type FormState =
   & { [fieldName: string]: FieldState }
 ```
 
-Note that even though you can declare it to model existing JavaScript, you cannot create such an object using TypeScript:  
+既存のJavaScriptをモデル化するように宣言することはできますが、TypeScriptを使用してそのようなオブジェクトを作成することはできません。
 
 ```ts
 type FieldState = {

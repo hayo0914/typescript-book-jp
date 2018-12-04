@@ -1,10 +1,10 @@
-### Classes
-The reason why it's important to have classes in JavaScript as a first class item is that:
-1. [Classes offer a useful structural abstraction](./tips/classesAreUseful.md)
-1. Provides a consistent way for developers to use classes instead of every framework (emberjs,reactjs etc) coming up with their own version.
-1. Object Oriented Developers already understand classes.
+### クラス
+JavaScriptでクラスをファーストクラスのアイテムとして持つことが重要な理由は、次のとおりです。
+1. [クラスは有用な構造抽象化を提供する]（./ tips / classesAreUseful.md）
+1. 開発者が、独自のバージョンを使用しているすべてのフレームワーク（emberjs、reactjsなど）ではなく、クラスを使用する一貫した方法を提供します。
+1. オブジェクト指向の開発者はすでにクラスを理解しています。
 
-Finally JavaScript developers can *have `class`*. Here we have a basic class called Point:
+最後に、JavaScript開発者は `class` *を持つことができます。ここではPointという基本クラスがあります：
 ```ts
 class Point {
     x: number;
@@ -22,7 +22,7 @@ var p1 = new Point(0, 10);
 var p2 = new Point(10, 20);
 var p3 = p1.add(p2); // {x:10,y:30}
 ```
-This class generates the following JavaScript on ES5 emit:
+このクラスは、ES5で次のJavaScriptを生成します。
 ```ts
 var Point = (function () {
     function Point(x, y) {
@@ -35,10 +35,10 @@ var Point = (function () {
     return Point;
 })();
 ```
-This is a fairly idiomatic traditional JavaScript class pattern now as a first class language construct.
+これは、ファーストクラスの言語構造として、かなり慣用的な従来のJavaScriptクラスパターンです。
 
-### Inheritance
-Classes in TypeScript (like other languages) support *single* inheritance using the `extends` keyword as shown below:
+### 継承
+TypeScriptのクラス（他の言語のように）は、以下に示すように `extends`キーワードを使って*単一継承をサポートします：
 
 ```ts
 class Point3D extends Point {
@@ -53,12 +53,12 @@ class Point3D extends Point {
     }
 }
 ```
-If you have a constructor in your class then you *must* call the parent constructor from your constructor (TypeScript will point this out to you). This ensures that the stuff that it needs to set on `this` gets set. Followed by the call to `super` you can add any additional stuff you want to do in your constructor (here we add another member `z`).
+クラスにコンストラクタがある場合、コンストラクタから親コンストラクタを呼び出す必要があります（TypeScriptはこれをあなたに指摘します）。これにより、 `this`で設定する必要があるものが確実に設定されます。続いて `super`を呼び出すことで、コンストラクタでやりたいことを追加できます（ここでは別のメンバ`z`を追加します）。
 
-Note that you override parent member functions easily (here we override `add`) and still use the functionality of the super class in your members (using `super.` syntax).
+親メンバーの関数を簡単にオーバーライドする（ここでは `add`をオーバーライドします）、メンバでsuperクラスの機能を使用することに注意してください。
 
-### Statics
-TypeScript classes support `static` properties that are shared by all instances of the class. A natural place to put (and access) them is on the class itself and that is what TypeScript does:
+### 静的
+TypeScriptクラスは、クラスのすべてのインスタンスで共有される `static`プロパティをサポートします。それらを置く（そしてアクセスする）自然な場所はクラスそのものであり、これがTypeScriptの動作です。
 
 ```ts
 class Something {
@@ -73,21 +73,21 @@ var s2 = new Something();
 console.log(Something.instances); // 2
 ```
 
-You can have static members as well as static functions.
+静的メンバーだけでなく静的関数も使用できます。
 
-### Access Modifiers
-TypeScript supports access modifiers `public`,`private` and `protected` which determine the accessibility of a `class` member as shown below:
+### アクセス修飾子
+TypeScriptは `public`、`private`、 `protected`のアクセス修飾子をサポートしています。これらは`class`メンバのアクセシビリティを次のように決定します：
 
-| accessible on   | `public` | `protected` | `private` |
-|-----------------|----------|-------------|-----------|
-| class           | yes      | yes         | yes       |
-| class children  | yes      | yes         | no        |
-| class instances | yes      | no          | no        |
+| |でアクセス可能`public` | | |プライベート|
+| ----------------- | ---------- | ------------- | ------ ----- |
+|クラス|はいはいはい
+| |はいはい|
+| |はい| |
 
 
-If an access modifier is not specified it is implicitly `public` as that matches the *convenient* nature of JavaScript 🌹.
+アクセス修飾子が指定されていない場合は、暗黙的に `public`でJavaScript *の便利な*性質に一致します。
 
-Note that at runtime (in the generated JS) these have no significance but will give you compile time errors if you use them incorrectly. An example of each is shown below:
+実行時（生成されたJS内）には意味がありませんが、間違って使用するとコンパイル時エラーが発生します。それぞれの例を以下に示します。
 
 ```ts
 class FooBase {
@@ -113,26 +113,26 @@ class FooChild extends FooBase {
 }
 ```
 
-As always these modifiers work for both member properties and member functions.
+いつものように、これらの修飾子はメンバプロパティとメンバ関数の両方で機能します。
 
-### Abstract
-`abstract` can be thought of as an access modifier. We present it separately because opposed to the previously mentioned modifiers it can be on a `class` as well as any member of the class. Having an `abstract` modifier primarily means that such functionality *cannot be directly invoked* and a child class must provide the functionality.
+### 要約
+`抽象`はアクセス修飾子と考えることができます。前述の修飾子とは対照的に、クラスのメンバーだけでなく `クラス 'にもできるので、別に提示します。 `abstract`修飾子を持つことは、主にそのような機能*を直接呼び出すことができないことを意味し、子クラスはその機能を提供しなければなりません。
 
-* `abstract` **classes** cannot be directly instantiated. Instead the user must create some `class` that inherits from the `abstract class`.
-* `abstract` **members** cannot be directly accessed and a child class must provide the functionality.
+* 抽象クラス**を直接インスタンス化することはできません。その代わりに、ユーザは、 `抽象クラス`から継承するいくつかの `class`を作成しなければなりません。
+* 抽象的な**メンバー**に直接アクセスすることはできず、子クラスが機能を提供する必要があります。
 
-### Constructor is optional
+### コンストラクタはオプションです
 
-The class does not need to have a constructor. e.g. the following is perfectly fine. 
+クラスはコンストラクタを持つ必要はありません。例えば以下は完全に素晴らしいです。
 
 ```ts
 class Foo {}
 var foo = new Foo();
 ```
 
-### Define using constructor
+### コンストラクタを使用して定義する
 
-Having a member in a class and initializing it like below:
+クラスにメンバーがいて、以下のように初期化しています：
 
 ```ts
 class Foo {
@@ -142,7 +142,7 @@ class Foo {
     }
 }
 ```
-is such a common pattern that TypeScript provides a shorthand where you can prefix the member with an *access modifier* and it is automatically declared on the class and copied from the constructor. So the previous example can be re-written as (notice `public x:number`):
+TypeScriptが* access修飾子*で接頭辞を付けることができる省略形を提供する一般的なパターンです。クラスに自動的に宣言され、コンストラクタからコピーされます。したがって、前の例は（ `public x：number`に注意してください）として書き直すことができます：
 
 ```ts
 class Foo {
@@ -151,8 +151,8 @@ class Foo {
 }
 ```
 
-### Property initializer
-This is a nifty feature supported by TypeScript (from ES7 actually). You can initialize any member of the class outside the class constructor, useful to provide default (notice `members = []`)
+### プロパティの初期化子
+これは、実際にES7からTypeScriptでサポートされている素晴らしい機能です。クラスコンストラクタの外でクラスの任意のメンバを初期化することができ、デフォルトを提供するのに便利です（ `members = []`に注意してください）。
 
 ```ts
 class Foo {

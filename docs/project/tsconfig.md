@@ -1,12 +1,12 @@
-### Basic
-It is extremely easy to get started with tsconfig.json as the basic file you need is:
+基本###
+必要な基本ファイルはtsconfig.jsonで始めるのが非常に簡単です：
 ```json
 {}
 ```
-i.e. an empty JSON file at the *root* of your project. This way TypeScript will include *all* the `.ts` files in this directory (and sub directories) as a part of the compilation context. It will also select a few sane default compiler options.
+つまり、プロジェクトの* root *にある空のJSONファイルです。この方法では、TypeScriptはコンパイルコンテキストの一部として、このディレクトリ（およびサブディレクトリ）にある*。*すべての* .tsファイルをインクルードします。また、デフォルトのコンパイラオプションをいくつか選択します。
 
 ### compilerOptions
-You can customize the compiler options using `compilerOptions`:
+`compilerOptions`を使ってコンパイラオプションをカスタマイズすることができます：
 
 ```json
 {
@@ -16,7 +16,7 @@ You can customize the compiler options using `compilerOptions`:
     "target": "es5",                       /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'. */
     "module": "commonjs",                  /* Specify module code generation: 'commonjs', 'amd', 'system', 'umd' or 'es2015'. */
     "lib": [],                             /* Specify library files to be included in the compilation:  */
-    "allowJs": true,                       /* Allow JavaScript files to be compiled. */
+    "allowJs": true,                       /* Allow javascript files to be compiled. */
     "checkJs": true,                       /* Report errors in .js files. */
     "jsx": "preserve",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
     "declaration": true,                   /* Generates corresponding '.d.ts' file. */
@@ -65,11 +65,11 @@ You can customize the compiler options using `compilerOptions`:
 }
 ```
 
-These (and more) compiler options will be discussed later.
+これらの（およびそれ以上の）コンパイラオプションについては、後で説明します。
 
-### TypeScript compiler
-Good IDEs come with built in support for on the fly `ts` to `js` compilation. However, if you want to run the TypeScript compiler manually from the command line when using `tsconfig.json`, you can do it in a few ways:
-* Just run `tsc` and it will look for `tsconfig.json` in the current as well as all parent folders till it finds it.
-* Run `tsc -p ./path-to-project-directory`. Of course the path can be absolute or relative to the current directory.
+### TypeScriptコンパイラ
+優れたIDEには、フライの `ts`から`js`コンパイルのサポートが組み込まれています。しかし、 `tsconfig.json`を使うときにコマンドラインからTypeScriptコンパイラを手動で実行したいのであれば、いくつかの方法でそれを行うことができます。
+* `tsc`を実行するだけで、現在のフォルダとすべての親フォルダの`tsconfig.json`が検索されます。
+* `tsc -p。/ path-to-project-directory`を実行します。もちろん、パスは現在のディレクトリに対して絶対パスでも相対パスでもかまいません。
 
-You can even start the TypeScript compiler in *watch* mode using `tsc -w` and it will watch your TypeScript project files for changes.
+tsc -wを使って* watch *モードでTypeScriptコンパイラを起動することもでき、TypeScriptプロジェクトファイルの変更を監視します。

@@ -1,16 +1,16 @@
-## Declaration Spaces
+## 宣言スペース
 
-There are two declaration spaces in TypeScript: the *variable* declaration space and the *type* declaration space. These concepts are explored below.
+TypeScriptには、*変数*宣言スペースと*タイプ*宣言スペースという2つの宣言スペースがあります。これらの概念については以下で解説します。
 
-### Type Declaration Space
-The type declaration space contains stuff that can be used as a type annotation. E.g. the following are a few type declarations:
+### 型宣言スペース
+型宣言空間には型アノテーションとして使用できるものが含まれています。例えば。以下はいくつかの型宣言です：
 
 ```ts
 class Foo {};
 interface Bar {};
 type Bas = {};
 ```
-This means that you can use `Foo`, `Bar`, `Bas`, etc. as a type annotation. E.g.:
+これは、 `Foo`、`Bar`、 `Bas`などを型名として使用できることを意味します。例えば。：
 
 ```ts
 var foo: Foo;
@@ -18,31 +18,31 @@ var bar: Bar;
 var bas: Bas;
 ```
 
-Notice that even though you have `interface Bar`, *you can't use it as a variable* because it doesn't contribute to the *variable declaration space*. This is shown below:
+あなたが `interface Bar`、*を持っていても、*変数宣言空間*に寄与しないので変数*として使うことはできません。これを以下に示します。
 
 ```ts
 interface Bar {};
 var bar = Bar; // ERROR: "cannot find name 'Bar'"
 ```
 
-The reason why it says `cannot find name` is because the name `Bar` *is not defined* in the *variable* declaration space. That brings us to the next topic "Variable Declaration Space".
+`名前を見つけることができません 'と言うのは、*変数*宣言空間に`Bar` *という名前が定義されていないからです。それは次のトピック「変数宣言空間」につながります。
 
-### Variable Declaration Space
-The variable declaration space contains stuff that you can use as a variable. We saw that having `class Foo` contributes a type `Foo` to the *type* declaration space. Guess what? it also contributes a *variable* `Foo` to the *variable* declaration space as shown below:
+### 変数宣言スペース
+変数宣言スペースには、変数として使用できるものが含まれています。 `class Foo`を持つことで、* type *宣言空間に`Foo`型が寄与することがわかりました。何だと思う？変数*宣言空間に以下のように変数* Fooを渡します：
 
 ```ts
 class Foo {};
 var someVar = Foo;
 var someOtherVar = 123;
 ```
-This is great as sometimes you want to pass classes around as variables. Remember that:
+これは、クラスを変数として渡したいことがあるので、素晴らしいことです。覚えていること：
 
-* we couldn't use something like an `interface` that is *only* in the *type* declaration space as a variable.
+* *型宣言空間で* only *である `interface`のようなものを変数として使うことはできませんでした。
 
-Similarly something that you declare with `var`, is *only* in the *variable* declaration space and cannot be used as a type annotation:
+同様に、 `var`を使って宣言したものは*変数*宣言空間の* only *であり、型の注釈として使うことはできません：
 
 ```ts
 var foo = 123;
 var bar: foo; // ERROR: "cannot find name 'foo'"
 ```
-The reason why it says `cannot find name` is because the name `foo` *is not defined* in the *type* declaration space.
+`名前を見つけることができません 'と言うのは、*型*宣言空間で`foo` *という名前が定義されていないからです。

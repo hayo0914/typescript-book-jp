@@ -1,39 +1,39 @@
-## Modules
+## モジュール
 
-### Global Module
+### グローバルモジュール
 
-By default when you start typing code in a new TypeScript file your code is in a *global* namespace. As a demo consider a file `foo.ts`:
+デフォルトでは、新しいTypeScriptファイルにコードを入力すると、コードは*グローバル*名前空間に入ります。デモとして、 `foo.ts`ファイルを考えてみましょう：
 
 ```ts
 var foo = 123;
 ```
 
-If you now create a *new* file `bar.ts` in the same project, you will be *allowed* by the TypeScript type system to use the variable `foo` as if it was available globally:
+同じプロジェクトで* new *ファイル `bar.ts`を作成すると、変数`foo`をグローバルに利用できるかのようにTypeScript型システムが許可する*ことができます：
 
 ```ts
 var bar = foo; // allowed
 ```
-Needless to say having a global namespace is dangerous as it opens your code up for naming conflicts. We recommend using file modules which are presented next.
+言うまでもありませんが、グローバルな名前空間を持つことは命名の競合のためにコードを開くので危険です。次のファイルモジュールを使用することをお勧めします。
 
-### File Module
-Also called *external modules*. If you have an `import` or an `export` at the root level of a TypeScript file then it creates a *local* scope within that file. So if we were to change the previous `foo.ts` to the following (note the `export` usage):
+### ファイルモジュール
+* external modules *とも呼ばれます。 TypeScriptファイルのルートレベルで `import`または`export`をお持ちの場合、そのファイル内に* local *スコープが作成されます。したがって、以前の `foo.ts`を次のように変更した場合（`export`使用に注意してください）：
 
 ```ts
 export var foo = 123;
 ```
 
-We will no longer have `foo` in the global namespace. This can be demonstrated by creating a new file `bar.ts` as follows:
+我々はもはやグローバル名前空間に `foo`を持たないでしょう。これは、次のように新しいファイル `bar.ts`を作成することで実証できます：
 
 ```ts
 var bar = foo; // ERROR: "cannot find name 'foo'"
 ```
 
-If you want to use stuff from `foo.ts` in `bar.ts` *you need to explicitly import it*. This is shown in an updated `bar.ts` below:
+`bar.ts`で`foo.ts`のものを使いたい場合*明示的にインポートする必要があります*。これは以下の更新された `bar.ts`に示されています：
 
 ```ts
 import { foo } from "./foo";
 var bar = foo; // allowed
 ```
-Using an `import` in `bar.ts` not only allows you to bring in stuff from other files, but also marks the file `bar.ts` as a *module* and therefore, declarations in `bar.ts` don't pollute the global namespace either.
+`bar.ts`で`import`を使うと、他のファイルから物を取り込むことができるだけでなく、ファイル `bar.ts`を*モジュール*としてマークするので、`bar.ts`の宣言は `グローバル名前空間を汚染しないでください。
 
-What JavaScript is generated from a given TypeScript file that uses external modules is driven by the compiler flag called `module`.
+外部モジュールを使用する特定のTypeScriptファイルから生成されるJavaScriptは、 `module`というコンパイラフラグによって駆動されます。

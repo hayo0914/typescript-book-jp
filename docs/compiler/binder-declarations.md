@@ -1,7 +1,7 @@
-### Symbols and Declarations
-Linking between a `node` and a `symbol` is performed by a few functions. One function that is used to bind the `SourceFile` node to the source file Symbol (in case of an external module) is the `addDeclarationToSymbol` function
+### シンボルと宣言
+`node`と`symbol`の間のリンクは、いくつかの関数によって実行されます。ソースファイルSymbol（外部モジュールの場合）に `SourceFile`ノードをバインドするために使われる一つの関数は`addDeclarationToSymbol`関数です
 
-Note : the `Symbol` for an external module source file is setup as `flags : SymbolFlags.ValueModule` and `name: '"' + removeFileExtension(file.fileName) + '"'`).
+注：外部モジュールソースファイルの `Symbol`は`flags：SymbolFlags.ValueModule`と `name： '"' + removeFileExtension（file.fileName）+ '"` `）として設定されています。
 
 ```ts
 function addDeclarationToSymbol(symbol: Symbol, node: Declaration, symbolFlags: SymbolFlags) {
@@ -28,12 +28,12 @@ function addDeclarationToSymbol(symbol: Symbol, node: Declaration, symbolFlags: 
 }
 ```
 
-The important linking portions:
-* Creates a link to the Symbol from the AST node (`node.symbol`).
-* Adds the node as *one of* the declarations of the Symbol (`symbol.declarations`).
+重要な連結部分：
+* ASTノード（ `node.symbol`）からシンボルへのリンクを作成します。
+* シンボルをシンボルの宣言の1つ*に追加します（ `symbol.declarations`）。
 
-#### Declaration
-Declaration is just a `node` with an optional name. In `types.ts`
+#### 宣言
+宣言はオプションの名前を持つ `node`です。 `types.ts`では
 
 ```ts
 interface Declaration extends Node {

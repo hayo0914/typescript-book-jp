@@ -1,17 +1,17 @@
-## Build Toggles
+## ビルドトグル
 
-It is common to switch in JavaScript projects based on where they are being run. You can do this quite easily with webpack as it supports *dead code elimination* based on environment variables.
+実行されている場所に基づいてJavaScriptプロジェクトを切り替えるのが一般的です。環境変数に基づいたデッドコードの削除をサポートするので、webpackでこれを非常に簡単に行うことができます。
 
-Add different targets in your `package.json` `scripts`:
+あなたの `package.json``scripts`に異なるターゲットを追加してください：
 
 ```json
 "build:test": "webpack -p --config ./src/webpack.config.js",
 "build:prod": "webpack -p --define process.env.NODE_ENV='\"production\"' --config ./src/webpack.config.js",
 ```
 
-Of course I am assuming you have `npm install webpack --save-dev`. Now you can run `npm run build:test` etc.
+もちろん、あなたは `npm install webpack --save-dev`を持っていると仮定しています。これで `npm run build：test`などを実行できます。
 
-Using this variable is super easy as well:
+この変数を使うのも簡単です：
 
 ```ts
 /**
@@ -45,4 +45,4 @@ if (process.env.NODE_ENV === 'production') {
 }
 ```
 
-> We use `process.env.NODE_ENV` just because it is conventional in a lot of JavaScript libraries themselves e.g. `React`.
+> 多くのJavaScriptライブラリそのものに慣習的であるという理由だけで `process.env.NODE_ENV`を使用します。 `リアクション`

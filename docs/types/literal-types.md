@@ -1,26 +1,26 @@
-## Literals
-Literals are *exact* values that are JavaScript primitives. 
+## リテラル
+リテラルはJavaScriptのプリミティブである* exact *値です。
 
-### String Literals
+### 文字列リテラル
 
-You can use a string literal as a type. For example:
+型として文字列リテラルを使用できます。例えば：
 
 ```ts
 let foo: 'Hello';
 ```
 
-Here we have created a variable called `foo` that *will only allow the literal value `'Hello'` to be assigned to it*. This is demonstrated below:
+ここでは `foo`という名前の変数を作成しました。*はそれに代入されるリテラル値` `Hello``のみを許可します。これは以下のとおりです：
 
 ```ts
 let foo: 'Hello';
 foo = 'Bar'; // Error: "Bar" is not assignable to type "Hello"
 ```
 
-They are not very useful on their own but can be combined in a type union to create a powerful (and useful) abstraction e.g.:
+それらは単独ではあまり有用ではないが、タイプユニオンで結合して、強力な（そして有用な）抽象化を作成することができる。
 
 ```ts
 type CardinalDirection =
-    | "North"
+    "North"
     | "East"
     | "South"
     | "West";
@@ -33,16 +33,16 @@ move(1,"North"); // Okay
 move(1,"Nurth"); // Error!
 ```
 
-### Other literal types
-TypeScript also supports `boolean` and `number` literal types, e.g.: 
+### その他のリテラル型
+TypeScriptは `boolean`と`number`リテラル型もサポートしています。
 
 ```ts
 type OneToFive = 1 | 2 | 3 | 4 | 5;
 type Bools = true | false;
 ```
 
-### Inference 
-Quite commonly you get an error like `Type string is not assignable to type "foo"`. The following example demonstrates this.
+### 推論
+かなり一般的に `タイプ文字列はタイプ" foo "`に代入不可能なエラーを受け取ります。次の例はこれを示しています。
 
 ```js
 function iTakeFoo(foo: 'foo') { }
@@ -52,7 +52,7 @@ const test = {
 iTakeFoo(test.someProp); // Error: Argument of type string is not assignable to parameter of type 'foo'
 ```
 
-This is because `test` is inferred to be of type `{someProp: string}`. The fix here is to use a simple type assertion to tell TypeScript the literal you want it to infer as shown below: 
+これは、 `test`が`{someProp：string} `型であると推定されるためです。この問題を解決するには、シンプルな型アサーションを使用して、TypeScriptに以下のようにリテラルを推測させます。
 
 ```js
 function iTakeFoo(foo: 'foo') { }
@@ -62,25 +62,12 @@ const test = {
 iTakeFoo(test.someProp); // Okay!
 ```
 
-or use a type annotation that helps TypeScript infer the correct thing at the point of declaration: 
+### ユースケース
+文字列型の有効な使用例は次のとおりです。
 
-```
-function iTakeFoo(foo: 'foo') { }
-type Test = {
-  someProp: 'foo',
-}
-const test: Test = { // Annotate - inferred someProp is always === 'foo'
-  someProp: 'foo' 
-}; 
-iTakeFoo(test.someProp); // Okay!
-```
+#### 文字列ベースの列挙型
 
-### Use cases
-Valid use cases for string literal types are:
-
-#### String based enums
-
-[TypeScript enums are number based](../enums.md). You can use string literals with union types to mock a string based enum as we did in the `CardinalDirection` example above. You can even generate a `Key:Value` structure using the following function: 
+[TypeScript enumsは数字ベースです]（../ enums.md）。上記の `CardinalDirection`の例のように、共用体型の文字列リテラルを使用して文字列ベースの列挙型をモックすることができます。次の関数を使って `Key：Value`構造体を生成することさえできます：
 
 ```ts
 /** Utility function to create a K:V from a list of strings */
@@ -92,7 +79,7 @@ function strEnum<T extends string>(o: Array<T>): {[K in T]: K} {
 }
 ```
 
-And then generate the literal type union using `keyof typeof`. Here is a complete example:
+そして、 `keyof typeof`を使ってリテラル型共用体を生成します。完全な例を次に示します。
 
 ```ts
 /** Utility function to create a K:V from a list of strings */
@@ -127,17 +114,17 @@ sample = 'North'; // Okay
 sample = 'AnythingElse'; // ERROR!
 ```
 
-#### Modelling existing JavaScript APIs
+#### 既存のJavaScript APIのモデリング
 
-E.g. [CodeMirror editor has an option `readOnly`](https://codemirror.net/doc/manual.html#option_readOnly) that can either be a `boolean` or the literal string `"nocursor"` (effective valid values `true,false,"nocursor"`).  It can be declared as:
+例えば。 [CodeMirrorエディタには、 `readOnly`オプション（https://codemirror.net/doc/manual.html#option_readOnly）があります。これは、`boolean`またはリテラル文字列 ``nocursor '`（有効有効値` true 、false、 "nocursor"）。それは次のように宣言することができます：
 
 ```ts
 readOnly: boolean | 'nocursor';
 ```
 
-#### Discriminated Unions
+#### 差別化された組合
 
-We will cover [this later in the book](./discriminated-unions.md).
+[これは本の後の方]（./ discriminated-unions.md）で説明します。
 
 
-[](https://github.com/Microsoft/TypeScript/pull/5185)
+[]（https://github.com/Microsoft/TypeScript/pull/5185）

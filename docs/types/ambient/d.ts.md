@@ -1,18 +1,18 @@
-### Declaration file
-You can tell TypeScript that you are trying to describe code that exists elsewhere (e.g. written in JavaScript/CoffeeScript/The runtime environment like the browser or Node.js) using the `declare` keyword. As a quick example:
+### 宣言ファイル
+`declare`キーワードを使用して他の場所に存在するコードを記述しようとしていることをTypeScriptに伝えることができます（例えば、JavaScript / CoffeeScript /ブラウザやNode.jsのような実行時環境で記述されます）。簡単な例として、
 
 ```ts
 foo = 123; // Error: `foo` is not defined
 ```
-vs.
+対
 ```ts
 declare var foo: any;
 foo = 123; // allowed
 ```
 
-You have the option of putting these declarations in a `.ts` file or in a `.d.ts` file. We highly recommend that in your real world projects you use a separate `.d.ts` (start with one called something like `globals.d.ts` or `vendor.d.ts`).
+これらの宣言を `.ts`ファイルまたは`.d.ts`ファイルに入れることができます。実世界のプロジェクトでは、別々の `.d.ts`（`globals.d.ts`や `vendor.d.ts`のようなものから始まるもの）を使うことを強くお勧めします。
 
-If a file has the extension `.d.ts` then each root level definition must have the `declare` keyword prefixed to it. This helps make it clear to the author that there will be *no code emitted by TypeScript*. The author needs to ensure that the declared item will exist at runtime.
+ファイルの拡張子が `.d.ts`の場合、各ルートレベルの定義には`declare`というキーワードを前置する必要があります。これは、TypeScript *が発行するコードがないことを著者に明確にするのに役立ちます。著者は、宣言された項目が実行時に存在することを保証する必要があります。
 
-> * Ambient declarations is a promise that you are making with the compiler. If these do not exist at runtime and you try to use them, things will break without warning.
-* Ambient declarations are like docs. If the source changes the docs need to be kept updated. So you might have new behaviours that work at runtime but no one's updated the ambient declaration and hence you get compiler errors.
+> * Ambient宣言は、コンパイラで作成している約束です。これらが実行時に存在せず、それらを使用しようとすると、警告が出なくなります。
+* アンビエント宣言はドキュメントのようです。ソースが変更された場合、ドキュメントを更新する必要があります。したがって、実行時に動作する新しいビヘイビアがあるかもしれませんが、アンビエント宣言が更新されていないため、コンパイルエラーが発生します。

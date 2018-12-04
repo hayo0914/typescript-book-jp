@@ -1,29 +1,29 @@
-## Number
-Whenever you are handling numbers in any programming language you need to be aware of the idiosyncrasies of how the language handles numbers. Here are a few critical pieces of information about numbers in JavaScript that you should be aware of.
+## 番号
+任意のプログラミング言語で数値を扱うときはいつでも、言語が数値をどのように扱うかの特異性を認識する必要があります。ここでは、注意しなければならないJavaScriptの数字に関する重要な情報がいくつかあります。
 
-### Core Type
-JavaScript has only one number type. It is a double-precision 64-bit `Number`. Below we discuss its limitations along with a recommended solution.
+コアタイプ
+JavaScriptには1つの数値型しかありません。倍精度の64ビットの「数値」です。以下では、推奨される解決策とともに制限事項について説明します。
 
-### Decimal
-For those familiar with doubles / float in other languages, you would know that binary floating point numbers *do not* map correctly to Decimal numbers. A trivial (and famous) example with JavaScript's built in numbers is shown below:
+### 10進数
+他の言語のdouble / floatに精通している人にとって、バイナリ浮動小数点数*は十進数に正しくマップされていないことがわかります。 JavaScriptに組み込まれた数字を使った簡単な（そして有名な）例を以下に示します：
 
 ```js
 console.log(.1 + .2); // 0.30000000000000004
 ```
 
-> For true decimal math use `big.js` mentioned below.
+> 真の小数点演算のために、以下に述べる `big.js`を使います。
 
-### Integer
-The integer limits represented by the built in number type are `Number.MAX_SAFE_INTEGER` and `Number.MIN_SAFE_INTEGER`.
+### 整数
+組み込みの数値型で表される整数の制限は、 `Number.MAX_SAFE_INTEGER`と`Number.MIN_SAFE_INTEGER`です。
 
 ```js
 console.log({max: Number.MAX_SAFE_INTEGER, min: Number.MIN_SAFE_INTEGER});
 // {max: 9007199254740991, min: -9007199254740991}
 ```
 
-**Safe** in this context refers to the fact that the value *cannot be the result of a rounding error*.
+** 安全な**とは、値*が丸め誤差*の結果であることができないという事実を指します。
 
-The unsafe values are `+1 / -1` away from these safe values and any amount of addition / subtraction will *round* the result.
+安全でない値は、これらの安全な値から `+1 / -1`離れており、加算/減算の量は結果を丸める*でしょう。
 
 ```js
 console.log(Number.MAX_SAFE_INTEGER + 1 === Number.MAX_SAFE_INTEGER + 2); // true!
@@ -36,7 +36,7 @@ console.log(Number.MAX_SAFE_INTEGER + 3);  // 9007199254740994 - Rounded - corre
 console.log(Number.MAX_SAFE_INTEGER + 4);  // 9007199254740996 - Rounded!
 ```
 
-To check safety you can use ES6 `Number.isSafeInteger`:
+安全性をチェックするには、ES6 `Number.isSafeInteger`を使用します：
 
 ```js
 // Safe value
@@ -49,19 +49,19 @@ console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 1)); // false
 console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 10)); // false
 ```
 
-> JavaScript will eventually get [BigInt](https://developers.google.com/web/updates/2018/05/bigint) support. For now, if you want arbitrary precision integer math use `big.js` mentioned below.
+> JavaScriptでは最終的に[BigInt]（https://developers.google.com/web/updates/2018/05/bigint）がサポートされます。今のところ、任意の精度整数計算をしたい場合は、下記の `big.js`を使います。
 
 ### big.js
-Whenever you use math for financial calculations (e.g. GST calculation, money with cents, addition etc) use a library like [big.js](https://github.com/MikeMcl/big.js/) which is designed for
-* Perfect decimal math
-* Safe out of bound integer values
+財務計算（例：GST計算、セントでのお金、追加など）に数学を使用する場合は、[big.js]（https://github.com/MikeMcl/big.js/）のようなライブラリを使用します。
+* 完璧な小数点演算
+* 安全な範囲外の整数値
 
-Installation is simple:
+インストールは簡単です：
 ```bash
 npm install big.js @types/big.js
 ```
 
-Quick Usage example:
+クイック使用例：
 
 ```js
 import { Big } from 'big.js';
@@ -73,16 +73,16 @@ export const bar = foo.plus(new Big('0.00000000000000000001'));
 const x: number = Number(bar.toString()); // Loses the precision
 ```
 
-> Do not use this library for math used for UI / performance intensive purposes e.g charts, canvas drawing etc.
+> このライブラリは、チャートやキャンバスの描画など、UI /パフォーマンスを重視する目的で使用される数学には使用しないでください
 
 ### NaN
-When some number calculation is not representable by a valid number, JavaScript returns a special `NaN` value. A  classic example is imaginary numbers:
+いくつかの数値計算が有効な数値で表現できない場合、JavaScriptは特別なNaN値を返します。古典的な例は虚数です。
 
 ```js
 console.log(Math.sqrt(-1)); // NaN
 ```
 
-Note: Equality checks **don't** work on `NaN` values. Use `Number.isNaN` instead:
+注：等価チェック**はNaN値では機能しません**。代わりに `Number.isNaN`を代わりに使用してください：
 
 ```js
 // Don't do this
@@ -92,61 +92,61 @@ console.log(NaN === NaN); // false!!
 console.log(Number.isNaN(NaN)); // true
 ```
 
-### Infinity
-The outer bounds of values representable in Number are available as static `Number.MAX_VALUE` and `-Number.MAX_VALUE` values.
+### 無限
+Numberで表現可能な値の外側の境界は、静的な `Number.MAX_VALUE`と`-Number.MAX_VALUE`の値として利用できます。
 
 ```js
 console.log(Number.MAX_VALUE);  // 1.7976931348623157e+308
 console.log(-Number.MAX_VALUE); // -1.7976931348623157e+308
 ```
 
-Values outside the range where precision isn't changed are clamped to these limits e.g.
+精度が変更されない範囲外の値は、これらの限界値にクランプされる。
 
 ```js
 console.log(Number.MAX_VALUE + 1 == Number.MAX_VALUE);   // true!
 console.log(-Number.MAX_VALUE - 1 == -Number.MAX_VALUE); // true!
 ```
 
-Values outside the range where precision is changed resolve to special values `Infinity`/`-Infinity` e.g.
+精度が変更される範囲外の値は、特別な値「Infinity」/「-Infinity」に解決されます。
 
 ```js
 console.log(Number.MAX_VALUE + 10**1000);  // Infinity
 console.log(-Number.MAX_VALUE - 10**1000); // -Infinity
 ```
 
-Of-course, these special infinity values also show up with arithmetic that requires it e.g.
+もちろん、これらの特別な無限大値も、それを必要とする算術演算で表示されます。
 
 ```js
 console.log( 1 / 0); // Infinity
 console.log(-1 / 0); // -Infinity
 ```
 
-You can use these `Infinity` values manually or using static members of the `Number` class as shown below:
+以下のように、これらの `Infinity`値を手動で使うか、`Number`クラスの静的メンバーを使うことができます：
 
 ```js
 console.log(Number.POSITIVE_INFINITY === Infinity);  // true
 console.log(Number.NEGATIVE_INFINITY === -Infinity); // true
 ```
 
-Fortunately comparison operators (`<` / `>`) work reliably on infinity values:
+幸いなことに、比較演算子（ `<`/ `>`）は無限値に対して確実に動作します：
 
 ```js
 console.log( Infinity >  1); // true
 console.log(-Infinity < -1); // true
 ```
 
-### Infinitesimal
+### 極限
 
-The smallest non-zero value representable in Number is available as static `Number.MIN_VALUE`
+Numberで表現可能な最小の非ゼロ値は、静的な `Number.MIN_VALUE`として使用できます。
 
 ```js
 console.log(Number.MIN_VALUE);  // 5e-324
 ```
 
-Values smaller than `MIN_VALUE` ("underflow values") are converted to 0.
+「MIN_VALUE」より小さい値（「アンダーフロー値」）は0に変換されます。
 
 ```js
 console.log(Number.MIN_VALUE / 10);  // 0
 ```
 
-> Further intuition: Just like values bigger than `Number.MAX_VALUE` get clamped to INFINITY, values smaller than `Number.MIN_VALUE` get clamped to `0`.
+> 直感： `Number.MAX_VALUE`より大きい値がINFINITYにクランプされるように、`Number.MIN_VALUE`より小さい値は `0`にクランプされます。

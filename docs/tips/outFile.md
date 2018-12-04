@@ -1,105 +1,105 @@
-# `--outFile` is BAD {#outFile}
+# `--outFile`は悪い{#outFile}
 
-Its a bad idea for you to use because of the following reasons:
+以下の理由からあなたが使用するのは悪い考えです：
 
-* Runtime Errors
-* Fast compile
-* Global scope
-* Hard to analyze
-* Hard to scale
+* ランタイムエラー
+* 高速コンパイル
+* グローバルスコープ
+* 分析が難しい
+* 拡大縮小が難しい
 * `_references`
-* Code reuse
-* Multiple Targets
-* Isolated Compile
+* コードの再利用
+* 複数のターゲット
+* 隔離されたコンパイル
 
-## Runtime Errors
+## ランタイムエラー
 
-If your code depends on any form of js ordering you will get random errors at runtime.
+あなたのコードがjsの任意の形式に依存する場合は、実行時にランダムなエラーが発生します。
 
-* **class inheritance can break at runtime.**
+* **クラスの継承は実行時に破損する可能性があります。**
 
-Consider `foo.ts`: 
+`foo.ts`を考えてみましょう：
 ```ts
 class Foo {
     
 }
 ```
 
-and a `bar.ts`:
+と `bar.ts`：
 ```ts
 class Bar extends Foo {
     
 }
 ```
 
-If you fail to compile it in correct order e.g. perhaps alphabetically `tsc bar.ts foo.ts` the code will compile fine but error at runtime with `ReferenceError`. 
+あなたが正しい順序でコンパイルに失敗した場合など。おそらくアルファベット順に `tsc bar.ts foo.ts`コードがコンパイルされますが、実行時に`ReferenceError`でエラーが発生します。
 
-* **module splitting can fail at runtime.**
+* **モジュールの分割は実行時に失敗することがあります。**
 
-Consider `foo.ts`: 
+`foo.ts`を考えてみましょう：
 ```ts
 module App {
     export var foo = 123;
 }
 ```
-And `bar.ts`: 
+そして `bar.ts`：
 ```ts
 module App {
     export var bar = foo + 456;
 }
 ```
 
-If you fail to compile it in correct order e.g. perhaps alphabetically `tsc bar.ts foo.ts` the code will compile fine but  *silently* fail at runtime with `bar` set to `NaN`. 
+あなたが正しい順序でコンパイルに失敗した場合など。おそらくアルファベット順に `tsc bar.ts foo.ts`コードがコンパイルされますが、実行時には` `bar``が` `NaN``に設定されています。
 
-## Fast compile
-If you use `--out` then single `.ts` files cannot be codegened into single `.js` files in isolation without unnecessary hacks. `--out` essentially forces a slower incremental build.
+## 高速コンパイル
+`--out`を使用すると、単一の`.ts`ファイルは、不要なハックなしに単独で単一の `.js`ファイルにコード化することはできません。 `--out`は本質的に遅いインクリメンタルビルドを強制します。
 
-Also source maps are positionally sensitive and run-length encoded so most of the map has to be rebuilt on a recompile if you use source maps (which you should!). At high-10s to 100s kloc combined it’s going to get slow.
+また、ソースマップは位置的にセンシティブでランレングス符号化されているので、元のマップを使用する場合は再コンパイル時に大部分のマップを再構築する必要があります。 10秒から100秒のクロックを組み合わせると、それは遅くなるでしょう。
 
-## Global Scope
-Sure you can use name spaces but its still on `window` if you run it in the browser. Namespaces are just an unnecessary workaround. Also `/// <reference` comments introduce a global context in *your code* that can get hard to maintain.
+## グローバルスコープ
+確かに名前空間を使うことはできますが、ブラウザで実行すると `window`にはまだその名前空間を使うことができます。名前空間は不要な回避策に過ぎません。また、 `/// <reference`コメントは、あなたのコード*にグローバルコンテキストを導入して、維持するのが難しくなります。
 
-Also if your company has several teams working independently and then someone decides to try integrating two independently written apps there is a high likelihood of a name conflict.
+また、あなたの会社が独立して働いているいくつかのチームを持っていて、誰かが独立に書かれた2つのアプリケーションを統合しようと決心した場合、名前の競合の可能性が高いです。
 
-## Hard to analyze
-We wish to provide more code analysis tools. These will be easier if you provide us with the dependency chain (implicitly there on a silver platter using external modules). 
+## 分析が難しい
+より多くのコード解析ツールを提供したいと考えています。依存関係のチェーン（暗黙的に外部モジュールを使用している銀製のプラッターに）を提供すると、これらは簡単になります。
 
-Also its not just the *dev tools* that have a hard time making sense of the code. The next human needs to understand a lot of the code base before they start to understand where stuff is actually imported from. Using internal modules also makes code difficult to review in isolation e.g. on github.
+また、* devツール*だけでなく、コードを理解するのに苦労します。次の人間は、物が実際にどこからインポートされるのかを理解し始める前に、多くのコードベースを理解する必要があります。内部モジュールを使用すると、コードを分離してレビューすることも難しくなります。ギターで
 
-## Hard to scale
-Really just a result of random runtime errors + slower and slower compile times + difficulty in understanding someone else's code.
+## スケールするのは難しい
+実際にはランダムランタイムエラーの結果+コンパイル時間が遅く、遅くなり、他人のコードを理解するのが難しくなります。
 
 ## `_references.ts`
-Isn't supported by `tsconfig.json` : https://github.com/Microsoft/TypeScript/issues/2472#issuecomment-85330803 You'll have to manually sort the  `files` array. 
+`tsconfig.json`ではサポートされていません：https://github.com/Microsoft/TypeScript/issues/2472#issuecomment-85330803`files`配列を手動でソートする必要があります。
 
-## Code reuse
-If you want to reuse a portion of your code in another project, with all that *implicit* dependency management, it will be difficult to port it over without potential runtime errors. 
+## コードの再利用
+あなたのコードの一部を別のプロジェクトで再利用したい場合、そのすべての*暗黙の*依存関係管理を行うと、潜在的なランタイムエラーなしに移植することは難しくなります。
 
-## Multiple Targets
-Also if you decide to reuse your browser code in something like nodejs (e.g. for *testing* APIs) you are going to need to port it over to a module system or come up with ugly hacks to make the nodejs `global` your new global scope (i.e. `window`).
+## 複数のターゲット
+また、nodejs（例：* testing * API）のようなものでブラウザコードを再利用することに決めた場合は、モジュールシステムに移植するか、nodejsを `global`にするために醜いハックを起こす必要がありますスコープ（すなわち、 `window`）。
 
-## Isolated Compile
-Files cannot be compiled in isolation. E.g. consider `a.ts`: 
+## 隔離されたコンパイル
+ファイルを単独でコンパイルすることはできません。例えば。 「a.ts」と考える：
 ```ts
 module M {
   var s = t;
 }
 ```
-Will have different output depending upon whether there is a `b.ts` of the form: 
+次の形式の `b.ts`があるかどうかによって出力が異なります：
 ```ts
 module M {
   export var t = 5;
 }
 ```
-or 
+または
 ```ts
 var t = 5;
 ```
-So `a.ts` [cannot be compiled in isolation](https://github.com/Microsoft/TypeScript/issues/2715).
+だから、 `a.ts`は[孤立してコンパイルできません]（https://github.com/Microsoft/TypeScript/issues/2715）。
 
-## Summary
-`--out` is really the job of some build tool. And even such a build tool can benefit from the dependency mentions provided by external modules. So we recommend you use external modules and then let the build tool create a single `.js` for you if you so desire.
+## まとめ
+`--out`は本当にビルドツールの仕事です。また、このようなビルドツールでさえ、外部モジュールによって提供される依存関係の恩恵を受けることができます。そのため、外部モジュールを使用し、必要に応じてビルドツールで単一の `.js`ファイルを作成することをお勧めします。
 
-https://twitter.com/nycdotnet/status/613705850574778368 
+https://twitter.com/nycdotnet/status/613705850574778368
 
-![The Bas Signal](https://pbs.twimg.com/media/CIRSOBmWsAQdzvP.jpg)
+！[The Bas Signal]（https://pbs.twimg.com/media/CIRSOBmWsAQdzvP.jpg）

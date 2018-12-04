@@ -1,18 +1,15 @@
-# Why Cypress
-Cypress is a great E2E testing tool. Here are a few great reasons to consider it:
+# なぜサイプレス
+Cypressは素晴らしいE2Eテストツールです。これを考慮する大きな理由は次のとおりです。
 
-* Isolated installation possible.
-* Ships with TypeScript definitions out of the box.
-* Provides a nice interactive google chrome debug experience. This is very similar to how UI devs mostly work manually.
-* Has command - execution seperation which allows for more powerfull debugging and test stability (more on this below).
-* Has implicit assertions to provide more meaningful debug experience with less brittle tests (more on this in the tips below).
-* Provides the ability to mock out and observe backend XHRs easily without changing your application code (more on this in the tips below).
+* 隔離設置が可能です。
+* TypeScriptの定義がそのままの状態で出荷されます。
+* 優れたインタラクティブなGoogle Chromeのデバッグ環境を提供します。これは、UI開発者がほとんど手動で作業する方法と非常によく似ています。
+* アプリケーションコードを変更することなく、バックエンドのXHRを簡単に模倣して観察する機能を提供します（以下のヒントで詳しく説明しています）。
+* より脆弱なテストでより意味のあるデバッグ経験を提供するための暗黙のアサーションがあります（これについては以下のヒントを参照してください）。
 
-## Installation
+## インストール
 
-> The steps provided in this installation process will give you a nice `e2e` folder that you can use as boiler plate for your organization. You can just copy paste this `e2e` folder into any existing projects that you want to test with cypress.
-
-Create an e2e directory and install cypress and its dependencies for TypeScript transpiling:
+e2eディレクトリを作成し、cypressとその依存関係をTypeScript変換用にインストールします。
 
 ```sh
 mkdir e2e
@@ -21,11 +18,11 @@ npm init -y
 npm install cypress webpack @cypress/webpack-preprocessor typescript ts-loader
 ```
 
-> Here are a few reasons for creating a separate `e2e` folder especially for cypress: 
-* Creating a separate directory or `e2e` makes it easier to isolate its `package.json` dependencies from the rest of your project. This results in less dependency conflicts.
-* Testing frameworks have a habit of polluting the global namespace with stuff like `describe` `it` `expect`. It is best to keep the e2e `tsconfig.json` and `node_modules` in this special `e2e` folder to prevent global type definition conflicts.
+> ここでは特にサイプレスのために別々の `e2e`フォルダを作成するいくつかの理由があります：
+* 別のディレクトリや `e2e`を作成すると、`package.json`の依存関係を他のプロジェクトと簡単に分離することができます。これにより依存性の競合が少なくなります。
+* テストフレームワークには、グローバルな名前空間を「記述する」、「期待する」などのもので汚染する習慣があります。グローバルな型定義の競合を避けるために、e2e `tsconfig.json`と`node_modules`をこの特別な `e2e`フォルダに保存することが最善です。
 
-Setup TypeScript `tsconfig.json` e.g. 
+セットアップタイプスクリプト `tsconfig.json`
 
 ```json
 {
@@ -45,13 +42,13 @@ Setup TypeScript `tsconfig.json` e.g.
 }
 ```
 
-Do a first dry run of cypress to prime the cypress folder structure. The Cypress IDE will open. You can close it after you see the welcome message.
+サイプレスの最初の乾いたランを行い、サイプレスのフォルダ構造を準備します。 Cypress IDEが開きます。ウェルカムメッセージが表示されたらそれを閉じることができます。
 
 ```sh
 npx cypress open
 ```
 
-Setup cypress for transpiling typescript by editing `e2e/cypress/plugins/index.js` to match the following:
+`e2e / cypress / plugins / index.js`を次のように編集して、サイクロプスをタイプライティングするためのサイプレスをセットアップします：
 
 ```js
 const wp = require('@cypress/webpack-preprocessor')
@@ -77,7 +74,7 @@ module.exports = (on) => {
 ```
 
 
-Optionally add a few scripts to the `e2e/package.json` file:
+オプションで `e2e / package.json`ファイルにいくつかのスクリプトを追加します：
 
 ```json
   "scripts": {
@@ -86,21 +83,21 @@ Optionally add a few scripts to the `e2e/package.json` file:
   },
 ```
 
-## More description of key Files
-Under the `e2e` folder you now have these files: 
+## キーファイルの詳細説明
+`e2e`フォルダの下に、次のファイルがあります：
 
-* `/cypress.json`: Configure cypress. The default is empty and that is all you need.
-* `/cypress` Subfolders: 
-    * `/fixtures`: Test fixtures
-        * Comes with `example.json`. Feel free to delete it. 
-        * You can create simple `.json` files that can be used to provide sample data (aka fixtures) for usage across tests. 
-    * `/integration`: All your tests. 
-        * Comes with an `examples` folder. You can safely delete it.
-        * Name tests with `.spec.ts` e.g. `something.spec.ts`. 
-        * Feel free to create tests under subfolders for better organization e.g. `/someFeatureFolder/something.spec.ts`.
+* `/ cypress.json`：サイプレスを設定します。デフォルトは空で、必要なのはそれだけです。
+* `/ cypress`サブフォルダ：
+    * `/ fixtures`：テストフィクスチャ
+        * `example.json`が付属しています。削除しても構いません。
+        *単純な `.json`ファイルを作成して、複数のテストでの使用にサンプルデータ（別名フィクスチャ）を提供することができます。
+    * `/ integration`：すべてのテスト。
+        * `examples`フォルダがあります。安全に削除することができます。
+        * `.spec.ts`での名前テスト`何か.spec.ts`。
+        *組織の改善のため、サブフォルダの下でテストを作成することは自由です。 `/ someFeatureFolder / something.spec.ts`です。
 
-## First test 
-* create a file `/cypress/integration/first.spec.ts` with the following contents: 
+## 最初のテスト
+* 次の内容の `/ cypress / integration / first.spec.ts`ファイルを作成します：
 
 ```ts
 /// <reference types="cypress"/>
@@ -113,29 +110,29 @@ describe('google search', () => {
 });
 ```
 
-## Running in development
-Open the cypress IDE using the following command.
+## 開発中のランニング
+次のコマンドを使用してcypress IDEを開きます。
 
 ```sh
 npm run cypress:open
 ```
 
-And select a test to run.
+実行するテストを選択します。
 
-## Running on a build server
+## ビルドサーバーで実行する
 
-You can run cypress tests in ci mode using the following command.
+ciモードでサイプレステストを実行するには、次のコマンドを使用します。
 
 ```sh
 npm run cypress:run
 ```
 
-## Tip: Sharing code between UI and test
-Cypress tests are compiled / packed and run in the browser. So feel free to import any project code into your test.
+## ヒント：UIとテストの間でコードを共有する
+Cypressテストはコンパイル/パックされ、ブラウザで実行されます。プロジェクトコードを自由にテストにインポートしてください。
 
-For example you can share Id values between UI and Tests to make sure the CSS selectors don't break:
+たとえば、UIセレクタとテストの間でID値を共有して、CSSセレクタが壊れないようにすることができます。
 
-```js
+```ts
 import { Ids } from '../../../src/app/constants'; 
 
 // Later 
@@ -143,53 +140,27 @@ cy.get(`#${Ids.username}`)
   .type('john')
 ```
 
-## Tip: Creating Page Objects
-Creating objects that provide a convenient handle for all the interactions that various tests need to do with a page is a common testing convention. You can create page objects using TypeScript classes with getters and methods e.g. 
-
-```js
-import { Ids } from '../../../src/app/constants'; 
-
-class LoginPage {
-  visit() {
-    cy.visit('/login');
-  }
-  
-  get username() {
-    return cy.get(`#${Ids.username}`);
-  }
-}
-const page = new LoginPage();
-
-// Later
-page.visit();
-
-page.username.type('john');
-
-```
-
-## Tip: Implicit assertion 
-Whenever a cypress command fails you get a nice error (instead of something like `null` with many other frameworks) so you fail quickly and know exactly when a test fails e.g. 
+## ヒント：暗黙のアサーション
+サイプレスコマンドが失敗したときには、（他の多くのフレームワークでは `null`のようなものではなく）素晴らしいエラーが発生するので、すばやく失敗し、テストが失敗したときを正確に知ることができます。
 
 ```
 cy.get('#foo') 
 // If there is no element with id #foo cypress will wait for 4 seconds automatically 
 // If still not found you get an error here ^ 
-
-
-// This \/ will not trigger till an element #foo is found
+// \/ This will not trigger till an element #foo is found
   .should('have.text', 'something') 
 ```
 
-## Tip: Explicit assertion 
-Cypress ships with quite a few assertion helps for the web e.g. chai-jquery https://docs.cypress.io/guides/references/assertions.html#Chai-jQuery. You use them with `.should` command passing in the chainer as a string e.g.
+## ヒント：明示的なアサーション
+Cypressには、ウェブ用のいくつかのアサーションヘルプが付属しています。 chai-jquery https://docs.cypress.io/guides/references/assertions.html#Chai-jQuery chainerに文字列として渡す `.should`コマンドでそれらを使用します。
 
 ```
 cy.get('#foo') 
   .should('have.text', 'something') 
 ```
 
-## Tip: Commands and Chaining 
-Every function call in a cypress chain is a `command`. The `should` command is an assertion. It is conventional to start distinct *category* of chains and actions seperately e.g. 
+## ヒント：コマンドと連鎖
+cypressチェーン内のすべての関数呼び出しは `command`です。 `should`コマンドはアサーションです。チェーンとアクションの別々の*カテゴリ*を別々に開始することは従来通りです。
 
 ```ts
 // Don't do this 
@@ -210,29 +181,16 @@ cy.get(/**something else*/)
   .should(/**something*/)
 ```
 
-Some other libraries *evaluate and run* the code at the same time. Those libraries force you to have a single chain which can be nightmare to debug with selectors and assertions minggled in. 
+コードを評価して同時に実行する他のライブラリ*。これにより、セレクタとアサーションが混在してデバッグするのが難しいかもしれない単一のチェーンが必要になります。
 
-Cypress commands are essentially *declarations* to the cypress runtime to execute the commands later. Simple words: Cypress makes it easier. 
+サイプレスコマンドは、本質的に、コマンドを後で実行するためのサイプレスランタイムへの*宣言*です。簡単な言葉：サイプレスはそれをより簡単にします。
 
-## Tip: Using `contains` for easier querying
+## ヒント：HTTPリクエストを待っています
+アプリケーションが作るXHRに必要なすべてのタイムアウトが原因で、多くのテストが脆弱です。 `cy.server`は簡単に
+* バックエンド呼び出しのエイリアスを作成する
+* それらが起こるのを待つ
 
-The following shows an example:
-
-```
-cy.get('#foo') 
-  // Once #foo is found the following:
-  .contains('Submit') 
-  // ^ will continue to search for something that has text `Submit` and fail if it times out.
-  .click()
-  // ^ will trigger a click on the HTML Node that contained the text `Submit`.
-```
-
-## Tip: Waiting for an HTTP request
-A lot of tests have been traditionally brittle due to all the arbitrary timeouts needed for XHRs that an application makes. `cy.server` makes it easy to 
-* create an alias for backend calls
-* wait for them to occur
-
-e.g. 
+例えば
 
 ```ts
 cy.server()
@@ -248,15 +206,15 @@ cy.wait('@load')
 // Now the data is loaded
 ```
 
-## Tip: Mocking an HTTP request response
-You can also easily mock out a request response using `route`: 
+## ヒント：HTTPリクエストレスポンスを嘲笑
+`route`を使ってリクエストレスポンスを簡単に模倣することもできます：
 ```ts
 cy.server()
   .route('POST', 'https://example.com/api/application/load', /* Example payload response */{success:true})
 ```
 
-## Tip: Mocking time 
-You can use `wait` to pause a test for some time e.g. to test an automatic "you are about to be logged out" notification screen:
+## ヒント：モッキング時間
+`wait`を使ってある時間テストを一時停止することができます。自動的に「ログアウトしようとしています」という通知画面をテストする：
 
 ```ts
 cy.visit('/');
@@ -264,7 +222,7 @@ cy.wait(waitMilliseconds);
 cy.get('#logoutNotification').should('be.visible');
 ```
 
-However, it is recommended to mock time using `cy.clock` and forwarding time using `cy.tick` e.g. 
+しかし、 `cy.tcl`を使用して`cy.clock`と転送時間を使って時間をモックすることが推奨されます。
 
 ```ts
 cy.clock();
@@ -274,72 +232,18 @@ cy.tick(waitMilliseconds);
 cy.get('#logoutNotification').should('be.visible');
 ```
 
-## Tip: Smart delays and retries
-Cypress will automatically wait (and retry) for many async things e.g. 
+## ヒント：スマートディレイ
+サイプレスは自動的に多くの非同期のものを待つでしょう。
 ```
 // If there is no request against the `foo` alias cypress will wait for 4 seconds automatically 
 cy.wait('@foo') 
-// If there is no element with id #foo cypress will wait for 4 seconds automatically and keep retrying
+// If there is no element with id #foo cypress will wait for 4 seconds automatically 
 cy.get('#foo')
 ```
-This keeps you from having to constantly add arbitrary timeout (and retry) logic in your test code flow. 
+これにより、テストコードフローに常に任意のタイムアウトを追加する必要がなくなります。
 
-
-## Tip: Unit testing application code
-You can also use cypress to unit test your application code in isolation e.g.
-
-```js
-import { once } from '../../../src/app/utils'; 
-
-// Later 
-it('should only call function once', () => {
-  let called = 0;
-  const callMe = once(()=>called++);
-  callMe();
-  callMe();
-  expect(called).to.equal(1);
-});
-```
-
-## Tip: Mocking in unit testing
-If you are unit testing modules in your application you can provide mocks using `cy.stub` e.g. if you want to ensure that `navigate` is called in a function `foo`: 
-
-* `foo.ts`
-```ts
-import { navigate } from 'takeme';
-
-export function foo() {
-  navigate('/foo');
-}
-```
-
-* You can do this as in `some.spec.ts`: 
-```ts
-/// <reference types="cypress"/>
-
-import { foo } from '../../../src/app/foo';
-import * as takeme from 'takeme';
-
-describe('should work', () => {
-  it('should stub it', () => {
-    cy.stub(takeme, 'navigate');
-    foo();
-    expect(takeme.navigate).to.have.been.calledWith('/foo');
-  })
-});
-```
-
-## Tip: Breakpoint
-The automatic snapshots + command log generated by the cypress test are great for debugging. That said you can pause test execution if you want. 
-
-First make sure you have chrome developer tools (lovingly called dev tools) open in the test runner (`CMD + ALT + i` on mac / `F12` on windows). Once the dev tools are open you can re-run the test and the dev tools will stay open. If you have the dev tools open, you can pause test execution in two ways:
-
-* Application code breakpoints: Use a `debugger` statement in your application code and the test runner will stop on that just like standard web developement. 
-* Test code breakpoints: You can use the `.debug()` command and cypress test execution will stop at it. Alternatively you can use a `debugger` statement in a `.then` command callback to cause a pause. e.g `.then(() => { debugger })`. You can even use it to grab some element `cy.get('#foo').then(($ /* a reference to the dom element */) => { debugger; })` or a network call e.g. `cy.request('https://someurl').then((res /* network response */) => { debugger });`. However idiomatic way is `cy.get('#foo').debug()` and then when the test runner is paused on `debug` you can click on the `get` in the command log to automatically `console.log` any information you might need about the `.get('#foo')` command (and similarly for any other commands you want to debug).
-
-
-## Resources 
-* Website: https://www.cypress.io/
-* Write your first cypress test (gives a nice tour of the cypress IDE) : https://docs.cypress.io/guides/getting-started/writing-your-first-test.html
-* Setting up a CI environment (e.g. the provided docker image that works out of the box with `cypress run`): https://docs.cypress.io/guides/guides/continuous-integration.html
-* Recipes (Lists recipes with descriptions. Click on headings to navigate to the source code for the recipe): https://docs.cypress.io/examples/examples/recipes.html
+## リソース
+* ウェブサイト：https://www.cypress.io/
+* あなたの最初のサイプレステストを書く（サイプレスIDEの素晴らしいツアーを与える）：https://docs.cypress.io/guides/getting-started/writing-your-first-test.html
+* CI環境を設定する（例えば、 `cypress run`でボックスの外で動く提供されたドッカー画像）：https://docs.cypress.io/guides/guides/continuous-integration.html
+* レシピ（説明付きのレシピを一覧表示します。レシピのソースコードに移動するには見出しをクリックしてください）：https://docs.cypress.io/examples/examples/recipes.html

@@ -1,12 +1,12 @@
-# Convenience vs. Soundness
+# 便利さと健全性
 
-There are a few things that TypeScript prevents you from doing out of the box e.g. using a variable that *isn't ever declared* (of course you can use a *declaration file* for external systems).
+TypeScriptがあなたが箱から出て行かないようにするいくつかの事柄があります。 *は決して宣言されていない変数を使用します（もちろん、外部システムには*宣言ファイル*を使用できます）。
 
-That said, traditionally programming languages have a hard boundary between what is and isn't allowed by the type system. TypeScript is different in that it gives you control over where you put the slider. This is really to allow you to use the JavaScript you know and love with as much safety as **you** want. There are lots of compiler options to control exactly this slider so let's have a look.
+つまり、伝統的にプログラミング言語は、型システムによって許可されているものと許可されていないものとの間に厳しい境界を持っています。 TypeScriptは、スライダーをどこに置くかを制御できる点で異なります。これは本当にあなたが知っているJavaScriptを**あなたが望むような安全性で使用できるようにすることです。このスライダを正確に制御するためのコンパイラオプションがたくさんあるので、見てみましょう。
 
-## Boolean Options
+## ブール値オプション
 
-`compilerOptions` that are `boolean` can be specified as `compilerOptions` in `tsconfig.json`:
+`boolean`である`compilerOptions`は `tsconfig.json`で`compilerOptions`として指定できます：
 
 ```json
 {
@@ -16,12 +16,12 @@ That said, traditionally programming languages have a hard boundary between what
 }
 ```
 
-or on the command line
+またはコマンドラインで
 
 ```sh
 tsc --someBooleanOption
 ```
 
-> All of these are `false` by default.
+> これらはすべてデフォルトでは `false`です。
 
-Click [here](https://www.typescriptlang.org/docs/handbook/compiler-options.html) to see all compiler options.
+[here]（https://www.typescriptlang.org/docs/handbook/compiler-options.html）をクリックすると、すべてのコンパイラオプションが表示されます。

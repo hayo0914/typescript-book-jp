@@ -1,6 +1,6 @@
-## Type Instantiation for Generics
+## ジェネリックのインスタンス化のタイプ
 
-Say you have something that has a generic parameter e.g. a class `Foo`:
+たとえば、ジェネリックパラメータを持つものがあるとします。クラス `Foo`：
 
 ```ts
 class Foo<T>{
@@ -8,7 +8,7 @@ class Foo<T>{
 }
 ```
 
-You want to create a specialized version for it for a particular type. The pattern is to copy the item into a new variable and give it the type annotation with the generics replaced with concrete types. E.g. if you want a class `Foo<number>`:
+特定のタイプの特殊バージョンを作成したいとします。このパターンは、項目を新しい変数にコピーし、ジェネリックを具体的な型に置き換えて型の注釈を与えることです。例えば。 `Foo <number>`クラスが必要な場合：
 
 ```ts
 class Foo<T>{
@@ -16,22 +16,22 @@ class Foo<T>{
 }
 let FooNumber = Foo as { new ():Foo<number> }; // ref 1
 ```
-In `ref 1` you are saying that `FooNumber` is the same as `Foo` but just treat it as something that when called with the `new` operator gives an instance of `Foo<Number>`.
+`ref 1 'では、`FooNumber`は `Foo`と同じですが、`new`演算子で呼び出されたときに `Foo <Number>`のインスタンスを与えるものとして扱います。
 
-### Inheritance
-The Type assertion pattern is unsafe in that it trusts you to do the right thing. A common pattern in other languages *for classes* is to just use inheritance :
+### 継承
+タイプアサーションパターンは、あなたが正しいことを信じているという意味では安全ではありません。クラス*の他の言語*の共通パターンは継承を使うことです：
 
 ```ts
 class FooNumber extends Foo<number>{}
 ```
 
-One word of caution here: if you use decorators on the base class then the inherited class might not have the same behavior as the base class (it is no longer wrapped by the decorator).
+ここで注意しなければならないのは、デコレータを基本クラスで使用すると、継承されたクラスは基本クラスと同じ動作をしない可能性があります（デコレータによってラップされなくなりました）。
 
-Of course if you are not specializing classes you still have to come up with a coercion / assertion pattern that works and hence we showed the general assertion pattern first, e.g.:
+もちろん、クラスを専門化していない場合でも、強制的な/強制的なパターンが必要です。そのため、最初に一般的なアサーションパターンを示しました。
 
 ```ts
 function id<T>(x: T) { return x; }
 const idNum = id as {(x:number):number};
 ```
 
-> Inspired by this [stackoverflow question](http://stackoverflow.com/a/34864705/390330)
+> この[インストゥルメントフローの質問]に触発された（http://stackoverflow.com/a/34864705/390330）

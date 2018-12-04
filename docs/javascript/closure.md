@@ -1,6 +1,6 @@
-## Closure
+## 閉鎖
 
-The best thing that JavaScript ever got was closures. A function in JavaScript has access to any variables defined in the outer scope. Closures are best explained with examples:
+JavaScriptが得た最高のものはクロージャーでした。 JavaScriptの関数は、外部スコープで定義された変数にアクセスできます。クロージャは、例を用いて最もよく説明されます。
 
 ```ts
 function outerFunction(arg) {
@@ -17,9 +17,9 @@ function outerFunction(arg) {
 outerFunction("hello closure"); // logs hello closure!
 ```
 
-You can see that the inner function has access to a variable (variableInOuterFunction) from the outer scope. The variables in the outer function have been closed by (or bound in) the inner function. Hence the term **closure**. The concept in itself is simple enough and pretty intuitive.
+内部関数は外部スコープからの変数（variableInOuterFunction）へのアクセスを持っていることがわかります。外部関数の変数は、内部関数によって閉じられています（または束縛されています）。したがって、用語**クロージャ**。そのコンセプト自体は簡単で、かなり直感的です。
 
-Now the awesome part: The inner function can access the variables from the outer scope *even after the outer function has returned*. This is because the variables are still bound in the inner function and not dependent on the outer function. Again let's look at an example:
+今すぐ素晴らしい部分：内部関数は外部関数が返された後でも外部スコープ*から変数にアクセスできます*。これは、変数が内部関数に依然としてバインドされており、外部関数に依存していないためです。もう一度例を見てみましょう：
 
 ```ts
 function outerFunction(arg) {
@@ -35,8 +35,8 @@ var innerFunction = outerFunction("hello closure!");
 innerFunction(); // logs hello closure!
 ```
 
-### Reason why it's awesome
-It allows you to compose objects easily e.g. the revealing module pattern:
+### 理由は素晴らしいです
+オブジェクトを簡単に作成することができます。明らかなモジュールパターン：
 
 ```ts
 function createCounter() {
@@ -54,7 +54,7 @@ counter.increment();
 console.log(counter.getVal()); // 2
 ```
 
-At a high level it is also what makes something like Node.js possible (don't worry if it doesn't click in your brain right now. It will eventually 🌹):
+高いレベルでは、Node.jsのようなものを作ることもできます（今すぐあなたの脳をクリックしなければ心配しないでください。
 
 ```ts
 // Pseudo code to explain the concept

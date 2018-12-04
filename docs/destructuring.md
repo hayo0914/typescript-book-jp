@@ -1,11 +1,11 @@
-### Destructuring
+### デストラクション
 
-TypeScript supports the following forms of Destructuring (literally named after de-structuring i.e. breaking up the structure):
+TypeScriptは以下の形式の分解をサポートしています（構造的に構造化されていない、つまり構造が分割されています）。
 
-1. Object Destructuring
-1. Array Destructuring
+1. オブジェクトの破壊
+1. アレイの破壊
 
-It is easy to think of destructuring as an inverse of *structuring*. The method of *structuring* in JavaScript is the object literal:
+構造化を構造化*の逆と考えるのは簡単です。 JavaScriptの*構造化*メソッドはオブジェクトリテラルです：
 
 ```ts
 var foo = {
@@ -14,10 +14,10 @@ var foo = {
     }
 };
 ```
-Without the awesome *structuring* support built into JavaScript, creating new objects on the fly would indeed be very cumbersome. Destructuring brings the same level of convenience to getting data out of a structure.
+JavaScriptに構築されたすばらしい*構造化サポートがなければ、その場で新しいオブジェクトを作成することは、実際には非常に面倒です。破壊は、構造からデータを取り出すのと同じレベルの利便性をもたらします。
 
-#### Object Destructuring
-Destructuring is useful because it allows you to do in a single line, what would otherwise require multiple lines. Consider the following case:
+#### オブジェクトの破壊
+デストラクタリングは便利です。なぜなら、1行で行うことができ、それ以外の場合は複数の行を必要とするからです。次の場合を考えてみましょう。
 
 ```ts
 var rect = { x: 0, y: 10, width: 15, height: 20 };
@@ -30,9 +30,9 @@ rect.x = 10;
 ({x, y, width, height} = rect); // assign to existing variables using outer parentheses
 console.log(x, y, width, height); // 10,10,15,20
 ```
-Here in the absence of destructuring you would have to pick off `x,y,width,height` one by one from `rect`.
+ここでは、非構造化がなければ `rect 'から`x、y、width、height`を一つずつ選択する必要があります。
 
-To assign an extracted variable to a new variable name you can do the following:
+抽出した変数を新しい変数名に割り当てるには、次のようにします。
 
 ```ts
 // structure
@@ -43,21 +43,21 @@ const {"some property": someProperty} = obj;
 console.log(someProperty === "some value"); // true
 ```
 
-Additionally you can get *deep* data out of a structure using destructuring. This is shown in the following example:
+さらに、構造化を使用して構造体から* deep *データを取得することもできます。これは次の例に示されています。
 
 ```ts
 var foo = { bar: { bas: 123 } };
 var {bar: {bas}} = foo; // Effectively `var bas = foo.bar.bas;`
 ```
 
-#### Object Destructuring with rest
-You can pick up any number of elements from an object and get *an object* of the remaining elements using object destructuring with rest.
+#### オブジェクトを破壊する
+あるオブジェクトから任意の数の要素を取り上げ、残りの要素のオブジェクト*を残りのオブジェクトを使って取得することができます。
 
 ```ts
 var {w, x, ...remaining} = {w: 1, x: 2, y: 3, z: 4};
 console.log(w, x, remaining); // 1, 2, {y:3,z:4}
 ```
-A common use case is also to ignore certain properties. For example:
+一般的な使用例では、特定のプロパティも無視します。例えば：
 ```ts
 // Example function
 function goto(point2D: {x: number, y: number}) {
@@ -72,33 +72,33 @@ const { z, ...point2D } = point3D;
 goto(point2D);
 ```
 
-#### Array Destructuring
-A common programming question: "How to swap two variables without using a third one?". The TypeScript solution:
+#### 配列の破壊
+一般的なプログラミングの質問：「3つ目の変数を使用せずに2つの変数を交換する方法」。 TypeScriptソリューション：
 
 ```ts
 var x = 1, y = 2;
 [x, y] = [y, x];
 console.log(x, y); // 2,1
 ```
-Note that array destructuring is effectively the compiler doing the `[0], [1], ...` and so on for you. There is no guarantee that these values will exist.
+配列の破壊は事実上コンパイラが `[0]、[1]、...`などをしていることに注意してください。これらの値が存在するという保証はありません。
 
-#### Array Destructuring with rest
-You can pick up any number of elements from an array and get *an array* of the remaining elements using array destructuring with rest.
+#### 配列を使って破壊する
+配列から任意の数の要素を取得し、残りの要素の配列*を、残りの配列の構造解除を使用して取得することができます。
 
 ```ts
 var [x, y, ...remaining] = [1, 2, 3, 4];
 console.log(x, y, remaining); // 1, 2, [3,4]
 ```
 
-#### Array Destructuring with ignores
-You can ignore any index by simply leaving its location empty i.e. `, ,` in the left hand side of the assignment. For example:
+#### 配列destructuring with ignores
+あなたは、その場所を空のままにして、つまり割り当ての左側に `、、`を残すだけで、インデックスを無視することができます。例えば：
 ```ts
 var [x, , ...remaining] = [1, 2, 3, 4];
 console.log(x, remaining); // 1, [3,4]
 ```
 
 #### JS Generation
-The JavaScript generation for non ES6 targets simply involves creating temporary variables, just like you would have to do yourself without native language support for destructuring e.g.
+ES6以外のターゲットのJavaScript生成には、一時的な変数の作成が含まれています。
 
 ```ts
 var x = 1, y = 2;
@@ -113,5 +113,5 @@ console.log(x, y);
 var _a;
 ```
 
-#### Summary
-Destructuring can make your code more readable and maintainable by reducing the line count and making the intent clear. Array destructuring can allow you to use arrays as though they were tuples.
+#### 要約
+Destructuringは、行数を減らして意図を明確にすることで、コードをより読みやすく保守しやすくすることができます。配列の構造化を解除すると、配列をタプルのように使うことができます。
