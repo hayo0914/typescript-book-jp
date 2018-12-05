@@ -30,7 +30,7 @@ console.log(0 === ""); // false
 console.log({a:123} == {a:123}); // False
 console.log({a:123} === {a:123}); // False
 ```
-このようなチェックを行うには、[deep-equal]（https://www.npmjs.com/package/deep-equal） npmパッケージを使用します。
+このようなチェックを行うには、[deep-equal](https://www.npmjs.com/package/deep-equal) npmパッケージを使用します。
 
 ```js
 import * as deepEqual from "deep-equal";
