@@ -2,7 +2,7 @@
 
 JavaScriptコンパイラに対する、いくつかの構文には多くの競合がいました（そして今後もそうです）。 TypeScriptは、*あなたのJavaScriptがTypeScriptである*点でそれらとは異なります。ここに図があります：
 
-！[JavaScriptはTypeScriptです](https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png)
+![JavaScriptはTypeScriptです](https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png)
 
 しかし、これはJavaScriptを学ぶ必要があることを意味します（良いニュースはJavaScriptだけを学ぶ必要があるだけです）。 TypeScriptは、JavaScriptの優れたドキュメンテーションを提供する全ての方法を標準化しているだけです。
 
