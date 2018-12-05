@@ -5,7 +5,7 @@
 export function emitFiles(resolver: EmitResolver, host: EmitHost, targetSourceFile?: SourceFile): EmitResult {
 ```
 
-`EmitHost`は`CompilerHost`の簡略化された（狭められたような）バージョンです（実際には多くのユースケースでは実行時に `CompilerHost`となります）。
+`EmitHost`は`CompilerHost`の簡略化された(狭められたような)バージョンです(実際には多くのユースケースでは実行時に `CompilerHost`となります)。
 
 `emitFiles`からの最も興味深いコールスタックは次のとおりです：
 
@@ -111,7 +111,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
 }
 ```
 
-基本的にはローカルの束を設定します（これらの関数は `emitter.ts`の* bulk *を形成します）。次にemitを起動するローカル関数`emitSourceFile`に渡します。 `emitSourceFile`関数は単に`currentSourceFile`を設定してローカルの `emit`関数に渡します。
+基本的にはローカルの束を設定します(これらの関数は `emitter.ts`の* bulk *を形成します)。次にemitを起動するローカル関数`emitSourceFile`に渡します。 `emitSourceFile`関数は単に`currentSourceFile`を設定してローカルの `emit`関数に渡します。
 
 ```ts
 function emitSourceFile(sourceFile: SourceFile): void {

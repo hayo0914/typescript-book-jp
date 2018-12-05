@@ -1,6 +1,6 @@
 # インデックス署名
 
-JavaScript（したがってTypeScript）の `Object`は、他のJavaScript **オブジェクト**への参照を保持する**文字列**でアクセスできます。
+JavaScript(したがってTypeScript)の `Object`は、他のJavaScript **オブジェクト**への参照を保持する**文字列**でアクセスできます。
 
 ここに簡単な例があります：
 
@@ -43,7 +43,7 @@ console.log(foo['Hello']); // World
 
 `toString`は、インデックス位置で`obj`が使われるたびに呼び出されます。
 
-配列は若干異なります。 `number`インデックスを付けるために、JavaScript VMは最適化しようとします（実際には配列であり、一致したアイテムの構造体などに応じて異なります）。だから、 `number`はそれ自身で正しいオブジェクトアクセッサーとみなされるべきです（`string`とは異なります）。以下は単純な配列の例です：
+配列は若干異なります。 `number`インデックスを付けるために、JavaScript VMは最適化しようとします(実際には配列であり、一致したアイテムの構造体などに応じて異なります)。だから、 `number`はそれ自身で正しいオブジェクトアクセッサーとみなされるべきです(`string`とは異なります)。以下は単純な配列の例です：
 
 ```ts
 let foo = ['World'];
@@ -54,7 +54,7 @@ console.log(foo[0]); // World
 
 ## TypeScriptインデックスシグネチャ
 
-最初に、JavaScript *は暗黙のうちにどんなオブジェクトインデックスシグネチャでも `toString`を呼び出すので、初心者が足で自分を撃ってしまうのを防ぐためにエラーが出ます（私はJavaScriptをスタックオーバーフロー）：
+最初に、JavaScript *は暗黙のうちにどんなオブジェクトインデックスシグネチャでも `toString`を呼び出すので、初心者が足で自分を撃ってしまうのを防ぐためにエラーが出ます(私はJavaScriptをスタックオーバーフロー)：
 
 ```ts
 let obj = {
@@ -88,7 +88,7 @@ console.log(foo["[object Object]"]); // World
 もちろん `number`はサポートされています
 
 1. 優れたアレイ/タプルのサポートに必要です。
-あなたが `obj`のためにそれを使うとしても、デフォルトの`toString`実装は素晴らしいです（ `[object Object]`ではなく）。
+あなたが `obj`のためにそれを使うとしても、デフォルトの`toString`実装は素晴らしいです( `[object Object]`ではなく)。
 
 ポイント2を以下に示します。
 
@@ -236,7 +236,7 @@ const failsSilently: NestedCSS = {
 }
 ```
 
-代わりに、ネスティングを独自のプロパティに分離します。 `nest`（または`children`や `subnodes`など）のような名前で宣言します：
+代わりに、ネスティングを独自のプロパティに分離します。 `nest`(または`children`や `subnodes`など)のような名前で宣言します：
 
 ```ts
 interface NestedCSS {

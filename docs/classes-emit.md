@@ -10,7 +10,7 @@ Point.prototype.add = function (point) {
 };
 ```
 
-Immediately-Invoked Function Expression（IIFE）で包まれた理由
+Immediately-Invoked Function Expression(IIFE)で包まれた理由
 
 ```ts
 (function () {
@@ -51,7 +51,7 @@ var __extends = this.__extends || function (d, b) {
 };
 ```
 ここで `d`は派生クラスを指し、`b`は基底クラスを指す。この関数は2つのことを行います：
-1. （b.hasOwnProperty（p））d [p] = b [p];であれば、基本クラスの静的メンバーを子クラスにコピーする。
+1. (b.hasOwnProperty(p))d [p] = b [p];であれば、基本クラスの静的メンバーを子クラスにコピーする。
 子クラス関数のプロトタイプを設定して、オプションで親の `proto '、つまり効果的に`d.prototype .__ proto__ = b.prototype`のメンバーを検索します
 
 人々はほとんど理解することができませんが、多くの人が2と闘います。説明は順調です。
@@ -65,7 +65,7 @@ var __extends = this.__extends || function (d, b) {
 1. 呼び出された関数内の `this`に対する`new`の効果
 1. プロトタイプと `__proto__`に対する`new`の効果
 
-JavaScriptのすべてのオブジェクトには `__proto__`メンバが含まれています。このメンバは古いブラウザではアクセスできないことがよくあります（ドキュメントでは、この魔法のプロパティを `[[prototype]]と呼ぶこともあります）。 1つの目的があります：ルックアップ中にオブジェクトにプロパティが見つからない場合（例えば `obj.property`）、`obj .__ proto __。property`でルックアップされます。それでもまだ見つからなければ、 `obj .__ proto __.__ proto __。property`を*見つけられます：*それが見つかるか*最新の`.__ proto__`自体はnullです*。これはJavaScriptがなぜプロトタイプの継承*をサポートすると言われているのかを説明しています。これは次の例に示されています。これはchromeコンソールまたはNode.jsで実行できます。
+JavaScriptのすべてのオブジェクトには `__proto__`メンバが含まれています。このメンバは古いブラウザではアクセスできないことがよくあります(ドキュメントでは、この魔法のプロパティを `[[prototype]]と呼ぶこともあります)。 1つの目的があります：ルックアップ中にオブジェクトにプロパティが見つからない場合(例えば `obj.property`)、`obj .__ proto __。property`でルックアップされます。それでもまだ見つからなければ、 `obj .__ proto __.__ proto __。property`を*見つけられます：*それが見つかるか*最新の`.__ proto__`自体はnullです*。これはJavaScriptがなぜプロトタイプの継承*をサポートすると言われているのかを説明しています。これは次の例に示されています。これはchromeコンソールまたはNode.jsで実行できます。
 
 ```ts
 var foo = {}
@@ -119,9 +119,9 @@ console.log(foo.__proto__ === Foo.prototype); // True!
 3   d.prototype = new __();
 ```
 
-この関数を3行目の `d.prototype = new __（）`と逆に読むと `d.prototype = {__proto__：__。prototype}`を意味します（ `prototype`と`__proto__ `）、それを前の行（つまり、行2`__。prototype = b.prototype; `）と組み合わせると`d.prototype = {__proto__：b.prototype} `となります。
+この関数を3行目の `d.prototype = new __()`と逆に読むと `d.prototype = {__proto__：__。prototype}`を意味します( `prototype`と`__proto__ `)、それを前の行(つまり、行2`__。prototype = b.prototype; `)と組み合わせると`d.prototype = {__proto__：b.prototype} `となります。
 
-しかし、私たちは `d.prototype .__ proto__`を望んでいました。つまり、protoだけが変更され、古い`d.prototype.constructor`が維持されました。これは、最初の行の意味（つまり `function __（）{this.constructor = d;}`）が来る場所です。ここでは `d.prototype = {__proto__：__。prototype、constructor：d} `（これは呼び出された関数の中で`this`に `new`が及ぼす影響のためです）。したがって、 `d.prototype.constructor`を復元するので、私たちが本当に突然変異させたのは`__proto__`だけなので、 `d.prototype .__ proto__ = b.prototype`です。
+しかし、私たちは `d.prototype .__ proto__`を望んでいました。つまり、protoだけが変更され、古い`d.prototype.constructor`が維持されました。これは、最初の行の意味(つまり `function __(){this.constructor = d;}`)が来る場所です。ここでは `d.prototype = {__proto__：__。prototype、constructor：d} `(これは呼び出された関数の中で`this`に `new`が及ぼす影響のためです)。したがって、 `d.prototype.constructor`を復元するので、私たちが本当に突然変異させたのは`__proto__`だけなので、 `d.prototype .__ proto__ = b.prototype`です。
 
 #### `d.prototype .__ proto__ = b.prototype`の意義
 
@@ -139,4 +139,4 @@ var bird = new Bird();
 bird.walk();
 bird.fly();
 ```
-基本的に `bird.fly`は`bird.__ proto __。fly`（ `new`は`bird.__ proto__`が `Bird.prototype`を指すことを覚えておいてください）と`bird.walk`（継承されたメンバー） `bird .__ proto__ == Bird.prototype`と`bird.__ proto __.__ proto__` == `Animal.prototype`）で検索します。
+基本的に `bird.fly`は`bird.__ proto __。fly`( `new`は`bird.__ proto__`が `Bird.prototype`を指すことを覚えておいてください)と`bird.walk`(継承されたメンバー) `bird .__ proto__ == Bird.prototype`と`bird.__ proto __.__ proto__` == `Animal.prototype`)で検索します。

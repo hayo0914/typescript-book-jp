@@ -66,7 +66,7 @@ let component = iteratorResult1.value; //Component { name: 'top' }
 再び。 Iterator自体はTypeScriptの機能ではなく、このコードは
 IteratorとIteratorResultインタフェースを明示的に実装します。
 しかし、これらの共通点を使用すると非常に便利です
-コード一貫性のためのES6 [interfaces]（./ types / interfaces.md）
+コード一貫性のためのES6 [interfaces](./ types / interfaces.md)
 
 よかったですが、もっと役立つかもしれません。 ES6は* iterableプロトコルを定義します*
 Iterableインターフェースが実装されている場合は、[Symbol.iterator] `symbol`を含みます：
@@ -104,8 +104,8 @@ for (let cmp of frame) {
 }
 ```
 
-残念ながら `frame.next（）`はこのパターンでは動作しません。
-少し不器用です。レスキューへのIterableIteratorインターフェイス！
+残念ながら `frame.next()`はこのパターンでは動作しません。
+少し不器用です。レスキューへのIterableIteratorインターフェイス!
 ```ts
 //...
 class Frame implements IterableIterator<Component> {
@@ -135,7 +135,7 @@ class Frame implements IterableIterator<Component> {
 }
 //...
 ```
-`frame.next（）`と `for`サイクルの両方が、IterableIteratorインターフェースでうまく動作するようになりました。
+`frame.next()`と `for`サイクルの両方が、IterableIteratorインターフェースでうまく動作するようになりました。
 
 反復子は有限の値を反復する必要はありません。
 典型的な例はフィボナッチシーケンスです：
@@ -191,5 +191,5 @@ for(let num of fibMax21) {
 上記のコード例ではES6ターゲットが必要ですが、動作する可能性があります
 ターゲットJSエンジンが `Symbol.iterator`をサポートしている場合は、ES5ターゲットも使用できます。
 これは、ES5ターゲットでES6 libを使用することで実現できます
-（es6.d.tsをプロジェクトに追加して）コンパイルします。
+(es6.d.tsをプロジェクトに追加して)コンパイルします。
 コンパイルされたコードは、ノード4+、Google Chrome、その他のブラウザで動作するはずです。

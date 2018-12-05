@@ -16,7 +16,7 @@ foo.bar = 123; // Error: Property 'bar' does not exist on type '{}'
 foo.bas = "Hello World"; // Error: Property 'bas' does not exist on type '{}'
 ```
 
-これは、 `let foo = {}`の状態から、TypeScript *は `foo`の型（初期化代入の左辺）を右辺`{} `の型に推論するためですプロパティなし）。それで、あなたが知らないプロパティに割り当てようとするとエラーになります。
+これは、 `let foo = {}`の状態から、TypeScript *は `foo`の型(初期化代入の左辺)を右辺`{} `の型に推論するためですプロパティなし)。それで、あなたが知らないプロパティに割り当てようとするとエラーになります。
 
 ### 理想的な修正
 

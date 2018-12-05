@@ -3,9 +3,9 @@ TypeScriptの外部モジュールパターンには多くの力と使い勝手�
 
 ### 明確化：commonjs、amd、esモジュール、その他
 
-最初に、そこにあるモジュールシステムの（ひどい）矛盾を明確にする必要があります。私はあなたに私の現在の*推奨を与えて、ノイズを取り除くだけです。
+最初に、そこにあるモジュールシステムの(ひどい)矛盾を明確にする必要があります。私はあなたに私の現在の*推奨を与えて、ノイズを取り除くだけです。
 
-* 同じTypeScript *から、 `module`オプションに応じて異なる* JavaScript *を生成することができます。無視できるものは次のとおりです（デッドテックの説明に興味はありません）：
+* 同じTypeScript *から、 `module`オプションに応じて異なる* JavaScript *を生成することができます。無視できるものは次のとおりです(デッドテックの説明に興味はありません)：
 
 * AMD：使用しないでください。ブラウザのみでした。
 * SystemJS：良い実験でした。 ESモジュールによって置き換えられました。
@@ -15,7 +15,7 @@ TypeScriptの外部モジュールパターンには多くの力と使い勝手�
 
 どのように*書く* TypeScriptモジュールもちょっと混乱しています。もう一度やりなさい*今日*：
 
-* `import foo = require（ 'foo'）`。すなわち、「インポート/要求する」。代わりにESモジュールの構文を使用してください。
+* `import foo = require( 'foo')`。すなわち、「インポート/要求する」。代わりにESモジュールの構文を使用してください。
 
 クールな方法で、ESモジュールの構文を見てみましょう。
 
@@ -23,7 +23,7 @@ TypeScriptの外部モジュールパターンには多くの力と使い勝手�
 
 ### ESモジュールの構文
 
-* 変数（または型）のエクスポートは、キーワード'export`の前に置くのと同じくらい簡単です。
+* 変数(または型)のエクスポートは、キーワード'export`の前に置くのと同じくらい簡単です。
 
 ```js
 // file `foo.ts`
@@ -103,7 +103,7 @@ export { someVar as aDifferentName } from './foo';
 あなたが後で学ぶように、私はデフォルト輸出のファンではありません。ここではエクスポートの構文とデフォルトのエクスポートを使用しています
 
 * `export default`を使ってエクスポートする
-  *変数の前に（ `let / const / var`は必要ありません）
+  *変数の前に( `let / const / var`は必要ありません)
   *関数の前に
   *クラス前
 
@@ -116,7 +116,7 @@ export default function someFunction() { }
 export default class SomeClass { }
 ```
 
-* import someName using someModule "構文を使用してインポートします（インポートには任意の名前を付けることができます）。
+* import someName using someModule "構文を使用してインポートします(インポートには任意の名前を付けることができます)。
 
 ```js
 import someLocalNameForThisFile from "../foo";
@@ -126,10 +126,10 @@ import someLocalNameForThisFile from "../foo";
 
 > 私は `moduleResolution：commonjs`と仮定しようとしています。これはあなたのTypeScript設定に含めるべきオプションです。この設定は `module：commonjs`によって自動的に暗示されます。
 
-2つの異なる種類のモジュールがあります。この区別は、インポート・ステートメントのパス・セクションによって行われます（たとえば、「これはパス・セクションです」からのインポートfoo）。
+2つの異なる種類のモジュールがあります。この区別は、インポート・ステートメントのパス・セクションによって行われます(たとえば、「これはパス・セクションです」からのインポートfoo)。
 
-* 相対パスモジュール（パスは `.`で始まる`。/ someFile`や `../../ someFolder / someFile`など）
-* その他の動的参照モジュール（ ``core-js '`や` `typestyle``や` `react``や` `react / core``など）
+* 相対パスモジュール(パスは `.`で始まる`。/ someFile`や `../../ someFolder / someFile`など)
+* その他の動的参照モジュール( ``core-js '`や` `typestyle``や` `react``や` `react / core``など)
 
 主な違いは、モジュールがファイルシステム上でどのように解決されるかです。
 
@@ -146,7 +146,7 @@ import someLocalNameForThisFile from "../foo";
 
 #### 動的ルックアップ
 
-インポートパスが*相対でない場合、ルックアップは[*ノードスタイル解決*]（https://nodejs.org/api/modules.html#modules_all_together）によって駆動されます。ここでは簡単な例を示します。
+インポートパスが*相対でない場合、ルックアップは[*ノードスタイル解決*](https://nodejs.org/api/modules.html#modules_all_together)によって駆動されます。ここでは簡単な例を示します。
 
 * あなたは `foo 'からfooとして` import *を持っています、以下はチェックされた場所です*順番に*
   * `。/ node_modules / foo`
@@ -164,14 +164,14 @@ import someLocalNameForThisFile from "../foo";
 ### *とは何ですか？
 私がチェックしている場所*を言うとき、私はその場所で次のことがチェックされていることを意味します。例えば`foo`の場所に対して：
 
-* 場所がファイルの場合、たとえば`foo.ts`、hurray！
-* 場所がフォルダで、 `foo / index.ts`ファイルがある場合は、hurray！
-* 場所がフォルダで、 `foo / package.json`と存在するpackage.json内の`types`キーで指定されたファイルがある場合は、hurray！
-* 他に場所がフォルダであり、存在するpackage.jsonに `main`キーで指定された`package.json`とファイルが存在する場合、その時ハレー！
+* 場所がファイルの場合、たとえば`foo.ts`、hurray!
+* 場所がフォルダで、 `foo / index.ts`ファイルがある場合は、hurray!
+* 場所がフォルダで、 `foo / package.json`と存在するpackage.json内の`types`キーで指定されたファイルがある場合は、hurray!
+* 他に場所がフォルダであり、存在するpackage.jsonに `main`キーで指定された`package.json`とファイルが存在する場合、その時ハレー!
 
 ファイルでは、実際には `.ts`/` .d.ts`と `.js`を意味します。
 
-以上です。あなたは今モジュールルックアップのエキスパートです（小さな偉業ではありません！）。
+以上です。あなたは今モジュールルックアップのエキスパートです(小さな偉業ではありません!)。
 
 ### 型のためだけにダイナミックルックアップを転覆する*
 `declare module 'somePath'`を使ってあなたのプロジェクトのモジュール*をグローバルに宣言することができます。そして、importはそのパスに魔法のように*解決します
@@ -206,7 +206,7 @@ import foo = require('foo');
 * fooモジュールのタイプ情報をインポートします。
 * fooモジュールのランタイム依存性を指定します。
 
-* タイプ情報*のみがロードされ、ランタイム依存性が発生しないように選択して選択することができます。続行する前に、本の[* declaration spaces *]（../ project / declarationspaces.md）セクションを要約するとよいでしょう。
+* タイプ情報*のみがロードされ、ランタイム依存性が発生しないように選択して選択することができます。続行する前に、本の[* declaration spaces *](../ project / declarationspaces.md)セクションを要約するとよいでしょう。
 
 変数宣言空間でインポートされた名前を使用しないと、インポートは生成されたJavaScriptから完全に削除されます。これは例を用いて最もよく説明されています。これを理解すると、ユースケースを紹介します。
 
@@ -230,14 +230,14 @@ JavaScriptを生成します：
 ```js
 var bar;
 ```
-これは、 `foo`（または`foo.bas`などのプロパティ）が決して変数として使用されないためです。
+これは、 `foo`(または`foo.bas`などのプロパティ)が決して変数として使用されないためです。
 
 #### 例3
 ```ts
 import foo = require('foo');
 var bar = foo;
 ```
-JavaScriptを生成します（commonjsと仮定します）。
+JavaScriptを生成します(commonjsと仮定します)。
 ```js
 var foo = require('foo');
 var bar = foo;
@@ -266,7 +266,7 @@ export function loadFoo() {
 }
 ```
 
-amd（requirejsを使用）の同様のサンプルは次のようになります：
+amd(requirejsを使用)の同様のサンプルは次のようになります：
 ```ts
 import foo = require('foo');
 
@@ -284,11 +284,11 @@ export function loadFoo() {
 
 ### ユースケース：円周の依存関係を壊す
 
-レイジーロードの使用例と同様に、特定のモジュールローダ（commonjs / nodeとamd / requirejs）は循環依存性でうまく動作しません。そのような場合には、ある方向に* lazy loading *コードを持ち、他の方向にモジュールを先にロードすると便利です。
+レイジーロードの使用例と同様に、特定のモジュールローダ(commonjs / nodeとamd / requirejs)は循環依存性でうまく動作しません。そのような場合には、ある方向に* lazy loading *コードを持ち、他の方向にモジュールを先にロードすると便利です。
 
 ### ユースケース：インポートを確実にする
 
-場合によっては、副作用のためだけにファイルをロードすることもできます（モジュールが[CodeMirror addons]（https://codemirror.net/doc/manual.html#addons）などのライブラリに登録されるなど）。しかし、単に `import / require`を行うと、翻訳されたJavaScriptはモジュールへの依存関係を持たず、モジュールローダー（例えばwebpack）はインポートを完全に無視するかもしれません。このような場合、 `ensureImport`変数を使用して、コンパイルされたJavaScriptがモジュールに依存するようにすることができます。
+場合によっては、副作用のためだけにファイルをロードすることもできます(モジュールが[CodeMirror addons](https://codemirror.net/doc/manual.html#addons)などのライブラリに登録されるなど)。しかし、単に `import / require`を行うと、翻訳されたJavaScriptはモジュールへの依存関係を持たず、モジュールローダー(例えばwebpack)はインポートを完全に無視するかもしれません。このような場合、 `ensureImport`変数を使用して、コンパイルされたJavaScriptがモジュールに依存するようにすることができます。
 
 ```ts
 import foo = require('./foo');

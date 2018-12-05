@@ -1,12 +1,12 @@
-* [TypeScript入門]（#getting-started-with-typescript）
-* [TypeScriptのバージョン]（#typescript-version）
+* [TypeScript入門](#getting-started-with-typescript)
+* [TypeScriptのバージョン](#typescript-version)
 
 # TypeScriptを始める
 
-TypeScriptはJavaScriptにコンパイルされます。実際に実行されるのは、JavaScriptです（ブラウザ上、でも、サーバー上でも）。したがって、次のものが必要です：
+TypeScriptはJavaScriptにコンパイルされます。実際に実行されるのは、JavaScriptです(ブラウザ上、でも、サーバー上でも)。したがって、次のものが必要です：
 
-* TypeScriptコンパイラ（OSSが[ソース](https://github.com/Microsoft/TypeScript/）および[NPM]（https://www.npmjs.com/package/typescript）で利用可能）
-* TypeScriptエディタ（望めばメモ帳を使えますが、私は[vscode🌹]（https://code.visualstudio.com/）を[私が作成したプラグイン]（https：// marketplace.visualstudio.com/items?itemName=basarat.god）を一緒に使います。　また、[様々なIDE]（https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support）がサポートされています。）
+* TypeScriptコンパイラ(OSSが[ソース](https://github.com/Microsoft/TypeScript/)および[NPM](https://www.npmjs.com/package/typescript)で利用可能)
+* TypeScriptエディタ(望めばメモ帳を使えますが、私は[vscode🌹](https://code.visualstudio.com/)を[私が作成したプラグイン](https：// marketplace.visualstudio.com/items?itemName=basarat.god)を一緒に使います。　また、[様々なIDE](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support)がサポートされています。)
 
 
 ## TypeScriptのバージョン
@@ -30,7 +30,7 @@ npm install -g typescript@next
 
 ## ソースコード取得
 この書籍のソースは、githubのリポジトリ https://github.com/basarat/typescript-book/tree/master/code にあります。
-ほっとんどのコードサンプルをvscodeにコピーしてそのまま使用することができます。追加設定が必要なコードサンプル（例：npmモジュール）で、コードを表示する前にサンプルにのリンクを提示します。例えば
+ほっとんどのコードサンプルをvscodeにコピーしてそのまま使用することができます。追加設定が必要なコードサンプル(例：npmモジュール)で、コードを表示する前にサンプルにのリンクを提示します。例えば
 
 `this/will/be/the/link/to/the/code.ts`
 ```ts

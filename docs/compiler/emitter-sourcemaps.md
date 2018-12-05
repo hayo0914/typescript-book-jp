@@ -1,6 +1,6 @@
 ### エミッタソースマップ
 
-`emitter.ts`の大部分はローカル関数`emitJavaScript`です（この関数の初期化ルーチンを前に示しました）。それは基本的に地元の人々の集合を設定し、 `emitSourceFile`にヒットします。以下はこの関数の再訪です。今回は `SourceMap`に焦点を当てています：
+`emitter.ts`の大部分はローカル関数`emitJavaScript`です(この関数の初期化ルーチンを前に示しました)。それは基本的に地元の人々の集合を設定し、 `emitSourceFile`にヒットします。以下はこの関数の再訪です。今回は `SourceMap`に焦点を当てています：
 
 ```ts
 function emitJavaScript(jsFilePath: string, root?: SourceFile) {

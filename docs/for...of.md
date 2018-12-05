@@ -8,7 +8,7 @@ for (var item in someArray) {
 }
 ```
 
-これは、for ... ofがTypeScript（およびES6）に存在する理由の1つです。次のように、配列を繰り返し処理して、期待どおりにメンバーを正しくログアウトします。
+これは、for ... ofがTypeScript(およびES6)に存在する理由の1つです。次のように、配列を繰り返し処理して、期待どおりにメンバーを正しくログアウトします。
 
 ```ts
 var someArray = [9, 2, 5];
@@ -27,7 +27,7 @@ for (var char of hello) {
 ```
 
 #### JS Generation
-プレES6ターゲットの場合、TypeScriptは標準の `for（var i = 0; i <list.length; i ++）`種類のループを生成します。たとえば、前の例で生成されるものを次に示します。
+プレES6ターゲットの場合、TypeScriptは標準の `for(var i = 0; i <list.length; i ++)`種類のループを生成します。たとえば、前の例で生成されるものを次に示します。
 ```ts
 var someArray = [9, 2, 5];
 for (var item of someArray) {
@@ -41,7 +41,7 @@ for (var _i = 0; _i < someArray.length; _i++) {
     console.log(item);
 }
 ```
-`for ... of`を使うと、* intent *がより明確になることがわかりますし、書くべきコードの量も増えます（そして、あなたが思いつくべき変数名）。
+`for ... of`を使うと、* intent *がより明確になることがわかりますし、書くべきコードの量も増えます(そして、あなたが思いつくべき変数名)。
 
 #### 制限事項
 ES6以上をターゲットにしていない場合、生成されたコードはオブジェクトに「長さ」というプロパティが存在することを前提としています。 `obj [2]`。したがって、これらのレガシーJSエンジンの `string`と`array`でのみサポートされています。

@@ -77,7 +77,7 @@ const fooBar = {...foo, ...bar};
 ```
 
 #### 要約
-`apply`はJavaScriptでよく使うものなので、`this`引数にその醜い `null`を持たない方が良い構文にするのは良いことです。また、他の配列から配列を外す（destructuring）または（代入）するための専用の構文を使用すると、部分配列に対して配列処理を実行するときに便利な構文が提供されます。
+`apply`はJavaScriptでよく使うものなので、`this`引数にその醜い `null`を持たない方が良い構文にするのは良いことです。また、他の配列から配列を外す(destructuring)または(代入)するための専用の構文を使用すると、部分配列に対して配列処理を実行するときに便利な構文が提供されます。
 
 
-[]（https://github.com/Microsoft/TypeScript/pull/1931）
+[](https://github.com/Microsoft/TypeScript/pull/1931)

@@ -1,6 +1,6 @@
 ### コンテナ
 
-ASTノードはコンテナです。これは、Nodeとそれに関連するSymbolが持つSymbolTablesの種類を決定します。コンテナは抽象的な概念です（つまり、関連するデータ構造はありません）。このコンセプトは、いくつかのものによって駆動されます.1つは `ContainerFlags`enumです。関数 `getContainerFlags`（`binder.ts`にあります）がこのフラグを駆動し、以下に示します：
+ASTノードはコンテナです。これは、Nodeとそれに関連するSymbolが持つSymbolTablesの種類を決定します。コンテナは抽象的な概念です(つまり、関連するデータ構造はありません)。このコンセプトは、いくつかのものによって駆動されます.1つは `ContainerFlags`enumです。関数 `getContainerFlags`(`binder.ts`にあります)がこのフラグを駆動し、以下に示します：
 
 ```ts
 function getContainerFlags(node: Node): ContainerFlags {

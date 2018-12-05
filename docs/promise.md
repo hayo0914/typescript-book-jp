@@ -102,7 +102,7 @@ loadJSON('invalid.json', function (err, data) {
 });
 ```
 
-しかし、このコードには微妙なバグがあります。 `JSON.parse`ではなく、コールバック（`cb`）がエラーをスローすると、 `try`/` catch`でラップしたので、 `catch`が実行され、コールバックを再度コールします。二度呼ばれる！これは以下の例で実証されています：
+しかし、このコードには微妙なバグがあります。 `JSON.parse`ではなく、コールバック(`cb`)がエラーをスローすると、 `try`/` catch`でラップしたので、 `catch`が実行され、コールバックを再度コールします。二度呼ばれる!これは以下の例で実証されています：
 
 ```ts
 import fs = require('fs');
@@ -174,9 +174,9 @@ function loadJSON(filename: string, cb: (error: Error) => void) {
 
 約束は、「保留中」または「履行済み」または「拒否」のいずれかになります。
 
-！[約束の州と運命]（https://raw.githubusercontent.com/basarat/typescript-book/master/images/promise%20states%20and%20fates.png）
+![約束の州と運命](https://raw.githubusercontent.com/basarat/typescript-book/master/images/promise%20states%20and%20fates.png)
 
-約束を作るのを見てみましょう。 Promise（promiseコンストラクタ）で `new`を呼び出すのは簡単なことです。 promiseコンストラクタには、約束状態を解決するために `resolve`と`reject`関数が渡されます。
+約束を作るのを見てみましょう。 Promise(promiseコンストラクタ)で `new`を呼び出すのは簡単なことです。 promiseコンストラクタには、約束状態を解決するために `resolve`と`reject`関数が渡されます。
 
 ```ts
 const promise = new Promise((resolve, reject) => {
@@ -186,7 +186,7 @@ const promise = new Promise((resolve, reject) => {
 
 ### 約束の運命に加入する
 
-約束運命は、 `.then`（解決された場合）または`.catch`（拒絶された場合）を使用して購読することができます。
+約束運命は、 `.then`(解決された場合)または`.catch`(拒絶された場合)を使用して購読することができます。
 
 ```ts
 const promise = new Promise((resolve, reject) => {
@@ -213,8 +213,8 @@ promise.catch((err) => {
 ```
 
 > ヒント：約束のショートカット
-* すでに約束されている約束をすばやく作成する： `Promise.resolve（result）`
-* 既に拒否されている約束をすばやく作成する： `Promise.reject（error）`
+* すでに約束されている約束をすばやく作成する： `Promise.resolve(result)`
+* 既に拒否されている約束をすばやく作成する： `Promise.reject(error)`
 
 ### 約束の連鎖性
 約束**の連鎖能力は、約束**が提供するメリットの中心です。その時点から約束が得られれば、 `then`関数を使って約束を作ることができます。
@@ -259,7 +259,7 @@ Promise.reject(new Error('something bad happened'))
     });
 ```
 
-* `catch 'は実際に新しい約束を返します（効果的に新しい約束を作り出します）：
+* `catch 'は実際に新しい約束を返します(効果的に新しい約束を作り出します)：
 
 ```ts
 // Create a rejected promise
@@ -277,7 +277,7 @@ Promise.reject(new Error('something bad happened'))
     })
 ```
 
-* `then`（または`catch`）でスローされた同期エラーは、返された約束が失敗する結果になります：
+* `then`(または`catch`)でスローされた同期エラーは、返された約束が失敗する結果になります：
 
 ```ts
 Promise.resolve(123)
@@ -294,7 +294,7 @@ Promise.resolve(123)
     })
 ```
 
-* 関連する（最も近いテーリング） `catch`だけが与えられたエラーに対して呼び出されます（catchが新しい約束を開始するとき）。
+* 関連する(最も近いテーリング) `catch`だけが与えられたエラーに対して呼び出されます(catchが新しい約束を開始するとき)。
 
 ```ts
 Promise.resolve(123)
@@ -329,7 +329,7 @@ Promise.resolve(123)
 
 事実：
 
-* エラーはtailingの `catch`にジャンプします（そして`then`コールは途中でスキップします）。
+* エラーはtailingの `catch`にジャンプします(そして`then`コールは途中でスキップします)。
 * 同期エラーはまた、どんなテーリング `catch`でも捕捉されます。
 
 実際には生のコールバックよりも優れたエラー処理を可能にする非同期プログラミングのパラダイムを効果的に提供します。もっと詳しくはこちら。
@@ -405,7 +405,7 @@ function loadJSONAsync(filename: string): Promise<any> {
 }
 ```
 
-使用法（このセクションの始めに導入された元の `sync`バージョンとどれほど似ているか注意してください。）：
+使用法(このセクションの始めに導入された元の `sync`バージョンとどれほど似ているか注意してください。)：
 ```ts
 // good json file
 loadJSONAsync('good.json')
@@ -433,7 +433,7 @@ loadJSONAsync('good.json')
     });
 ```
 
-この関数がより簡単だった理由は、 "loadFile`（async）+`JSON.parse`（sync）=> `catch`"の連結が約束チェーンによって行われたためです。また、コールバックは* us *によって呼び出されませんでしたが、約束チェーンによって呼び出されたので、 `try / catch`でラップする間違いの可能性はありませんでした。
+この関数がより簡単だった理由は、 "loadFile`(async)+`JSON.parse`(sync)=> `catch`"の連結が約束チェーンによって行われたためです。また、コールバックは* us *によって呼び出されませんでしたが、約束チェーンによって呼び出されたので、 `try / catch`でラップする間違いの可能性はありませんでした。
 
 ### 並列制御フロー
 私たちは、非同期タスクのシリアルシーケンスを行うことが約束どおりにいかに簡単であるかを見てきました。それは単に `then`呼び出しを連鎖させることの問題です。

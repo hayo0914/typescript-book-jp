@@ -10,4 +10,4 @@ forEach(host.getSourceFiles(), file => {
 });
 ```
 
-これは基本的にすべての `global`シンボルを`let globals：SymbolTable = {}; `（`createTypeChecker`内の）SymbolTableにマージします。 `mergeSymbolTable`は主に`mergeSymbol`を呼び出します。
+これは基本的にすべての `global`シンボルを`let globals：SymbolTable = {}; `(`createTypeChecker`内の)SymbolTableにマージします。 `mergeSymbolTable`は主に`mergeSymbol`を呼び出します。

@@ -1,5 +1,5 @@
 ## NullおよびUndefined
-JavaScript（拡張子はTypeScript）には、 `null`と`undefined`という2つのボトムの型があります。彼らは異なる意味を意図しています。
+JavaScript(拡張子はTypeScript)には、 `null`と`undefined`という2つのボトムの型があります。彼らは異なる意味を意図しています。
 
 * 何かが初期化されていない： `undefined`。
 * 何かが現在利用できません： `null`。
@@ -34,7 +34,7 @@ function foo(arg: string | null | undefined) {
 
 ### global変数(root level)のundefinedのチェック
 
-`== null`を使うべきだと言ったことを思い出してください。もちろん、あなたは覚えているでしょう（私はちょうどそれを言ったので^）。それは、root levelのものには使用しないでください。 strictモードで `foo`を使うとき、`foo`が定義されていないと、 `ReferenceError` **exception**が発生し、呼び出しスタック全体が巻き戻されます。
+`== null`を使うべきだと言ったことを思い出してください。もちろん、あなたは覚えているでしょう(私はちょうどそれを言ったので^)。それは、root levelのものには使用しないでください。 strictモードで `foo`を使うとき、`foo`が定義されていないと、 `ReferenceError` **exception**が発生し、呼び出しスタック全体が巻き戻されます。
 
 > strictモードを使うべきです...実際には、TSコンパイラはmoduleを使うとそれを挿入します...より詳細は、あとでこの本で解説するので、詳しく述べる必要はありません:)
 
@@ -68,7 +68,7 @@ function foo():{a:number,b?:number}{
 ```
 
 ### node style コールバック
-node style のコールバック関数（ `（err, somethingElse）=> {/* something */}`）は、エラーがなければ `err`を`null`に設定して呼び出されます。あなたは一般的にerrが真であるかをチェックします：
+node style のコールバック関数( `(err, somethingElse)=> {/* something */}`)は、エラーがなければ `err`を`null`に設定して呼び出されます。あなたは一般的にerrが真であるかをチェックします：
 
 ```ts
 fs.readFile('someFile', 'utf8', (err,data) => {
@@ -79,7 +79,7 @@ fs.readFile('someFile', 'utf8', (err,data) => {
   }
 });
 ```
-独自のAPIを作成するときは、一貫性のために `null`を使用することは問題ありません。誠心誠意、あなたのAPIはpromiseを見るべきです。その場合、エラー値の存在を気にする必要はありません（`.then`と`.catch`を使って扱います）。
+独自のAPIを作成するときは、一貫性のために `null`を使用することは問題ありません。誠心誠意、あなたのAPIはpromiseを見るべきです。その場合、エラー値の存在を気にする必要はありません(`.then`と`.catch`を使って扱います)。
 
 ### *有効性*を示す手段として `undefined`を使用しないでください
 

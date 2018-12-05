@@ -12,4 +12,4 @@ interface JQuery {
 }
 ```
 
-そして、あなたは `$（ 'something'）を使うことができます。foo（{whateverYouWant： 'hello jquery plugin'}）`
+そして、あなたは `$( 'something')を使うことができます。foo({whateverYouWant： 'hello jquery plugin'})`

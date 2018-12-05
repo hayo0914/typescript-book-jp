@@ -1,6 +1,6 @@
 ### SymbolTable
 
-SymbolTableは単純なHashMapとして実装されています。ここにインターフェイスがあります（ `types.ts`）：
+SymbolTableは単純なHashMapとして実装されています。ここにインターフェイスがあります( `types.ts`)：
 
 ```ts
 interface SymbolTable {
@@ -22,7 +22,7 @@ members?: SymbolTable;                  // Class, interface or literal instance 
 exports?: SymbolTable;                  // Module exports
 ```
 
-注： `ContainerFlags`に基づいて`bindChildren`によって `locals`が（{}}に）初期化されているのを見ました。
+注： `ContainerFlags`に基づいて`bindChildren`によって `locals`が({}}に)初期化されているのを見ました。
 
 #### シンボルテーブルの人口
 SymbolTablesは主に `declareSymbol`の呼び出しによって`Symbols`で埋められます。この機能の全体を以下に示す：

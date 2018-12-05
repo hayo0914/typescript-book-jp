@@ -1,19 +1,19 @@
 # React JSX
 
-> [Type ScriptとReactのPRO Eggheadコース]（https://egghead.io/courses/use-typescript-to-develop-react-applications）
+> [Type ScriptとReactのPRO Eggheadコース](https://egghead.io/courses/use-typescript-to-develop-react-applications)
 
 ## セットアップ
 
-私たちのブラウザクイックスタートでは、すでに反応アプリケーションの開発をセットアップしています（../ quick / browser.md）。ここに主要なハイライトがあります。
+私たちのブラウザクイックスタートでは、すでに反応アプリケーションの開発をセットアップしています(../ quick / browser.md)。ここに主要なハイライトがあります。
 
-* ファイル拡張子 `.tsx`（`.ts`の代わりに）を使用してください。
+* ファイル拡張子 `.tsx`(`.ts`の代わりに)を使用してください。
 * あなたの `tsconfig.json`の`compilerOptions`で `` jsx "：" react "を使ってください。
-* JSXとReactの定義をあなたのプロジェクトにインストールします：（ `npm i -D @ types / react @ types / react-dom`）。
-* Importは、あなたの `.tsx`ファイルに反応します（` import *はReactから "react"となります）。
+* JSXとReactの定義をあなたのプロジェクトにインストールします：( `npm i -D @ types / react @ types / react-dom`)。
+* Importは、あなたの `.tsx`ファイルに反応します(` import *はReactから "react"となります)。
 
 ## HTMLタグとコンポーネント
 
-Reactは、HTMLタグ（文字列）またはReactコンポーネント（クラス）をレンダリングできます。これらの要素に対するJavaScriptの発行は異なります（ `React.createElement（ 'div'）`対 `React.createElement（MyComponent）`）。これが決まる方法は*最初の*文字の* case *です。 `foo`はHTMLタグとして扱われ、`Foo`はコンポーネントとして扱われます。
+Reactは、HTMLタグ(文字列)またはReactコンポーネント(クラス)をレンダリングできます。これらの要素に対するJavaScriptの発行は異なります( `React.createElement( 'div')`対 `React.createElement(MyComponent)`)。これが決まる方法は*最初の*文字の* case *です。 `foo`はHTMLタグとして扱われ、`Foo`はコンポーネントとして扱われます。
 
 ## 型式チェック
 
@@ -152,11 +152,11 @@ const foo = <T extends {}>(x: T) => x;
 
 ### 型アサーション
 
-我々が[前に述べた]（./type-assertion.md#as-foo-vs-foo）のように、タイプアサーションには `as Foo`構文を使います。
+我々が[前に述べた](./type-assertion.md#as-foo-vs-foo)のように、タイプアサーションには `as Foo`構文を使います。
 
 ## デフォルトの小道具
 
-* デフォルトの小道具を持ったステートフルなコンポーネント：あなたは* Nullアサーション*演算子を使ってプロパティを外部から（Reactによって）提供することをTypeScriptに伝えることができます（これは理想的ではありませんが、 ）。
+* デフォルトの小道具を持ったステートフルなコンポーネント：あなたは* Nullアサーション*演算子を使ってプロパティを外部から(Reactによって)提供することをTypeScriptに伝えることができます(これは理想的ではありませんが、 )。
 
 ```tsx
 class Hello extends React.Component<{

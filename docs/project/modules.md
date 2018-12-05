@@ -16,7 +16,7 @@ var bar = foo; // allowed
 言うまでもありませんが、グローバルな名前空間を持つことは命名の競合のためにコードを開くので危険です。次のファイルモジュールを使用することをお勧めします。
 
 ### ファイルモジュール
-* external modules *とも呼ばれます。 TypeScriptファイルのルートレベルで `import`または`export`をお持ちの場合、そのファイル内に* local *スコープが作成されます。したがって、以前の `foo.ts`を次のように変更した場合（`export`使用に注意してください）：
+* external modules *とも呼ばれます。 TypeScriptファイルのルートレベルで `import`または`export`をお持ちの場合、そのファイル内に* local *スコープが作成されます。したがって、以前の `foo.ts`を次のように変更した場合(`export`使用に注意してください)：
 
 ```ts
 export var foo = 123;

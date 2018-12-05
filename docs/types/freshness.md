@@ -1,11 +1,11 @@
 
-* [鮮度]（新鮮度）
-* [追加のプロパティを許可する]（#allow-extra-properties）
-* [ユースケース：反応]（#ユースケース反応状態）
+* [鮮度](新鮮度)
+* [追加のプロパティを許可する](#allow-extra-properties)
+* [ユースケース：反応](#ユースケース反応状態)
 
 ## フレッシュネス
 
-TypeScriptは、構造的に型互換性のあるオブジェクトリテラルのチェックを簡単に入力できるように、** Freshness **（*厳密なオブジェクトリテラルチェック*とも呼ばれます）のコンセプトを提供します。
+TypeScriptは、構造的に型互換性のあるオブジェクトリテラルのチェックを簡単に入力できるように、** Freshness **(*厳密なオブジェクトリテラルチェック*とも呼ばれます)のコンセプトを提供します。
 
 構造タイピングは非常に便利です*。次のコードを考えてみましょう。これにより、タイプセーフティのレベルを維持しながら、JavaScriptをTypeScriptに非常に便利に*アップグレードすることができます：
 
@@ -34,7 +34,7 @@ logName({ name: 'matt' }); // okay
 logName({ name: 'matt', job: 'being awesome' }); // Error: object literals must only specify known properties. `job` is excessive here.
 ```
 
-このエラー*はオブジェクトリテラル*でのみ発生することに注意してください。このエラーがなければ、 `logName（{name： 'matt'、job： 'awesome'}）`という呼び出しを見て、* logName *が `job`で有用な何かを実行すると思うかもしれません。それ。
+このエラー*はオブジェクトリテラル*でのみ発生することに注意してください。このエラーがなければ、 `logName({name： 'matt'、job： 'awesome'})`という呼び出しを見て、* logName *が `job`で有用な何かを実行すると思うかもしれません。それ。
 
 もう1つの大きなユースケースは、オプションのメンバを持つインターフェイスで、このようなオブジェクトのリテラルチェックなしでは、タイプミスはちょうど良いとタイプされます。これは以下のとおりです：
 
@@ -65,7 +65,7 @@ x = { foo: 1, baz: 2 };  // Ok, `baz` matched by index signature
 
 ### ユースケース：反応状態
 
-[Facebook ReactJS]（https://facebook.github.io/react/）は、オブジェクトの新鮮さの良いユースケースを提供します。コンポーネント内では、通常、すべてのプロパティを渡すのではなく、少数のプロパティだけを使って `setState`を呼び出します。
+[Facebook ReactJS](https://facebook.github.io/react/)は、オブジェクトの新鮮さの良いユースケースを提供します。コンポーネント内では、通常、すべてのプロパティを渡すのではなく、少数のプロパティだけを使って `setState`を呼び出します。
 
 ```ts
 // Assuming
@@ -81,7 +81,7 @@ this.setState({foo: "Hello"}); // Error: missing property bar
 this.setState({foo: "Hello", bar: this.state.bar}};
 ```
 
-フレッシュさのアイデアを使用すると、すべてのメンバーをオプションとマークします*あなたはまだタイプミスをキャッチする*！：
+フレッシュさのアイデアを使用すると、すべてのメンバーをオプションとマークします*あなたはまだタイプミスをキャッチする*!：
 
 ```ts
 // Assuming

@@ -7,7 +7,7 @@ TypeScriptは、React with JSX以外のものをタイプセーフな方法で�
     * `JSX.IntrinsicElements`インターフェースメンバをカスタマイズすることで、どのHTMLタグが利用可能で、どのように型チェックされているかを制御することができます。
     *コンポーネントを使用する場合：
         *デフォルトの `Interface ElementClass extends React.Component <any any> {}`宣言をカスタマイズすることによって、どのクラスがコンポーネントによって継承されなければならないかを制御できます。
-        * declare module JSX {interface ElementAttributesProperty {props：{};}をカスタマイズすることで、どのプロパティをタイプするのに使われる属性を制御できます（デフォルトは `props`です）。 }} `宣言。
+        * declare module JSX {interface ElementAttributesProperty {props：{};}をカスタマイズすることで、どのプロパティをタイプするのに使われる属性を制御できます(デフォルトは `props`です)。 }} `宣言。
 
 ## `jsxFactory`
 

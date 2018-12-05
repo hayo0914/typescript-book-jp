@@ -1,11 +1,11 @@
 ### 変数
-例えば、あなたができる* [`process`変数]（https://nodejs.org/api/process.html）についてTypeScriptに伝えるために：
+例えば、あなたができる* [`process`変数](https://nodejs.org/api/process.html)についてTypeScriptに伝えるために：
 
 ```ts
 declare var process: any;
 ```
 
-> すでに `コミュニティが`node.d.ts`を維持しているので、 `process`のためにこれを行う必要はありません（https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/ノード/ index.d.ts）。
+> すでに `コミュニティが`node.d.ts`を維持しているので、 `process`のためにこれを行う必要はありません(https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/ノード/ index.d.ts)。
 
 これにより、TypeScriptを使わずに `process`変数を使うことができます：
 

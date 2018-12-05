@@ -5,7 +5,7 @@
 JavaScriptには1つの数値型しかありません。倍精度の64ビットの「数値」です。以下では、推奨される解決策とともに制限事項について説明します。
 
 ### 10進数(Decimal)
-他の言語のdouble / floatに精通している人にとって、バイナリ浮動小数点数は十進数に正しくマップされていないことがわかります。 JavaScriptに組み込まれた数字を使った簡単な（そして有名な）例を以下に示します：
+他の言語のdouble / floatに精通している人にとって、バイナリ浮動小数点数は十進数に正しくマップされていないことがわかります。 JavaScriptに組み込まれた数字を使った簡単な(そして有名な)例を以下に示します：
 
 ```js
 console.log(.1 + .2); // 0.30000000000000004
@@ -49,10 +49,10 @@ console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 1)); // false
 console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 10)); // false
 ```
 
-> JavaScriptでは最終的に[BigInt]（https://developers.google.com/web/updates/2018/05/bigint） がサポートされます。今のところ、任意の精度整数計算をしたい場合は、下記の `big.js`を使います。
+> JavaScriptでは最終的に[BigInt](https://developers.google.com/web/updates/2018/05/bigint) がサポートされます。今のところ、任意の精度整数計算をしたい場合は、下記の `big.js`を使います。
 
 ### big.js
-財務計算（例：GST計算、セントでのお金、追加など）に数学を使用する場合は、[big.js]（https://github.com/MikeMcl/big.js/） のようなライブラリを使用します。
+財務計算(例：GST計算、セントでのお金、追加など)に数学を使用する場合は、[big.js](https://github.com/MikeMcl/big.js/) のようなライブラリを使用します。
 * 完璧な小数点演算
 * 安全な範囲外の整数値
 
@@ -128,7 +128,7 @@ console.log(Number.POSITIVE_INFINITY === Infinity);  // true
 console.log(Number.NEGATIVE_INFINITY === -Infinity); // true
 ```
 
-幸いなことに、比較演算子（ `<`/ `>`）は無限値に対して確実に動作します：
+幸いなことに、比較演算子( `<`/ `>`)は無限値に対して確実に動作します：
 
 ```js
 console.log( Infinity >  1); // true
@@ -143,7 +143,7 @@ Numberで表現可能な最小の非ゼロ値は、静的な `Number.MIN_VALUE`�
 console.log(Number.MIN_VALUE);  // 5e-324
 ```
 
-「MIN_VALUE」より小さい値（「アンダーフロー値」）は0に変換されます。
+「MIN_VALUE」より小さい値(「アンダーフロー値」)は0に変換されます。
 
 ```js
 console.log(Number.MIN_VALUE / 10);  // 0

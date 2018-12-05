@@ -16,7 +16,7 @@ var Bar = Foo;
 var bar: Bar; // ERROR: cannot find name 'Bar'
 ```
 
-これはエラーです。なぜなら、 `var`は`Foo`を*変数*宣言空間にコピーしただけなので、型の注釈として `Bar`を使うことができないからです。正しい方法は、 `import`キーワードを使うことです。 * namespaces *や* modules *を使用している場合にのみ、 `import`キーワードをこのように使用することができます（詳細は後で説明します）。
+これはエラーです。なぜなら、 `var`は`Foo`を*変数*宣言空間にコピーしただけなので、型の注釈として `Bar`を使うことができないからです。正しい方法は、 `import`キーワードを使うことです。 * namespaces *や* modules *を使用している場合にのみ、 `import`キーワードをこのように使用することができます(詳細は後で説明します)。
 
 ```ts
 namespace importing {
@@ -72,7 +72,7 @@ bar = "Hello World"; // Okay!
 bar = "anything else "; // Error!
 ```
 
-この例では、 `bar`はリテラルタイプ` `Hello World '`を持っています。これについては、[リテラルタイプのセクション]（https://basarat.gitbooks.io/typescript/content/docs/types/literal-types.html "リテラルタイプ"）を参照してください。
+この例では、 `bar`はリテラルタイプ` `Hello World '`を持っています。これについては、[リテラルタイプのセクション](https://basarat.gitbooks.io/typescript/content/docs/types/literal-types.html "リテラルタイプ")を参照してください。
 
 ## キー名のキャプチャ
 

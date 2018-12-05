@@ -1,6 +1,6 @@
 ## 寄稿
 
-TypeScriptは[OSS and GitHub]（https://github.com/Microsoft/TypeScript）であり、チームはコミュニティの入力を歓迎する。
+TypeScriptは[OSS and GitHub](https://github.com/Microsoft/TypeScript)であり、チームはコミュニティの入力を歓迎する。
 
 ### セットアップ
 超簡単：
@@ -13,7 +13,7 @@ npm install
 ```
 
 ### セットアップフォーク
-明らかに、Microsoft / TypeScriptを `上流 'のリモートと独自の* fork *（GitHub * fork *ボタンを使用）を`origin`としてセットアップする必要があります。
+明らかに、Microsoft / TypeScriptを `上流 'のリモートと独自の* fork *(GitHub * fork *ボタンを使用)を`origin`としてセットアップする必要があります。
 
 ```bash
 git remote rm origin
@@ -29,8 +29,8 @@ JakeFileにはたくさんの `test`オプションと`build`オプションが�
 ### ベースライン
 ベースラインは、TypeScriptコンパイラの* expected *出力に変更があるかどうかを管理するために使用されます。ベースラインは `テスト/ベースライン`に位置しています。
 
-* Reference（* expected *）ベースライン： `tests / baselines / reference`
-* ベースライン： `テスト/ベースライン/ローカル`（このフォルダは**。gitignore **にあります）
+* Reference(* expected *)ベースライン： `tests / baselines / reference`
+* ベースライン： `テスト/ベースライン/ローカル`(このフォルダは**。gitignore **にあります)
 
 > これらのフォルダ間に相違がある場合、テストは失敗します。 BeyondCompareやKDiff3のようなツールで2つのフォルダを比較することができます。
 
@@ -54,7 +54,7 @@ JakeFileにはたくさんの `test`オプションと`build`オプションが�
 これらの期待は、ベースラインインフラストラクチャを使用して検証されます。
 
 ##### コンパイラテストの作成
-テストは `tests / cases / compiler`に新しいファイル`yourtest.ts`を追加することで作成できます。テストを実行するとすぐに、ベースラインに失敗するはずです。これらのベースラインを受け入れて（gitでそれらを表示させる）、それらがあなたが*期待しているものになるように微調整してください...今テストをパスしてください。
+テストは `tests / cases / compiler`に新しいファイル`yourtest.ts`を追加することで作成できます。テストを実行するとすぐに、ベースラインに失敗するはずです。これらのベースラインを受け入れて(gitでそれらを表示させる)、それらがあなたが*期待しているものになるように微調整してください...今テストをパスしてください。
 
 `jake runtests tests = compiler`を使ってこれらをすべて単独で実行するか、`jake runtests tests = compiler / yourtest`を使って新しいファイルだけを実行してください
 

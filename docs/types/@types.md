@@ -1,6 +1,6 @@
 # `@ types`
 
-[Definitely Typed]（https://github.com/DefinitelyTyped/DefinitelyTyped）は、間違いなくTypeScriptの最大の強みの1つです。コミュニティは効果的に先に進んで**トップJavaScriptプロジェクトのほぼ90％の性質を文書化**しました。
+[Definitely Typed](https://github.com/DefinitelyTyped/DefinitelyTyped)は、間違いなくTypeScriptの最大の強みの1つです。コミュニティは効果的に先に進んで**トップJavaScriptプロジェクトのほぼ90％の性質を文書化**しました。
 
 これは、これらのプロジェクトを非常にインタラクティブかつ探索的な方法で使用できることを意味します。ドキュメントを別のウィンドウで開き、誤植をしないようにする必要はありません。
 
@@ -19,11 +19,11 @@ npm install @types/jquery --save-dev
 
 デフォルトでは、グローバル消費をサポートする定義は自動的に含まれます。例えば。 `jquery`のためには、あなたのプロジェクトで`$ `*をグローバルに*使うことができるはずです。
 
-しかし、*ライブラリ*（ `jquery`のような）では、一般的に* modules *の使用をお勧めします：
+しかし、*ライブラリ*( `jquery`のような)では、一般的に* modules *の使用をお勧めします：
 
 ### モジュール `@ types`
 
-インストール後、実際に特別な設定は必要ありません。モジュールのように使用するだけです（例：
+インストール後、実際に特別な設定は必要ありません。モジュールのように使用するだけです(例：
 
 ```ts
 import * as $ from "jquery";
@@ -45,4 +45,4 @@ import * as $ from "jquery";
 }
 ```
 
-上の例は、 `jquery`だけを使用できるサンプルを示しています。人が `npm install @ types / node`のような別の定義をインストールしても、そのグローバル（例：[`process`]（https://nodejs.org/api/process.html））はあなたが追加するまであなたのコードに漏れませんそれらを `tsconfig.json`型オプションに渡します。
+上の例は、 `jquery`だけを使用できるサンプルを示しています。人が `npm install @ types / node`のような別の定義をインストールしても、そのグローバル(例：[`process`](https://nodejs.org/api/process.html))はあなたが追加するまであなたのコードに漏れませんそれらを `tsconfig.json`型オプションに渡します。

@@ -1,17 +1,17 @@
 # コンパイラ
-typescriptコンパイラのソースは、[`src / compiler`]（https://github.com/Microsoft/TypeScript/tree/master/src/compiler）フォルダの下にあります。
+typescriptコンパイラのソースは、[`src / compiler`](https://github.com/Microsoft/TypeScript/tree/master/src/compiler)フォルダの下にあります。
 
 それは以下の主要な部分に分割されます：
-* スキャナ（ `scanner.ts`）
-* パーサー（ `parser.ts`）
-* バインダー（ `バインダー.ts`）
-* チェッカー（ `checker.ts`）
-* エミッタ（ `emitter.ts`）
+* スキャナ( `scanner.ts`)
+* パーサー( `parser.ts`)
+* バインダー( `バインダー.ts`)
+* チェッカー( `checker.ts`)
+* エミッタ( `emitter.ts`)
 
 これらのそれぞれは、ソース内で独自のファイルを取得します。これらの部分については、この章の後半で説明します。
 
 ## バイツ
-私たちは、[Bring Your Own TypeScript（BYOTS）]というプロジェクト（https://github.com/basarat/byots）を持っています。内部APIを公開することによってこれを使用して、ローカルアプリケーションのTypeScriptのバージョンをグローバルに公開することができます。
+私たちは、[Bring Your Own TypeScript(BYOTS)]というプロジェクト(https://github.com/basarat/byots)を持っています。内部APIを公開することによってこれを使用して、ローカルアプリケーションのTypeScriptのバージョンをグローバルに公開することができます。
 
 ## シンタックスとセマンティクス
 文法的に正しいものが*意味的*正しいことを意味するわけではありません。以下のTypeScriptコードを考えてみましょう。*構文的には有効ですが*意味的には*間違っています
@@ -53,7 +53,7 @@ TypeScriptコンパイラには、次に説明するキー部分の多くにユ�
 ## ファイル：ユーティリティ
 `core.ts`：TypeScriptコンパイラが使うコアユーティリティ。いくつか重要なもの：
 
-* `let objectAllocator：ObjectAllocator`：シングルトングローバルとして定義された変数です。 `getSymbolConstructor`（シンボルは`binder`でカバーされています）、 `getTypeConstructor`（型は`checker`で扱います）、 `getNodeConstructor`（ノードは`parser` / `AST`を見るとカバーされます）、`getSymbolConstructor` 、 `getSignatureConstructor`（シグネチャはインデックス、コール、シグネチャを構成します）。
+* `let objectAllocator：ObjectAllocator`：シングルトングローバルとして定義された変数です。 `getSymbolConstructor`(シンボルは`binder`でカバーされています)、 `getTypeConstructor`(型は`checker`で扱います)、 `getNodeConstructor`(ノードは`parser` / `AST`を見るとカバーされます)、`getSymbolConstructor` 、 `getSignatureConstructor`(シグネチャはインデックス、コール、シグネチャを構成します)。
 
 ## ファイル：主要なデータ構造
 `types.ts`には、主要なデータ構造とインタフェースがコンパイラ全体で使用されます。いくつかの重要なサンプルの抜粋です：
@@ -67,6 +67,6 @@ TypeCheckerが提供するインターフェイスです。
 ASTノード。
 
 ## ファイルシステム
-`system.ts`です。 TypeScriptコンパイラとオペレーティングシステムとのすべての対話は、 `System`インタフェースを介して行われます。インターフェースとその実装（ `WScript`と`Node`）は `system.ts`で定義されています。あなたは* Operating Environment *（OE）と考えることができます。
+`system.ts`です。 TypeScriptコンパイラとオペレーティングシステムとのすべての対話は、 `System`インタフェースを介して行われます。インターフェースとその実装( `WScript`と`Node`)は `system.ts`で定義されています。あなたは* Operating Environment *(OE)と考えることができます。
 
 主要なファイルの概要を知ったので、 `Program`の概念を見ることができます

@@ -6,7 +6,7 @@
 bind(thisArg: any, ...argArray: any[]): any;
 ```
 
-あなたが見ることができるように、** any **を返します！つまり、関数の `bind`を呼び出すと、元の関数の署名の型の安全性が完全に失われます。
+あなたが見ることができるように、** any **を返します!つまり、関数の `bind`を呼び出すと、元の関数の署名の型の安全性が完全に失われます。
 
 たとえば、次のようにコンパイルします。
 
@@ -19,7 +19,7 @@ curryOne(456); // Okay but is not type checked!
 curryOne('456'); // Allowed because it wasn't type checked!
 ```
 
-それを書くためのよりよい方法は、明示的な型の注釈を持つ単純な[arrow関数]（../ arrow-functions.md）です。
+それを書くためのよりよい方法は、明示的な型の注釈を持つ単純な[arrow関数](../ arrow-functions.md)です。
 ```ts
 function twoParams(a:number,b:number) {
     return a + b;
@@ -29,10 +29,10 @@ curryOne(456); // Okay and type checked!
 curryOne('456'); // Error!
 ```
 
-しかし、あなたがカレー化された機能を望むなら（それにはより良いパターンがあります）（./ currying.md）。
+しかし、あなたがカレー化された機能を望むなら(それにはより良いパターンがあります)(./ currying.md)。
 
 ### クラスメンバー
-別の一般的な使い方は、クラス関数を渡すときに `this`の正しい値を保証するために`bind`を使うことです。それをしないでください！
+別の一般的な使い方は、クラス関数を渡すときに `this`の正しい値を保証するために`bind`を使うことです。それをしないでください!
 
 次の例は、 `bind`を使うとパラメータ型の安全性を失うという事実を示しています：
 
@@ -54,7 +54,7 @@ useAdd(adder.add.bind(adder)); // No compile error!
 useAdd((x) => adder.add(x)); // Error: number is not assignable to string
 ```
 
-あなたが**期待している** **クラスメンバー関数を持っているなら、[最初の矢印関数を使う]（../ arrow-functions.md）のように、同じ `Adder`クラスを書くでしょう：
+あなたが**期待している** **クラスメンバー関数を持っているなら、[最初の矢印関数を使う](../ arrow-functions.md)のように、同じ `Adder`クラスを書くでしょう：
 
 ```ts
 class Adder {

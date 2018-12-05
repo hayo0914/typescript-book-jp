@@ -1,14 +1,14 @@
 # タイプスクリプトをブラウザに
 
-TypeScriptを使用してWebアプリケーションを作成している場合は、クイックTypeScript + React（自分のUIフレームワークを選択）プロジェクトセットアップを取得することをお勧めします。
+TypeScriptを使用してWebアプリケーションを作成している場合は、クイックTypeScript + React(自分のUIフレームワークを選択)プロジェクトセットアップを取得することをお勧めします。
 
 ## 一般的なマシンセットアップ
 
-* [Node.js]をインストールする（https://nodejs.org/ja/download/）
-* [Git]（https://git-scm.com/downloads）をインストールする
+* [Node.js]をインストールする(https://nodejs.org/ja/download/)
+* [Git](https://git-scm.com/downloads)をインストールする
 
 ## プロジェクトセットアップのクイック
-ベースとして[https://github.com/basarat/react-typescript](https://github.com/basarat/react-typescript）]を使用してください。
+ベースとして[https://github.com/basarat/react-typescript](https://github.com/basarat/react-typescript)]を使用してください。
 
 ```
 git clone https://github.com/basarat/react-typescript.git
@@ -16,7 +16,7 @@ cd react-typescript
 npm install
 ```
 
-今すぐ[あなたのすばらしいアプリケーションを開発する]にジャンプしてください（#あなたのすばらしいアプリケーションを開発する）
+今すぐ[あなたのすばらしいアプリケーションを開発する]にジャンプしてください(#あなたのすばらしいアプリケーションを開発する)
 
 ## プロジェクトの詳細設定
 そのプロジェクトがどのように作成されたかを見るには、下記の通りです。
@@ -135,7 +135,7 @@ ReactDOM.render(
 > 最新のパッケージを入手するには `npm install typescript @ latest react @最新のreact-dom @ latest @ types / react @ latest @ types / react-dom @最新webpack @最新ts-loader @最新webpack-dev-server @最新のwebpack-cli @ latest --save-exact`
 
 * `npm start`を実行してライブ開発を行います。
-    * [http：// localhost：8080]（http：// localhost：8080）を参照してください。
-    * `app.tsx`（または`src`のts / tsxファイル）とアプリケーションライブリロードを編集します。
+    * [http：// localhost：8080](http：// localhost：8080)を参照してください。
+    * `app.tsx`(または`src`のts / tsxファイル)とアプリケーションライブリロードを編集します。
 * `npm run build`を実行して生産アセットを構築します。
-    *あなたのサーバから `public`フォルダ（構築されたアセットを含む）を提供します。
+    *あなたのサーバから `public`フォルダ(構築されたアセットを含む)を提供します。

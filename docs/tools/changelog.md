@@ -1,10 +1,10 @@
 ## 変更
 > プロジェクトの進捗状況を示すマークダウンファイルを読むことは、コミットログを読むより簡単です。
 
-コミットメッセージからの自動変更ログの生成は、今日はかなり一般的なパターンです。 [Convention-changelog]（https://github.com/conventional-changelog/conventional-changelog）というプロジェクトがあり、* convention *に続くコミットメッセージから変更履歴を生成します。
+コミットメッセージからの自動変更ログの生成は、今日はかなり一般的なパターンです。 [Convention-changelog](https://github.com/conventional-changelog/conventional-changelog)というプロジェクトがあり、* convention *に続くコミットメッセージから変更履歴を生成します。
 
 ### コミットメッセージのコンベンション
-もっとも一般的なのは、* angular * commitメッセージの規約です（https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines）。
+もっとも一般的なのは、* angular * commitメッセージの規約です(https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines)。
 
 ### セットアップ
 * インストール：

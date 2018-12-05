@@ -1,6 +1,6 @@
 ### 差別化された組合
 
-[* literalメンバー*]（./ literal-types.md）を持つクラスがある場合、そのプロパティを使用して、共用体メンバーを区別することができます。
+[* literalメンバー*](./ literal-types.md)を持つクラスがある場合、そのプロパティを使用して、共用体メンバーを区別することができます。
 
 例として、 `Square`と`Rectangle`の和集合を考えてみましょう。ここでは、両方の共用体メンバに存在し、特定の*リテラル型のメンバ `kind`があります*：
 
@@ -18,7 +18,7 @@ interface Rectangle {
 type Shape = Square | Rectangle;
 ```
 
-* discriminantプロパティ（ここで `kind`）にタイプガードスタイルチェック（`== `、`=== `、`！= `、`！== `）または`switch`を使用すると、TypeScriptはそのオブジェクトは、その特定のリテラルを持つタイプのものでなければならず、あなたのためにタイプを狭くする必要があります:)
+* discriminantプロパティ(ここで `kind`)にタイプガードスタイルチェック(`== `、`=== `、`!= `、`!== `)または`switch`を使用すると、TypeScriptはそのオブジェクトは、その特定のリテラルを持つタイプのものでなければならず、あなたのためにタイプを狭くする必要があります:)
 
 ```ts
 function area(s: Shape) {
@@ -36,7 +36,7 @@ function area(s: Shape) {
 ```
 
 ### 完全なチェック
-かなり一般的には、組合のすべてのメンバーがそれらに対していくつかのコード（行動）を持っていることを確認したいと思います。
+かなり一般的には、組合のすべてのメンバーがそれらに対していくつかのコード(行動)を持っていることを確認したいと思います。
 
 ```ts
 interface Square {
@@ -130,7 +130,7 @@ function area(s: Shape) {
 
 ### strictNullChecks
 
-strictNullChecksを使用して網羅的なチェックを行っている場合、 `_exhaustiveCheck`変数（`never`型）も返さなければなりません。そうでなければ、TypeScriptは `undefined`の可能な戻り値を推論します。そう：
+strictNullChecksを使用して網羅的なチェックを行っている場合、 `_exhaustiveCheck`変数(`never`型)も返さなければなりません。そうでなければ、TypeScriptは `undefined`の可能な戻り値を推論します。そう：
 
 ```ts
 function area(s: Shape) {
@@ -149,7 +149,7 @@ function area(s: Shape) {
 
 これを利用する普及した図書館は、還元的です。
 
-ここに、TypeScript型アノテーションを追加した[* gist of redux *]（https://github.com/reactjs/redux#the-gist）があります：
+ここに、TypeScript型アノテーションを追加した[* gist of redux *](https://github.com/reactjs/redux#the-gist)があります：
 
 ```ts
 import { createStore } from 'redux'

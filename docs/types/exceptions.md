@@ -51,7 +51,7 @@ console.log(notValidVar); // ReferenceError: notValidVar is not defined
 
 ### URIError
 
-`encodeURI（）`または `decodeURI（）`に無効なパラメータが渡されたときに発生するエラーを表すインスタンスを生成します。
+`encodeURI()`または `decodeURI()`に無効なパラメータが渡されたときに発生するエラーを表すインスタンスを生成します。
 
 ```js
 decodeURI('%'); // URIError: URI malformed
@@ -92,7 +92,7 @@ function myFunction (callback: (e?: Error)) {
 
 ## 例外的なケース
 
-「例外は例外的でなければならない」は、コンピュータサイエンスの一般的な言葉です。これがJavaScript（およびTypeScript）にも当てはまる理由はいくつかあります。
+「例外は例外的でなければならない」は、コンピュータサイエンスの一般的な言葉です。これがJavaScript(およびTypeScript)にも当てはまる理由はいくつかあります。
 
 ### どこに投げられるのか不明
 
@@ -129,7 +129,7 @@ catch(e) {
 }
 ```
 
-しかし、最初のタスクから2番目のタスクに物事を渡す必要がある場合、コードは乱雑になります（ 'run`を必要とする `foo`突然変異+`runTask1`の復帰から推論できないため注釈を明示的に必要とすることに注意してください） ：
+しかし、最初のタスクから2番目のタスクに物事を渡す必要がある場合、コードは乱雑になります( 'run`を必要とする `foo`突然変異+`runTask1`の復帰から推論できないため注釈を明示的に必要とすることに注意してください) ：
 
 ```ts
 let foo: number; // Notice use of `let` and explicit type annotation
@@ -157,7 +157,7 @@ function validate(value: number) {
 }
 ```
 
-このような場合に `Error`を使うのは、validate関数の型定義（`（value：number）=> void`）で表現されていないので、悪い考えです。代わりに、検証メソッドを作成するためのより良い方法は次のとおりです。
+このような場合に `Error`を使うのは、validate関数の型定義(`(value：number)=> void`)で表現されていないので、悪い考えです。代わりに、検証メソッドを作成するためのより良い方法は次のとおりです。
 
 ```ts
 function validate(value: number): {error?: string} {
@@ -167,4 +167,4 @@ function validate(value: number): {error?: string} {
 
 そして今、型システムで表現されています。
 
-> 非常に一般的な（シンプル/キャッチオールなど）の方法でエラーを処理しない限り、エラーをスローしないでください。
+> 非常に一般的な(シンプル/キャッチオールなど)の方法でエラーを処理しない限り、エラーをスローしないでください。

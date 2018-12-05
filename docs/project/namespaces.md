@@ -9,7 +9,7 @@
 })(something || (something = {}))
 ```
 
-基本的には何か|| （something = {}） `は、無名関数`function（something）{} `を既存のオブジェクト*（`something || `部分）に追加するか、 （ `||（something = {}）`の部分）。つまり、いくつかの実行境界で分割された2つのブロックを持つことができます。
+基本的には何か|| (something = {}) `は、無名関数`function(something){} `を既存のオブジェクト*(`something || `部分)に追加するか、 ( `||(something = {})`の部分)。つまり、いくつかの実行境界で分割された2つのブロックを持つことができます。
 
 ```ts
 (function(something) {

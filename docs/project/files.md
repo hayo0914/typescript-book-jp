@@ -27,4 +27,4 @@
 
 いくつかのメモ：
 
-* globsの場合： `** / *`（例えば、サンプル使用法 `somefolder / ** / *`）はすべてのフォルダとファイルを意味します（ `.ts`/` .tsx`拡張子が仮定され、 `allowJs：true `so will`.js` / `.jsx`）
+* globsの場合： `** / *`(例えば、サンプル使用法 `somefolder / ** / *`)はすべてのフォルダとファイルを意味します( `.ts`/` .tsx`拡張子が仮定され、 `allowJs：true `so will`.js` / `.jsx`)

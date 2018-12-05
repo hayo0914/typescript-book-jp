@@ -1,6 +1,6 @@
 ## アンビエント宣言
 
-[なぜTypeScript]（../../ why-typescript.md）で述べたように：
+[なぜTypeScript](../../ why-typescript.md)で述べたように：
 
 > TypeScriptの主要な設計目標は、TypeScriptで既存のJavaScriptライブラリを安全かつ簡単に使用できるようにすることでした。 TypeScriptはこれを*宣言*で行います。
 

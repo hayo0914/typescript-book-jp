@@ -1,15 +1,15 @@
-* [Enums]（#enums）
-* [Number Enums and numbers]（#number-enums-and-numbers）
-* [Number Enums and strings]（#number-enums-and-strings）
-* [数値列挙型に関連付けられた番号の変更]（#番号付き列挙型変更）
-* [Enums are open ended]（#enums-are-open-ended）
-* [Number Enums as flags]（#number enums-as-flags）
-* [String Enums]（#string-enums）
-* [Const enums]（#const-enums）
-* [静的関数を持つ列挙型]（#列挙型静的関数）
+* [Enums](#enums)
+* [Number Enums and numbers](#number-enums-and-numbers)
+* [Number Enums and strings](#number-enums-and-strings)
+* [数値列挙型に関連付けられた番号の変更](#番号付き列挙型変更)
+* [Enums are open ended](#enums-are-open-ended)
+* [Number Enums as flags](#number enums-as-flags)
+* [String Enums](#string-enums)
+* [Const enums](#const-enums)
+* [静的関数を持つ列挙型](#列挙型静的関数)
 
 ### Enums
-列挙型は、関連する値の集合を編成する方法です。他の多くのプログラミング言語（C / C#/ Java）は `enum`データ型を持っていますが、JavaScriptはありません。しかし、TypeScriptはそうです。 TypeScript列挙型の定義例を次に示します。
+列挙型は、関連する値の集合を編成する方法です。他の多くのプログラミング言語(C / C#/ Java)は `enum`データ型を持っていますが、JavaScriptはありません。しかし、TypeScriptはそうです。 TypeScript列挙型の定義例を次に示します。
 
 ```ts
 enum CardSuit {
@@ -62,7 +62,7 @@ var Tristate;
 })(Tristate || (Tristate = {}));
 ```
 
-`Tristate [Talseate [" False "] = 0] =" False ";という行に焦点を当てましょう。 `Tristate [" False "] = 0`は自己説明的でなければなりません。つまり、`Tristate`変数の ``False``メンバを ``0 ''に設定します。 JavaScriptでは、代入演算子は割り当てられた値（この場合は `0`）を返します。したがって、JavaScriptランタイムによって次に実行されるのは、 `Tristate [0] =" False "`です。これは、 `Tristate`変数を使用して、列挙型の文字列バージョンを列挙型の数値または数値バージョンに変換することができることを意味します。これは以下のとおりです：
+`Tristate [Talseate [" False "] = 0] =" False ";という行に焦点を当てましょう。 `Tristate [" False "] = 0`は自己説明的でなければなりません。つまり、`Tristate`変数の ``False``メンバを ``0 ''に設定します。 JavaScriptでは、代入演算子は割り当てられた値(この場合は `0`)を返します。したがって、JavaScriptランタイムによって次に実行されるのは、 `Tristate [0] =" False "`です。これは、 `Tristate`変数を使用して、列挙型の文字列バージョンを列挙型の数値または数値バージョンに変換することができることを意味します。これは以下のとおりです：
 
 ```ts
 enum Tristate {
@@ -111,7 +111,7 @@ enum AnimalFlags {
 }
 ```
 
-ここでは、左シフト演算子を使用して、特定のビットレベルの周りに「1」を移動して、ビット単位の「0001」、「0010」、「0100」および「1000」（これらは小数点「1」、好奇心が強い場合は2、4、8）。ビット演算子 `|`（または）/ `＆`（と）/ `〜`（そうでない）は、フラグを使って作業するときの親友です。
+ここでは、左シフト演算子を使用して、特定のビットレベルの周りに「1」を移動して、ビット単位の「0001」、「0010」、「0100」および「1000」(これらは小数点「1」、好奇心が強い場合は2、4、8)。ビット演算子 `|`(または)/ `＆`(と)/ `〜`(そうでない)は、フラグを使って作業するときの親友です。
 
 ```ts
 
@@ -206,7 +206,7 @@ enum Tristate {
 var lie = Tristate.False;
 ```
 
-`var lie = Tristate.False`という行はJavaScriptの`var lie = Tristate.False`にコンパイルされます（出力は入力と同じです）。つまり、実行時にランタイムは `Tristate`と`Tristate.False`をルックアップする必要があります。ここでパフォーマンスを向上させるには、 `enum`を`const enum`としてマークできます。これは以下のとおりです：
+`var lie = Tristate.False`という行はJavaScriptの`var lie = Tristate.False`にコンパイルされます(出力は入力と同じです)。つまり、実行時にランタイムは `Tristate`と`Tristate.False`をルックアップする必要があります。ここでパフォーマンスを向上させるには、 `enum`を`const enum`としてマークできます。これは以下のとおりです：
 
 ```ts
 const enum Tristate {
@@ -225,8 +225,8 @@ var lie = 0;
 ```
 
 コンパイラ：
-1. * Inlines *列挙型のあらゆる用途（ 'Tristate.False`ではなく' 0`）。
-1. enum定義用のJavaScriptを生成しません（実行時に `Tristate`変数はありません）。その用途はインライン展開されています。
+1. * Inlines *列挙型のあらゆる用途( 'Tristate.False`ではなく' 0`)。
+1. enum定義用のJavaScriptを生成しません(実行時に `Tristate`変数はありません)。その用途はインライン展開されています。
 
 ##### Const enum preserveConstEnums
 インライン化には明らかなパフォーマンス上の利点があります。実行時に `Tristate`変数がないという事実は、実行時に実際には使用されないJavaScriptを生成しないことによって、コンパイラを助けることです。しかし、コンパイラが* number to string *や* string to number *ルックアップのようなものの列挙型定義のJavaScriptバージョンを引き続き生成することをお勧めします。この場合、コンパイラフラグ `--preserveConstEnums`を使用することができます。また`var Tristate`定義を生成するので、実行時に `Tristate [" False "]`や `Tristate [0]`を手動で使用することができます欲しいです。これは決してインライン展開*には影響しません。
@@ -277,9 +277,9 @@ var Tristate;
 })(Tristate || (Tristate = {}));
 ```
 
-`Tristate [Talseate [" False "] = 0] =" False ";部分についてすでに説明しました。 Tristate ||（Tristate = {}））; `具体的に`（Tristate ||（Tristate = {}））; `部分。これは、基本的に既に定義された `Tristate`値を指し示すか、新しい空の`{} `オブジェクトで初期化するローカル変数`TriState`を取得します。
+`Tristate [Talseate [" False "] = 0] =" False ";部分についてすでに説明しました。 Tristate ||(Tristate = {})); `具体的に`(Tristate ||(Tristate = {})); `部分。これは、基本的に既に定義された `Tristate`値を指し示すか、新しい空の`{} `オブジェクトで初期化するローカル変数`TriState`を取得します。
 
-つまり、列挙型定義を複数のファイルに分割（および拡張）することができます。たとえば、以下の例では、 `Color`の定義を2つのブロックに分割しています
+つまり、列挙型定義を複数のファイルに分割(および拡張)することができます。たとえば、以下の例では、 `Color`の定義を2つのブロックに分割しています
 
 ```ts
 enum Color {
@@ -295,4 +295,4 @@ enum Color {
 }
 ```
 
-注意しなければならないのは、生成されたコードを以前の定義（つまり、 `0`、`1`、...）から取り除くために、列挙の継続中の最初のメンバ（ここでは `DarkRed = 3`）を再初期化すべきです。値についても同様）。とにかくしないと、TypeScriptは警告します（エラーメッセージ `複数の宣言を含む列挙型では、1つの宣言だけが最初の列挙型要素の初期化子を省略できます）。
+注意しなければならないのは、生成されたコードを以前の定義(つまり、 `0`、`1`、...)から取り除くために、列挙の継続中の最初のメンバ(ここでは `DarkRed = 3`)を再初期化すべきです。値についても同様)。とにかくしないと、TypeScriptは警告します(エラーメッセージ `複数の宣言を含む列挙型では、1つの宣言だけが最初の列挙型要素の初期化子を省略できます)。

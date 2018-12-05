@@ -16,7 +16,7 @@ let foo: 'Hello';
 foo = 'Bar'; // Error: "Bar" is not assignable to type "Hello"
 ```
 
-それらは単独ではあまり有用ではないが、タイプユニオンで結合して、強力な（そして有用な）抽象化を作成することができる。
+それらは単独ではあまり有用ではないが、タイプユニオンで結合して、強力な(そして有用な)抽象化を作成することができる。
 
 ```ts
 type CardinalDirection =
@@ -67,7 +67,7 @@ iTakeFoo(test.someProp); // Okay!
 
 #### 文字列ベースの列挙型
 
-[TypeScript enumsは数字ベースです]（../ enums.md）。上記の `CardinalDirection`の例のように、共用体型の文字列リテラルを使用して文字列ベースの列挙型をモックすることができます。次の関数を使って `Key：Value`構造体を生成することさえできます：
+[TypeScript enumsは数字ベースです](../ enums.md)。上記の `CardinalDirection`の例のように、共用体型の文字列リテラルを使用して文字列ベースの列挙型をモックすることができます。次の関数を使って `Key：Value`構造体を生成することさえできます：
 
 ```ts
 /** Utility function to create a K:V from a list of strings */
@@ -116,7 +116,7 @@ sample = 'AnythingElse'; // ERROR!
 
 #### 既存のJavaScript APIのモデリング
 
-例えば。 [CodeMirrorエディタには、 `readOnly`オプション（https://codemirror.net/doc/manual.html#option_readOnly）があります。これは、`boolean`またはリテラル文字列 ``nocursor '`（有効有効値` true 、false、 "nocursor"）。それは次のように宣言することができます：
+例えば。 [CodeMirrorエディタには、 `readOnly`オプション(https://codemirror.net/doc/manual.html#option_readOnly)があります。これは、`boolean`またはリテラル文字列 ``nocursor '`(有効有効値` true 、false、 "nocursor")。それは次のように宣言することができます：
 
 ```ts
 readOnly: boolean | 'nocursor';
@@ -124,7 +124,7 @@ readOnly: boolean | 'nocursor';
 
 #### 差別化された組合
 
-[これは本の後の方]（./ discriminated-unions.md）で説明します。
+[これは本の後の方](./ discriminated-unions.md)で説明します。
 
 
-[]（https://github.com/Microsoft/TypeScript/pull/5185）
+[](https://github.com/Microsoft/TypeScript/pull/5185)

@@ -1,10 +1,10 @@
 # TypeScriptでJestを使う
 
-> [Jest / TypeScriptのプロの卵ヘッドレッスン]（https://egghead.io/lessons/typescript-getting-started-with-jest-using-typescript）
+> [Jest / TypeScriptのプロの卵ヘッドレッスン](https://egghead.io/lessons/typescript-getting-started-with-jest-using-typescript)
 
 アウトテストソリューションは完璧です。つまり、jestは優れたTypeScriptサポートを提供する優れたユニットテストオプションです。
 
-> 注意：単純なノードpackage.json setupで始めることを前提としています。また、すべてのTypeScriptファイルは `src`フォルダに置かれていなければなりません。このフォルダは、きれいなプロジェクト設定のために（Jestを使わなくても）常に推奨されます。
+> 注意：単純なノードpackage.json setupで始めることを前提としています。また、すべてのTypeScriptファイルは `src`フォルダに置かれていなければなりません。このフォルダは、きれいなプロジェクト設定のために(Jestを使わなくても)常に推奨されます。
 
 ## ステップ1：インストール
 
@@ -16,10 +16,10 @@ npm i jest @types/jest ts-jest -D
 
 説明：
 
-* `jest`フレームワークをインストールします（`jest`）
-* `jest`の型をインストールしてください（`@ types / jest`）
-* Jest（ `ts-jest`）用のTypeScriptプリプロセッサをインストールしてください。これにより、Jestはその場でTypeScriptを翻訳し、ソースマップのサポートを組み込みます。
-* これらのすべてをあなたのdevの依存関係に保存してください（テストはほとんど常にnpmの依存関係です）
+* `jest`フレームワークをインストールします(`jest`)
+* `jest`の型をインストールしてください(`@ types / jest`)
+* Jest( `ts-jest`)用のTypeScriptプリプロセッサをインストールしてください。これにより、Jestはその場でTypeScriptを翻訳し、ソースマップのサポートを組み込みます。
+* これらのすべてをあなたのdevの依存関係に保存してください(テストはほとんど常にnpmの依存関係です)
 
 ## ステップ2：Jestを設定する
 
@@ -49,8 +49,8 @@ module.exports = {
 
 * すべての* TypeScriptファイルをプロジェクトの `src`フォルダに入れることを常にお勧めします。これが真であると仮定し、 `roots`オプションを使用してこれを指定します。
 * `transform`設定は、`jest`にts / tsxファイルに対して `ts-jest`を使うように指示します。
-* `testRegex`はJestに`__tests__`フォルダ内のテストを検索するよう指示します。また `（.test | .spec）。（ts | tsx）`拡張子を使用する任意のファイルを検索します。 `asdf.test.tsx`など
-* `moduleFileExtensions`はjestにファイル拡張子を認識させます。これは `ts`/` tsx`をデフォルト（ `js | jsx | json | node`）に追加するときに必要です。
+* `testRegex`はJestに`__tests__`フォルダ内のテストを検索するよう指示します。また `(.test | .spec)。(ts | tsx)`拡張子を使用する任意のファイルを検索します。 `asdf.test.tsx`など
+* `moduleFileExtensions`はjestにファイル拡張子を認識させます。これは `ts`/` tsx`をデフォルト( `js | jsx | json | node`)に追加するときに必要です。
 
 ## 手順3：テストを実行する
 
@@ -118,7 +118,7 @@ test('basic again', async () => {
 
 ### 酵素の例
 
-> [酵素/ Jest / TypeScriptのプロの卵レッスン]（https://egghead.io/lessons/react-test-react-components-and-dom-using-enzyme）
+> [酵素/ Jest / TypeScriptのプロの卵レッスン](https://egghead.io/lessons/react-test-react-components-and-dom-using-enzyme)
 
 酵素では、反応成分をDOMサポートでテストすることができます。酵素を設定するには3つのステップがあります：
 
@@ -203,7 +203,7 @@ test('CheckboxWithLabel changes the text after click', () => {
 
 ## 私たちは冗談が好きな理由
 
-> [これらの機能の詳細についてはjest websiteを参照]（http://facebook.github.io/jest/）
+> [これらの機能の詳細についてはjest websiteを参照](http://facebook.github.io/jest/)
 
 * アサーションライブラリを内蔵しています。
 * 優れたTypeScriptサポート。

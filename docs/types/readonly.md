@@ -1,5 +1,5 @@
 ## readonly
-TypeScriptのタイプシステムでは、インターフェイス上の個々のプロパティを `readonly`としてマークすることができます。これにより、機能的な方法で作業することができます（予期せぬ突然変異は悪い）。
+TypeScriptのタイプシステムでは、インターフェイス上の個々のプロパティを `readonly`としてマークすることができます。これにより、機能的な方法で作業することができます(予期せぬ突然変異は悪い)。
 
 ```ts
 function foo(config: {
@@ -80,7 +80,7 @@ export class Something extends React.Component<Props,State> {
 }
 ```
 
-しかし、Reactの型定義として、これらを `readonly`としてマークする必要はありません（渡されたジェネリック型を上で述べた`Readonly`型で内部的にラップすることによって）。
+しかし、Reactの型定義として、これらを `readonly`としてマークする必要はありません(渡されたジェネリック型を上で述べた`Readonly`型で内部的にラップすることによって)。
 
 ```ts
 export class Something extends React.Component<{ foo: number }, { baz: number }> {
@@ -173,7 +173,7 @@ iMutateFoo(foo); // The foo argument is aliased by the foo parameter
 console.log(foo.bar); // 456!
 ```
 
-基本的に `readonly`は、プロパティ*を私が変更することはできないことを保証しますが、その保証を持たない（型互換性のために許されている）人にそれを渡すと、変更できます。もちろん、 `iMutateFoo`が`foo.bar`に変更を加えていないと言った場合、コンパイラは以下のように正しくフラグを立てます：
+基本的に `readonly`は、プロパティ*を私が変更することはできないことを保証しますが、その保証を持たない(型互換性のために許されている)人にそれを渡すと、変更できます。もちろん、 `iMutateFoo`が`foo.bar`に変更を加えていないと言った場合、コンパイラは以下のように正しくフラグを立てます：
 
 ```ts
 interface Foo {
@@ -190,4 +190,4 @@ function iTakeFoo(foo: Foo) {
 iTakeFoo(foo); // The foo argument is aliased by the foo parameter
 ```
 
-[]（https://github.com/Microsoft/TypeScript/pull/6532）
+[](https://github.com/Microsoft/TypeScript/pull/6532)

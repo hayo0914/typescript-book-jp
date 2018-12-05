@@ -5,10 +5,10 @@ TypeScriptパーサーのソースコードは完全に `parser.ts`にありま�
 SourceCode ~~ scanner ~~> Token Stream ~~ parser ~~> AST
 ```
 
-パーサーはシングルトンとして実装されています（ `scanner`と同様の理由、再作成が可能な場合は再作成したくありません）。実際には、Parserのための* state *変数とシングルトン `scanner`を含む`namespace Parser`として実装されています。前に述べたように、 `const scanner`を含んでいます。パーサ関数はこのスキャナを管理します。
+パーサーはシングルトンとして実装されています( `scanner`と同様の理由、再作成が可能な場合は再作成したくありません)。実際には、Parserのための* state *変数とシングルトン `scanner`を含む`namespace Parser`として実装されています。前に述べたように、 `const scanner`を含んでいます。パーサ関数はこのスキャナを管理します。
 
 ### プログラムによる使用
-パーサーはプログラムによって間接的に駆動されます（間接的に、実際には前述の `CompilerHost`によって実際に実行されます）。基本的にこれは単純化されたコールスタックです：
+パーサーはプログラムによって間接的に駆動されます(間接的に、実際には前述の `CompilerHost`によって実際に実行されます)。基本的にこれは単純化されたコールスタックです：
 
 ```
 Program ->
@@ -20,7 +20,7 @@ Program ->
 `parseSourceFile`は、Parserの状態を準備するだけでなく、`initializeState`を呼び出すことによって `scanner`の状態を準備します。その後、 `parseSourceFileWorker`を使ってソースファイルを解析します。
 
 ### サンプルの使用法
-パーザ内部を深く掘り下げる前に、（ts.createSourceFile`を使用して）ソースファイルのASTを取得するためにTypeScriptのパーサを使用するサンプルコードを次に示します。
+パーザ内部を深く掘り下げる前に、(ts.createSourceFile`を使用して)ソースファイルのASTを取得するためにTypeScriptのパーサを使用するサンプルコードを次に示します。
 
 `code / compiler / parser / runParser.ts`
 ```ts

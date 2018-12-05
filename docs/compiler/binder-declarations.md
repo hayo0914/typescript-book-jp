@@ -1,7 +1,7 @@
 ### シンボルと宣言
-`node`と`symbol`の間のリンクは、いくつかの関数によって実行されます。ソースファイルSymbol（外部モジュールの場合）に `SourceFile`ノードをバインドするために使われる一つの関数は`addDeclarationToSymbol`関数です
+`node`と`symbol`の間のリンクは、いくつかの関数によって実行されます。ソースファイルSymbol(外部モジュールの場合)に `SourceFile`ノードをバインドするために使われる一つの関数は`addDeclarationToSymbol`関数です
 
-注：外部モジュールソースファイルの `Symbol`は`flags：SymbolFlags.ValueModule`と `name： '"' + removeFileExtension（file.fileName）+ '"` `）として設定されています。
+注：外部モジュールソースファイルの `Symbol`は`flags：SymbolFlags.ValueModule`と `name： '"' + removeFileExtension(file.fileName)+ '"` `)として設定されています。
 
 ```ts
 function addDeclarationToSymbol(symbol: Symbol, node: Declaration, symbolFlags: SymbolFlags) {
@@ -29,8 +29,8 @@ function addDeclarationToSymbol(symbol: Symbol, node: Declaration, symbolFlags: 
 ```
 
 重要な連結部分：
-* ASTノード（ `node.symbol`）からシンボルへのリンクを作成します。
-* シンボルをシンボルの宣言の1つ*に追加します（ `symbol.declarations`）。
+* ASTノード( `node.symbol`)からシンボルへのリンクを作成します。
+* シンボルをシンボルの宣言の1つ*に追加します( `symbol.declarations`)。
 
 #### 宣言
 宣言はオプションの名前を持つ `node`です。 `types.ts`では

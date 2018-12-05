@@ -6,7 +6,7 @@
 const foo = 123;
 ```
 
-> 構文は他の言語よりもはるかに優れています（IMHO）。これはユーザーに `let constant foo`のようなものを入力させます。つまり、変数+動作指定子です。
+> 構文は他の言語よりもはるかに優れています(IMHO)。これはユーザーに `let constant foo`のようなものを入力させます。つまり、変数+動作指定子です。
 
 `const`は読みやすさとメンテナンス性の両方の良い習慣であり、*魔法のリテラル*を使うのを避けます。
 
@@ -37,7 +37,7 @@ foo = 456; // ERROR: Left-hand side of an assignment expression cannot be a cons
 ```
 
 #### ブロックスコープ
-`const`は` `let``（./ let.md）で見たようにブロックスコープです：
+`const`は` `let``(./ let.md)で見たようにブロックスコープです：
 
 ```ts
 const foo = 123;

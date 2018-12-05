@@ -65,7 +65,7 @@ const simple: (foo: number) => string
     = (foo) => foo.toString();
 ```
 
-> 矢印の構文の制限のみ：過負荷を指定することはできません。オーバーロードの場合、フルボディの `{（someArgs）：someReturn}`構文を使用する必要があります。
+> 矢印の構文の制限のみ：過負荷を指定することはできません。オーバーロードの場合、フルボディの `{(someArgs)：someReturn}`構文を使用する必要があります。
 
 ### Newable
 

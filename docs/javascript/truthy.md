@@ -1,6 +1,6 @@
 ## Trueとみなされる値(Truthy)
 
-JavaScriptは、Trueとみなされる値(truthy)の概念を持っています。例えば、特定の場所（例えば、`if` 条件文とbooleanの`&&` `||` オペレータ)において、trueのように評価されるものです。次に示すものは、JavaScriptにおいてtruthyです。例えば、`0`以外の数値です。
+JavaScriptは、Trueとみなされる値(truthy)の概念を持っています。例えば、特定の場所(例えば、`if` 条件文とbooleanの`&&` `||` オペレータ)において、trueのように評価されるものです。次に示すものは、JavaScriptにおいてtruthyです。例えば、`0`以外の数値です。
 
 ```ts
 if (123) { // Will be treated like `true`

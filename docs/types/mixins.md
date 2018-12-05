@@ -1,6 +1,6 @@
 # ミックスイン
 
-TypeScript（およびJavaScript）クラスは、厳密な単一継承をサポートします。あなたは*することはできません：
+TypeScript(およびJavaScript)クラスは、厳密な単一継承をサポートします。あなたは*することはできません：
 
 ```ts
 class User extends Tagged, Timestamped { // ERROR : no multiple inheritance
