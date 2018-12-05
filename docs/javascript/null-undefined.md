@@ -1,8 +1,8 @@
 ## NullおよびUndefined
-JavaScript（拡張子はTypeScript）には、 `null`と`undefined`という2つのボトムタイプがあります。彼らは異なることを意味することを意図しています*
+JavaScript（拡張子はTypeScript）には、 `null`と`undefined`という2つのボトムの型があります。彼らは異なる意味を意図しています。
 
 * 何かが初期化されていない： `undefined`。
-* 何か現在利用できません： `null`。
+* 何かが現在利用できません： `null`。
 
 
 ### どちらかを確認する
@@ -10,38 +10,39 @@ JavaScript（拡張子はTypeScript）には、 `null`と`undefined`という2�
 事実、あなたは両方を扱う必要があります。 `==`チェックだけでどちらかをチェックしてください。
 
 ```ts
-/// Imagine you are doing `foo.bar == undefined` where bar can be one of:
+/// 想像してください: `foo.bar == undefined` でbarはいずれかになり得ます:
 console.log(undefined == undefined); // true
 console.log(null == undefined); // true
 
-// You don't have to worry about falsy values making through this check
+// これらのチェックを行うことにより、偽となる値を心配せずに済みます
 console.log(0 == undefined); // false
 console.log('' == undefined); // false
 console.log(false == undefined); // false
 ```
-`== null`を使って`undefined`と `null`の両方をチェックすることをお勧めします。あなたは一般的に2つを区別したくありません。
+
+`== null`を使って`undefined`と `null`の両方をチェックすることをお勧めします。一般的に2つを区別したくありません。
 
 ```ts
 function foo(arg: string | null | undefined) {
   if (arg != null) {
-    // arg must be a string as `!=` rules out both null and undefined. 
+    // `!=` がnulllとundefinedを除外しているので、引数argは文字列です
   }
 }
 ```
 
-1つの例外は、ルートレベル未定義の値です。
+1つの例外は、global変数(root level)のundefinedの値です。
 
-### 未定義のルートレベルのチェック
+### global変数(root level)のundefinedのチェック
 
-`== null`を使うべきだと言ったことを思い出してください。もちろん、あなたは（私はちょうどそれを言ったので^）。ルートレベルのものには使用しないでください。 strictモードで `foo`を使うと`foo`が定義されていないと、 `ReferenceError` **例外**が発生し、呼び出しスタック全体が巻き戻されます。
+`== null`を使うべきだと言ったことを思い出してください。もちろん、あなたは覚えているでしょう（私はちょうどそれを言ったので^）。それは、root levelのものには使用しないでください。 strictモードで `foo`を使うとき、`foo`が定義されていないと、 `ReferenceError` **exception**が発生し、呼び出しスタック全体が巻き戻されます。
 
-> 厳密なモードを使うべきです...実際には、TSコンパイラはモジュールを使うとそれを挿入します...もっと後のものについては、もっと詳しく述べる必要はありません:)
+> strictモードを使うべきです...実際には、TSコンパイラはmoduleを使うとそれを挿入します...より詳細は、あとでこの本で解説するので、詳しく述べる必要はありません:)
 
 したがって、変数が* global *レベルで定義されているかどうかを確認するには、通常は `typeof`を使用します：
 
 ```ts
 if (typeof someglobal !== 'undefined') {
-  // someglobal is now safe to use
+  // ここではsomeglobalは安全に使えます
   console.log(someglobal);
 }
 ```
@@ -56,7 +57,7 @@ function foo(){
   return {a:1,b:undefined};
 }
 ```
-型の注釈を使用する必要があります。
+型アノテーションを使用する必要があります。
 ```ts
 function foo():{a:number,b?:number}{
   // if Something
@@ -67,7 +68,7 @@ function foo():{a:number,b?:number}{
 ```
 
 ### ノードスタイルコールバック
-ノードスタイルのコールバック関数（ `（err、somethingElse）=> {/ *何か* /}`）は、エラーがなければ `err`を`null`に設定して呼び出されます。あなたは一般的にちょうどこれのために本当にチェックを使用します：
+ノードスタイルのコールバック関数（ `（err, somethingElse）=> {/* something */}`）は、エラーがなければ `err`を`null`に設定して呼び出されます。あなたは一般的にerrが真であるかをチェックします：
 
 ```ts
 fs.readFile('someFile', 'utf8', (err,data) => {
@@ -78,9 +79,9 @@ fs.readFile('someFile', 'utf8', (err,data) => {
   }
 });
 ```
-独自のAPIを作成するときは、一貫性のために `null`を使用してください。あなた自身のAPIの全ての誠実さにおいて、約束を見てください。その場合、実際にはエラー値（ `.then`と`.catch`を使って扱います）を気にする必要はありません。
+独自のAPIを作成するときは、一貫性のために `null`を使用することは問題ありません。誠心誠意、あなたのAPIはpromiseを見るべきです。その場合、エラー値の存在を気にする必要はありません（`.then`と`.catch`を使って扱います）。
 
-### *有効性を示す手段として `undefined`を使用しないでください*
+### *有効性*を示す手段として `undefined`を使用しないでください
 
 たとえば、次のようなひどい関数です。
 
@@ -102,8 +103,7 @@ function toInt(str: string): { valid: boolean, int?: number } {
 }
 ```
 
-
 ### 最終的な考え
-TypeScriptチームは、[TypeScriptコーディングガイドライン]（https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined）を使用せず、問題は発生していません。 Douglas Crockfordは[`null`は悪い考えだと思う]（https://www.youtube.com/watch?v=PSGEjv3Tqo0&feature=youtu.be&t=9m21s）、私たちはすべて`undefined`を使うべきです。
+TypeScriptチームは、nullを使用しません: [TypeScriptコーディングガイドライン]（https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined） そして、問題は発生していません。 Douglas Crockfordは[null is a bad idea]（https://www.youtube.com/watch?v=PSGEjv3Tqo0&feature=youtu.be&t=9m21s） と考えてます。私たちはすべて`undefined`を使うべきです。
 
-しかし、NodeJSスタイルのコードベースでは、Error引数に `null`が標準で使用されています。これは`何か現在利用できません 'を示しています。私は個人的には、ほとんどのプロジェクトが意見の異なるライブラリを使い、 `== null`で除外するだけなので、2つを区別するのに気にしません。
+しかし、NodeJSスタイルのコードベースでは、Error引数に `null`が標準で使用されています。これは`何かが現在利用できません`ということを示しています。私は個人的には、ほとんどのプロジェクトにおいて、意見の異なるライブラリを使っていますが、 `== null`で除外するだけなので、2つを区別するのに気にしません。
