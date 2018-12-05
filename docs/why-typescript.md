@@ -87,7 +87,7 @@ foo = '456';
 
 そのため、JavaScriptコードを段階的にTypeScriptにアップグレードすることができます。これは他の多くの言語コンパイラが動作するのとは非常に異なっており、そして、TypeScriptに移行する、その他１つの理由です。
 
-### 型は周囲環境である可能性があります
+### 型は環境になりえます
 TypeScriptの主要な設計目標は、TypeScriptで既存のJavaScriptライブラリを安全かつ簡単に使用できるようにすることでした。 TypeScriptはこれを宣言(declaration)で行います。 TypeScriptは、宣言にどれくらいの労力をかけるかの自由を提供します。より多くの労力をかければ、より多くの型安全性とコード補完が得られます。よく使われるJavaScriptライブラリの型定義は、[DefinitelyTyped community]（https://github.com/borisyankov/DefinitelyTyped） によって既に書かれているので、
 
 1. 定義ファイルが既に存在します。
