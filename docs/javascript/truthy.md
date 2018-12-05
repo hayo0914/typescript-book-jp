@@ -1,6 +1,6 @@
-## Truthy
+## Trueとみなされる値(Truthy)
 
-JavaScript has a concept of `truthy` i.e. things that evaluate like `true` would in certain positions (e.g. `if` conditions and the boolean `&&` `||` operators). The following things are truthy in JavaScript. An example is any number other than `0` e.g.
+JavaScriptは、Trueとみなされる値(truthy)の概念を持っています。例えば、特定の場所（例えば、`if` 条件文とbooleanの`&&` `||` オペレータ)において、trueのように評価されるものです。次に示すものは、JavaScriptにおいてtruthyです。例えば、`0`以外の数値です。
 
 ```ts
 if (123) { // Will be treated like `true`
@@ -8,27 +8,27 @@ if (123) { // Will be treated like `true`
 }
 ```
 
-Something that isn't truthy is called `falsy`.
+truthyでないものは、`falsy`と呼ばれます。
 
-Here's a handy table for your reference.
+これはあなたの参照のための便利な表です。
 
-| Variable Type   | When it is *falsy*       | When it is *truthy*      |
+| 変数の型         | *falsy*である場合          | *truthy*である場合          |
 |-----------------|--------------------------|--------------------------|
 | `boolean`       | `false`                  | `true`                   |
-| `string`        | `''` (empty string)      | any other string         |
-| `number`        | `0`  `NaN`               | any other number         |
-| `null`          | always                   | never                    |
-| `undefined`     | always                   | never                    |
+| `string`        | `''` (empty string)      | その他の文字列             |
+| `number`        | `0`  `NaN`               | その他の数値               |
+| `null`          | always                   | 決して無い                 |
+| `undefined`     | always                   | 決して無い                 |
 | Any other Object including empty ones like `{}`,`[]` | never | always |
 
 
-### Being explicit
+### 明示的であること
 
 > The `!!` pattern
 
-Quite commonly it helps to be explicit that the intent is to treat the value as a `boolean` and convert it into a *true boolean* (one of `true`|`false`). You can easily convert values to a true boolean by prefixing it with `!!` e.g. `!!foo`. Its just `!` used *twice*. The first `!` converts the variable (in this case `foo`) to a boolean but inverts the logic (*truthy* -`!`> `false`, *falsy* -`!`> `true`). The second one toggles it again to match the nature of the original object (e.g. *truthy* -`!`> `false` -`!`> `true`).
+かなり一般的に、`boolean`として扱われる値を、それを本当の*`boolean`*(`true`|`false`)に変換することを明示的にすることは、良いことです。あなたは、`!!`を使って値を本当のbooleanに簡単に変換できます。例えば、`!!foo`です。これは単に`!`を２回使っただけです。最初の`!`は値をbooleanに変換しますが、その論理値を反転します。２つ目の`!`は、その値を本来の値にマッチするよう再度反転させます(例えば、 *truthy* -`!`> `false` -`!`> `true`)。
 
-It is common to use this pattern in lots of places e.g.
+これは様々な場所で共通的に利用できるパターンです。例:
 
 ```js
 // Direct variables
