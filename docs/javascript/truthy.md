@@ -17,9 +17,9 @@ truthyでないものは、`falsy`と呼ばれます。
 | `boolean`       | `false`                  | `true`                   |
 | `string`        | `''` (empty string)      | その他の文字列             |
 | `number`        | `0`  `NaN`               | その他の数値               |
-| `null`          | always                   | 決して無い                 |
-| `undefined`     | always                   | 決して無い                 |
-| Any other Object including empty ones like `{}`,`[]` | never | always |
+| `null`          | 常にfalsy                 | あり得ない                 |
+| `undefined`     | 常にfalsy                   | あり得ない                 |
+| Any other Object including empty ones like `{}`,`[]` | あり得ない | 常にtruthy |
 
 
 ### 明示的であること
