@@ -40,4 +40,4 @@ function add(a,b) {
 
 TypeScriptは、ガードしていない部分を攻撃されないように、いくつかのJavaScriptに関して学ぶ必要があること、あなたがJavaScriptを書くという事実から非常に実用的だと言われています。次にそれらについて説明しましょう。
 
-> 注意：TypeScriptはJavaScriptのスーパーセットであり、コンパイラ/IDEで使われるドキュメント（型情報）があるだけです
+> 注意：TypeScriptはJavaScriptのスーパーセットであり、JavaScriptにコンパイラ/IDEで使われるドキュメント（型情報）が付いただけのものです
