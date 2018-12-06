@@ -3,7 +3,7 @@
 * [Tip：Arrow関数の危険性](#Tip：Arrow機能の危険性)
 * [ヒント： `this`を使用するライブラリ](#Tip：`this`を使用するライブラリを持つArrow関数)
 * [ヒント：Arrow関数の継承](#Tip：Arrow関数と継承)
-* [ヒント：Quick object return](#Tip：Quick Object Return)
+* [ヒント：Quick object return](#Tip：Quick-Object-Return)
 
 ### Arrow関数
 
