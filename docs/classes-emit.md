@@ -1,4 +1,4 @@
-#### IIFE(Immediately-Invoked Function Expression)には何がありますか？
+#### IIFE(Immediately-Invoked Function Expression)に関して
 クラスのために生成されたjsは、このようになっている可能性もありました。
 ```ts
 function Point(x, y) {
