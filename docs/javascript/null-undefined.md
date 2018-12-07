@@ -106,4 +106,4 @@ function toInt(str: string): { valid: boolean, int?: number } {
 ### 結論
 TypeScriptチームは、`null`を使いません: [TypeScriptコーディングガイドライン](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined)。 そして、問題は起きていません。 Douglas Crockfordは[nullはbad idea](https://www.youtube.com/watch?v=PSGEjv3Tqo0&feature=youtu.be&t=9m21s)であると考えています。我々は全部において`undefined`を使うべきです。
 
-しかし、ノードスタイルのコードでは、Error引数に`null`が標準で使われています。これは`現在利用できません`という意味です。私は個人的に、ほとんどのプロジェクトにおいて、意見が違うライブラリを使っていますが、`== null`で除外するだけなので、2つを区別しません。
+しかし、ノードスタイルのコードでは、Error引数に`null`が標準で使われています。これは`現在利用できません`という意味です。私は個人的に、ほとんどのプロジェクトにおいて、意見がバラバラのライブラリを使っていますが、`== null`で除外するだけなので、2つを区別しません。
