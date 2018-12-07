@@ -1,19 +1,19 @@
-# あなたのJavaScriptはTypeScriptです
+# あなたの書いたJavaScriptはTypeScript
 
-JavaScriptコンパイラに対する、いくつかの構文には多くの競合がいました(そして今後もそうです)。 TypeScriptは、*あなたのJavaScriptがTypeScriptである*点でそれらとは異なります。ここに図があります：
+JavaScriptにコンパイルされるプログラミング言語に関しては、たくさんの競合がありました(そして今後も)。 TypeScriptは、*JavaScriptがTypeScriptである*点において、それらと一線を画しています。これを表す図：
 
 ![JavaScriptはTypeScriptです](https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png)
 
-しかし、これはJavaScriptを学ぶ必要があることを意味します(良いニュースはJavaScriptだけを学ぶ必要があるだけです)。 TypeScriptは、JavaScriptの優れたドキュメンテーションを提供する全ての方法を標準化しているだけです。
+しかし、これは、開発者がJavaScriptを学ぶ必要があることを意味しています(良いニュースは、JavaScriptだけ学べば良いということです)。TypeScriptは、単に、JavaScriptコードを良いドキュメントにする方法を標準化したものに過ぎません。
 
-* 新しい構文はバグを修正するのに役立つわけではありません(CoffeeScriptを見てください)
-* 新しい言語を作成すると、ランタイム、コミュニティを抽象化しすぎます(Dartを見てください)
+* 新しいプログラミング構文はバグ修正の助けにはなりません(CoffeeScriptを見てください)
+* 新しいプログラミング言語は、理論に偏り、開発者を実行環境やコミュニティから遠ざけます(Dartを見てください)
 
-TypeScriptは単なるドキュメント付きのJavaScriptです。
+TypeScriptは単にドキュメント付きのJavaScriptです。
 
 ## JavaScriptを改善する
 
-TypeScriptは、JavaScriptの決してまともに動かない部分からあなたを保護しようとします(このようなことは覚えておく必要はありません)：
+TypeScriptは、JavaScriptのイカれた仕様から開発者を守ります(こんなのを覚えておく必要はありません)：
 
 ```ts
 [] + []; // JavaScript will give you "" (which makes little sense), TypeScript will error
@@ -34,10 +34,10 @@ function add(a,b) {
 }
 ```
 
-本質的には、TypeScriptはJavaScriptを校正(linting)しています。 *型情報*を持たない他のlinterよりも良い仕事をしているだけです。
+本質的にTypeScriptはJavaScriptのリンター(linter)です。*型情報*を持たない他のリンターよりも優れているだけです。
 
-## あなたはまだJavaScriptを学ぶ必要があります
+## 開発者は、まだJavaScriptを学ぶ必要があります
 
-TypeScriptは実際にはJavaScriptを書くという事実から非常に実用的だと言われていますが、そのため、ガードしていない部分を攻撃されないように、JavaScriptに関して多少のことを学ぶ必要があります。次にそれらについて説明しましょう。
+TypeScriptは、「実際にはJavaScriptを書くものである」という点から非常に実用的なプログラミング言語だと言われていますが、それゆえ足をすくわれないように、JavaScriptに関して知っておくべきことがあります。次にそれらについて説明しましょう。
 
-> 注意：TypeScriptはJavaScriptのスーパーセットであり、JavaScriptにコンパイラ/IDEで使われるドキュメント(型情報)が付いただけのものです
+> 注意：TypeScriptはJavaScriptのスーパーセット(上位互換)であり、JavaScriptにコンパイラやIDEで使う型情報が付いただけのものです
