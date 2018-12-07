@@ -1,7 +1,7 @@
 * [TypeScript入門](#getting-started-with-typescript)
 * [TypeScriptのバージョン](#typescript-version)
 
-# TypeScriptを始める
+# TypeScriptを始めよう
 
 TypeScriptはJavaScriptにコンパイルされます。実際に実行されるのは、JavaScriptです(ブラウザでもサーバーでも)。よって、次のものが必要です：
 
