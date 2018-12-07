@@ -1,4 +1,4 @@
-# あなたの書いたJavaScriptはTypeScript
+# あなたの書いたJavaScriptはTypeScriptである
 
 JavaScriptにコンパイルされるプログラミング言語に関しては、たくさんの競合がありました(そして今後も)。 TypeScriptは、*JavaScriptがTypeScriptである*点において、それらと一線を画しています。これを表す図：
 
@@ -36,7 +36,7 @@ function add(a,b) {
 
 本質的にTypeScriptはJavaScriptのリンター(linter)です。*型情報*を持たない他のリンターよりも優れているだけです。
 
-## 開発者は、まだJavaScriptを学ぶ必要があります
+## 開発者は、まだJavaScriptを学ぶ必要がある
 
 TypeScriptは、「実際にはJavaScriptを書くものである」という点から非常に実用的なプログラミング言語だと言われていますが、それゆえ足をすくわれないように、JavaScriptに関して知っておくべきことがあります。次にそれらについて説明しましょう。
 
