@@ -1,5 +1,5 @@
-#### IIFE(Immediately-Invoked Function Expression)に関して
-クラスのために生成されたjsは、このようになっている可能性もありました。
+#### IIFE(Immediately-Invoked Function Expression)
+クラスを実現するために生成されるjsは以下のようになることも考えられました:
 ```ts
 function Point(x, y) {
     this.x = x;
@@ -10,7 +10,7 @@ Point.prototype.add = function (point) {
 };
 ```
 
-Immediately-Invoked Function Expression(IIFE)に包む理由です。例:
+TypeScriptが生成するクラスは、Immediately-Invoked Function Expression(IIFE)に包まれています。IIFEの例:
 
 ```ts
 (function () {
@@ -21,7 +21,7 @@ Immediately-Invoked Function Expression(IIFE)に包む理由です。例:
 })();
 ```
 
-継承に関係しています。これは、IIFEは、TypeScriptがベースクラスを変数 `_super`として取り込むことを可能にします。例:
+クラスがIIFEに包まれている理由は、継承に関係しています。IIFEは、TypeScriptが親クラスを変数`_super`として取り込むことを可能にします:
 
 ```ts
 var Point3D = (function (_super) {
@@ -41,7 +41,9 @@ var Point3D = (function (_super) {
 IIFEは、TypeScriptが基本クラス `Point`を`_super`変数に簡単に取り込むことを可能にし、クラス本体で一貫して使用されることに注意してください。
 
 ### `__extends`
-クラスを継承するとすぐに、TypeScriptは次の関数も生成します：
+
+クラスを継承するとTypeScriptが次の関数を生成することに、あなたはすぐ気がつくでしょう:
+
 ```ts
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -50,22 +52,22 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 ```
-ここで `d`は派生クラスを指し、`b`は基底クラスを指す。この関数は2つのことを行います：
-1. `(b.hasOwnProperty(p))d [p] = b [p];`であれば、基本クラスの静的メンバーを子クラスにコピーする。
-1. 子クラス関数のプロトタイプをセットアップし、親の`proto`のメンバーを検索できるようにする。例:`d.prototype.__ proto__ = b.prototype`
+ここで `d`は派生クラスを指し、`b`はベースクラスを指します。この関数は2つのことを行います：
+1. 親クラスの静的メンバを子クラスにコピーする:`(b.hasOwnProperty(p))d [p] = b [p];`
+1. 子クラス関数のプロトタイプを準備し、任意に親の`proto`のメンバを検索できるようにする。つまり、`d.prototype.__ proto__ = b.prototype`を実現する
 
 人々は 1 を理解するのに苦労することはほとんどありませんが、多くの人が 2 と格闘します。なので順番に説明します。
 
 #### `d.prototype .__ proto__ = b.prototype`
 
-これについて多くの人を教えた後、私は以下の説明が最も簡単であることを見出します。まず、 `__extends`のコードが単純な`d.prototype .__ proto__ = b.prototype`とどのように等価であるのか、そしてなぜこの行自体が重要であるのかを説明します。これらすべてを理解するには、これらのことを知る必要があります。
+これについて多くの人を教えた結果、次のような説明が最もシンプルだと分かりました。まず、`__extends`のコードが、単純な`d.prototype .__ proto__ = b.prototype`とどうして同じなのか、そしてなぜ、この行それ自体が重要であるのかを説明します。これをすべて理解するためには、これらのことを理解する必要があります:
 
 1. `__proto__`
 1. `prototype`
-1. 呼び出された関数内の`this`に対する`new`の効果
-1. `prototype`と`__proto__`に対する`new`の効果
+1. `new`の関数の内側の`this`に対する効果
+1. `new`の`prototype`と`__proto__`に対する効果
 
-JavaScriptのすべてのオブジェクトには `__proto__`メンバが含まれています。このメンバは古いブラウザではアクセスできないことがよくあります(ドキュメントでは、この魔法のプロパティを `[[prototype]]`と呼ぶこともあります)。 1つの目的があります：ルックアップ中にオブジェクトにプロパティが見つからない場合(例えば `obj.property`)、`obj .__ proto __。property`でルックアップされます。それでもまだ見つからなければ、 `obj .__ proto __.__ proto __。property`を見つけられます： それが見つかるか、最後の`.__ proto__`自体が`null`となるまでです。これはJavaScriptがなぜプロトタイプの継承をサポートすると言われているのかを説明しています。これは次の例に示されています。これはchromeコンソールまたはNode.jsで実行できます。
+JavaScriptのすべてのオブジェクトは `__proto__`メンバを含んでいます。このメンバは古いブラウザではアクセスできないことがよくあります(ドキュメントでは、この魔法のプロパティを `[[prototype]]`と呼ぶことがあります)。それは1つの目的を持っています：検索しているプロパティがオブジェクトに見つからない場合(例えば `obj.property`)、`obj .__ proto __。property`を検索します。それでもまだ見つからなければ、 `obj .__ proto __.__ proto __。property`を検索します： それが見つかるか、最後の`.__ proto__`自体が`null`となるまで続きます。これは、JavaScriptが*プロトタイプ継承*(prototypal inheritance)をサポートしていることを説明しています。次の例でこれを示します。chromeコンソールまたはNode.jsで実行することが可能です。
 
 ```ts
 var foo = {}
@@ -81,7 +83,7 @@ delete foo.__proto__.bar; // remove from foo.__proto__
 console.log(foo.bar); // undefined
 ```
 
-これで、あなたは `__proto__`を理解できました。もう一つの有用な事実は、JavaScriptの`function`には`prototype`というプロパティがあり、そして、`prototype`は、その関数を指す`constructor`というメンバーを持っているということです。これを以下に示します。
+これで、あなたは `__proto__`を理解できました。もう一つの便利な事実は、JavaScriptの関数(`function`)には`prototype`というプロパティがあり、そして、その`constructor`メンバは、逆に関数を指しているということです。これを以下に示します:
 
 ```ts
 function Foo() { }
@@ -89,7 +91,7 @@ console.log(Foo.prototype); // {} i.e. it exists and is not undefined
 console.log(Foo.prototype.constructor === Foo); // Has a member called `constructor` pointing back to the function
 ```
 
-次に、呼び出された関数内の`this`に`new`が及ぼす影響を見てみましょう。基本的には、呼び出された関数内の `this`は、関数から返される新しく生成されたオブジェクトを指します。関数内で `this`のプロパティを変更するのは簡単です：
+次に、呼び出された関数内の`this`に`new`が及ぼす影響を見てみましょう。基本的に、`new`を使って呼び出された関数の内側の`this`は、関数から返される新しく生成されたオブジェクトを指します。関数内で`this`のプロパティを変更するのは簡単です：
 
 ```ts
 function Foo() {
@@ -100,8 +102,7 @@ function Foo() {
 var newFoo = new Foo();
 console.log(newFoo.bar); // 123
 ```
-
-関数で `new`を呼び出すと、関数呼び出しから返された新しく作成されたオブジェクトの`__proto__`に関数の `prototype`が代入されるということだけです。完全に理解するために実行できるコードは次のとおりです。
+ここであなたが知る必要があることは、関数に対する`new`の呼び出しにより、関数の`prototype`が、生成されたオブジェクトの`__proto__`に設定されることです。次のコードを実行することによって、それを完全に理解できます:
 
 ```ts
 function Foo() { }
@@ -111,7 +112,7 @@ var foo = new Foo();
 console.log(foo.__proto__ === Foo.prototype); // True!
 ```
 
-それでおしまい。今度は、 `__extends`の中を次のようにストレートに見てください。私はこれらの行に番号を付けることにした：
+それだけのことです。今度は`__extends`の抜粋を見てください。これらの行に番号を振りました：
 
 ```ts
 1  function __() { this.constructor = d; }
@@ -119,13 +120,13 @@ console.log(foo.__proto__ === Foo.prototype); // True!
 3   d.prototype = new __();
 ```
 
-この関数を3行目の `d.prototype = new __()`と逆に読むと `d.prototype = {__proto__：__.prototype}`を意味します(`prototype`と`__proto__`に対する`new`の効果によるものです)、それを前の行(つまり、行2 `__.prototype = b.prototype;`)と組み合わせると、`d.prototype = {__proto__：b.prototype}`となります。
+この関数を逆から見ると、3行目の`d.prototype = new __()`は、 `d.prototype = {__proto__：__.prototype}`を意味します(`prototype`と`__proto__`に対する`new`の効果によるものです)。それを2行目(`__.prototype = b.prototype;`)と組み合わせると、`d.prototype = {__proto__：b.prototype}`となります。
 
-しかし、待ってください。私達は、単に`d.prototype.__proto__`が変更され、古い`d.prototype.constructor`が維持されることを望んでいました。そこで、最初の行(`function __(){this.constructor = d;}`)の意味が重要です。これは`d.prototype = {__proto__：__.prototype, constructor：d}`の効果があります(これは呼び出された関数の中で`this`に `new`が及ぼす影響のためです)。したがって、`d.prototype.constructor`を復元するので、私たちが本当に変更したのは`__proto__`だけなので、 `d.prototype .__ proto__ = b.prototype`です。
+しかし、待ってください。私達は、単に`d.prototype.__proto__`が変更され、`d.prototype.constructor`は、それまで通り維持されることを望んでいました。そこで重要な意味があるのが、最初の行(`function __(){this.constructor = d;}`)です。これは`d.prototype = {__proto__：__.prototype, constructor：d}`を実現できます(これは関数の内側の`this`に対する`new`による効果のためです)。したがって`d.prototype.constructor`を復元しているので、我々が変更したものは、`__proto__`たった1つだけであり、それゆえ`d.prototype.__proto__ = b.prototype`となります。
 
-#### `d.prototype .__ proto__ = b.prototype`の意義
+#### `d.prototype.__ proto__ = b.prototype`の意味
 
-重要な点は、子クラスにメンバー関数を追加し、基本クラスから他のメンバー関数を継承できることです。これは次の簡単な例で示されます。
+これを行うことによって、子クラスにメンバ関数を追加しつつ、その他のメンバは基本クラスから継承することができます。次の簡単な例で説明します:
 
 ```ts
 function Animal() { }
@@ -139,4 +140,4 @@ var bird = new Bird();
 bird.walk();
 bird.fly();
 ```
-基本的に `bird.fly`は`bird.__ proto __.fly`(`new`は`bird.__ proto__`が `Bird.prototype`を指すようにすることを思い出してください)から検索され、`bird.walk`(継承されたメンバー) は`bird.__proto__.__proto__.walk`から検索されます(`bird .__ proto__ == Bird.prototype`と`bird.__ proto __.__ proto__` == `Animal.prototype`)。
+基本的に`bird.fly`は`bird.__ proto __.fly`(`new`は`bird.__proto__`が`Bird.prototype`を指すようにすることを思い出してください)から検索され、`bird.walk`(継承されたメンバー)は`bird.__proto__.__proto__.walk`から検索されます(`bird.__proto__ == Bird.prototype`、そして、`bird.__proto __.__proto__` == `Animal.prototype`です)。
