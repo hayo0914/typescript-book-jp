@@ -128,4 +128,5 @@ var nextThing = iterator.throw(new Error('bar'));
 これが、どのように便利なのでしょうか？次のセクション[**async/await**][async-await]に移動して調べてください。
 
 [iterator](./iterators.md)
+
 [async-await](./ async-await.md)
