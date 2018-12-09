@@ -113,7 +113,7 @@ function dramaticWelcome() {
 }
 dramaticWelcome();
 ```
-完全な例を[ここ](asyncawaites6code)で見ることができます。
+完全な例を[ここ][asyncawaites6code]で見ることができます。
 
 
 **ES5へのトランスパイル結果(--target es5)**
@@ -189,12 +189,12 @@ function dramaticWelcome() {
 }
 dramaticWelcome();
 ```
-完全な例を[ここ](asyncawaites5code)で見ることができます。
+完全な例を[ここ][asyncawaites5code]で見ることができます。
 
 
-** 注**：両方のターゲットシナリオでは、実行時にグローバルにECMAScriptに準拠したプロミスがあることを確認する必要があります。それはPromiseのためにポリフィルを取得することを含むかもしれません。また、libフラグを "dom"、 "es2015"、 "dom"、 "es2015.promise"、 "es5"のように設定することで、TypeScriptがPromiseを認識していることを確認する必要があります。
-** Promiseサポート(ネイティブおよびポリ充てん)[ここ](https://kangax.github.io/compat-table/es6/#test-Promise)を持っているブラウザを確認できます。**
+**注意**：両方のターゲットシナリオでは、実行時にグローバルにECMAScriptに準拠したPromiseがあることを確認する必要があります。PromiseのためにPolyfillを用意する必要があるかもしれません。また、libフラグを "dom"、 "es2015"、 "dom"、 "es2015.promise"、 "es5"のように設定することで、TypeScriptがPromiseを認識していることを確認する必要があります。
+** 書くブラウザのPromiseサポート(ネイティブおよびPolyfill)の有無を[ここ](https://kangax.github.io/compat-table/es6/#test-Promise)で確認できます。**
 
-[ジェネレータ]：./ generators.md
-[asyncawaites5code]：https：//cdn.rawgit.com/basarat/typescript-book/705e4496/code/async-await/es​​5/asyncAwaitES5.js
-[asyncawaites6code]：https：//cdn.rawgit.com/basarat/typescript-book/705e4496/code/async-await/es​​6/asyncAwaitES6.js
+[ジェネレータ]:./generators.md
+[asyncawaites5code]：https://cdn.rawgit.com/basarat/typescript-book/705e4496/code/async-await/es5/asyncAwaitES5.js
+[asyncawaites6code]：https://cdn.rawgit.com/basarat/typescript-book/705e4496/code/async-await/es6/asyncAwaitES6.js
