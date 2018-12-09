@@ -113,7 +113,7 @@ function dramaticWelcome() {
 }
 dramaticWelcome();
 ```
-完全な例を[ここ][asyncawaites6code]で見ることができます。
+完全な例を[ここ](asyncawaites6code)で見ることができます。
 
 
 **ES5へのトランスパイル結果(--target es5)**
@@ -189,7 +189,7 @@ function dramaticWelcome() {
 }
 dramaticWelcome();
 ```
-完全な例を[ここ][asyncawaites5code]で見ることができます。
+完全な例を[ここ](asyncawaites5code)で見ることができます。
 
 
 ** 注**：両方のターゲットシナリオでは、実行時にグローバルにECMAScriptに準拠したプロミスがあることを確認する必要があります。それはPromiseのためにポリフィルを取得することを含むかもしれません。また、libフラグを "dom"、 "es2015"、 "dom"、 "es2015.promise"、 "es5"のように設定することで、TypeScriptがPromiseを認識していることを確認する必要があります。
