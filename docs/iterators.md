@@ -1,8 +1,6 @@
-### イテレータ
+### イテレータ(Iterators)
 
-Iterator自体はTypeScriptまたはES6の機能ではないため、Iteratorは
-ビヘイビアデザインオブジェクト指向プログラミング言語に共通するパターン。
-これは、一般に、次のインタフェースを実装するオブジェクトです。
+イテレータ自体はTypeScriptまたはES6の機能ではなく、オブジェクト指向プログラミング言語において一般的な、振る舞いに関するデザインパターン(Behavioral Design Pattern)です。これは、一般に次のインタフェースを実装するオブジェクトです。
 
 ```ts
 interface Iterator<T> {
@@ -12,10 +10,9 @@ interface Iterator<T> {
 }
 ```
 
-このインタフェースでは、コレクションまたはシーケンスから値を取得できます。
-オブジェクトに属します。
+このインタフェースは、コレクションまたはシーケンスのオブジェクトに属する値を取得することを可能にします。
 
-`IteratorResult`は単なる`value` + `done`ペアです：
+`IteratorResult`は単なる`value`+`done`のペアです：
 ```ts
 interface IteratorResult<T> {
     done: boolean;
@@ -23,9 +20,7 @@ interface IteratorResult<T> {
 }
 ```
 
-いくつかのフレームのオブジェクトがあるとしましょう。
-このフレームが構成するコンポーネントイテレータインタフェースを使用すると可能です
-このフレームオブジェクトから以下のようなコンポーネントを取得します。
+何らかのフレームのようなオブジェクトがあるとしましょう。このフレームは、コンポーネントのリストで構成されています。イテレータのインターフェースは、フレームオブジェクトのコンポーネントを次のように取得することを可能にします。
 
 ```ts
 class Component {
@@ -63,13 +58,10 @@ let iteratorResult5 = frame.next(); //{ done: true }
 //It is possible to access the value of iterator result via the value property:
 let component = iteratorResult1.value; //Component { name: 'top' }
 ```
-再び。 Iterator自体はTypeScriptの機能ではなく、このコードは
-IteratorとIteratorResultインタフェースを明示的に実装します。
-しかし、これらの共通点を使用すると非常に便利です
-コード一貫性のためのES6 [interfaces](./ types / interfaces.md)
 
-よかったですが、もっと役立つかもしれません。 ES6は* iterableプロトコルを定義します*
-Iterableインターフェースが実装されている場合は、[Symbol.iterator] `symbol`を含みます：
+繰り返しになりますが、イテレータ自体はTypeScriptの機能ではありません。このコードは`Iterator`と`IteratorResult`のインターフェースを明示的に実装しなくても動作します。しかしながら、ES6の[インターフェース](./types/interfaces.md)を使うことはコードの一貫性を保つ上で非常に便利です。
+
+それはOK、良いことです。しかし、さらに役立つことがあるかもしれません。ES6はイテラブルプロトコル(iterable protocol)を定義しています。それを実装する場合は、[Symbol.iterator]シンボル(`symbol`)を含みます：
 ```ts
 //...
 class Frame implements Iterable<Component> {
@@ -104,8 +96,7 @@ for (let cmp of frame) {
 }
 ```
 
-残念ながら `frame.next()`はこのパターンでは動作しません。
-少し不器用です。レスキューへのIterableIteratorインターフェイス!
+残念ながら `frame.next()`はこのパターンでは動作しません。また、見た目が少し不格好です。そこで救いになるのがIterableIteratorインターフェースです!
 ```ts
 //...
 class Frame implements IterableIterator<Component> {
@@ -135,10 +126,9 @@ class Frame implements IterableIterator<Component> {
 }
 //...
 ```
-`frame.next()`と `for`サイクルの両方が、IterableIteratorインターフェースでうまく動作するようになりました。
+`frame.next()`と`for`ループの両方が、IterableIteratorインターフェースでうまく動作するようになりました。
 
-反復子は有限の値を反復する必要はありません。
-典型的な例はフィボナッチシーケンスです：
+イテレータが反復する対象は有限である必要はありません。典型的な例はフィボナッチ計算の処理です：
 ```ts
 class Fib implements IterableIterator<number> {
 
@@ -187,9 +177,5 @@ for(let num of fibMax21) {
 }
 ```
 
-#### ES5ターゲットのイテレーターによるビルドコード
-上記のコード例ではES6ターゲットが必要ですが、動作する可能性があります
-ターゲットJSエンジンが `Symbol.iterator`をサポートしている場合は、ES5ターゲットも使用できます。
-これは、ES5ターゲットでES6 libを使用することで実現できます
-(es6.d.tsをプロジェクトに追加して)コンパイルします。
-コンパイルされたコードは、ノード4+、Google Chrome、その他のブラウザで動作するはずです。
+#### ES5で動作するイテレータを使ってコードを書く
+上記のコード例はES6に対応しているJSエンジンが必要ですが、ES5をターゲットとするJSエンジンであっても、`Symbol.iterator`をサポートしている場合は、動作する可能性があります。これは、ES6 lib(es6.d.ts)をプロジェクトに追加してES5をターゲットにコンパイルすることで可能です。コンパイルされたコードは、node 4+、Google Chrome、その他のブラウザで動作するはずです。
