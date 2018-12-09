@@ -125,7 +125,7 @@ var nextThing = iterator.throw(new Error('bar'));
 * 外部システムは、ジェネレータ関数本体に値を送ることができます
 * 外部システムは、ジェネレータ関数本体に例外をスローすることができます
 
-これが、どのように便利なのでしょうか？次のセクション[**async/await**][async-await]に移動して調べてください。
+これが、どのように便利なのでしょうか？次のセクション[**async/await**](./async-await.md)に移動して調べてください。
 
 [iterator](./iterators.md)
 [async-await](./async-await.md)
