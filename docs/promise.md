@@ -1,10 +1,10 @@
-## 約束する
+## プロミス(Promise)
 
-`Promise`クラスは、多くの最新のJavaScriptエンジンに存在し、簡単に[polyfill] [polyfill]することができます。約束の主な動機は、同期スタイルエラー処理をAsync / Callbackスタイルコードに持たせることです。
+`Promise`クラスは、多くのモダンなJavaScriptエンジンに存在し、簡単に[polyfill](https://github.com/stefanpenner/es6-promise)することができます。Promiseを使う主な理由は、非同期/コールバックスタイルコードにおいて同期処理スタイルのエラー処理を行うことです。
 
-### コールバックスタイルコード
+### コールバックスタイルコード(Callbask style code)
 
-約束を完全に理解するために、コールバックだけで信頼性の高い非同期コードを作成することの難しさを証明する簡単なサンプルを提示しましょう。ファイルからJSONをロードする非同期バージョンをオーサリングする単純なケースを考えてみましょう。この同期バージョンは非常に簡単です。
+Promiseを完全に理解するため、信頼性の高い非同期処理をコールバックだけで構築する難しさをサンプルコードで提示します。ファイルからJSONをロードする処理の非同期バージョンを作成するケースを考えてみましょう。これの同期バージョンは非常にシンプルです:
 
 ```ts
 import fs = require('fs');
@@ -33,7 +33,7 @@ catch (err) {
 }
 ```
 
-この単純な `loadJSONSync`関数、有効な戻り値、ファイルシステムエラー、またはJSON.parseエラーの3つの動作があります。私たちは、他の言語で同期プログラミングを行う際に慣れていたように、単純なtry / catchでエラーを処理します。このような関数の良い非同期バージョンを作ってみましょう。些細なエラーチェックロジックでまともな試みは次のようになります：
+このシンプルな`loadJSONSync`には有効な戻り値、ファイルシステムラー、JSON.parseエラーの３種類の動作があります。私たちは、他の言語で同期処理を行う際に慣れていたように、単純なtry/catchでエラーを処理します。このような関数の良い非同期バージョンを作ってみましょう。最初の適切な試みとして、些細なエラーチェックロジックを組み込んだ例は次のようになります：
 
 ```ts
 import fs = require('fs');
@@ -47,12 +47,12 @@ function loadJSON(filename: string, cb: (error: Error, data: any) => void) {
 }
 ```
 
-十分単純で、コールバックをとり、ファイルシステムエラーをコールバックに渡します。ファイルシステムエラーがなければ、 `JSON.parse`の結果を返します。コールバックに基づいて非同期関数を操作するときに留意すべき点は次のとおりです。
+十分シンプルです。コールバックをとり、ファイルシステムエラーをコールバックに渡します。ファイルシステムエラーがなければ、`JSON.parse`の結果を返します。コールバックに基づいて非同期関数を操作するときに留意すべき点は次のとおりです。
 
 1. 決してコールバックを2回コールしないでください。
 1. 決してエラーを投げないでください。
 
-しかしながら、この単純な関数は点2に対応できない。実際にJSON.parseはJSONが渡され、コールバックが呼び出されず、アプリケーションがクラッシュするとエラーをスローします。これは以下の例で示されます：
+しかしながら、この単純な関数は２つ目の点に対応できません。実際にJSON.parseに間違ったJSONが渡されると、エラーが発生し、コールバックが呼び出されず、アプリケーションがクラッシュします。これを以下の例で示します：
 
 ```ts
 import fs = require('fs');
@@ -73,7 +73,7 @@ loadJSON('invalid.json', function (err, data) {
 });
 ```
 
-これを修正する単純な試みは、次の例に示すように `JSON.parse`をtry catchにラップすることです。
+これを修正するための素朴な試みは、次の例に示すように`JSON.parse`をtry catchにラップすることです。
 
 ```ts
 import fs = require('fs');
@@ -102,7 +102,7 @@ loadJSON('invalid.json', function (err, data) {
 });
 ```
 
-しかし、このコードには微妙なバグがあります。 `JSON.parse`ではなく、コールバック(`cb`)がエラーをスローすると、 `try`/` catch`でラップしたので、 `catch`が実行され、コールバックを再度コールします。二度呼ばれる!これは以下の例で実証されています：
+しかし、このコードには些細なバグがあります。もしコールバック(`cb`)がコールされ、`JSON.parse`がコールされず、エラーをスローした場合、`try`/`catch`でラップしているため、`catch`が実行され、コールバックを再度コールされてしまいます。つまり、コールバックが二度コールされてしまいます!これを以下の例で示します：
 
 ```ts
 import fs = require('fs');
@@ -144,11 +144,11 @@ our callback called
 Error: Cannot read property 'bar' of undefined
 ```
 
-これは、 `loadJSON`関数が`try`ブロックでコールバックを間違ってラップしたためです。ここで覚えておくべき簡単な教訓があります。
+これは、`loadJSON`関数が間違って`try`ブロックでコールバックをラップしたためです。ここで覚えておくべき簡単な教訓があります。
 
-> シンプルなレッスン：コールバックを呼び出すときを除いて、すべてのシンクコードをtryキャッチに入れます。
+> シンプルな教え：コールバックをコールするとき以外のすべての同期コードをtry catchに含めること。
 
-この簡単なレッスンの後で、以下に示すように完全に機能する非同期バージョンの `loadJSON`があります：
+このシンプルな教えに基づいて、我々は完全に機能する非同期バージョンの`loadJSON`を作成できます：
 
 ```ts
 import fs = require('fs');
@@ -168,15 +168,15 @@ function loadJSON(filename: string, cb: (error: Error) => void) {
     });
 }
 ```
-確かに、これを数回やった後はこれを実行するのは難しいことではありませんが、エラー処理を簡単に行うためのボイラープレートコードがたくさんあります。では、約束を使って非同期JavaScriptに取り組むより良い方法を見てみましょう。
+確かに、これを数回行えば、難しいことではありませんが、単純で良いエラー処理を書くために多くの定型的なコードが必要です。では、Promiseを使ってJavaScriptの非同期処理に取り組むベターな方法を見てみましょう。
 
-## 約束をする
+## Promiseを作る
 
-約束は、「保留中」または「履行済み」または「拒否」のいずれかになります。
+Promiseの状態は、`pending`(保留中)または`fulfilled`(履行済み)または`regected`(拒絶済み)のいずれかになります。
 
-![約束の州と運命](https://raw.githubusercontent.com/basarat/typescript-book/master/images/promise%20states%20and%20fates.png)
+![Promiseの宣言と運命](https://raw.githubusercontent.com/basarat/typescript-book/master/images/promise%20states%20and%20fates.png)
 
-約束を作るのを見てみましょう。 Promise(promiseコンストラクタ)で `new`を呼び出すのは簡単なことです。 promiseコンストラクタには、約束状態を解決するために `resolve`と`reject`関数が渡されます。
+Promiseの作り方を見てみましょう。Promise(Promiseのコンストラクタ)に対して`new`を呼び出すだけの簡単なことです。Promiseコンストラクタには、Promiseの状態を決めるための`resolve`関数と`reject`関数が渡されます。
 
 ```ts
 const promise = new Promise((resolve, reject) => {
@@ -184,9 +184,9 @@ const promise = new Promise((resolve, reject) => {
 });
 ```
 
-### 約束の運命に加入する
+### Promiseの結果をサブスクライブ(subscribing)する
 
-約束運命は、 `.then`(解決された場合)または`.catch`(拒絶された場合)を使用して購読することができます。
+Promiseの結果は、`.then`(resolveが実行された場合)または`.catch`(rejectが実行された場合)を使用してサブスクライブできます。
 
 ```ts
 const promise = new Promise((resolve, reject) => {
@@ -212,14 +212,14 @@ promise.catch((err) => {
 });
 ```
 
-> ヒント：約束のショートカット
-* すでに約束されている約束をすばやく作成する： `Promise.resolve(result)`
-* 既に拒否されている約束をすばやく作成する： `Promise.reject(error)`
+> TIP：Promiseのショートカット
+* すでにresolveされているPromiseを素早く作成する：`Promise.resolve(result)`
+* 既にrejectされているPromiseを素早く作成する： `Promise.reject(error)`
 
-### 約束の連鎖性
-約束**の連鎖能力は、約束**が提供するメリットの中心です。その時点から約束が得られれば、 `then`関数を使って約束を作ることができます。
+### Promiseのチェーン能力
+Promiseのチェーン能力は**Promiseを使う最大のメリット**です。一度Promiseを得れば、その時点から、`then`関数を使ってPromiseのチェーンを作れます。
 
-* チェーン内の関数から約束を返すと、値が解決されたときにのみ `.then`が呼び出されます：
+* もしチェーン内の関数からPromiseを返すと、そのPromiseがresolveされた時に1回だけ`.then`が呼び出されます：
 
 ```ts
 Promise.resolve(123)
@@ -237,7 +237,7 @@ Promise.resolve(123)
     })
 ```
 
-* チェーンの前の部分のエラー処理を単一の `catch`で集約することができます：
+* チェーンの前の部分のエラー処理を単一の`catch`で集約することができます：
 
 ```ts
 // Create a rejected promise
@@ -259,7 +259,7 @@ Promise.reject(new Error('something bad happened'))
     });
 ```
 
-* `catch 'は実際に新しい約束を返します(効果的に新しい約束を作り出します)：
+* `catch`は実際には新しいPromiseを返します(要するに新しいPromiseのチェーンを作成します)：
 
 ```ts
 // Create a rejected promise
@@ -277,7 +277,7 @@ Promise.reject(new Error('something bad happened'))
     })
 ```
 
-* `then`(または`catch`)でスローされた同期エラーは、返された約束が失敗する結果になります：
+* `then`(または`catch`)で同期エラーがスローされると、返されたPromiseが失敗します：
 
 ```ts
 Promise.resolve(123)
@@ -294,7 +294,7 @@ Promise.resolve(123)
     })
 ```
 
-* 関連する(最も近いテーリング) `catch`だけが与えられたエラーに対して呼び出されます(catchが新しい約束を開始するとき)。
+* エラーが発生すると関係する(後方で最も近い)`catch`だけがコールされます(同時にcatchが新しい`Promise`を開始します)。
 
 ```ts
 Promise.resolve(123)
@@ -315,7 +315,7 @@ Promise.resolve(123)
     })
 ```
 
-* `catch`は前のチェーンのエラーの場合にのみ呼び出されます：
+* `catch`はチェーンの前部分でエラーが発生した場合にのみコールされます：
 
 ```ts
 Promise.resolve(123)
@@ -327,16 +327,16 @@ Promise.resolve(123)
     })
 ```
 
-事実：
+Promiseチェーンの事実：
 
-* エラーはtailingの `catch`にジャンプします(そして`then`コールは途中でスキップします)。
-* 同期エラーはまた、どんなテーリング `catch`でも捕捉されます。
+* エラーは後続の`catch`にジャンプします(そして途中の`then`はスキップします)
+* 同期エラーは最も近い後続の`catch`で捕捉されます
 
-実際には生のコールバックよりも優れたエラー処理を可能にする非同期プログラミングのパラダイムを効果的に提供します。もっと詳しくはこちら。
+要するに、生のコールバックよりも優れたエラー処理を可能にする非同期プログラミングの模範を我々に提供してくれます。より詳しく、以下に記載します。
 
 
-### TypeScriptと約束
-TypeScriptの大きな点は、約束を通した価値の流れを理解することです。
+### TypeScriptとPromise
+TypeScriptの偉大な点は、Promiseチェーンを通る値の流れ(flow)を理解することです。
 
 ```ts
 Promise.resolve(123)
@@ -350,7 +350,7 @@ Promise.resolve(123)
     });
 ```
 
-もちろん、約束を返す可能性のある関数呼び出しのアンラッピングも理解しています。
+もちろん、Promiseを返す可能性のある関数呼び出しも理解しています。
 
 ```ts
 function iReturnPromiseAfter1Second(): Promise<string> {
@@ -371,13 +371,13 @@ Promise.resolve(123)
 ```
 
 
-### コールバックスタイル関数を約束を返すように変換する
+### コールバックスタイルの関数をPromiseを返すように変更する
 
-関数呼び出しを約束して
- - エラーが発生した場合は `reject`を、
- - それがすべて良ければ `解決する`。
+関数呼び出しをPromiseにラップして
+- エラーが発生した場合は `reject`をコールする
+- 全てうまく行った場合は`resolve`をコールする
 
-例えば。 `fs.readFile`をラップしましょう：
+例えば`fs.readFile`をラップしましょう：
 
 ```ts
 import fs = require('fs');
@@ -394,7 +394,7 @@ function readFileAsync(filename: string): Promise<any> {
 
 ### JSONの例を見直す
 
-次に、 `loadJSON`の例を見直して、約束を使う非同期バージョンを書き直しましょう。私たちがする必要があるのは、ファイルの内容を約束として読み、それをJSONとして解析して完了したことだけです。これは以下の例に示されています。
+次に、`loadJSON`の例を見直して、Promiseを使う非同期バージョンを書いてみましょう。やるべきことは、Promiseとしてファイル内容を読み、JSONとしてパースする、それだけです。これを以下の例で示します:
 
 ```ts
 function loadJSONAsync(filename: string): Promise<any> {
@@ -405,7 +405,7 @@ function loadJSONAsync(filename: string): Promise<any> {
 }
 ```
 
-使用法(このセクションの始めに導入された元の `sync`バージョンとどれほど似ているか注意してください。)：
+使い方(このセクションの始めに紹介した`sync`バージョンとどれくらい似ているかを見てください🌹)：
 ```ts
 // good json file
 loadJSONAsync('good.json')
@@ -433,12 +433,12 @@ loadJSONAsync('good.json')
     });
 ```
 
-この関数がより簡単だった理由は、 "loadFile`(async)+`JSON.parse`(sync)=> `catch`"の連結が約束チェーンによって行われたためです。また、コールバックは* us *によって呼び出されませんでしたが、約束チェーンによって呼び出されたので、 `try / catch`でラップする間違いの可能性はありませんでした。
+この関数がよりシンプルになった理由は、"`loadFile`(async)+`JSON.parse`(sync)=>`catch`"の連結がPromiseチェーンによって行われたためです。また、コールバックは我々ではなくPromiseチェーンによってコールされたので、`try/catch`でラップする誤りが起きる可能性はありませんでした。
 
-### 並列制御フロー
-私たちは、非同期タスクのシリアルシーケンスを行うことが約束どおりにいかに簡単であるかを見てきました。それは単に `then`呼び出しを連鎖させることの問題です。
+### 並列制御フロー(Parallel control flow)
+私たちは、Promiseを使った非同期タスクのシーケンシャル処理がいかに簡単であるかを見てきました。単に`then`の呼び出しをチェーンするだけです。
 
-しかし、一連の非同期タスクを実行し、これらのタスクのすべての結果を使用して何かを実行する可能性があります。 `Promise`は静的な`Promise.all`関数を提供します。この関数は、 `n`回の約束が完了するまで待つことができます。あなたは `n`約束の配列を提供し、`n`個の解決された値の配列を返します。以下では、連鎖と同様に連鎖を示します。
+しかし、複数の非同期処理を実行し、全てのタスクが終わったときに何かを行いたいという場合があるかもしれません。`Promise`は静的な`Promise.all`関数を提供します。この関数は、`n`個のPromiseが全て完了するまで待つことができます。`n`個のPromiseの配列を渡すと、`n`個の解決された値の配列を返します。以下では、チェーンの例と同じように並列の例を示します。
 
 ```ts
 // an async function to simulate loading an item from some server
@@ -471,7 +471,7 @@ Promise.all([loadItem(1), loadItem(2)])
     }); // overall time will be around 1s
 ```
 
-場合によっては、一連の非同期タスクを実行したい場合もありますが、これらのタスクのいずれかが解決されている限り、必要なものはすべて得られます。 `Promise`は、このシナリオに対して静的な`Promise.race`関数を提供します：
+場合によっては、一連の非同期タスクを実行しますが、これらのタスクの内どれか1つが解決されることを必要とする場合があります。`Promise`は、このシナリオに対して静的な`Promise.race`関数を提供します：
 
 ```ts
 var task1 = new Promise(function(resolve, reject) {
@@ -487,15 +487,15 @@ Promise.race([task1, task2]).then(function(value) {
 });
 ```
 
-### コールバック関数を約束するように変換する
+### コールバック関数をPromiseに変換する
 
-これを行う最も信頼できる方法は、手書きで書くことです。例えば`setTimeout`をpromisified`delay`関数に変換するのは簡単です：
+これを行う最も信頼性の高い方法は、手ずからコードを書くことです。例えば`setTimeout`をPromiseを使った`delay`関数に変換するのは非常に簡単です：
 
 ```ts
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 ```
 
-NodeJSには、この `node style function =>関数を返す`という魔法を使う便利なダンディー関数があることに注意してください。
+NodeJSにはこれを行う素晴らしく便利な関数があります。これは`ノードスタイルの関数 => Promiseを返す関数`という魔法をかけてくれます。
 
 ```ts
 /** Sample usage */
@@ -503,5 +503,3 @@ import fs = require('fs');
 import util = require('util');
 const readFile = util.promisify(fs.readFile);
 ```
-
-[polyfill]：https：//github.com/stefanpenner/es6-promise
