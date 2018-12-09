@@ -1,14 +1,14 @@
 ### const
 
-`const`はES6 / TypeScriptが提供する非常に歓迎された追加です。変数を使用して不変にすることができます。これは、ドキュメンテーションだけでなく実行時の視点からも優れています。 constを使うには `var`を`const`で置き換えてください：
+`const`はES6/TypeScriptで提供されている非常に嬉しい追加です。変数を不変(immutable)にできます。これは、可読性だけでなく実行時の観点からも優れています。 constを使うには`var`を`const`で置き換えてください：
 
 ```ts
 const foo = 123;
 ```
 
-> 構文は他の言語よりもはるかに優れています(IMHO)。これはユーザーに `let constant foo`のようなものを入力させます。つまり、変数+動作指定子です。
+> この構文は`let constant foo`のようなものを入力させる他の言語よりもずっと優れています(IMHO: In my honest opinion)。つまり、変数+動作指定子です。
 
-`const`は読みやすさとメンテナンス性の両方の良い習慣であり、*魔法のリテラル*を使うのを避けます。
+`const`は可読性とメンテナンス性の両方において良い習慣であり、魔法のりテラル(magic literals)を使うことを避けられます。
 
 ```ts
 // Low readability
@@ -21,15 +21,15 @@ if (x > maxRows) {
 }
 ```
 
-#### const宣言を初期化する必要があります
+#### const宣言は初期化する必要がある
 以下はコンパイラエラーです：
 
 ```ts
 const foo; // ERROR: const declarations must be initialized
 ```
 
-#### 代入の左辺は定数ではありません
-定数は作成後に不変です。したがって、それらを新しい値に代入しようとするとコンパイラエラーになります：
+#### 代入の左辺は定数ではない
+定数は作成後は不変です。したがって、それらを新しい値に代入しようとするとコンパイラエラーになります：
 
 ```ts
 const foo = 123;
@@ -37,7 +37,7 @@ foo = 456; // ERROR: Left-hand side of an assignment expression cannot be a cons
 ```
 
 #### ブロックスコープ
-`const`は` `let``(./ let.md)で見たようにブロックスコープです：
+`const`は`let`(./let.md)で見たようにブロックスコープです：
 
 ```ts
 const foo = 123;
@@ -47,14 +47,14 @@ if (true) {
 ```
 
 #### 深い不変性
-`const`は、変数* reference *を保護する限り、オブジェクトリテラルでも機能します：
+`const`は、変数の参照(reference)を保護する限りにおいて、オブジェクトリテラルでも機能します：
 
 ```ts
 const foo = { bar: 123 };
 foo = { bar: 456 }; // ERROR : Left hand side of an assignment expression cannot be a constant
 ```
 
-ただし、以下に示すように、オブジェクトのサブプロパティを変更することはできます。
+ただし、以下に示すように、オブジェクト内部のプロパティを変更することは可能です。
 
 ```ts
 const foo = { bar: 123 };
@@ -62,4 +62,4 @@ foo.bar = 456; // Allowed!
 console.log(foo); // { bar: 456 }
 ```
 
-このため、プリミティブや不変のデータ構造で `const`を使うことをお勧めします。
+このため、プリミティブや不変(immutable)のデータ構造で`const`を使うことをお勧めします。
