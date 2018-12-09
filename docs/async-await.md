@@ -1,8 +1,8 @@
 ## Async Await
 
-> [同じ素材をカバーするPRO卵ヘッドのビデオコース](https://egghead.io/courses/async-await-using-typescript)
+> [同内容をカバーするPRO eggheadのビデオコース](https://egghead.io/courses/async-await-using-typescript)
 
-思考実験として、次のように想像してみましょう：promiseで使用されたときに `await`キーワードでコードの実行を一時停止し、関数から返された約束が一度だけ再開されるようにJavaScriptランタイムに指示する方法：
+思考実験として、`await`キーワードがPromiseに対して使われたときにコードの実行を一時停止し、その関数から返されたPromiseが完了したときだけ実行が再開されるようにJavaScriptランタイムに指示する方法を考えてみましょう：
 
 ```ts
 // Not actual code. A thought experiment
@@ -17,21 +17,22 @@ async function foo() {
 }
 ```
 
-約束が執行を続けると、
-* それが満たされていれば、値を返すことを待っています。
-* 拒否された場合、エラーを同期的にスローして捕捉できます。
+Promiseが完了したとき、次の処理を続けます
+* Promiseがresolveされた場合、値が返されることを待つ
+* Promiseがrejectされた場合、同期的にキャッチ可能なエラーを投げる
 
-これは突然(そして魔法のように)非同期プログラミングを同期プログラミングほど簡単にします。この思考実験に必要な3つのものは次のとおりです。
 
-* 機能*実行を一時停止する能力。
-* 機能の中に値を入れる*能力。
-* 機能の内部に例外をスローする能力。
+これは一瞬にして(そして魔法のように)非同期プログラミングを同期プログラミングと同じように簡単にします。この思考実験に必要な3つのものは次のとおりです。
 
-これはまさに発電機が私たちに許したものです!思考実験*は実際には実際のものです。*また、TypeScript / JavaScriptの `async`/` await`実装もそうです。カバーの下では、それは単に発電機を使用しています。
+* 関数実行を一時停止する能力
+* 関数の内側に値を入れる能力
+* 関数の内側に例外をスローする能力
+
+これはまさにジェネレータが可能にしたことです!上記の思考実験は実際の事実です。なので、TypeScript/JavaScriptの`async`/`await`の実装も存在します。裏側の仕組みは、単にジェネレータを使っています。
 
 ### 生成されたJavaScript
 
-あなたはこれを理解する必要はありませんが、[ジェネレータを読む]ことができればかなり簡単です。関数 `foo`は次のように単純にラップすることができます：
+これを理解する必要はありませんが、[ジェネレータ](./generators.md)のことを知っていれば、かなり簡単です。関数`foo`は次のように単純にラップされたもので実現できます：
 
 ```ts
 const foo = wrapToReturnPromise(function* () {
@@ -45,17 +46,17 @@ const foo = wrapToReturnPromise(function* () {
 });
 ```
 
-`wrapToReturnPromise`はジェネレータ関数を実行して`generator`を取得し、 `generator.next()`を使います。値が `promise`なら`promise`を `` ``catch``し、結果を `generator.next(result)`または `generator.throw(error)`と呼びます。それでおしまい!
+`wrapToReturnPromise`はジェネレータ関数を実行して`generator`を取得し、`generator.next()`を使います。返却値が`promise`なら、その`promise`を`try`+`catch`し、結果に応じて、`generator.next(result)`または `generator.throw(error)`をコールします。それでおしまい!
 
 
 
-### AsyncはTypeScriptでのサポートを待っています
-** Async  -  Await **は[Type 1.7以降のTypeScript](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-7.html)でサポートされています。非同期関数の先頭に* async *キーワードが付きます。 * await *は、非同期関数の戻り値promiseが満たされ、* Promise *からの値をアンラップするまで実行を中断します。
-** ターゲットES6 **のためにのみサポートされていました** ** ES6ジェネレータ**に直接移動します。
+### TypeScriptにおけるAsync Awaitのサポート
+**Async - Await**は[TypeScript1.7以降](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-7.html)でサポートされています。非同期関数の先頭に*async*キーワードが付きます。 *await*は、非同期関数の戻り値promiseが満たされ、*Promise*からの値を取得するまで実行を中断します。
+以前は、**ターゲットがES6**の場合のみサポートされていて、**ES6ジェネレータ**に直接トランスパイルしていました。
 
-** TypeScript 2.1 ** [ES3とES5のランタイムに機能を追加しました](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-1.html)あなたが使っている環境に関係なく自由に利用することができます。 TypeScript 2.1でasync / awaitを使用できることに注意することが重要です。もちろん、多くのブラウザがサポートされています。もちろん、Promise **のための** polyfillがグローバルに追加されています。
+**TypeScript2.1**は、[ES3とES5のランタイムにAsync/Await機能を追加](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-1.html)しました。あなたが使っている環境を気にせずに利用することができます。TypeScript 2.1以降で、async/awaitを使用できることに注意することが重要です。もちろん多くのブラウザがサポートされています。もちろん、Promiseのためのpolyfillがグローバルに追加されています。
 
-この**例**を見て、このコードを見て、TypeScript async / await **表記法**の仕組みを理解してください。
+この例のコードを見て、TypeScriptのasync/await記法がどのように働くかを理解してください。
 ```ts
 function delay(milliseconds: number, count: number): Promise<number> {
     return new Promise<number>(resolve => {
@@ -81,7 +82,7 @@ async function dramaticWelcome(): Promise<void> {
 dramaticWelcome();
 ```
 
-** ES6へのトランスペアリング(--target es6)**
+**ES6へのトランスパイル結果(--target es6)**
 ```js
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -112,10 +113,10 @@ function dramaticWelcome() {
 }
 dramaticWelcome();
 ```
-完全な例[here] [asyncawaites6code]を見ることができます。
+完全な例を[ここ][asyncawaites6code]で見ることができます。
 
 
-** ES5へのトランスペアリング(--target es5)**
+**ES5へのトランスパイル結果(--target es5)**
 ```js
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -188,7 +189,7 @@ function dramaticWelcome() {
 }
 dramaticWelcome();
 ```
-完全な例[here] [asyncawaites5code]を見ることができます。
+完全な例を[ここ][asyncawaites5code]で見ることができます。
 
 
 ** 注**：両方のターゲットシナリオでは、実行時にグローバルにECMAScriptに準拠したプロミスがあることを確認する必要があります。それはPromiseのためにポリフィルを取得することを含むかもしれません。また、libフラグを "dom"、 "es2015"、 "dom"、 "es2015.promise"、 "es5"のように設定することで、TypeScriptがPromiseを認識していることを確認する必要があります。
