@@ -7,4 +7,4 @@
 > JavaScriptを生成するコードについては全て、ファイルモジュールの使用を強くお勧めします
 
 * `globals.d.ts`は、必要に応じて`lib.d.ts`を拡張するのに最適です
-* TSからJSに移行している時に、簡単に`declare module "some-library-you-dont-care-to-get-defs-for";`することができます
+* TSからJSに移行している時に、簡単に`declare module "定義ファイルが存在しなくても構わない何かのライブラリ";`するのは良い手段です
