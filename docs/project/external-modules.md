@@ -54,7 +54,7 @@ let someVar = 123;
 export { someVar as aDifferentName };
 ```
 
-* 'import'を使用して変数または型をインポートする
+* `import`を使用して変数または型をインポートする
 
 ```js
 // file `bar.ts`
