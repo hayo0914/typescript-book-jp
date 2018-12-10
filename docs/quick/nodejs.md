@@ -1,21 +1,20 @@
 # TypeScript with Node.js
-TypeScriptは、最初からNode.jsをサポートしています*。クイックNode.jsプロジェクトを設定する方法は次のとおりです。
+TypeScriptは、Node.jsを公式にサポートしています。素早くNode.jsプロジェクトを設定する方法は次のとおりです。
 
-> 注意：これらのステップの多くは実際にはNode.jsの設定手順
+> 注意：これらのステップの多くは実際にはNode.jsの設定手順です
 
-1. Node.jsプロジェクト `package.json`をセットアップします。速いもの： `npm init -y`
-1. TypeScriptを追加する( `npm install typescript --save-dev`)
-1. `node.d.ts`を追加します(`npm install @ types / node --save-dev`)
-1. TypeScriptオプションの `tsconfig.json`を起動します(`npx tsc --init`)。
-1. tsconfig.jsonに `compilerOptions.module：commonjs`があることを確認します
+1. Node.jsプロジェクト`package.json`をセットアップする。速い方法：`npm init -y`
+1. TypeScriptを追加する(`npm install typescript --save-dev`)
+1. `node.d.ts`を追加する(`npm install @types/node --save-dev`)
+1. TypeScriptの設定ファイル`tsconfig.json`をいくつかの重要なオプションを使って初期化する(`npx tsc --init --rootDir src --outDir lib --esModuleInterop --resolveJsonModule --lib es6,dom --module commonjs`)。
 
-それでおしまい!あなたのIDE(例えば `alm -o`)を起動して遊んでください。 TypeScriptのすべての安全性と開発者の人間工学に合わせて、組み込みのすべてのノードモジュールを使用することができます(例： `import fs = require( 'fs');`)。
+それでおしまい!あなたのIDE(例えば`code .`)を起動して遊んでください。TypeScriptの安全性と開発者人間工学とあわせて、組み込みのすべてのノードモジュールを使用することができます(例：`import fs = require( 'fs');`)。
 
-## ボーナス：ライブコンパイル+実行
-* ライブコンパイル+をノード( `npm install ts-node --save-dev`)で実行する`ts-node`を追加する
-* ファイルが変更されるたびに `ts-node`を呼び出す`nodemon`を追加します( `npm install nodemon --save-dev`)
+## ボーナス： ライブコンパイル+実行
+* nodeでのライブコンパイル+実行のために使う`ts-node`を追加する(`npm install ts-node --save-dev`)
+* ファイルが変更されるたびに`ts-node`を呼び出す`nodemon`を追加する(`npm install nodemon --save-dev`)
 
-アプリケーションのエントリに基づいて `script`ターゲットを`package.json`に追加するだけです。その `index.ts`を仮定します：
+アプリケーションのエントリポイントに基づいて`script`ターゲットを`package.json`に追加するだけです。エントリポイントを`index.ts`と仮定した場合：
 
 ```json
   "scripts": {
@@ -24,19 +23,19 @@ TypeScriptは、最初からNode.jsをサポートしています*。クイッ�
   },
 ```
 
-したがって、 `npm start`を実行し、`index.ts`を編集することができます：
+これで、`npm start`を実行し、`index.ts`を編集することができます：
 
-* nodemonはそのコマンドを再実行します(ts-node)
-* ts-nodeは自動的にtsconfig.jsonとインストールされたtypescriptバージョンを取得し、
-* ts-nodeはNode.jsを介して出力javascriptを実行します。
+* nodemonはそのコマンド(ts-node)を再実行する
+* ts-nodeは自動的にtsconfig.jsonとインストールされたtypescriptバージョンを取得し、トランスパイルを行う
+* ts-nodeは出力されたjavascriptをNode.jsで実行する
 
-## TypeScriptノードモジュールを作成する
+## TypeScriptのnode moduleを作成する
 
-* [Typecriptノードモジュールの作成に関するレッスン](https://egghead.io/lessons/typescript-create-high-quality-npm-packages-using-typescript)
+* [Typecriptのnodemoduleの作成に関するレッスン](https://egghead.io/lessons/typescript-create-high-quality-npm-packages-using-typescript)
 
-TypeScriptで書かれたモジュールを使用することは、コンパイル時の安全性とオートコンプリート(基本的に実行可能なドキュメント)が得られるので面白いことです。
+TypeScriptで書かれたモジュールを使用することは、コンパイル時の安全性とオートコンプリートが得られるので、非常に楽しいことです。
 
-高品質のTypeScriptモジュールの作成は簡単です。あなたのパッケージには、以下の希望のフォルダ構造が仮定されます。
+高品質のTypeScriptモジュールの作成は簡単です。以下の望ましいフォルダ構造を仮定します。
 
 ```text
 package
@@ -57,23 +56,23 @@ package
 ```
 
 
-* あなたの `tsconfig.json`
-  * libディレクトリに宣言ファイルとjsファイルを生成します。
-  * include：["./src / ** / *"] `<これは`src`ディレクトリからのすべてのファイルを含みます。
+* `tsconfig.json`について
+  * `compilerOptions`に`"outDir": "lib"`と、`"declaration": true`を設定します < これは宣言ファイルとjsファイルをlibフォルダに生成します
+  * `include：["./src / ** / *"]`を設定します < これは`src`ディレクトリからのすべてのファイルを対象に含めます
 
-* あなたの `package.json`には
-  * ``main "：" lib / index "` <これはNode.jsに `lib / index.js`をロードするように指示します。
-  * `" types "：" lib / index "`<これはTypeScriptに `lib / index.d.ts`をロードするように指示します。
+* `package.json`について
+  * `"main"： "lib/index"` <これはNode.jsに`lib/index.js`をロードするように指示します
+  * `"types"： "lib/index"` <これはTypeScriptに`lib/index.d.ts`をロードするように指示します
 
 
-パッケージ例：
+パッケージの例：
 * `npm install typestyle` [for TypeStyle](https://www.npmjs.com/package/typestyle)
-* 使用法： `typestyle 'からの`import {style}; `は完全な型安全です。
+* 使用法：`import { style } from 'typestyle';`は、完全な型安全性を提供します
 
-もっと：
+MORE:
 
-* あなたのパッケージが他のTypeScriptのオーサリングされたパッケージに依存している場合は、そのままraw JSパッケージと同様に `dependencies`/` devDependencies`/ `peerDependencies`に入れてください。
-* パッケージが他のJavaScript作成パッケージに依存していて、プロジェクトで型安全性を使用する場合は、そのタイプ( `@ types / foo`など)を`devDependencies`に入れます。 JavaScriptのタイプは、メインのNPMストリームから*範囲外で*管理する必要があります。 JavaScriptのエコシステムでは、意味論的なバージョン管理があまり一般的でない型を壊すので、ユーザーが型を必要とする場合は、それらに対応する `@ types / foo`バージョンをインストールする必要があります。
+* あなたのパッケージが他のTypeScriptで作られたパッケージに依存している場合は、そのまま生のJSパッケージと同様に`dependencies`/`devDependencies`/ `peerDependencies`に入れてください
+* パッケージが他のJavaScript作成パッケージに依存していて、プロジェクトで型安全性を使用する場合は、それらの型定義(`@types/foo`など)を`devDependencies`に入れます。JavaScriptの型は、主なNPMの流れの*範囲外で*管理する必要があります。JavaScriptのエコシステムでは、セマンティックなバージョン管理が行われていない場合、型をあまりにも簡単に壊すので、ユーザーが型を必要とする場合は、それらに対応する`@types/foo`のバージョンをインストールする必要があります。
 
 ## ボーナスポイント
 
