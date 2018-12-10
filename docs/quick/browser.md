@@ -1,14 +1,14 @@
-# タイプスクリプトをブラウザに
+# ブラウザでのTypeScript
 
-TypeScriptを使用してWebアプリケーションを作成している場合は、クイックTypeScript + React(自分のUIフレームワークを選択)プロジェクトセットアップを取得することをお勧めします。
+TypeScriptを使用してWebアプリケーションを作成している場合は、簡単なTypeScript + React(私が選ぶUIフレームワーク)のプロジェクトのセットアップを取得することをお勧めします。
 
-## 一般的なマシンセットアップ
+## 一般的なマシンのセットアップ
 
-* [Node.js]をインストールする(https://nodejs.org/ja/download/)
+* [Node.js](https://nodejs.org/ja/download/)をインストールする
 * [Git](https://git-scm.com/downloads)をインストールする
 
-## プロジェクトセットアップのクイック
-ベースとして[https://github.com/basarat/react-typescript](https://github.com/basarat/react-typescript)]を使用してください。
+## 素早くプロジェクトをセットアップする
+ベースとして [https://github.com/basarat/react-typescript](https://github.com/basarat/react-typescript) を使用してください。
 
 ```
 git clone https://github.com/basarat/react-typescript.git
@@ -16,12 +16,12 @@ cd react-typescript
 npm install
 ```
 
-今すぐ[あなたのすばらしいアプリケーションを開発する]にジャンプしてください(#あなたのすばらしいアプリケーションを開発する)
+ここで、 [あなたのすばらしいアプリケーションを開発する](#あなたのすばらしいアプリケーションを開発する) にジャンプしてください。
 
 ## プロジェクトの詳細設定
-そのプロジェクトがどのように作成されたかを見るには、下記の通りです。
+そのプロジェクトがどのように作成されたかは下記の通りです。
 
-* プロジェクトディレクトリを作成する：
+* プロジェクトのディレクトリを作成する：
 
 ```
 mkdir your-project
@@ -49,7 +49,7 @@ cd your-project
 }
 ```
 
-* `package.json`を作成します。
+* `package.json`を作成する:
 
 ```json
 {
@@ -78,7 +78,7 @@ cd your-project
 }
 ```
 
-* すべてのリソースを含む単一の `app.js`ファイルにモジュールをバンドルする`webpack.config.js`を作成します：
+* すべてのリソースを含む単一の`app.js`ファイルにモジュールをバンドルするための`webpack.config.js`を作成する:
 
 ```js
 module.exports = {
@@ -98,7 +98,7 @@ module.exports = {
 }
 ```
 
-* あなたのウェブサーバから提供される `public / index.html`ファイル：
+* webpackが生成するindex.htmlのテンプレートとして使われる`src/templates/index.html`ファイルです。生成されたファイルは`public`フォルダに配置され、Webサーバを通じてサーブされます：
 
 ```html
 <html>
@@ -109,7 +109,7 @@ module.exports = {
 </html>
 ```
 
-あなたのフロントエンドアプリケーションのエントリポイントである `src / app / app.tsx`：
+あなたのフロントエンドアプリケーションのエントリポイントである`src/app/app.tsx`：
 
 ```js
 import * as React from 'react';
@@ -130,12 +130,13 @@ ReactDOM.render(
 );
 ```
 
-# すばらしいアプリケーションを開発する
+# あなたのすばらしいアプリケーションを開発する
 
-> 最新のパッケージを入手するには `npm install typescript @ latest react @最新のreact-dom @ latest @ types / react @ latest @ types / react-dom @最新webpack @最新ts-loader @最新webpack-dev-server @最新のwebpack-cli @ latest --save-exact`
+> 最新のパッケージを入手するには`npm install typescript@latest react@latest react-dom@latest @types/react@latest @types/react-dom@latest webpack@latest webpack-dev-server@latest webpack-cli@latest ts-loader@latest clean-webpack-plugin@latest html-webpack-plugin@latest --save-exact`を実行してください。
 
-* `npm start`を実行してライブ開発を行います。
-    * [http：// localhost：8080](http：// localhost：8080)を参照してください。
-    * `app.tsx`(または`src`のts / tsxファイル)とアプリケーションライブリロードを編集します。
-* `npm run build`を実行して生産アセットを構築します。
-    *あなたのサーバから `public`フォルダ(構築されたアセットを含む)を提供します。
+* `npm start`を実行してライブ開発を行います
+    * [http：//localhost：8080](http：//localhost：8080) を参照してください
+    * `src/app/app.tsx`(または`src/app/app.tsx`に使われるts/tsxファイル)を編集すれば、サーバーがライブリロードします
+    * `src/templates/index.html`を編集すれば、サーバーがライブリロードします
+* `npm run build`を実行して本番用のアセットをビルドします
+    * Webサーバを通じて`public`フォルダ(ビルドされたアセットが配置される)をサーブします
