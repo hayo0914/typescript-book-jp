@@ -1,17 +1,17 @@
-## 動的インポート式
+## 動的インポート式(Dynamic import expressions)
 
-** 動的インポート式**は新しい機能であり、** ECMAScript **の一部で、ユーザーはプログラムの任意の時点でモジュールを非同期に要求できます。
-** TC39 ** JavaScript委員会には、ステージ3にある独自の提案があり、JavaScriptの[import()proposal for](https://github.com/tc39/proposal-dynamic-import)と呼ばれています。
+**動的インポート式**は新しい機能であり、**ECMAScript**の一部で、ユーザーはプログラムの任意の時点でモジュールを非同期に要求できます。
+**TC39**(JavaScript committee)が、その提案を行っており、ステージ3の段階にあります。それは、[import() proposal for JavaScript](https://github.com/tc39/proposal-dynamic-import)と呼ばれています。
 
-また、** webpack ** bundlerにはバンドルを分割することができる[**コード分割**](https://webpack.js.org/guides/code-splitting/)という機能があります。後で非同期にダウンロードされます。たとえば、これにより、最小のブートストラップバンドルを最初に提供し、後で追加の機能を非同期にロードすることができます。
+また、**webpack**バンドラにはバンドルを分割することができる[**Code Splitting**](https://webpack.js.org/guides/code-splitting/)という機能があります。それは、コードをチャンクに分割し、後で非同期にダウンロードされるようにすることができます。たとえば、これにより、最小の起動用のバンドルを最初に提供し、後で追加の機能を非同期にロードすることができます。
 
-私たちの開発ワークフローでwebpackを使用している場合、[TypeScript 2.4動的インポート式](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#dynamic- import-expressions)は自動的に**バンドルチャンクを生成し、JS最終バンドルを自動的にコード分割します。しかし、** tsconfig.jsonの設定**に依存しているので、それはそう簡単ではありません**。
+私たちの開発ワークフローでwebpackを使用している場合、[TypeScript 2.4 dynamic import expressions](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#dynamic-import-expressions)は**自動的に**チャンク化されたバンドルを生成し、最終的なJSバンドルを自動的に分割します。しかし、**tsconfig.jsonの設定**に依存しているので、それはそう簡単ではありません。
 
-webpackのコード分割では、** import()**(ECMAScriptの推奨)と** require.ensure()**(従来のwebpack固有)を使用して、この目標を達成するための2つの同様の手法をサポートしています。そして、それが意味するのは、期待されるTypeScriptの出力は、** import()ステートメントをそのまま**そのまま残すことです。
+webpackのコード分割では、この目標を達成するための２つの同様なテクニックをサポートしています: **import()**(ECMAScriptの推奨)と**require.ensure()**(従来から存在するwebpack固有の方法)です。そして、それが意味するのは、TypeScriptにおいて**import()文**を他の何かにトランスパイルするのではなく、そのままの形で出力することです。
 
 webpack + TypeScript 2.4の設定方法の例を見てみましょう。
 
-次のコードでは、**ライブラリの_moment _ **を遅延ロードしたいと思いますが、コード分割にも興味があります。つまり、必要なときにのみロードされる別のJS(javascriptファイル) 。
+次のコードでは、ライブラリの **_moment_** の遅延ロードとコード分割を行いたいと考えています。つまり、momentライブラリを別のJSチャンク(JavaScript file)に分けて、必要なときにロードされるようにします。
 
 ```ts
 import(/* webpackChunkName: "momentjs" */ "moment")
@@ -61,10 +61,10 @@ import(/* webpackChunkName: "momentjs" */ "moment")
 
 ** 重要なメモ**：
 
- -  ** "module"を使う： "esnext" ** TypeScriptは、Webpackコード分割のために入力する模擬import()文を生成します。
- - さらに詳しい情報については、この記事を読んでください：[動的インポート式とwebpack 2コード分割とTypeScript 2.4の統合](https://blog.josequinto.com/2017/06/29/dynamic-import-expressions-and-webpack-code -splitting-integration-with-typescript-2-4 /)を使用します。
+ - **"module":"esnext"** を使うとTypeScriptは、Webpackコード分割のために入力する見せかけのimport()文を生成します。
+ - さらに詳しい情報については、この記事を読んでください：[Dynamic Import Expressions and webpack 2 Code Splitting integration with TypeScript 2.4](https://blog.josequinto.com/2017/06/29/dynamic-import-expressions-and-webpack-code-splitting-integration-with-typescript-2-4/)
 
 
-完全な例[here] [dynamicimportcode]を見ることができます。
+完全な例は[ここ][dynamicimportcode]で見ることができます。
 
-[dynamicimportcode]：https：//cdn.rawgit.com/basarat/typescript-book/705e4496/code/dynamic-import-expressions/dynamicImportExpression.js
+[dynamicimportcode]:https：//cdn.rawgit.com/basarat/typescript-book/705e4496/code/dynamic-import-expressions/dynamicImportExpression.js
