@@ -124,59 +124,56 @@ import someLocalNameForThisFile from "../foo";
 
 ### モジュールのパス
 
-> 私は `moduleResolution：commonjs`と仮定しようとしています。これはあなたのTypeScript設定に含めるべきオプションです。この設定は `module：commonjs`によって自動的に暗示されます。
+> 私は`moduleResolution：commonjs`を仮定しています。これはあなたのTypeScript設定に含めるべきオプションです。この設定は`module：commonjs`によって暗黙的に設定されます。
 
-2つの異なる種類のモジュールがあります。この区別は、インポート・ステートメントのパス・セクションによって行われます(たとえば、「これはパス・セクションです」からのインポートfoo)。
+2つの異なる種類のモジュールがあります。この区別は、import文のパスセクション(path section)によって行われます(たとえば、`import foo from 'これがパスセクションです'`)。
 
-* 相対パスモジュール(パスは `.`で始まる`。/ someFile`や `../../ someFolder / someFile`など)
-* その他の動的参照モジュール( ``core-js '`や` `typestyle``や` `react``や` `react / core``など)
+* 相対パスモジュール(`.`で始まるパス:`./someFile`、`../../someFolder/someFile`など)
+* その他の動的参照モジュール(`'core-js'`、`'typestyle'`、`'react'`、`'react / core'`など)
 
 主な違いは、モジュールがファイルシステム上でどのように解決されるかです。
 
-> 私は、ルックアップパターンについて言及した後に説明する概念的な用語* place *を使用します。
+#### 相対パスモジュール(Relative path modules)
+簡単です。単に相対的なパスに従います :)
 
-#### 相対パスモジュール
-簡単、ちょうど相対的なパスに従ってください:)
+* ファイル`bar.ts`が`import * as foo from './foo';`を実行した場合、`foo`を同じフォルダに置く必要がある
+* ファイル`bar.ts`が`import * as foo from '../foo';`を実行する場合、`foo`は１つ上のフォルダ内に存在する必要がある
+* ファイル`bar.ts`が`import * as foo from '../someFolder/foo';`を実行する場合、1つ上のフォルダにfooが存在する`someFolder`というフォルダが存在する必要がある
 
-* `bar.ts`ファイルが`。* foo 'から `import * as foo'を実行した場合、`foo`を同じフォルダに置く必要があります。
-* ファイル `bar.ts`が '../foo'から`import * as foo 'を実行する場合、 `foo`はフォルダ内に存在する必要があります。
-* ファイル `bar.ts`が '../foo'から`foo 'としてインポートするのであれば、 `foo`の場所に`someFolder`というフォルダがなければなりません。
+もしくは他の考えついた相対パスが使えます :)
 
-またはあなたが考えることができる他の相対的なパス:)
+#### 動的ルックアップ(Dynamic lookup)
 
-#### 動的ルックアップ
+インポートパスが相対でない場合、検索は [ノードJSスタイルのモジュール解決](https://nodejs.org/api/modules.html#modules_all_together) によって行われます。ここでは簡単な例を示します。
 
-インポートパスが*相対でない場合、ルックアップは[*ノードスタイル解決*](https://nodejs.org/api/modules.html#modules_all_together)によって駆動されます。ここでは簡単な例を示します。
+* あなたが`import * as foo from 'foo'`を書いた場合、以下の場所が順番にチェックされます
+  * `./node_modules/foo`
+  * `../node_modules/foo`
+  * `../../node_modules/foo`
+  * ファイルシステムのルートに到達するまで続く
 
-* あなたは `foo 'からfooとして` import *を持っています、以下はチェックされた場所です*順番に*
-  * `。/ node_modules / foo`
-  * `../ node_modules / foo`
-  * `../../ node_modules / foo`
-  *ファイルシステムのルートまで
+* あなたが`import * as foo from 'something/foo'`を書いた場合、以下の場所が順番にチェックされます
+  * `./node_modules/something/foo`
+  * `../node_modules/something/foo`
+  * `../../node_modules/something/foo`
+  * ファイルシステムのルートに到達するまで続く
 
-* あなたは `something * / foo'`からfooとして` import *を持っています、以下はチェックされた場所です*順番に*
-  * `。/ node_modules / something / foo`
-  * `../ node_modules / something / foo`
-  * `../../ node_modules / something / foo`
-  *ファイルシステムのルートまで
+### 場所(place)とは何か
+私が「チェックされる場所」について言及する時、私は、次のことが、その場所でチェックされていることを意味しています。例えば`foo`の場所に対して：
 
+* 場所がファイルを指している場合、たとえば`foo.ts`があれば、解決されます。やったー!
+* 場所がフォルダで、`foo/index.ts`ファイルがある場合、解決されます。やったー!
+* 場所がフォルダで、`foo/package.json`が存在し、package.jsonの`types`キーで指定されたファイルがある場合は、解決されます。やったー!
+* 場所がフォルダで、`package.json`が存在し、package.jsonの`main`キーで指定されたファイル存在する場合、解決されます。やったー!
 
-### *とは何ですか？
-私がチェックしている場所*を言うとき、私はその場所で次のことがチェックされていることを意味します。例えば`foo`の場所に対して：
+私が言うファイルは、実際には`.ts`/`.d.ts`と`.js`を意味しています。
 
-* 場所がファイルの場合、たとえば`foo.ts`、hurray!
-* 場所がフォルダで、 `foo / index.ts`ファイルがある場合は、hurray!
-* 場所がフォルダで、 `foo / package.json`と存在するpackage.json内の`types`キーで指定されたファイルがある場合は、hurray!
-* 他に場所がフォルダであり、存在するpackage.jsonに `main`キーで指定された`package.json`とファイルが存在する場合、その時ハレー!
+以上です。あなたは今モジュール解決のエキスパートです(なかなかの成果です!)。
 
-ファイルでは、実際には `.ts`/` .d.ts`と `.js`を意味します。
+### 型について動的検索を上書きする
+あなたは、`declare module 'somePath'`を使ってプロジェクトのモジュールをグローバルに宣言することができます。そして、importはそのパスに魔法のように解決します。
 
-以上です。あなたは今モジュールルックアップのエキスパートです(小さな偉業ではありません!)。
-
-### 型のためだけにダイナミックルックアップを転覆する*
-`declare module 'somePath'`を使ってあなたのプロジェクトのモジュール*をグローバルに宣言することができます。そして、importはそのパスに魔法のように*解決します
-
-例えば
+例
 ```ts
 // globals.d.ts
 declare module 'foo' {
@@ -194,67 +191,67 @@ import * as foo from 'foo';
 
 ```
 
-### `import / require`はタイプをインポートするだけです
-次の文：
+### 型だけを`import/require`する
 
+次の文は:
 ```ts
 import foo = require('foo');
 ```
 
-実際には* 2つのもの：
+実際には2つのことをします:
+* fooモジュールの型情報をインポートする
+* fooモジュールの実行時の依存関係を指定する
 
-* fooモジュールのタイプ情報をインポートします。
-* fooモジュールのランタイム依存性を指定します。
+開発者は、型情報のみをロードし、実行時の依存関係が発生しないようにすることも可能です。続ける前に、[宣言空間](../project/declarationspaces.md)を読んでおくとよいでしょう。
 
-* タイプ情報*のみがロードされ、ランタイム依存性が発生しないように選択して選択することができます。続行する前に、本の[* declaration spaces *](../ project / declarationspaces.md)セクションを要約するとよいでしょう。
 
-変数宣言空間でインポートされた名前を使用しないと、インポートは生成されたJavaScriptから完全に削除されます。これは例を用いて最もよく説明されています。これを理解すると、ユースケースを紹介します。
+変数宣言空間にインポートされた名前を使用しない場合、そのインポートは、生成されたJavaScriptから完全に削除されます。例を見るのが最も簡単です。これが理解できたら、ユースケースを紹介します。
 
 #### 例1
 ```ts
 import foo = require('foo');
 ```
-JavaScriptを生成します：
+生成されるJavaScript：
 
 ```js
 
 ```
-そのとおり。 fooとしての* empty *ファイルは使用されません。
+そのとおり。fooが使われないため、空ファイルです。
 
 #### 例2
 ```ts
 import foo = require('foo');
 var bar: foo;
 ```
-JavaScriptを生成します：
+生成されるJavaScript：
 ```js
 var bar;
 ```
-これは、 `foo`(または`foo.bas`などのプロパティ)が決して変数として使用されないためです。
+これは、`foo`(または`foo.bas`などのプロパティ)が変数として一度も使用されないためです。
 
 #### 例3
 ```ts
 import foo = require('foo');
 var bar = foo;
 ```
-JavaScriptを生成します(commonjsと仮定します)。
+生成されるJavaScript(commonjsと仮定します):
 ```js
 var foo = require('foo');
 var bar = foo;
 ```
-これは `foo`が変数として使われているからです。
+これは`foo`が変数として使われているためです。
 
 
-### 使用例：遅延読み込み
-型推論は* upfront *する必要があります。これは、ファイル `bar`でファイル`foo`のある型を使用したい場合、次のようにしなければなりません：
+### ユースケース： 遅延ロード(Lazy loading)
+型推論は事前に行う必要があります。これは、ファイル`bar`でファイル`foo`のある型を使用したい場合、次のようにしなければならないことを意味します：
 
 ```ts
 import foo = require('foo');
 var bar: foo.SomeType;
 ```
-しかし、特定の条件下では、実行時に `foo`ファイルだけをロードしたいかもしれません。そのような場合には、 `import`という名前を*型注釈*と**変数*として**使用しないでください。これは、TypeScriptによって注入された* upfront *ランタイム依存性コードをすべて削除します。 *あなたのモジュールローダーに固有のコードを使って実際のモジュールを手動でインポートする*。
+しかし、あるいは実行時に特定条件下の場合だけ`foo`をロードしたいかもしれません。そのような場合には、`import`した名前を型アノテーションとしてのみ使用し、変数として使用しないでください。これにより、TypeScriptにより挿入される実行時依存関係をすべて削除します。そして、あなたは独自のモジュールローダーに固有のコードを書いて実際のモジュールを手動でインポートします。
 
-例として、次の `commonjs`ベースのコードを考えてみましょう。このコードでは、特定の関数呼び出しで` `foo``モジュールだけを読み込みます：
+例として、次の`commonjs`ベースのコードを考えてみましょう。このコードでは、特定の関数がコールされた時だけ`'foo'`モジュールをロードします：
 
 ```ts
 import foo = require('foo');
@@ -266,7 +263,7 @@ export function loadFoo() {
 }
 ```
 
-amd(requirejsを使用)の同様のサンプルは次のようになります：
+同様の`amd`(requirejsを使用)のサンプルは次のようになります：
 ```ts
 import foo = require('foo');
 
@@ -279,16 +276,16 @@ export function loadFoo() {
 ```
 
 このパターンは一般的に使用されます。
-* あなたが特定のルート上の特定のJavaScriptを読み込むWebアプリケーションでは、
-* アプリケーションの起動を高速化するために、必要に応じて特定のモジュールのみをロードするノードアプリケーションでは*。
+* Webアプリケーションにおいて、特定のルートの場合のみ特定のJavaScriptを読み込む
+* nodeアプリケーションにおいて、アプリケーションの起動を高速化したい場合のみ特定のモジュールをロードする
 
-### ユースケース：円周の依存関係を壊す
+### ユースケース：循環依存を避ける
 
-レイジーロードの使用例と同様に、特定のモジュールローダ(commonjs / nodeとamd / requirejs)は循環依存性でうまく動作しません。そのような場合には、ある方向に* lazy loading *コードを持ち、他の方向にモジュールを先にロードすると便利です。
+遅延ロードの使用例と同様に、特定のモジュールローダ(commonjs/nodeと、amd/requirejs)は循環依存のため、うまく動作しません。そのような場合には、一つの方向に遅延ロードを行うようにし、反対方向のロードの前にロードしておくと便利です。
 
-### ユースケース：インポートを確実にする
+### ユースケース：確実にインポートする
 
-場合によっては、副作用のためだけにファイルをロードすることもできます(モジュールが[CodeMirror addons](https://codemirror.net/doc/manual.html#addons)などのライブラリに登録されるなど)。しかし、単に `import / require`を行うと、翻訳されたJavaScriptはモジュールへの依存関係を持たず、モジュールローダー(例えばwebpack)はインポートを完全に無視するかもしれません。このような場合、 `ensureImport`変数を使用して、コンパイルされたJavaScriptがモジュールに依存するようにすることができます。
+場合によっては、副作用(side effect)のためだけにファイルをロードすることもできます(例えば[CodeMirror addons](https://codemirror.net/doc/manual.html#addons)のように、モジュールを他のライブラリに登録させる場合など)。しかし、単に`import/require`を行うと、トランスパイルされたJavaScriptはモジュールへの依存関係を持たず、モジュールローダー(例えばwebpack)はインポートを完全に無視するかもしれません。このような場合、 `ensureImport`変数を使用して、コンパイルされたJavaScriptがモジュールに依存するようにすることができます。
 
 ```ts
 import foo = require('./foo');
