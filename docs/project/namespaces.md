@@ -1,5 +1,5 @@
-## ネームスペース
-ネームスペースは、JavaScriptで使用される一般的なパターンに関する便利な構文を提供します。
+## 名前空間(Namespaces)
+名前空間は、JavaScriptで使用される次の一般的なパターンの便利な構文を提供します。
 
 ```ts
 (function(something) {
@@ -9,7 +9,7 @@
 })(something || (something = {}))
 ```
 
-基本的には何か|| (something = {}) `は、無名関数`function(something){} `を既存のオブジェクト*(`something || `部分)に追加するか、 ( `||(something = {})`の部分)。つまり、いくつかの実行境界で分割された2つのブロックを持つことができます。
+基本的に、`something || (something = {})`は、無名関数`function(something) {}`が何かを既存オブジェクト(`something ||`部分)に追加するか、新しいオブジェクト( `||(something = {})`の部分)を作って何かを追加することを可能にします。これが意味することは、このように何らかの分岐で分割された2つのブロックを持つことができるということです。
 
 ```ts
 (function(something) {
@@ -30,7 +30,7 @@ console.log(something); // {foo:123, bar:456}
 
 ```
 
-これは、グローバルな名前空間にものが漏れないようにJavaScriptの土地でよく使われます。ファイルベースのモジュールでは、これを心配する必要はありませんが、パターンは、一連の関数の* logical grouping *にはまだ役立ちます。そのため、TypeScriptは、例えばnamespaceというキーワードをグループ化してグループ化します。
+これは、グローバルな名前空間を汚染しないようにJavaScriptでよく使われます。ファイルベースのモジュールでは、これを心配する必要はありませんが、このパターンは、それでも、一連の関数の論理グループ化(logical grouping)に役立ちます。そのため、TypeScriptは、`namespace`キーワードを使ってグループ化する手段を提供します:
 
 ```ts
 namespace Utility {
@@ -57,6 +57,6 @@ Utility.error('maybe!');
 })(Utility || (Utility = {}));
 ```
 
-注意すべきことは、名前空間を入れ子にすることができるので、 `名前空間Utility.Messaging`のようなものが`ユーティリティ `の下に`Messaging`名前空間を入れ子にすることができるということです。
+注意すべきことは、名前空間を入れ子にすることができるので、`Utility`の下に`Messaging`名前空間を入れ子にするために`namespace Utility.Messaging`のようなことができるということです。
 
-ほとんどのプロジェクトでは、外部モジュールを使用し、デモと移植用の古いJavaScriptコードを移植するために `namespace`を使用することをお勧めします。
+たいていのプロジェクトでは、簡単なデモと古いJavaScriptコードを移植するために、外部モジュールと`namespace`を使用することをオススメします。
