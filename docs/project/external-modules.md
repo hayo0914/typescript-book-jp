@@ -1,29 +1,29 @@
-## 外部モジュール
-TypeScriptの外部モジュールパターンには多くの力と使い勝手があります。ここでは、そのパワーと実際の用途を反映するために必要ないくつかのパターンについて説明します。
+## 外部モジュール(External modules)
+TypeScriptの外部モジュールパターンには大きなパワーと利便性があります。ここでは、そのパワーと実際の用途を知るためのパターンについて説明します。
 
-### 明確化：commonjs、amd、esモジュール、その他
+### 説明：commonjs、amd、esモジュール、その他
 
-最初に、そこにあるモジュールシステムの(ひどい)矛盾を明確にする必要があります。私はあなたに私の現在の*推奨を与えて、ノイズを取り除くだけです。
+最初に、その辺のモジュールシステムの(ひどい)矛盾を明確にする必要があります。私は私のオススメをあなたに伝え、ノイズを取り除くだけです。その他の動くかもしれない方法すべてを見せることはしません。
 
-* 同じTypeScript *から、 `module`オプションに応じて異なる* JavaScript *を生成することができます。無視できるものは次のとおりです(デッドテックの説明に興味はありません)：
+同じTypeScriptから`module`オプションに応じて異なるJavaScriptを生成することができます。無視できるものは次のとおりです(死んだ技術を説明することに興味はありません)：
 
-* AMD：使用しないでください。ブラウザのみでした。
-* SystemJS：良い実験でした。 ESモジュールによって置き換えられました。
-* ESモジュール：まだ準備ができていません。
+* AMD：使用しないでください。ブラウザだけのものです
+* SystemJS：良い実験でした。ESモジュールによって置き換えられました
+* ESモジュール：まだ使えません
 
-これはJavaScript *を生成するためのオプションです。これらのオプションの代わりに、 `module：commonjs`
+これはJavaScriptを生成するためのオプションです。これらのオプションの代わりに、`module：commonjs`を使ってください。
 
-どのように*書く* TypeScriptモジュールもちょっと混乱しています。もう一度やりなさい*今日*：
+どのようにTypeScriptモジュールを書くかについても、ちょっと混乱があります。今日それを避けるには:
 
-* `import foo = require( 'foo')`。すなわち、「インポート/要求する」。代わりにESモジュールの構文を使用してください。
+* `import foo = require( 'foo')`、つまり、`import/require`を避けて、代わりにESモジュールの構文を使用してください。
 
-クールな方法で、ESモジュールの構文を見てみましょう。
+クール!ではESモジュールの構文を見てみましょう。
 
-> 概要： `module：commonjs`を使い、ESモジュール構文を使ってモジュールをインポート/エクスポート/作成します。
+> 概要： `module：commonjs`を使い、ESモジュール構文を使ってモジュールをimport/export/作成します。
 
 ### ESモジュールの構文
 
-* 変数(または型)のエクスポートは、キーワード'export`の前に置くのと同じくらい簡単です。
+* 変数(または型)のエクスポートは、キーワード`export`を前に置くだけなので簡単です。
 
 ```js
 // file `foo.ts`
@@ -33,7 +33,7 @@ export type SomeType = {
 };
 ```
 
-* 変数またはタイプを専用の「エクスポート」ステートメントにエクスポートする。
+* 変数または型を専用の`export`文でエクスポートする
 
 ```js
 // file `foo.ts`
@@ -46,7 +46,7 @@ export {
   SomeType
 };
 ```
-* 名前を変更して専用の `export`文で変数や型をエクスポートする*
+* 名前を変更して専用の`export`文で変数や型をエクスポートする
 
 ```js
 // file `foo.ts`
@@ -54,58 +54,58 @@ let someVar = 123;
 export { someVar as aDifferentName };
 ```
 
-* 'import'を使用して変数または型をインポートする。
+* 'import'を使用して変数または型をインポートする
 
 ```js
 // file `bar.ts`
 import { someVar, SomeType } from './foo';
 ```
 
-* 名前を変更して* import *を使って変数や型をインポートします。
+* 名前を変更して*import*を使って変数や型をインポートする
 
 ```js
 // file `bar.ts`
 import { someVar as aDifferentName } from './foo';
 ```
 
-* モジュールから `import * as 'を持つ名前にすべてをインポートします。
+* `import * as`を使って1つの名前にモジュールすべてをインポートする
 ```js
 // file `bar.ts`
 import * as foo from './foo';
 // you can use `foo.someVar` and `foo.SomeType` and anything else that foo might export.
 ```
 
-* 1つのインポートステートメントで副作用のために* only *ファイルをインポートする：
+* 副作用のためだけに一つのファイルをインポートする:
 
 ```js
 import 'core-js'; // a common polyfill library
 ```
 
-* 別のモジュールからすべてのアイテムを再エクスポートする
+* 別のモジュールから全てのものを再エクスポートする
 
 ```js
 export * from './foo';
 ```
 
-* 一部のアイテムのみを別のモジュールから再エクスポートする
+* 別のモジュールから一部のものを再エクスポートする
 
 ```js
 export { someVar } from './foo';
 ```
 
-* 名前を変更して別のモジュールから一部のアイテムのみを再エクスポートする*
+* 名前を変更して別のモジュールから一部のものだけを再エクスポートする
 
 ```js
 export { someVar as aDifferentName } from './foo';
 ```
 
-### デフォルトの輸出入
-あなたが後で学ぶように、私はデフォルト輸出のファンではありません。ここではエクスポートの構文とデフォルトのエクスポートを使用しています
+### デフォルトのexports/imports
+あなたが後で知るように、私はデフォルトのexportが好きではありません。しかし、ここではexportの構文とデフォルトのexportの使い方を説明します。
 
 * `export default`を使ってエクスポートする
-  *変数の前に( `let / const / var`は必要ありません)
-  *関数の前に
-  *クラス前
+  * 変数の前に(`let / const / var`は必要ありません)
+  * 関数の前
+  * クラスの前
 
 ```js
 // some var
@@ -116,7 +116,7 @@ export default function someFunction() { }
 export default class SomeClass { }
 ```
 
-* import someName using someModule "構文を使用してインポートします(インポートには任意の名前を付けることができます)。
+* `import someName using someModule`構文を使用してインポートする(インポートには任意の名前を付けることができます):
 
 ```js
 import someLocalNameForThisFile from "../foo";
