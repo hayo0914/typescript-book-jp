@@ -59,7 +59,7 @@ import(/* webpackChunkName: "momentjs" */ "moment")
 ```
 
 
-** 重要なメモ**：
+**重要なメモ**：
 
  - **"module":"esnext"** を使うとTypeScriptは、Webpackコード分割のために入力する見せかけのimport()文を生成します。
  - さらに詳しい情報については、この記事を読んでください：[Dynamic Import Expressions and webpack 2 Code Splitting integration with TypeScript 2.4](https://blog.josequinto.com/2017/06/29/dynamic-import-expressions-and-webpack-code-splitting-integration-with-typescript-2-4/)
