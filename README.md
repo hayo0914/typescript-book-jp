@@ -16,4 +16,4 @@ TypeScriptを勉強する中で、[Type Script Deep Dive](https://github.com/bas
 まだありません。
 
 ## 最後に
-GitBookは[こちらのURL](https://typescript-jp.gitbook.io/deep-dive/)です。
+GitBookは[こちらのURL](https://typescript-jp.gitbook.io/deep-dive/getting-started)です。
