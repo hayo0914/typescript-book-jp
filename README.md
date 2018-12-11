@@ -2,7 +2,7 @@
 これは[Type Script Deep Dive](https://github.com/basarat/typescript-book/)の日本語バージョンです。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
 
 ## 翻訳の理由
-TypeScriptを勉強する中で、[Type Script Deep Dive](https://github.com/basarat/typescript-book/)を知りました。JavaScriptの性質に関する説明からTypeScriptの詳細を詳しく説明しており、例も多いためTypeScriptを学ぶ上で非常に効果的な文書だと思いました。しかし、翻訳された日本語版が見当たらないため、日本語版を作ることにしました。他の初学者の参考にもなると考えています。
+TypeScriptを勉強する中で、[Type Script Deep Dive](https://github.com/basarat/typescript-book/)を知りました。JavaScriptの性質に関する説明からTypeScriptの詳細を詳しく説明しており、例も多いためTypeScriptを学ぶ上で非常に効果的な文書だと思いました。しかし、翻訳された日本語版が見当たらないため、このように日本語版を作ることにしました。他のTypeScriptを学び始めた初学者にとって、大いに参考にもなると考えています。TypeScriptは、Web開発において今後デファクトスタンダードとなる可能性があります。TypeScriptをしっかりと理解するためには、このような書籍が必要です。
 
 ## お詫び
 機械翻訳でベースを翻訳し、その後、１ページずつマニュアルで翻訳作業を行っています。少しずつ作業を勧めているため、後ろのページはまだ翻訳が不十分なページがあります。下記の通り、PRやIssueでContributeを行っていただけると大変助かります。
