@@ -12,8 +12,5 @@ TypeScriptを勉強する中で、[Type Script Deep Dive](https://github.com/bas
 - PRによって分かりにくい翻訳や、誤った解釈、タイプミスを修正する
 - 上記をIssueによって指摘する
 
-## Contributorのリスト
-まだありません。
-
 ## 最後に
 GitBookは[こちらのURL](https://typescript-jp.gitbook.io/deep-dive/getting-started)です。
