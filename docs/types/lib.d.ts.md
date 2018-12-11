@@ -1,30 +1,21 @@
-* [lib.d.ts](#libdts)
-* [使用例](#example-usage)
-* [内部外観](#libdts-inside-look)
-* [Modifying Native types](#modification-native-types)
-* [カスタムlib.d.tsの使用](#独自のカスタムlibdtsを使用)
-* [lib.d.tsに対するコンパイラ `target`の影響](#compiler-target-effect-on-libdts)
-* [`lib`オプション](#lib-option)
-* [古いJavaScriptエンジンのためのPolyfill](古いpolyfill-for-javascript-engines)
-
 ## `lib.d.ts`
 
-特別な宣言ファイル `lib.d.ts`はTypeScriptのすべてのインストールに付属しています。このファイルには、JavaScriptのランタイムとDOMに存在するさまざまな一般的なJavaScript構文のアンビエント宣言が含まれています。
+特別な宣言ファイル`lib.d.ts`はTypeScriptをインストールしたときに付属しています。このファイルには、JavaScriptランタイムとDOMに存在するさまざまな一般的なJavaScript構文のアンビエント宣言が含まれています。
 
-* このファイルは、TypeScriptプロジェクトのコンパイルコンテキストに自動的に含まれます。
-* このファイルの目的は*チェックされた* JavaScriptコードの書き方を簡単に始めることです。
+* このファイルは、TypeScriptプロジェクトのコンパイルコンテキストに自動的に含まれます
+* このファイルの目的は型チェックのあるJavaScript開発を簡単に始めることです
 
-コンパイルコンテキストから `--noLib`コンパイラコマンドラインフラグ(` `tsconfig.json`に` `noLib：true``)を指定することで、このファイルをコンパイルコンテキストから除外することができます。
+コンパイルオプションに`--noLib`を指定してこのファイルをコンパイルコンテキストから除外することができます(`tsconfig.json`に`noLib：true`を指定)。
 
 ### 使用例
 
-いつものように、実際に使用されているこのファイルの例を見てみましょう：
+いつものように、実際に使用されている例を見てみましょう：
 
 ```ts
 var foo = 123;
 var bar = foo.toString();
 ```
-このコードタイプは、すべてのJavaScriptオブジェクトに対して `toString`関数が`lib.d.ts`で定義されているため、上質であるかチェックします。
+このコードは問題なく型チェックされます。なぜなら、すべてのJavaScriptオブジェクトに対して`toString`関数が`lib.d.ts`で定義されているからです。
 
 `noLib`オプションで同じサンプルコードを使用すると、型チェックエラーが発生します：
 
@@ -32,19 +23,19 @@ var bar = foo.toString();
 var foo = 123;
 var bar = foo.toString(); // ERROR: Property 'toString' does not exist on type 'number'.
 ```
-だからあなたは `lib.d.ts`の重要性を理解したので、その内容はどうなっていますか？そのことを次に検討する。
+もうあなたは`lib.d.ts`の重要性を理解したので、次にその内容を見てみましょう。
 
-### `lib.d.ts`内部の見た目
+### `lib.d.ts`の内容
 
-`lib.d.ts`の内容は、主に変数*宣言の束です。 `window`、`document`、 `math`と同様の* interface *宣言の束です。 `Window`、`Document`、 `Math`です。
+`lib.d.ts`の内容は、主に変数宣言の集まりです。例えば`window`、`document`、`math`や、同様のインターフェース宣言`Window`、`Document`、`Math`です。
 
-コード*の中に何が入力されているかを発見する最も簡単な方法は、あなたが知っていることです*。 `Math.floor`を実行した後、IDEを使ってF12(定義に移動)します(atom-typescriptはこれを大きくサポートしています)。
+このドキュメントと型アノテーションを読む一番簡単な方法は、あなたが動くと知っているもののコードを打ち込むことです。例えばIDEで`Math.floor`と打ち込み、F12を押下すると、定義に移動します(VSCodeはこれを良くサポートしています)。
 
-サンプル*変数*宣言を見てみましょう。 `window`は次のように定義されます：
+サンプルの変数宣言を見てみましょう。`window`は次のように定義されます：
 ```ts
 declare var window: Window;
 ```
-これは単純な `declare var`の後に変数名(ここでは`window`)とタイプアノテーションのインターフェース(ここで `Window`インターフェース)が続きます。これらの変数は、一般的にいくつかのグローバル*インターフェース*を指し示します。ここには(実際には非常に大規模な) `Window`インタフェースの小さなサンプルがあります：
+これは単純な`declare var`の後に変数名(ここでは`window`)とタイプアノテーションのインターフェース(`Window`インターフェース)が続きます。これらの変数は、一般的にいくつかのグローバルインターフェースを指し示します。例として、ここに`Window`インタフェースの小さな(実際には非常に大規模な)サンプルを提示します：
 
 ```ts
 interface Window extends EventTarget, WindowTimers, WindowSessionStorage, WindowLocalStorage, WindowConsole, GlobalEventHandlers, IDBEnvironment, WindowBase64 {
@@ -56,19 +47,19 @@ interface Window extends EventTarget, WindowTimers, WindowSessionStorage, Window
     // so on and so forth...
 }
 ```
-これらのインターフェースには、タイプ情報の*ロット*があることがわかります。 TypeScriptが存在しない場合、*あなたの頭に*これを保持する必要があります。コンパイルの知識を、Intellisenseのようなものを使って容易にアクセスできるようにすることができます。
+これらのインターフェースには、たくさんの型情報があることがわかります。TypeScriptが存在しない場合、あなたの頭にこれを保持する必要があります。コンパイルの知識を、インテリセンス(Intellisense)のようなものを使って容易にアクセスできるようにすることができます。
 
-これらのグローバルに* interfaces *を使用するのは正当な理由があります。 `lib.d.ts`を変更することなく*これらのグローバルに*プロパティを追加することができます。次に、このコンセプトについて説明します。
+これらのグローバルにインターフェースを使用するには良い理由があります。`lib.d.ts`を変更することなく、これらのグローバルのインターフェースにプロパティを追加することができます。次に、このコンセプトについて説明します。
 
-### ネイティブタイプを変更する
+### ネイティブ型(Native Types)を変更する
 
-TypeScriptの `interface`はオープンされているので、これは`lib.d.ts`で宣言されたインターフェースにメンバーを追加するだけで、TypeScriptはその追加を受け取ります。これらのインタフェースを `lib.d.ts`に関連付けるには、これらの変更を[* global module *](../ project / modules.md)で行う必要があることに注意してください。このために、[`globals.d.ts`](../ project / globals.md)という特別なファイルを作成することをお勧めします。
+TypeScriptの`interface`はオープンエンドなので、`lib.d.ts`で宣言されたインターフェースにメンバーを追加するだけで、TypeScriptはその追加を認識します。これらのインタフェースを`lib.d.ts`に関連付けるには、これらの変更を [グローバルモジュール](../project/modules.md) で行う必要があることに注意してください。このために、 [`globals.d.ts`](../project/globals.md) という特別なファイルを作成することをお勧めします。
 
-ここでは、 `window`、`Math`、 `Date`に要素を追加する例をいくつか示します：
+ここでは、 `window`、`Math`、`Date`に要素を追加する例をいくつか示します：
 
-#### 例 `window`
+#### `window`の例
 
-`Window`インターフェースに物を追加するだけです：
+単に`Window`インターフェースにものを追加します：
 
 ```ts
 interface Window {
@@ -76,7 +67,7 @@ interface Window {
 }
 ```
 
-これにより、あなたはそれを*安全な方法で使うことができます：
+これにより、あなたはそれを安全な方法で使うことができます：
 
 ```ts
 // Add it at runtime
@@ -87,15 +78,15 @@ window.helloWorld();
 window.helloWorld('gracius'); // Error: Supplied parameters do not match the signature of the call target
 ```
 
-#### 例題 `数学
-グローバル変数 `Math`は`lib.d.ts`で定義されています(あなたの開発ツールを使って定義に移動します)：
+#### `Math`の例
+グローバル変数`Math`は`lib.d.ts`で定義されています(再度、あなたの開発ツールを使って定義に移動してください)：
 
 ```ts
 /** An intrinsic object that provides basic mathematics functionality and constants. */
 declare var Math: Math;
 ```
 
-すなわち、変数「数学」は「数学」インターフェースのインスタンスである。 `Math`インターフェースは次のように定義されています：
+すなわち、変数`Math`は`Math`インターフェースのインスタンスです。`Math`インターフェースは次のように定義されています：
 
 ```ts
 interface Math {
@@ -105,7 +96,7 @@ interface Math {
 }
 ```
 
-つまり、 `Math`グローバル変数に物を追加したいのであれば、それを`Math`グローバルインターフェースに追加するだけです。 [`seedrandom`プロジェクト](https://www.npmjs.com/package/seedrandom)を参考にして、グローバル`Math`オブジェクトに `seedrandom`関数を追加してください。これは非常に簡単に宣言できます：
+つまり、グローバル変数の`Math`に物を追加したいのであれば、それをグローバルインターフェースの`Math`に追加するだけです。[`seedrandom`プロジェクト](https://www.npmjs.com/package/seedrandom) を参考に、グローバル`Math`オブジェクトに`seedrandom`関数を追加してください。これは非常に簡単に宣言できます：
 
 ```ts
 interface Math {
@@ -121,14 +112,15 @@ Math.seedrandom();
 Math.seedrandom("Any string you want!");
 ```
 
-#### 例題 `Date`
+#### `Date`の例
 
-`lib.d.ts`の`Date` *変数*の定義を見ると、次のようになります：
+`lib.d.ts`の`Date`変数の定義を見ると、次のようになっています：
 
 ```ts
 declare var Date: DateConstructor;
 ```
-`DateConstructor`というインターフェースは、`Date`グローバル変数を使って使うことができるメンバーが含まれている点で、 `Math`と`Window`で以前見たものに似ています。 `Date.now()`。これらのメンバーに加えて、 `Date`インスタンス(例えば`new Date() `)を作成するための*構造*シグネチャが含まれています。 `DateConstructor`インターフェースのスニペットを以下に示します：
+`DateConstructor`というインターフェースは、`Date`グローバル変数を使って使うことができるメンバが含まれている点で、`Math`と`Window`で見たものに似ています。
+例えば`Date.now()`です。これらのメンバに加えて、`Date`インスタンス(例えば`new Date()`)を作成するためのコンストラクタのシグネチャが含まれています。 `DateConstructor`インターフェースの断片を以下に示します：
 
 ```ts
 interface DateConstructor {
@@ -140,7 +132,7 @@ interface DateConstructor {
 }
 ```
 
-プロジェクト[`datejs`](https://github.com/abritinthebay/datejs)を考えてみましょう。 DateJSは、メンバを `Date`グローバル変数と`Date`インスタンスの両方に追加します。したがって、このライブラリのTypeScriptの定義は、(この場合、コミュニティはすでにあなたのためにこれを書いています)(https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/datejs/index.d)のようになります。 ts))：
+プロジェクト [`datejs`](https://github.com/abritinthebay/datejs) を考えてみましょう。 DateJSは、メンバを`Date`グローバル変数と`Date`インスタンスの両方に追加します。したがって、このライブラリのTypeScriptの定義は、以下のようになります(ところで、[コミュニティはすでにそれをあなたのために書いています](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/datejs/index.d))：
 
 ```ts
 /** DateJS Public Static Methods */
@@ -157,16 +149,16 @@ interface Date {
     // ... so on and so forth
 }
 ```
-これにより、TypeSafeの方法で次のようなことができます：
+これにより、タイプセーフな方法で次のようなことができます：
 
 ```ts
 var today = Date.today();
 var todayAfter1second = today.addMilliseconds(1000);
 ```
 
-#### 例 `string`
+#### `string`の例
 
-文字列の `lib.d.ts`を調べると、`Date`( `String`グローバル変数、`StringConstructor`インターフェース、 `String`インターフェース)のようなものが見つかるでしょう。しかし、注意すべき点の1つは、以下のコードサンプルで示すように、 `String`インターフェースも文字列*リテラル*に影響を与えます。
+文字列の `lib.d.ts`を調べると、`Date`(`String`グローバル変数、`StringConstructor`インターフェース、`String`インターフェース)のようなものが見つかるでしょう。しかし、注意すべき点の1つは、以下のコードサンプルで示すように、`String`インターフェースは、文字列リテラルに対しても影響を与えます:
 
 ```ts
 
@@ -183,11 +175,11 @@ console.log('foo bar'.endsWith('bas')); // false
 console.log('foo bas'.endsWith('bas')); // true
 ```
 
-同様の変数とインタフェースは、 `Number`、`Boolean`、 `RegExp`などの静的メンバーとインスタンスメンバーの両方を持つ他のものにも存在し、これらのインターフェースはこれらの型のリテラルインスタンスにも影響します。
+同様の変数とインタフェースは、`Number`、`Boolean`、`RegExp`などの静的メンバとインスタンスメンバの両方を持つ他のものにも存在し、これらのインターフェースはこれらの型のリテラルのインスタンスにも影響します。
 
-### 例 `string` redux
+### `string`後方一致の例
 
-メンテナンス上の理由から、 `global.d.ts`を作成することを推奨しました。しかし、あなたが望むのであれば*ファイルモジュール*の中からグローバルな名前空間*に侵入することができます。これは `declare global {/ * global namespace here * /}`を使って行います。例えば。前の例は次のようにすることもできます：
+メンテナンス上の理由から、`global.d.ts`を作成することを推奨しました。しかし、あなたが望むのであればファイルモジュールの中からグローバルな名前空間に入れることができます。これは`declare global {/ * global namespace here * /}`を使って行います。例えば。前の例は次のようにすることもできます：
 
 ```ts
 // Ensure this is treated as a module.
@@ -209,34 +201,34 @@ console.log('foo bas'.endsWith('bas')); // true
 ```
 
 ### 独自のカスタムlib.d.tsを使用する
-前に述べたように、 `--noLib`ブールコンパイラフラグを使用すると、TypeScriptは自動的に`lib.d.ts`の包含を除外します。これが有用な機能である理由はさまざまです。一般的なもののいくつかを以下に示します。
+前に述べたように、 `--noLib`のコンパイラフラグを使用すると、TypeScriptは自動的に`lib.d.ts`を除外します。これが有用である理由はさまざまです。一般的なもののいくつかを以下に示します。
 
-* 標準ブラウザベースのランタイム環境とは大きく異なる*カスタムJavaScript環境で実行しています。
-* コード内で使用可能な*グローバル*を厳密に制御することができます。例えば。 lib.d.tsは `item`を大域変数として定義しており、これをあなたのコードに漏らさないようにします。
+* 標準ブラウザベースのランタイム環境とは大きく異なるカスタムJavaScript環境で実行する場合
+* コード内で使用可能なグローバルを厳密に制御したい場合。例えばlib.d.tsは`item`を大域変数として定義していますが、あなたはそれをコードに混入させたくないでしょう
 
-デフォルトの `lib.d.ts`を除外すると、コンパイルコンテキストに同様の名前のファイルを含めることができ、TypeScriptはタイプチェックのためにそれを取り込みます。
+デフォルトの `lib.d.ts`を除外すると、コンパイルコンテキストに同様の名前のファイルを含めることができ、TypeScriptは型チェックのためにそれを取り込みます。
 
-> 注意： `--noLib`には注意してください。あなたがnoLibの土地にいると、あなたのプロジェクトを他の人と共有することを選択すると、noLib土地に(またはあなたの土地に)強制されます。さらに悪いことに、*自分の*コードをプロジェクトに持っていくと、lib *ベースのコードに移植する必要があるかもしれません。
+> 注意： `--noLib`には注意してください。一度noLibを使ったら、あなたのプロジェクトを他の人と共有しようとしたとき、noLibを(またはあなたのLibを)使うことを強制することになります。さらに悪いことに、もし彼らのコードをプロジェクトに持っていこうとすると、あなたのlibに基づくコードに変換する必要があるかもしれません。
 
-### コンパイラの `lib.d.ts`に対する効果
+### コンパイラターゲットの`lib.d.ts`に対する効果
 
-コンパイラのターゲットを `es6`に設定すると`lib.d.ts`は `Promise`のようなより現代的なもの(es6)のための* ambient宣言を追加します。コンパイラターゲットがコードの*雰囲気*を変えるという魔法の効果は、一部の人にとっては望ましいことです。他の人にとっては、*コード生成*と*コードの雰囲気*を融合させるために問題があります。
+コンパイラのターゲットを `es6`に設定すると`lib.d.ts`は`Promise`のようなより現代的なもの(es6)のためのアンビエント宣言を追加します。コンパイラターゲットがコードの環境（アンビエント）を変えるという魔法の効果は、一部の人にとっては望ましいことです。他の人にとっては、コードとアンビエントを合わせないといけないので、問題があります。
 
-しかし、あなたの環境をきめ細かく制御したいなら、次に述べる `--lib`オプションを使うべきです。
+しかしそれでも、あなたの環境をきめ細かく制御したい場合は、次に述べる`--lib`オプションを使うべきです。
 
 ### libオプション
 
-場合によっては、コンパイル対象(生成されたJavaScriptバージョン)とアンビエントライブラリサポートの関係を切り離したい場合があります。一般的な例は、「約束」である。今日(2016年6月)、 `--target es5`をしたいと思うかもしれませんが、`Promise`のような最新の機能を使います。これをサポートするために、 `lib`コンパイラオプションを使って`lib`を明示的に制御することができます。
+場合によっては、コンパイルターゲット(生成されたJavaScriptのバージョン)とアンビエントライブラリサポートの関係を切り離したい場合があります。2016年６月において一般的な例は、`Promise`です。たいていは`--target es5`のようにすることを望むと思いますが、しかし、それでも、`Promise`のような最新の機能を使いたい場合です。これをサポートするために、`lib`コンパイラオプションを使って`lib`を明示的に制御することができます。
 
-> 注意： `--lib`を使うと、`--target`のlibの魔法を切り離して、より良い制御ができます。
+> 注意： `--lib`を使うと、`--target`のlibの魔法を切り離して、より細かい制御ができます。
 
-このオプションをコマンドラインまたは `tsconfig.json`に指定することができます(推奨)。
+このオプションをコマンドラインまたは`tsconfig.json`に指定することができます(それを推奨します)。
 
-** コマンドライン**：
+**コマンドライン**：
 ```
 tsc --target es5 --lib dom,es6
 ```
-** tsconfig.json **：
+**tsconfig.json **：
 ```json
 "compilerOptions": {
     "lib": ["dom", "es6"]
@@ -254,11 +246,11 @@ libsは次のように分類できます。
     * es2017
     * esnext
 * 実行時環境
-    * dom
+    * dom
     * dom.iterable
     * webworker
-    *スクリプトホスト
-* ESNext By Featureオプション(バルク機能よりも小さい)
+    * スクリプトホスト
+* ESNext By-Featureオプション(バルク機能よりも小さい)
     * es2015.core
     * es2015.collection
     * es2015.generator
@@ -273,12 +265,12 @@ libsは次のように分類できます。
     * es2017.sharedmemory
     * esnext.asynciterable
 
-> 注意： `--lib`オプションは非常に細かいチューニングされたコントロールを提供します。したがって、バルク+環境カテゴリから項目を選択する可能性が最も高いです。
-> --libが指定されていない場合、デフォルトのライブラリが注入されます：
-   -   - ターゲットの場合es5 => es5、dom、scripthost
-   - の場合--target es6 => es6、dom、dom.iterable、scripthost
+> 注意： `--lib`オプションは非常に細かく調整された制御を提供します。したがって、たいていは、バルク機能と環境カテゴリから対象を選択すれば良いでしょう。
+> --libが指定されていない場合、デフォルトのライブラリが選択されます：
+   * --target es5の場合 => es5、dom、scripthost
+   * --target es6の場合 => es6、dom、dom.iterable、scripthost
 
-私の個人的な勧告：
+私の個人的な推奨：
 
 ```json
 "compilerOptions": {
@@ -287,9 +279,9 @@ libsは次のように分類できます。
 }
 ```
 
-ES5にシンボルを含む例：
+ES5にシンボル(Symbol)を含む例：
 
-ターゲットがes5の場合、Symbol APIは含まれません。実際、次のようなエラーが表示されます。[ts]名前 'シンボル'が見つかりません。
+ターゲットがes5の場合、Symbol APIは含まれません。実際のところ"[ts]Cannot find name 'Symbol'"ようなエラーが表示されます。
 "target"： "es5"と "lib"を組み合わせて、TypeScriptにSymbol APIを提供することができます：
 
 ```json
@@ -303,7 +295,7 @@ ES5にシンボルを含む例：
 
 > [この件に関するEgghead PRO Video](https://egghead.io/lessons/typescript-using-es6-and-esnext-with-typescript)
 
-`Map`/` Set`や、 `Promise`(このリストはもちろん変更されるでしょう)のようなランタイム機能は、現代の`lib`オプションで使用できるものがかなりあります。これらを使うには `core-js 'を使うだけです。単にインストールしてください：
+`Map`/`Set`や、`Promise`(このリストは当然変更されるでしょう)のような、いくつかのランタイム機能は、モダンな`lib`オプションで使用できるものがかなりあります。これらを使うには `core-js`を使うだけです。シンプルにインストールしてください：
 
 ```
 npm install core-js --save-dev
@@ -314,4 +306,5 @@ npm install core-js --save-dev
 import "core-js";
 ```
 
-そして、あなたのためにこれらのランタイム機能をポリファイリングする必要があります。
+それは、これらのランタイム機能をあなたのためにPolyfillしてくれるでしょう🌹
+
