@@ -51,7 +51,7 @@ function fail(message: string): never { throw new Error(message); }
 
 `never`は他の`never`にのみ割り当てられるので、コンパイル時の網羅チェックのためにも使うことができます。これは[ユニオン判別のセクション](./discriminated-unions.md)で説明します。
 
-# `void`との混乱
+# `void`との混同
 
 関数が正常に終了することがないとき、`never`が返されると知ると、直感的に`void`と同じように考えたくなるでしょう。しかし、`void`は部品です。`never`はうそつきです。
 
