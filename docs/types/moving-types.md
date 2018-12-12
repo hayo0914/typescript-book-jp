@@ -1,4 +1,4 @@
-# 移動タイプ
+# 移動タイプ(Moving Types)
 
 TypeScriptのタイプシステムは非常に強力で、そこでは他の言語では不可能な方法で移動とスライシングが可能です。
 
@@ -16,7 +16,7 @@ var Bar = Foo;
 var bar: Bar; // ERROR: cannot find name 'Bar'
 ```
 
-これはエラーです。なぜなら、 `var`は`Foo`を*変数*宣言空間にコピーしただけなので、型の注釈として `Bar`を使うことができないからです。正しい方法は、 `import`キーワードを使うことです。 * namespaces *や* modules *を使用している場合にのみ、 `import`キーワードをこのように使用することができます(詳細は後で説明します)。
+これはエラーです。なぜなら、`var`は`Foo`を*変数*宣言空間にコピーしただけなので、型の注釈として`Bar`を使うことができないからです。正しい方法は、`import`キーワードを使うことです。 *namespaces*や*modules*を使用している場合にのみ、`import`キーワードをこのように使用することができます(詳細は後で説明します)。
 
 ```ts
 namespace importing {
@@ -27,7 +27,7 @@ import Bar = importing.Foo;
 var bar: Bar; // Okay
 ```
 
-この `import 'トリックは、*型と変数*の両方で機能します。
+この `import`トリックは、*型と変数*の両方で機能します。
 
 ## 変数の型を取り込む
 
@@ -58,7 +58,7 @@ let bar: typeof _foo.foo;
 
 ## マジック文字列の種類を取得する
 
-多くのJavaScriptライブラリとフレームワークは、生のJavaScript文字列を処理します。 `const`変数を使用してその型を取り込むことができます。
+多くのJavaScriptライブラリとフレームワークは、生のJavaScript文字列を処理します。`const`変数を使用してその型を取り込むことができます。
 
 ```ts
 // Capture both the *type* and *value* of magic string:
@@ -72,11 +72,11 @@ bar = "Hello World"; // Okay!
 bar = "anything else "; // Error!
 ```
 
-この例では、 `bar`はリテラルタイプ` `Hello World '`を持っています。これについては、[リテラルタイプのセクション](https://basarat.gitbooks.io/typescript/content/docs/types/literal-types.html "リテラルタイプ")を参照してください。
+この例では、`bar`はリテラルタイプ`'Hello World'`を持っています。これについては、 [リテラルタイプのセクション](https://basarat.gitbooks.io/typescript/content/docs/types/literal-types.html) を参照してください。
 
 ## キー名のキャプチャ
 
-`keyof`演算子を使うと、ある型のキー名を取得できます。例えば。変数のキー名を `typeof`を使って最初に取得することでそれを取得することができます：
+`keyof`演算子を使うと、ある型のキー名を取得できます。例えば。変数のキー名を`typeof`を使って最初に取得することでそれを取得することができます：
 
 ```ts
 const colors = {
