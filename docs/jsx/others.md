@@ -1,19 +1,19 @@
-# 非リアクションJSX
+# React以外のJSX
 
-TypeScriptは、React with JSX以外のものをタイプセーフな方法で使用する機能を提供します。以下は、カスタマイズ可能ポイントを示していますが、これは高度なUIフレームワークの作成者向けです。
+TypeScriptは、React with JSX以外のものをタイプセーフな方法で使用する機能を提供します。以下は、カスタマイズ可能なポイントを示していますが、これは高度なUIフレームワークの作成者向けです。
 
-* ``jsx '： "preserve" `オプションを使って`react`スタイルのemitを無効にすることができます。これは、JSXが*そのままの状態で放出されることを意味します。そして、あなた自身のカスタムトランスパイラを使用してJSX部分を透明化することができます。
+* `"jsx" ： "preserve"`オプションを使って`react`形式の出力を無効にすることができます。これは、JSXが*そのままの状態で*出力されることを意味します。そして、あなた自身のカスタムトランスパイラを使用してJSX部分をトランスパイルすることができます
 * `JSX`グローバルモジュールを使う：
-    * `JSX.IntrinsicElements`インターフェースメンバをカスタマイズすることで、どのHTMLタグが利用可能で、どのように型チェックされているかを制御することができます。
-    *コンポーネントを使用する場合：
-        *デフォルトの `Interface ElementClass extends React.Component <any any> {}`宣言をカスタマイズすることによって、どのクラスがコンポーネントによって継承されなければならないかを制御できます。
-        * declare module JSX {interface ElementAttributesProperty {props：{};}をカスタマイズすることで、どのプロパティをタイプするのに使われる属性を制御できます(デフォルトは `props`です)。 }} `宣言。
+    * `JSX.IntrinsicElements`インターフェースのメンバをカスタマイズすることで、どのHTMLタグが利用可能で、どのように型チェックされるかを制御することができます。
+    * コンポーネントを使用する場合：
+        *デフォルトの`Interface ElementClass extends React.Component <any any> {}`宣言をカスタマイズすることによって、どのクラスがコンポーネントによって継承されなければならないかを制御できます
+        * どのプロパティが属性(デフォルトは`props`)の型チェックに使われるかを制御できます。`declare module JSX {interface ElementAttributesProperty {props：{};}`の宣言をカスタマイズすることで行います。
 
 ## `jsxFactory`
 
-`--jsxFactory <JSX factory name>`と `--jsx react`を一緒に渡すことで、デフォルトの`React`から別のJSXファクトリを使うことができます。
+`--jsxFactory <JSX factory name>`と `--jsx react`を一緒に渡すことで、デフォルトの`React`とは別のJSXファクトリを使うことができます。
 
-新しいファクトリ名は `createElement`関数を呼び出すために使われます。
+新しいファクトリ名は`createElement`関数を呼び出すために使われます。
 
 ### 例
 
@@ -23,7 +23,7 @@ import {jsxFactory} from "jsxFactory";
 var div = <div>Hello JSX!</div>
 ```
 
-コンパイル済み：
+コンパイル：
 
 ```shell
 tsc --jsx react --reactNamespace jsxFactory --m commonJS
@@ -37,7 +37,7 @@ var jsxFactory_1 = require("jsxFactory");
 var div = jsxFactory_1.jsxFactory.createElement("div", null, "Hello JSX!");
 ```
 
-## `jsx`プラグマ
+## `jsx`プラグマ(`jsx` pragma)
 
 `jsxPragma`を使用してファイルごとに異なる`jsxFactory`を指定することもできます。
 
