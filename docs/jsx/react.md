@@ -4,22 +4,22 @@
 
 ## セットアップ
 
-私たちのブラウザクイックスタートでは、すでに反応アプリケーションの開発をセットアップしています(../ quick / browser.md)。ここに主要なハイライトがあります。
+私たちのブラウザ向けのクイックスタートに、すでにReactアプリケーションの開発のセットアップの仕方を説明しています(../quick/browser.md)。主なハイライトは次の通りです。
 
-* ファイル拡張子 `.tsx`(`.ts`の代わりに)を使用してください。
-* あなたの `tsconfig.json`の`compilerOptions`で `` jsx "：" react "を使ってください。
-* JSXとReactの定義をあなたのプロジェクトにインストールします：( `npm i -D @ types / react @ types / react-dom`)。
-* Importは、あなたの `.tsx`ファイルに反応します(` import *はReactから "react"となります)。
+* ファイル拡張子`.tsx`(`.ts`の代わりに)を使用してください。
+* あなたの`tsconfig.json`の`compilerOptions`で `"jsx" ： "react"を使ってください。
+* JSXとReactの定義をあなたのプロジェクトにインストールします：(`npm i -D @types/react @types/react-dom`)。
+* reactを`.tsx`ファイルにインポートします(`import * as React from "react"`となります)。
 
-## HTMLタグとコンポーネント
+## HTMLタグとComponentの違い
 
-Reactは、HTMLタグ(文字列)またはReactコンポーネント(クラス)をレンダリングできます。これらの要素に対するJavaScriptの発行は異なります( `React.createElement( 'div')`対 `React.createElement(MyComponent)`)。これが決まる方法は*最初の*文字の* case *です。 `foo`はHTMLタグとして扱われ、`Foo`はコンポーネントとして扱われます。
+Reactは、HTMLタグ(文字列)またはReact Component(クラス)をレンダリングします。これらに対するJavaScriptの出力は異なります(`React.createElement( 'div')`と`React.createElement(MyComponent)`)。これが決まる方法は最初の文字の*ケース*(大文字小文字)です。`foo`はHTMLタグとして扱われ、`Foo`はコンポーネントとして扱われます。
 
-## 型式チェック
+## 型チェック(Type Checking)
 
 ### HTMLタグ
 
-HTMLタグ `foo`の型は`JSX.IntrinsicElements.foo`です。これらのタイプは、セットアップの一部としてインストールした `react-jsx.d.ts`ファイルのすべてのメジャータグに対してすでに定義されています。次に、ファイルの内容のサンプルを示します。
+HTMLタグ`foo`の型は`JSX.IntrinsicElements.foo`です。これらの型は、セットアップの一部としてインストールした`react-jsx.d.ts`ファイルにおいて主要なタグに対してすでに定義されています。次に、ファイルの内容のサンプルを示します。
 
 ```ts
 declare module JSX {
@@ -34,9 +34,9 @@ declare module JSX {
 }
 ```
 
-### ステートレス機能コンポーネント
+### ステートレスな関数コンポーネント(Stateless Functional Components)
 
-あなたは単に `React.SFC`インターフェースでステートレスコンポーネントを定義することができます。
+あなたは単に`React.SFC`インターフェースを使ってステートレスなコンポーネントを定義することができます。
 
 ```ts
 type Props = {
@@ -49,11 +49,11 @@ const MyComponent: React.SFC<Props> = (props) => {
 <MyComponent foo="bar" />
 ```
 
-### ステートフルなコンポーネント
+### ステートフルなコンポーネント(Stateful Components)
 
-コンポーネントは、コンポーネントの `props`プロパティに基づいてタイプチェックされます。これは、JSXがどのように変換されるか、すなわち属性がコンポーネントの「小道具」になるようにモデル化されています。
+コンポーネントは、コンポーネントの`props`プロパティに基づいて型チェックされます。これは、JSXがどのように変換されるかによってモデル化されています。例えば属性がコンポーネントの`props`になるようにモデル化されています。
 
-React Statefulコンポーネントを作成するには、ES6クラスを使用します。 `react.d.ts`ファイルはあなた自身の`Props`と `State`インターフェースを提供するあなたのクラスで拡張すべき`React.Component <Props、State> `クラスを定義しています。これは以下のとおりです：
+ReactのStatefulコンポーネントを作成するには、ES6クラスを使用します。`react.d.ts`ファイルはあなた自身の`Props`と`State`インターフェースを提供する、あなたのクラスで継承するべき`React.Component<Props,State>`クラスを定義しています。これは以下のとおりです：
 
 ```ts
 type Props = {
@@ -68,9 +68,9 @@ class MyComponent extends React.Component<Props, {}> {
 <MyComponent foo="bar" />
 ```
 
-### React JSX Tip：レンダリング可能なインターフェース
+### React JSX Tip： レンダリング可能なインターフェース
 
-Reactは `JSX`や`string`のようなものをレンダリングすることができます。これらはすべて `React.ReactNode`型に統合されていますので、レンダラブルを受け入れる場合などに使用してください。
+Reactは`JSX`や`string`のようなものをレンダリングすることができます。これらはすべて`React.ReactNode`型に統合されていますので、レンダリング可能なものを受け入れる場合などに使用してください。
 
 ```ts
 type Props = {
@@ -91,7 +91,7 @@ class MyComponent extends React.Component<Props, {}> {
 
 ### React JSXヒント：コンポーネントのインスタンスを受け入れる
 
-反応型定義は、 `React.ReactElement <T>`を提供して、 `<T />`クラスコンポーネントのインスタンス化の結果に注釈を付けることができます。例えば
+React型の定義は、`React.ReactElement<T>`を提供しており、`<T/>`クラスコンポーネントのインスタンスにアノテーションを付けることができます。例えば
 
 ```js
 class MyAwesomeComponent extends React.Component {
@@ -104,11 +104,11 @@ const foo: React.ReactElement<MyAwesomeComponent> = <MyAwesomeComponent />; // O
 const bar: React.ReactElement<MyAwesomeComponent> = <NotMyAwesomeComponent />; // Error!
 ```
 
-> もちろん、これを関数の引数アノテーションやReact component prop memberとして使用することもできます。
+> もちろん、これを関数の引数のアノテーションやReact componentのprop memberとして使用することもできます。
 
-### React JSXヒント：小道具に作用し、JSXを使用してレンダリングできる* component *を受け入れる
+### React JSXヒント： propに作用し、JSXを使用してレンダリングできる*Component*を受け入れる
 
-タイプ `React.Component <Props>`は `React.ComponentClass <P> |を統合します。 React.StatelessComponent <P> `で、`Props`型のJSXを使ってレンダリングするものを受け入れることができます。
+型`React.Component<Props>`は`React.ComponentClass<P> | React.StatelessComponent<P>`を統合しています。なので、`Props`型を受け取り、JSXを使ってレンダリングする*何か*を受け入れることができます。
 
 ```ts
 const X: React.Component<Props> = foo; // from somewhere
@@ -117,7 +117,7 @@ const X: React.Component<Props> = foo; // from somewhere
 <X {...props}/>;
 ```
 
-### React JSXヒント：汎用コンポーネント
+### React JSXヒント：ジェネリックコンポーネント(Generic Components)
 
 期待どおりに動作します。次に例を示します。
 
@@ -130,7 +130,7 @@ class Select<T> extends React.Component<SelectProps<T>, any> { }
 const Form = () => <Select<string> items={['a','b']} />;
 ```
 
-### 汎用関数
+### ジェネリック関数(Generic Functions)
 
 次のようなものがうまくいきます：
 
@@ -138,25 +138,66 @@ const Form = () => <Select<string> items={['a','b']} />;
 function foo<T>(x: T): T { return x; }
 ```
 
-しかし、矢印汎用関数を使用しても、
+しかし、アローのジェネリック関数を使用しても、うまくいきません:
 
 ```ts
 const foo = <T>(x: T) => x; // ERROR : unclosed `T` tag
 ```
 
-** 回避策**：ジェネリックパラメータに `extends`を使用すると、コンパイラがジェネリックであることをヒントできます。
+**回避策**：ジェネリックパラメータに`extends`を使用すると、コンパイラがジェネリックであることを教えられます。
 
 ```ts
 const foo = <T extends {}>(x: T) => x;
 ```
 
-### 型アサーション
+### Reactのヒント: React Tip: 厳密に型付けされた参照(Strongly Typed Refs)
 
-我々が[前に述べた](./type-assertion.md#as-foo-vs-foo)のように、タイプアサーションには `as Foo`構文を使います。
+あなたは基本的に参照のユニオンとして変数を`null`で初期化できます。そしてそれをコールバックとして初期化できます。
+```ts
+class Example extends React.Component {
+  example() {
+    // ... something
+  }
 
-## デフォルトの小道具
+  render() { return <div>Foo</div> }
+}
 
-* デフォルトの小道具を持ったステートフルなコンポーネント：あなたは* Nullアサーション*演算子を使ってプロパティを外部から(Reactによって)提供することをTypeScriptに伝えることができます(これは理想的ではありませんが、 )。
+
+class Use {
+  exampleRef: Example | null = null; 
+
+  render() {
+    return <Example ref={exampleRef => this.exampleRef = exampleRef } />
+  }
+}
+```
+そしてネイティブ要素の参照に対しても同じです。
+```ts
+class FocusingInput extends React.Component<{ value: string, onChange: (value: string) => any }, {}>{
+  input: HTMLInputElement | null = null;
+
+  render() {
+    return (
+      <input
+        ref={(input) => this.input = input}
+        value={this.props.value}
+        onChange={(e) => { this.props.onChange(this.ctrls.input.value) } }
+        />
+      );
+    }
+    focus() {
+      if (this.input != null) { this.input.focus() }
+    }
+}
+```
+
+### 型アサーション(Type Assertions)
+
+我々が [前に述べた](./type-assertion.md#as-foo-vs-foo) のように、型アサーションには`as Foo`構文を使います。
+
+## デフォルトProps(Default Props)
+
+* デフォルトPropsを持ったステートフルなコンポーネント：あなたは*Nullアサーション演算子*を使って、プロパティが外部から(Reactによって)提供されることをTypeScriptに伝えることができます(これは理想的ではありませんが、しかし私が思いつく中では、最もシンプルでミニマムなコードです)。
 
 ```tsx
 class Hello extends React.Component<{
@@ -186,7 +227,7 @@ ReactDOM.render(
 );
 ```
 
-* デフォルトの小道具を備えたSFC：シンプルなJavaScriptパターンを活用することをお勧めします。
+* デフォルトPropsを備えたSFC ：シンプルなJavaScriptパターンを活用してTypeScriptの型システムとうまく動作するようにすることをお勧めします。
 
 ```tsx
 const Hello: React.SFC<{
