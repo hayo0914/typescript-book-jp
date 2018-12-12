@@ -26,7 +26,7 @@ let bar: never = (() => { throw new Error('Throw my hands in the air like I just
 
 すばらしい。さあ、主な使用例を見てみましょう:)
 
-# ユースケース： 網羅的なチェック(Exhaustive Checks)
+# ユースケース： 網羅チェック(Exhaustive Checks)
 
 たどり着けないコンテキストで関数を呼び出すことはできません。
 
@@ -49,7 +49,7 @@ function foo(x: string | number): boolean {
 function fail(message: string): never { throw new Error(message); }
 ```
 
-`never`は他の`never`にのみ割り当てられるので、コンパイル時の徹底的なチェックのためにも使うことができます。これは[差別化されたユニオン型のセクション](./discriminated-unions.md)で説明します。
+`never`は他の`never`にのみ割り当てられるので、コンパイル時の網羅チェックのためにも使うことができます。これは[ユニオン判別のセクション](./discriminated-unions.md)で説明します。
 
 # `void`との混乱
 
