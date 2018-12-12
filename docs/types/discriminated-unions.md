@@ -1,8 +1,8 @@
-### 差別化された組合
+### 判別ユニオン(Discriminated Union)
 
-[* literalメンバー*](./ literal-types.md)を持つクラスがある場合、そのプロパティを使用して、共用体メンバーを区別することができます。
+[*literal型のメンバ*](./literal-types.md)を持つクラスがある場合、そのプロパティを使用して、ユニオン型のメンバを判別することができます。
 
-例として、 `Square`と`Rectangle`の和集合を考えてみましょう。ここでは、両方の共用体メンバに存在し、特定の*リテラル型のメンバ `kind`があります*：
+例として、`Square`と`Rectangle`のユニオンを考えてみましょう。ここでは`kind`（特定のリテラル型）は両方のユニオン型のメンバに存在しています:
 
 ```ts
 interface Square {
@@ -18,7 +18,7 @@ interface Rectangle {
 type Shape = Square | Rectangle;
 ```
 
-* discriminantプロパティ(ここで `kind`)にタイプガードスタイルチェック(`== `、`=== `、`!= `、`!== `)または`switch`を使用すると、TypeScriptはそのオブジェクトは、その特定のリテラルを持つタイプのものでなければならず、あなたのためにタイプを狭くする必要があります:)
+判別用のプロパティ(ここでは`kind`)に対して、型安全なチェック(`==``===`、`!=`、`!==`)または`switch`を使用すると、TypeScriptはあなたのために、そのリテラル型を持つオブジェクトの型を特定し、型の絞り込みを行います :)
 
 ```ts
 function area(s: Shape) {
@@ -35,8 +35,8 @@ function area(s: Shape) {
 }
 ```
 
-### 完全なチェック
-かなり一般的には、組合のすべてのメンバーがそれらに対していくつかのコード(行動)を持っていることを確認したいと思います。
+### 網羅チェック(Exhaustive Checks)
+一般論として、あなたはユニオンのすべてのメンバに対して漏れなくコード(またはアクション)が存在していることを確認したいでしょう。
 
 ```ts
 interface Square {
@@ -60,7 +60,7 @@ interface Circle {
 type Shape = Square | Rectangle | Circle;
 ```
 
-物が悪くなる場所の例として：
+`Circle`のインスタンスが渡された場合に悪いことが起きる例：
 
 ```ts
 function area(s: Shape) {
@@ -74,7 +74,7 @@ function area(s: Shape) {
 }
 ```
 
-これを行うには、フォールスルーを追加し、そのブロックの推論された型が `never`型と互換性があることを確認するだけです。たとえば、徹底的なチェックを追加すると、すばらしいエラーが発生します。
+これをチェックするには、フォールスルー(else)を追加し、そのブロックの推論された型が`never`型と互換性があるかを確認するだけです。たとえば、その網羅チェックを追加すると、ナイスなエラーが発生します:
 
 ```ts
 function area(s: Shape) {
@@ -91,7 +91,7 @@ function area(s: Shape) {
 }
 ```
 
-それはこの新しいケースを扱うことを強いられます：
+これによって、あなたは新しいケースに対応することを強制されます：
 
 ```ts
 function area(s: Shape) {
@@ -112,8 +112,8 @@ function area(s: Shape) {
 ```
 
 
-### スイッチ
-ヒント：もちろん、あなたは `switch`ステートメントでそれを行うこともできます：
+### スイッチ(Switch)
+ヒント：もちろん、`switch`ステートメントでも同じことが可能です：
 
 ```ts
 function area(s: Shape) {
@@ -126,11 +126,9 @@ function area(s: Shape) {
 }
 ```
 
-[references-discriminated-union]：https：//github.com/Microsoft/TypeScript/pull/9163
-
 ### strictNullChecks
 
-strictNullChecksを使用して網羅的なチェックを行っている場合、 `_exhaustiveCheck`変数(`never`型)も返さなければなりません。そうでなければ、TypeScriptは `undefined`の可能な戻り値を推論します。そう：
+strictNullChecksを使用して網羅チェックを行っている場合、TypeScriptは"not all code paths return a value"というエラーを出すかもしれません。そのエラーを黙らせるには、シンプルに`_exhaustiveCheck`変数(never型)を返すだけです:
 
 ```ts
 function area(s: Shape) {
@@ -147,9 +145,9 @@ function area(s: Shape) {
 
 ### Redux
 
-これを利用する普及した図書館は、還元的です。
+これを活用しているポピュラーなライブラリはreduxです。
 
-ここに、TypeScript型アノテーションを追加した[* gist of redux *](https://github.com/reactjs/redux#the-gist)があります：
+ここに、TypeScript型アノテーションを追加した [*gist of redux*](https://github.com/reactjs/redux#the-gist) があります：
 
 ```ts
 import { createStore } from 'redux'
@@ -207,4 +205,4 @@ store.dispatch({ type: 'DECREMENT' })
 // 1
 ```
 
-TypeScriptで使用すると、誤植、リファクタリング能力の向上、および自己文書化コードに対する安全性が確保されます。
+これをTypeScriptで使うことにより、型安全性とリファクタ容易性、そしてコードの自己文書化を得ることができます。
