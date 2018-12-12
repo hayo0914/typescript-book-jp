@@ -34,7 +34,7 @@ npm install -g typescript@next
 
 `this/will/be/the/link/to/the/code.ts`
 ```ts
-// 議論対象のコード
+// 議論中のコード
 ```
 
-開発設定をして、TypeScriptのシンタックスを見ていきましょう。
+開発設定をして、TypeScriptの構文を見ていきましょう。
