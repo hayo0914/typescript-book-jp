@@ -1,6 +1,6 @@
-# ミックスイン
+# 混合クラス(Mixins)
 
-TypeScript(およびJavaScript)クラスは、厳密な単一継承をサポートします。あなたは*することはできません：
+TypeScript(およびJavaScript)クラスは、厳密な単一継承をサポートします。あなたはこれをすることはできません：
 
 ```ts
 class User extends Tagged, Timestamped { // ERROR : no multiple inheritance
@@ -9,7 +9,7 @@ class User extends Tagged, Timestamped { // ERROR : no multiple inheritance
 
 再使用可能なコンポーネントからクラスを構築する別の方法は、mixinと呼ばれるより単純な部分クラスを組み合わせてそれらを構築することです。
 
-そのアイデアは、機能を得るためにクラスAを拡張する*クラスAの代わりに単純です。*関数BはクラスA *を取り、この追加された機能を持つ新しいクラスを返します。関数 `B`はミックスインです。
+そのアイデアは、機能を得るためにクラスAを拡張する*クラスAの代わりに単純です。*関数BはクラスA を取り、この追加された機能を持つ新しいクラスを返します。関数`B`はミックスインです。
 
 > [mixinは]
  1.コンストラクタをとり、
