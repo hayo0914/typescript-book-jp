@@ -1,15 +1,18 @@
-# なぜサイプレス
+# Why Cypress
 Cypressは素晴らしいE2Eテストツールです。これを考慮する大きな理由は次のとおりです。
 
-* 隔離設置が可能です。
-* TypeScriptの定義がそのままの状態で出荷されます。
-* 優れたインタラクティブなGoogle Chromeのデバッグ環境を提供します。これは、UI開発者がほとんど手動で作業する方法と非常によく似ています。
+* 分離インストールが可能です
+* TypeScriptの定義がそのままの状態で使えます
+* 優れたインタラクティブなGoogle Chromeのデバッグ環境を提供します。これは、UI開発者が手動で作業する方法と非常によく似ています
+* より強力なデバッグとテストの安定性を実現するコマンド実行セパレーションを持っています（詳細は後述）
+* より脆いテストでより意味のあるデバッグエクスペリエンスを提供するための暗黙のアサーションがあります（詳細は以下のヒントを参照してください）。
 * アプリケーションコードを変更することなく、バックエンドのXHRを簡単に模倣して観察する機能を提供します(以下のヒントで詳しく説明しています)。
-* より脆弱なテストでより意味のあるデバッグ経験を提供するための暗黙のアサーションがあります(これについては以下のヒントを参照してください)。
 
 ## インストール
 
-e2eディレクトリを作成し、cypressとその依存関係をTypeScript変換用にインストールします。
+> このインストールプロセスで提供される手順は、あなたの組織のボイラープレートとして使用できる素敵なe2eフォルダを提供します。このe2eフォルダをCypressでテストしたい既存のプロジェクトに貼り付けてコピーすることができます
+
+e2eディレクトリを作成し、cypressとその依存関係をTypeScriptのトラインスパイルのためにインストールします。
 
 ```sh
 mkdir e2e
@@ -18,11 +21,11 @@ npm init -y
 npm install cypress webpack @cypress/webpack-preprocessor typescript ts-loader
 ```
 
-> ここでは特にサイプレスのために別々の `e2e`フォルダを作成するいくつかの理由があります：
-* 別のディレクトリや `e2e`を作成すると、`package.json`の依存関係を他のプロジェクトと簡単に分離することができます。これにより依存性の競合が少なくなります。
-* テストフレームワークには、グローバルな名前空間を「記述する」、「期待する」などのもので汚染する習慣があります。グローバルな型定義の競合を避けるために、e2e `tsconfig.json`と`node_modules`をこの特別な `e2e`フォルダに保存することが最善です。
+> ここでは特にサイプレスのために別々の`e2e`フォルダを作成するいくつかの理由があります：
+* 別のディレクトリや`e2e`を作成すると、`package.json`の依存関係を他のプロジェクトと簡単に分離することができます。これにより依存性の競合が少なくなります。
+* テストフレームワークには、グローバルな名前空間を`describe` `it` `expect`などのもので汚染する慣習があります。グローバルな型定義の競合を避けるために、e2e `tsconfig.json`と`node_modules`をこの特別な`e2e`フォルダに保存することが最善です。
 
-セットアップタイプスクリプト `tsconfig.json`
+TypeScriptの`tsconfig.json`を設定します:
 
 ```json
 {
@@ -42,13 +45,13 @@ npm install cypress webpack @cypress/webpack-preprocessor typescript ts-loader
 }
 ```
 
-サイプレスの最初の乾いたランを行い、サイプレスのフォルダ構造を準備します。 Cypress IDEが開きます。ウェルカムメッセージが表示されたらそれを閉じることができます。
+Cypressの最初のdry runを行い、Cypressのフォルダ構造を準備します。 Cypress IDEが開きます。ウェルカムメッセージが表示されたらそれを閉じることができます。
 
 ```sh
 npx cypress open
 ```
 
-`e2e / cypress / plugins / index.js`を次のように編集して、サイクロプスをタイプライティングするためのサイプレスをセットアップします：
+`e2e/cypress/plugins/index.js`を次のように編集して、CypressをTypeScriptのトランスパイルようにセットアップします：
 
 ```js
 const wp = require('@cypress/webpack-preprocessor')
@@ -74,7 +77,7 @@ module.exports = (on) => {
 ```
 
 
-オプションで `e2e / package.json`ファイルにいくつかのスクリプトを追加します：
+任意に`e2e/package.json`ファイルにいくつかのスクリプトを追加します：
 
 ```json
   "scripts": {
@@ -83,21 +86,21 @@ module.exports = (on) => {
   },
 ```
 
-## キーファイルの詳細説明
+## キーとなるファイルの詳細
 `e2e`フォルダの下に、次のファイルがあります：
 
-* `/ cypress.json`：サイプレスを設定します。デフォルトは空で、必要なのはそれだけです。
-* `/ cypress`サブフォルダ：
-    * `/ fixtures`：テストフィクスチャ
+* `/cypress.json`：Cypressを設定します。デフォルトは空で、必要なのはそれだけです。
+* `/cypress`サブフォルダ：
+    * `/fixtures`：テストフィクスチャ
         * `example.json`が付属しています。削除しても構いません。
-        *単純な `.json`ファイルを作成して、複数のテストでの使用にサンプルデータ(別名フィクスチャ)を提供することができます。
-    * `/ integration`：すべてのテスト。
-        * `examples`フォルダがあります。安全に削除することができます。
-        * `.spec.ts`での名前テスト`何か.spec.ts`。
-        *組織の改善のため、サブフォルダの下でテストを作成することは自由です。 `/ someFeatureFolder / something.spec.ts`です。
+        * 単純な`.json`ファイルを作成して、複数のテストで使用するサンプルデータ(フィクスチャ)を提供することができます。
+    * `/integration`：あなたのすべてのテスト
+        * `examples`フォルダがあります。安全に削除することができます。
+        * `.spec.ts`で名前を付けます。例:`somthing.spec.ts`
+        * より良い構成を作るためにサブフォルダの下にテストを作成することは自由です。例:`/someFeatureFolder/something.spec.ts`
 
 ## 最初のテスト
-* 次の内容の `/ cypress / integration / first.spec.ts`ファイルを作成します：
+* 次の内容の`/cypress/integration/first.spec.ts`ファイルを作成します：
 
 ```ts
 /// <reference types="cypress"/>
@@ -110,7 +113,7 @@ describe('google search', () => {
 });
 ```
 
-## 開発中のランニング
+## 開発中に実行する
 次のコマンドを使用してcypress IDEを開きます。
 
 ```sh
@@ -121,7 +124,7 @@ npm run cypress:open
 
 ## ビルドサーバーで実行する
 
-ciモードでサイプレステストを実行するには、次のコマンドを使用します。
+ciモードでCypressテストを実行するには、次のコマンドを使用します。
 
 ```sh
 npm run cypress:run
@@ -140,8 +143,32 @@ cy.get(`#${Ids.username}`)
   .type('john')
 ```
 
+## ヒント: ページオブジェクトの作成
+
+さまざまなテストがページで行う必要があるすべてのインタラクションに対して便利なハンドルを提供するオブジェクトを作成することは、一般的なテストの慣例です。getterとメソッドでTypeScriptクラスを使用してページオブジェクトを作成できます。
+
+```ts
+import { Ids } from '../../../src/app/constants'; 
+
+class LoginPage {
+  visit() {
+    cy.visit('/login');
+  }
+
+  get username() {
+    return cy.get(`#${Ids.username}`);
+  }
+}
+const page = new LoginPage();
+
+// Later
+page.visit();
+
+page.username.type('john');
+```
+
 ## ヒント：暗黙のアサーション
-サイプレスコマンドが失敗したときには、(他の多くのフレームワークでは `null`のようなものではなく)素晴らしいエラーが発生するので、すばやく失敗し、テストが失敗したときを正確に知ることができます。
+Cypresssコマンドが失敗したときには、(他の多くのフレームワークでは`null`のようなものではなく)素晴らしいエラーが発生するので、すばやく失敗し、テストが失敗したときを正確に知ることができます。
 
 ```
 cy.get('#foo') 
@@ -152,15 +179,15 @@ cy.get('#foo')
 ```
 
 ## ヒント：明示的なアサーション
-Cypressには、ウェブ用のいくつかのアサーションヘルプが付属しています。 chai-jquery https://docs.cypress.io/guides/references/assertions.html#Chai-jQuery chainerに文字列として渡す `.should`コマンドでそれらを使用します。
+Cypressには、ウェブ用のほんのいくつかのアサーションヘルプが付属しています。例えば、chai-jquery https://docs.cypress.io/guides/references/assertions.html#Chai-jQuery です。 それらを使うには、`.should`コマンドを使用して、chainerに文字列として渡します:
 
 ```
 cy.get('#foo') 
   .should('have.text', 'something') 
 ```
 
-## ヒント：コマンドと連鎖
-cypressチェーン内のすべての関数呼び出しは `command`です。 `should`コマンドはアサーションです。チェーンとアクションの別々の*カテゴリ*を別々に開始することは従来通りです。
+## ヒント：コマンドとチェーン
+cypressチェーン内のすべての関数呼び出しは`command`です。`should`コマンドはアサーションです。チェーンとアクションの別々の*カテゴリ*を別々に開始することは慣習になっています:
 
 ```ts
 // Don't do this 
@@ -181,16 +208,28 @@ cy.get(/**something else*/)
   .should(/**something*/)
 ```
 
-コードを評価して同時に実行する他のライブラリ*。これにより、セレクタとアサーションが混在してデバッグするのが難しいかもしれない単一のチェーンが必要になります。
+他の何かのライブラリは、同時にこのコードを評価し、実行します。それらのライブラリは、単一のチェーンが必要になります。それはセレクタやアサーションが混在してデバッグを行うのが難しくなります。
 
-サイプレスコマンドは、本質的に、コマンドを後で実行するためのサイプレスランタイムへの*宣言*です。簡単な言葉：サイプレスはそれをより簡単にします。
+サイプレスコマンドは、本質的に、コマンドを後で実行するためのCypressランタイムへの*宣言*です。端的な言葉：Cypressはより簡単にします
 
-## ヒント：HTTPリクエストを待っています
-アプリケーションが作るXHRに必要なすべてのタイムアウトが原因で、多くのテストが脆弱です。 `cy.server`は簡単に
+## ヒント: より容易なクエリのために`contains`を使う
+
+下記に例を示します:
+```ts
+cy.get('#foo') 
+  // Once #foo is found the following:
+  .contains('Submit') 
+  // ^ will continue to search for something that has text `Submit` and fail if it times out.
+  .click()
+  // ^ will trigger a click on the HTML Node that contained the text `Submit`.
+```
+
+## ヒント： HTTPリクエストを待つ
+アプリケーションが作るXHRに必要なすべてのタイムアウトが原因となり、多くのテストが脆くなりました。`cy.server`は次のことを簡単にします。
 * バックエンド呼び出しのエイリアスを作成する
-* それらが起こるのを待つ
+* それらが発生するのを待つ
 
-例えば
+例:
 
 ```ts
 cy.server()
@@ -206,15 +245,15 @@ cy.wait('@load')
 // Now the data is loaded
 ```
 
-## ヒント：HTTPリクエストレスポンスを嘲笑
-`route`を使ってリクエストレスポンスを簡単に模倣することもできます：
+## ヒント：HTTPリクエストのレスポンスをモックする
+`route`を使ってリクエストのレスポンスを簡単にモックすることもできます：
 ```ts
 cy.server()
   .route('POST', 'https://example.com/api/application/load', /* Example payload response */{success:true})
 ```
 
-## ヒント：モッキング時間
-`wait`を使ってある時間テストを一時停止することができます。自動的に「ログアウトしようとしています」という通知画面をテストする：
+## ヒント：時間をモックする
+`wait`を使ってある時間テストを一時停止することができます。自動的に"あなたはログアウトされます"という通知画面をテストする例：
 
 ```ts
 cy.visit('/');
@@ -222,7 +261,7 @@ cy.wait(waitMilliseconds);
 cy.get('#logoutNotification').should('be.visible');
 ```
 
-しかし、 `cy.tcl`を使用して`cy.clock`と転送時間を使って時間をモックすることが推奨されます。
+しかし、`cy.clock`と時間をモックし、`cy.tcl`を使用して時間を前倒しすることが推奨されます:
 
 ```ts
 cy.clock();
@@ -232,18 +271,86 @@ cy.tick(waitMilliseconds);
 cy.get('#logoutNotification').should('be.visible');
 ```
 
-## ヒント：スマートディレイ
-サイプレスは自動的に多くの非同期のものを待つでしょう。
+## ヒント：スマートディレイとリトライ
+Cypressはたくさんの非同期のものに対して、自動的に待ち（そしてリトライし)ます。
 ```
 // If there is no request against the `foo` alias cypress will wait for 4 seconds automatically 
 cy.wait('@foo') 
 // If there is no element with id #foo cypress will wait for 4 seconds automatically 
 cy.get('#foo')
 ```
-これにより、テストコードフローに常に任意のタイムアウトを追加する必要がなくなります。
+これにより、テストコードフローに常に任意のタイムアウトのロジックを追加する必要がなくなります。
+
+## ヒント: アプリケーションコードのユニットテスト
+あなたはCypressを使ってアプリケーションコードを分離してユニットテストを行うことも可能です。
+
+```ts
+import { once } from '../../../src/app/utils'; 
+
+// Later 
+it('should only call function once', () => {
+  let called = 0;
+  const callMe = once(()=>called++);
+  callMe();
+  callMe();
+  expect(called).to.equal(1);
+});
+```
+
+## TIP: ユニットテストにおけるモック
+もしあなたがアプリケーショのモジュールをユニットテストしていたら、あなたは`cy.stub`を使ってモックを提供することが可能です。例えば、あなたは`navigate`が関数`foo`で呼ばれることを確認できます:
+
+* `foo.ts`
+
+```ts
+import { navigate } from 'takeme';
+export function foo() { navigate('/foo'); }
+```
+
+* 下記を`some.spec.ts`で行います
+
+```ts
+/// <reference types="cypress"/>
+
+import { foo } from '../../../src/app/foo';
+import * as takeme from 'takeme';
+
+describe('should work', () => {
+  it('should stub it', () => {
+    cy.stub(takeme, 'navigate');
+    foo();
+    expect(takeme.navigate).to.have.been.calledWith('/foo');
+  })
+});
+```
+
+## TIP: ブレークポイント
+Cypressテストによって生成された自動スナップショット+コマンドログは、デバッグに最適です。とはいえ、それは、あなたが望むならテストの実行を一時停止できます。
+
+まずChrome Developer Tools(愛情を込めてdev toolsと呼ばれています)をテストランナー(macでは`CMD + ALT + i`/windowsでは`F12`)で開いていることを確認してください。一度dev toolsを開けば、あなたはテストをリランすることができ、dev toolsは開いたままになります。もしdev toolsを開いていれば、あなたは２つの方法でテストを実行できます:
+
+* アプリケーションコードのブレークポイント: `debugger`文をアプリケーションのコードを使うと、テストランナーは通常のweb開発のように、ちょうどそこで停止します。
+* テストコードのブレークポイント: あなたは`.debug()`コマンドを使い、cypressのテスト実行をそこで停止できます。例えば、`.then(() => { debugger })`です。あなたはいくつかのエレメントを得ること(`cy.get('#foo').then(($ /* a reference to the dom element */) => { debugger; })`)や、ネットワーク呼び出し(`cy.request('https://someurl').then((res /* network response */) => { debugger });`)すら可能です。しかし、慣用的な方法は、`cy.get('#foo').debug()`です。そして、テストランナーが`debug`で止まったときに、`get`をコマンドログでクリックすると自動的に`console.log`にあなたが知りたい`.get('#foo')`に関する情報が出力されます(そして、デバッグに必要な他のコマンドでも似たようなものです)
+
+## TIP: サーバーを開始してテストを実行する
+もしテストの前にローカルサーバを起動したい場合は`start-server-and-test` [https://github.com/bahmutov/start-server-and-test](https://github.com/bahmutov/start-server-and-test) を依存関係に追加できます。それは次の引数を受け取ります。
+* サーバーを実行するためのnpmスクリプト
+* サーバーが起動しているかをチェックするためのエンドポイント
+* テストを初期化するためのnpmスクリプト
+
+package.jsonの例:
+```json
+{
+    "scripts": {
+        "start-server": "npm start",
+        "run-tests": "mocha e2e-spec.js",
+        "ci": "start-server-and-test start-server http://localhost:8080 run-tests"
+    }
+}
+```
 
 ## リソース
 * ウェブサイト：https://www.cypress.io/
-* あなたの最初のサイプレステストを書く(サイプレスIDEの素晴らしいツアーを与える)：https://docs.cypress.io/guides/getting-started/writing-your-first-test.html
-* CI環境を設定する(例えば、 `cypress run`でボックスの外で動く提供されたドッカー画像)：https://docs.cypress.io/guides/guides/continuous-integration.html
-* レシピ(説明付きのレシピを一覧表示します。レシピのソースコードに移動するには見出しをクリックしてください)：https://docs.cypress.io/examples/examples/recipes.html
+* あなたの最初のCypressテストを書く(Cypress IDEの素晴らしいツアー)：https://docs.cypress.io/guides/getting-started/writing-your-first-test.html
+* CI環境を設定する(例えば、そのまま`cypress run`で動く提供されたdockerイメージ)：https://docs.cypress.io/guides/guides/continuous-integration.html
+* レシピ(説明付きのレシピの一覧です。レシピのソースコードに移動するには見出しをクリックしてください)：https://docs.cypress.io/examples/examples/recipes.html
