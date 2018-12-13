@@ -1,7 +1,7 @@
-# Interpreting Errors 
-Since TypeScript is a heavily focused *Developer Help* oriented programming language, its errors messages try to be super helpful when something goes wrong. This can lead to a slight information overload for unsuspecting users of compilers that aren't so helpful. 
+# 解釈エラー(Interpreting Errors)
+TypeScriptは、*Developer Help*指向のプログラミング言語であることを非常に重視しているので、何かがうまく動いてない時のエラーメッセージは、高レベルなサポートになるよう努力しています。これは、コンパイラは助けにならないと考えるユーザにとっては、わずかな情報過多につながる可能性があります。 
 
-Lets look at an example in an IDE to break apart the process of reading an error message. 
+一つの例をIDEで見て、エラーメッセージを読むプロセスを１つ１つ見ていきましょう。
 
 ```ts
 type SomethingComplex = {
@@ -25,21 +25,21 @@ const fail = {
 takeSomethingComplex(fail); // TS ERROR HAPPENS HERE 
 ```
 
-This example demonstrates a common programmer error where they *fail* to call a function (`bar: getBar` should be `bar: getBar()`). Fortunately this mistake is caught by TypeScript as soon as it doesn't meet the type requirements. 
+この例は関数呼び出しに失敗している一般的なプログラミングエラーです(`bar: getBar`は`bar: getBar()`であるべきです)。この不手際については、幸運なことに、TypeScriptによって型の要件が一致しないことが即座にキャッチされます。
 
-## Error Categories
-There are two categories of TypeScript Error messages (succint and detailed). 
+## エラーのカテゴリ(Error Categories)
+TypeScriptのエラーメッセージには２種類あります（SuccintとDetailed)。
 
-### Succint
-The objective of the succint error message is to provide an example *conventional compiler* description of the error number and message. For this example the succint message looks like: 
+### 簡潔(Succint)
+succintエラーメッセージは、エラー番号とメッセージについての、通常のコンパイラの説明を提供することを意図したものです。例えば、succintメッセージは次のようなものです。
 
 ```
 TS2345: Argument of type '{ foo: number; bar: () => string; }' is not assignable to parameter of type 'SomethingComplex'.
 ```
-It is fairly self explanatory. However, it doesn't provide a deeper breakdown of *why* the error is happening. That is what the *detiled* error message is for.
+これはかなり自明です。しかし、なぜこのエラーが起きたのかを深く掘り下げたものではありません。それは、*detailed*エラーメッセージが意図するものです。
 
-### Detailed
-For this example the detailed version looks like: 
+### 詳細(Detailed)
+この例のdetailedバージョンは以下のようなものです:
 
 ```
 [ts]
@@ -47,7 +47,7 @@ Argument of type '{ foo: number; bar: () => string; }' is not assignable to para
   Types of property 'bar' are incompatible.
     Type '() => string' is not assignable to type 'string'.
 ```
-The objective of the detailed error message is to *guide* the user to the reason why some error (type incompatability in this case) is happening. The first line is same as the succint, followed by a chain. You should read this chain as a series of responses to the developer question `WHY?` between lines i.e 
+detailedメッセージの目的は、ユーザに、なぜ何かのエラー（この例では型の非互換性）が起きたかをユーザにガイドすることです。最初の行はsuccintと同じですが、その後ろにチェーンが繋がっています。あなたは、これらのチェーンを、行と行の間の「WHY?」に対する答えの繋がりとして読むべきです。
 
 ```
 ERROR: Argument of type '{ foo: number; bar: () => string; }' is not assignable to parameter of type 'SomethingComplex'.
@@ -59,17 +59,17 @@ WHY?
 CAUSE ERROR: Type '() => string' is not assignable to type 'string'.
 ```
 
-So the root cause is,
-* for property `bar`
-* there is a function `() => string` while it was expected as a `string`. 
+なので根本原因は、
+* `bar`プロパティに
+* `string`型が期待されているにも関わらず、関数`() => string`があるため
 
-This should help the developer fix the bug for the `bar` property (they forgot to invoke `()` the function).
+これはデベロッパーにとって`bar`プロパティのバグの修正の助けになるものです(彼らは関数の`()`を呼び出すのを忘れました)。
 
-## How it shows up in an IDE Tooltip 
+## IDEのツールチップでの見え方(How it shows up in an IDE Tooltip)
 
-The IDE normally shows the `detailed` followed by the `succint` version in a tooltip as shown below: 
+IDEは通常、`detailed`メッセージ、`succint`バージョンの順にツールチップを表示します。下記は例です:
 
 ![IDE error message example](https://raw.githubusercontent.com/basarat/typescript-book/master/images/errors/interpreting-errors/ide.png)
 
-* You normally just read the `detailed` version forming the `WHY?` chain in your head. 
-* You use the succint version if you want to search for similar errors (using the `TSXXXX` error code or portions of the error message)
+* あなたは通常は、ただ`detailed`バージョンを見て、`WHY?`のチェーンを頭の中に作ります
+* あなたは似たようなエラーを検索するために`succint`バージョンを使います(`TSXXXX`エラーコードか、エラーメッセージの一部を使います)
