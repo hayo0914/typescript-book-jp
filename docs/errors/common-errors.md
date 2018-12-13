@@ -1,34 +1,32 @@
-# Common Errors
-In this section we explain a number of common error codes that users experience in the real world.
+# よくあるエラー
+このセクションでは、ユーザーが現実世界で経験する多くの一般的なエラーコードについて説明します。
 
 ## TS2304
-Samples:
-> `Cannot find name ga`
-> `Cannot find name $`
-> `Cannot find module jquery`
+サンプル：
+> 「名前が見つからない」
 
-You are probably using a third party library (e.g. google analytics) and don't have it `declare`d. TypeScript tries to save you from *spelling mistakes* and *using variables without declaring them* so you need to be explicit on anything that is *available at runtime* because of you including some external library ([more on how to fix it][ambient]).
+おそらく第三者の図書館(Googleアナリティクスなど)を使用しており、宣言していない可能性があります。 TypeScriptは、*スペルミス*や*を宣言せずに変数を使用してあなたを保存しようとします*あなたは外部ライブラリを含むので実行時に*利用可能なものに明示する必要があります[周囲])。
 
 ## TS2307
-Samples:
-> `Cannot find module 'underscore'`
+サンプル：
+> `モジュール 'アンダースコア'を見つけることができません
 
-You are probably using a third party library (e.g. underscore) as a *module* ([more on modules][modules]) and don't have the ambient declaration file for it ([more on ambient declarations][ambient]).
+おそらく、サードパーティのライブラリ(アンダースコアなど)を*モジュール*([モジュール上のその他] [モジュール])として使用していて、それに対する環境宣言ファイルはありません。
 
 ## TS1148
-Sample:
-> Cannot compile modules unless the '--module' flag is provided
+サンプル：
+> '--module'フラグが与えられていない限りモジュールをコンパイルできない
 
-Checkout the [section on modules][modules].
+[モジュールに関するセクション] [モジュール]をチェックしてください。
 
-## Catch clause variable cannot have a type annotation
-Sample:
+## キャッチ句の変数は型の注釈を持つことはできません
+サンプル：
 ```js
 try { something(); }
 catch (e: Error) { // Catch clause variable cannot have a type annotation
 }
 ```
-TypeScript is protecting you from JavaScript code in the wild being wrong. Use a type guard instead:
+TypeScriptは、野生のJavaScriptコードからあなたを誤って保護しています。代わりにタイプガードを使用してください：
 ```js
 try { something(); }
 catch (e) {
@@ -38,13 +36,20 @@ catch (e) {
 }
 ```
 
-## Interface `ElementClass` cannot simultaneously extend types `Component` and `Component`
-This happens when you have two `react.d.ts` (`@types/react/index.d.ts`) in the compilation context.
+## Interface `ElementClass`は`Component`と `Component`の型を同時に拡張することはできません。
+これはコンパイルコンテキストに2つの `react.d.ts`(`@types/react/index.d.ts`)があるときに起こります。
 
-**Fix**:
-* Delete `node_modules` and any `package-lock` (or yarn lock) and `npm install` again.
-* If it doesn't work, find the invalid module (all modules used by your project should have `react.d.ts` as a `peerDependency` and not a hard `dependency`) and report it on their project.
+** 修正**：
+* `node_modules`と`package-lock`(または糸のロック)と `npm install`をもう一度削除してください。
+* うまくいかない場合は、無効なモジュールを見つけてください(あなたのプロジェクトで使われているすべてのモジュールは `react.d.ts`を`peerDependency`とし、ハードな依存性は持たないようにしてください)。
 
 
-[ambient]: ../types/ambient/d.ts.md
-[modules]: ../project/modules.md
+## 検索インデックス作成用
+あなたはこれを読むことを無視することができます。このセクションは、検索エンジンの索引付け用です。
+
+> 人々が使用してエラーを起こす傾向がある他のモジュール：
+* 名前$を見つけることができません
+* モジュールjqueryが見つかりません
+
+[ambient]:../types/ambient/d.ts.md
+[modules]:../project/modules.md
