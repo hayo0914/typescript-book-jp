@@ -1,32 +1,32 @@
-# よくあるエラー
+# よくあるエラー(Common Errors)
 このセクションでは、ユーザーが現実世界で経験する多くの一般的なエラーコードについて説明します。
 
 ## TS2304
 サンプル：
-> 「名前が見つからない」
+> `Cannot find name ga` `annot find name $` `Cannot find module jquery`
 
-おそらく第三者の図書館(Googleアナリティクスなど)を使用しており、宣言していない可能性があります。 TypeScriptは、*スペルミス*や*を宣言せずに変数を使用してあなたを保存しようとします*あなたは外部ライブラリを含むので実行時に*利用可能なものに明示する必要があります[周囲])。
+おそらく第三者のライブラリ(Googleアナリティクスなど)を使用しており、宣言していません。TypeScriptは、*スペルミス*や宣言しないで変数を使用すると、あなたを助けようとします。あなたは外部ライブラリを取り込んでいるので実行時に利用可能なものに明示する必要があります[修正方法](../types/ambient/d.ts.html)。
 
 ## TS2307
 サンプル：
-> `モジュール 'アンダースコア'を見つけることができません
+> `Cannot find module 'underscore'`
 
-おそらく、サードパーティのライブラリ(アンダースコアなど)を*モジュール*([モジュール上のその他] [モジュール])として使用していて、それに対する環境宣言ファイルはありません。
+おそらく、サードパーティのライブラリ(underscoreなど)を*モジュール*([モジュールの詳細](../project/modules.html))として使用していて、それに対する環境宣言ファイルがありません。
 
 ## TS1148
 サンプル：
-> '--module'フラグが与えられていない限りモジュールをコンパイルできない
+> `'Cannot compile modules unless the '--module' flag is provided`
 
-[モジュールに関するセクション] [モジュール]をチェックしてください。
+[モジュール](../project/modules.html)のセクションをチェックしてください。
 
-## キャッチ句の変数は型の注釈を持つことはできません
+## キャッチ句の変数は型アノテーションを持つことはできません
 サンプル：
 ```js
 try { something(); }
 catch (e: Error) { // Catch clause variable cannot have a type annotation
 }
 ```
-TypeScriptは、野生のJavaScriptコードからあなたを誤って保護しています。代わりにタイプガードを使用してください：
+TypeScriptはワイルドで間違ったJavaScriptからあなたを守ろうとします。型ガードを代わりに使ってください。
 ```js
 try { something(); }
 catch (e) {
@@ -36,20 +36,12 @@ catch (e) {
 }
 ```
 
-## Interface `ElementClass`は`Component`と `Component`の型を同時に拡張することはできません。
-これはコンパイルコンテキストに2つの `react.d.ts`(`@types/react/index.d.ts`)があるときに起こります。
+## Interface `ElementClass`は`Component`と `Component`の型を同時に継承することはできません。
+これはコンパイルコンテキストに2つの`react.d.ts`(`@types/react/index.d.ts`)があるときに起こります。
 
-** 修正**：
-* `node_modules`と`package-lock`(または糸のロック)と `npm install`をもう一度削除してください。
-* うまくいかない場合は、無効なモジュールを見つけてください(あなたのプロジェクトで使われているすべてのモジュールは `react.d.ts`を`peerDependency`とし、ハードな依存性は持たないようにしてください)。
+**修正**：
+* `node_modules`と`package-lock`(またはyarn lock)と`npm install`をもう一度削除してください。
+* うまくいかない場合は、無効なモジュールを見つけてください(あなたのプロジェクトで使われているすべてのモジュールは`react.d.ts`を`peerDependency`とするべきです。hardな`dependency`は持たないようにしてください)。
 
-
-## 検索インデックス作成用
-あなたはこれを読むことを無視することができます。このセクションは、検索エンジンの索引付け用です。
-
-> 人々が使用してエラーを起こす傾向がある他のモジュール：
-* 名前$を見つけることができません
-* モジュールjqueryが見つかりません
-
-[ambient]:../types/ambient/d.ts.md
-[modules]:../project/modules.md
+[ambient]: ../types/ambient/d.ts.md
+[modules]: ../project/modules.md
