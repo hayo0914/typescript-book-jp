@@ -1,43 +1,42 @@
 # NPM 
 
-> Fun fact `npm` is [not an acronym](https://twitter.com/npmjs/status/347057301401763840) so it doesn't expand to anything, but among friends it is commonly called `node package manager`.
+> `npm`の面白い事実は [略語ではない](https://twitter.com/npmjs/status/347057301401763840) ということです。しかし、友人の間では、一般的に`node package manager`と呼ばれています。
 
-`npm` is a binary that comes with default `node` installations used to manage community shared JavaScript / TypeScript packages.
+`npm`はデフォルトの`node`のインストールに付属するバイナリで、コミュニティに公開されたJavaScript/TypeScriptのパッケージを管理するためのものです。
 
+* NPMパッケージは https://www.npmjs.com/ (the ☁️) にホストされて（そしてそこからインストールされて）います
 
-* NPM packages are hosted at (and installed from) https://www.npmjs.com/ (the ☁️).
+## 簡単な共通セットアップ
 
-## Quick common setup
+* npmパッケージは`package.json`を使って設定されます。あなたはそれを素早く`npm init -y`で生成することができます。
+* パッケージは`./node_modules`フォルダにインストールされます。あなたは通常それを`.gitignore`に入れています。
 
-* npm packages are configured using `package.json` file. You can generate a quick file using `npm init -y`.
-* packages get installed into a `./node_modules` folder. You normally have this folder in your `.gitignore`.
+> あなたがアプリケーションを作っているとしても、本質的には、`package.json`はあなたのプロジェクトを同じようにパッケージにするものです。なので、`project | package`の用語は交換可能です。
 
-> Even though you might be building an application, having a `package.json` essentially makes your project a package as well. So the terms your `project | package` can be used interchangably.
-
-When you checkout someone's (your team's) package, it will have a `package.json` that will list the dependencies you need to run the project. You simply run `npm install` and npm will bring them down from the cloud ☁️.
+あなたが他の誰かの(あなたのチームの）パッケージをチェックアウトしたら、`package.json`があります。それはあなたがプロジェクトを実行するために必要な依存関係のリストです。
  
-## Installing a package
-You can run `npm install <something>`. Most people will use the shorthand `npm i <something>` e.g. 
+## パッケージのインストール
+`npm install <something>`を使ってインストールできます。ほとんどの人はショートハンド`npm i <something>`を使います。例:
 
 ```ts
 // Install react
 npm i react
 ```
 
-> This will also automatically add `react` into your `package.json`'s `dependencies`.
+> これは自動的に`react`を`package.json`の依存関係に追加します。
 
-## Installing a devDependency
-`devDependencies` are dependencies that are only required during *development* if your project and not required after deployment. 
+## devDependencyのインストール
+`devDependencies`は、開発(*development*)中のみプロジェクトに必要で、デプロイ後は必要ない場合の依存関係です。
 
-`typescript` is common in `devDependencies` as its only required to build `.ts -> .js`. You normally deploy the built `.js` files:
+`typescript`は`.ts -> .js`のビルド時だけ必要なものなので、普通は`devDependencies`です。あなたは通常ビルドされた`.js`ファイルをデプロイします:
 
-* into production  
-* OR for consumption by other other npm packages
+* 本番環境上に
+* または、他の誰かのnpm packageに使ってもらうために
 
-## Security
-The public `npm` packages are scanned by security team worldwide and issues get reported to npm team. They then release security advisories detailing the issue and potential fixes. Commonly the fix is simply updating the package. 
+## セキュリティ
+公開された`npm`パッケージは世界中のセキュリティチームによってスキャンされ、問題があればnpmチームに報告されます。そして、彼らはセキュリティアドバイスを公開し、問題の詳細や、可能な修正をリリースします。一般的に修正はシンプルにパッケージをアップデートすることです。
 
-You can run an audit on your node project by simply running `npm audit`. This will highlight any vulnerabilities that might exist in the package / dependencies of the package. e.g. 
+あなたは`npm audit`を実行し、プロジェクトを監査することができます。これはパッケージやパッケージの依存関係に存在するかもしれない脆弱性をハイライトしてくれます。例:
 
 ```
 ┌───────────────┬──────────────────────────────────────────────────────────────┐
@@ -52,15 +51,14 @@ You can run an audit on your node project by simply running `npm audit`. This wi
 │ More info     │ https://nodesecurity.io/advisories/534                       │
 └───────────────┴──────────────────────────────────────────────────────────────┘
 ```
+一般的に問題は*development*の依存関係に見つかることに注意してください(例えば、このケースではjestです)。これらは本番デプロイの一部ではないので、あなたのアプリケーションはたいてい脆弱ではありません。しかし、良いプラクティスは、脆弱性を`0`に保つことです。
 
-Note that commonly the issues are found in *development* dependencies (e.g. jest in this case). Since these aren't are a part of your production deployments, most likely your production application is not vulnerable. But still good practice to keep vulnerabilities to `0`.
-
-Simply add `npm audit` (the command exist with error code `1` in case of error) as a part of your deployment to ensure the projects stay up to date.
+単に｀npm audit｀（このコマンドはエラーがあれば、エラーコード`1`で終了します）をあなたのデプロイの一部に追加し、あなたのプロジェクトが最新状態であることを確実にしてください。
 
 ## NPM Scripts 
 
-### What is with `--` in scripts 
-You can build a base script with a limited set of command line arguments e.g. here is a script target that runs `tsc` for the TypeScript compiler: 
+### スクリプトの`--`は何か
+あなたはベースのスクリプトを限られたコマンドライン引数のセットで作ることができます。例えば、これはTypeScriptコンパイラのために`tsc`を走らせるスクリプトターゲットです。
 
 ```json
 {
@@ -70,7 +68,7 @@ You can build a base script with a limited set of command line arguments e.g. he
 }
 ```
 
-You can create a `build:watch` target to run `tsc -p . -w` or alternatively asking npm to run `build` with the additional `-w` flag like so: 
+あなたは`tsc -p . -w`を実行するために`build:watch`ターゲットを作るか、npmに`build`を実行するよう追加のフラグ`-w`を付けて指示することができます:
 
 ```json
 {
@@ -80,7 +78,7 @@ You can create a `build:watch` target to run `tsc -p . -w` or alternatively aski
   }
 }
 ```
-You can pass in as many flags as you want after `--` e.g. in the following example `build:more` has the same effect as `something --foo -f -d --bar`
+あなたは必要なフラグを`--`の後ろに渡すことができます。例えば、下記の例では、`build:more`は`something --foo -f -d --bar`と同じ効果を持ちます。
 
 ```json
 {
@@ -92,20 +90,18 @@ You can pass in as many flags as you want after `--` e.g. in the following examp
 ```
 
 ## Public vs. Private packages
-You don't need this when *using* any of the common public npm packages. Just know its there for enterprise / commercial customers.
+公開された一般的なnpmパッケージを何か１つでも使っている場合は、これは必要ありません。ただ、enterprise/commercial cusomers向けがあることを知ってください。
 
 ### Public packages
-* Packages are public by default. 
-* Anyone can deploy a package to npm. 
-* You just need an account (which you can get for free).
+* パッケージはデフォルトでPublicです 
+* だれでもパッケージをnpmにデプロイできます
+* 無料で取得できるアカウントだけが必要です
  
-No one needs an account to download a public package. 
+publicパッケージをダウンロードするには、アカウントは必要ありません。
 
-This free sharing of packages is one of the key reasons of success for npm 🌹.
+これは無料でシェアするパッケージであり、npmが成功した理由の一つです🌹
 
 ### Private packages 
+もしあなたの会社/チームのためにprivateパッケージを必要とする場合は、有料プランにサインアップする必要があります。詳細はこちらです:https://www.npmjs.com/pricing
 
-If you want a private package for your company / team / enterprise you need to sign up to a paid plan, details here : https://www.npmjs.com/pricing
-
-Of-course you need an account with the right permissions to download a private package.
- 
+もちろんprivateパッケージをダウンロードするには、適切な権限のあるアカウントが必要です。
