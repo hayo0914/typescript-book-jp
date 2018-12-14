@@ -1,6 +1,6 @@
-## `export default`は問題につながります
+## `export default`は有害だと考えられます
 
-以下の内容の `foo.ts`ファイルがあるとします：
+以下の内容の`foo.ts`ファイルがあるとします：
 
 ```ts
 class Foo {
@@ -14,30 +14,83 @@ export default Foo;
 import Foo from "./foo";
 ```
 
-メンテナンスの問題がいくつかあります：
-* `foo.ts`で`Foo`をリファクタリングすると `bar.ts`に名前を変更しません。
-* `foo.ts`から多くのものをエクスポートする必要がある場合(これはあなたのファイルの多くが持っているものです)、インポート構文をじゃまにする必要があります。
+これには保守性の問題がいくつかあります：
+* `foo.ts`で`Foo`をリファクタリングしても、`bar.ts`では名前が変更されません
+* `foo.ts`(これはあなたのファイルの多くが参照しているものです)から、より多くのものをexportする必要がある場合、import構文をいじくる必要があります。
 
-このため、私は単純な輸出+非構造化輸入をお勧めします。例えば。 `foo.ts`：
+このため、私はシンプルなexports + 分解importを推奨します。例: `foo.ts`:
 
 ```ts
 export class Foo {
 }
 ```
-その後：
+そして：
 
 ```ts
 import {Foo} from "./foo";
 ```
 
-> **ボーナスポイント**：デフォルトのエクスポートでは検出可能性が非常に悪いです。インテリセンスを持つモジュールを探索して、デフォルトの書き出しがあるかどうかを調べることはできません。
+下にもいくつかの理由を書きます。
 
-> **ボーナスポイント**： "./foo"; "カーソル位置からこの` import {/ *ここに*}}でオートコンプリートさえさえします。あなたの開発者に少しの手首の安堵感を与えます。
+## CommonJSとの相互運用
+`default`は、`const {Foo} = require('module/foo')`の代わりに、`const {default} = require('module/foo');`を書かないといけないCommonJSユーザにとって、恐ろしい体験になります。あなたはたいてい`default`エクスポートをインポートしたときに他の何かにリネームすることになるでしょう。
 
-> **ボーナスポイント**：より良いcommonJSの経験。 `default`を使うと、`const {Foo} = require( 'module / foo')の代わりに `const {default} = require(`module / foo '); `を実行するcommonJSユーザにとって恐ろしい経験があります`
+## 低い検出性(Poor Discoverability)
+デフォルトエクスポートは検出性(Discoverability)が低いです。あなたはインテリセンスでモジュールを辿り、それがデフォルトエクスポートを持っているかどうかを知ることができません。
 
-> **ボーナスポイント**：あなたは `dev 'のようなタイプミスを`./foo'から ``import Foo '; ``や ``foo "` `from foo" ``
+デフォルトエクスポートでは、あなたは何も得られません(それはデフォルトエクスポートを持っているかもしれませんし、持っていないかもしれません`¯\_(ツ)_/¯`):
 
-> **ボーナスポイント**：自動インポートクイックフィックスが効果的です。あなたは `Foo`を使用し、自動インポートは`./foo ";から` import {Foo} 'を書き留めて、モジュールからエクスポートされた明確に定義された名前にします。
+```ts
+import /* here */ from 'something';
+```
 
-> **ボーナスポイント**：再輸出は不必要に困難です。例えば、npmパッケージのルート `index`ファイルには、再エクスポートが一般的です。 `Fooを" ./foo "からインポートする。 export {Foo} `(デフォルト)と`。* foo '`からのエクスポート*(名前付きエクスポート)
+デフォルトエクスポートが無ければ、素晴らしいインテリセンスが得られます。
+
+```ts
+import { /* here */ } from 'something';
+```
+
+## オートコンプリート(Autocomplete)
+エクスポートについて知っているか、いないかに関わらず、あなたはカーソル位置で`import {/*here*/} from "./foo";`をオートコンプリートできます。それはデベロッパーに少しの安心感を与えます。
+
+## タイポに対する防御(Typo Protection)
+あなたは`import Foo from "./foo";`をしながら、他で`import foo from "./foo";`をするようなタイポをしたくないでしょう。
+
+## TypeScriptの自動インポート
+自動インポート修正は、うまく動きます。あなたが`Foo`を使うと、自動インポートは`import { Foo } from "./foo";`を書き記します。なぜなら、それはきちんと定義された名前がモジュールからエクスポートされているからです。いくつかのツールは、魔法のようにデフォルトエクスポートの名前を推論します。しかし、風変わりな魔法です。
+
+## 再エクスポート(Re-exporting)
+再エクスポートは不必要に難しいです。再エクスポートはnpmパッケージのルートの`index`ファイルで一般的に行われます。例:`import Foo from "./foo"; export { Foo }`(デフォルトエクスポート) vs. `export * from "./foo"`(名前付きエクスポート)
+
+## Dynamic Imports
+デフォルトエクスポートは、`default`を動的にインポートしたときに、それ自身に悪い名前を付けます。例:
+```ts
+const HighChart = await import('https://code.highcharts.com/js/es-modules/masters/highcharts.src.js');
+Highcharts.default.chart('container', { ... }); // Notice `.default`
+```
+
+## 非クラス/非関数の場合、２行必要です
+
+関数/クラスに対しては、１行で書けます:
+```ts
+export default function foo() {
+}
+```
+
+名前が無い/型アノテーションされたオブジェクトに対しても、１行で書けます:
+```ts
+export default {
+  notAFunction: 'Yeah, I am not a function or a class',
+  soWhat: 'The export is now *removed* from the declaration'
+};
+```
+
+しかし、他のものに対しては2行必要です:
+```ts
+// If you need to name it (here `foo`) for local use OR need to annotate type (here `Foo`)
+const foo: Foo = {
+  notAFunction: 'Yeah, I am not a function or a class',
+  soWhat: 'The export is now *removed* from the declaration'
+};
+export default foo;
+```
