@@ -1,6 +1,6 @@
-## Typesafeイベントエミッタ
+## Typesafe Event Emitter
 
-従来、Node.jsと従来のJavaScriptでは、単一のイベントエミッタがあります。このイベントエミッタは内部的に異なるイベントタイプのリスナを追跡します。
+従来、Node.jsと伝統的なJavaScriptでは、単一のイベントエミッタがあります。このイベントエミッタは内部的に異なるイベントタイプするリスナをトラッキングします。
 
 ```ts
 const emitter = new EventEmitter();
@@ -11,11 +11,11 @@ emitter.emit('bar', bar);
 emitter.on('foo', (foo)=>console.log(foo));
 emitter.on('bar', (bar)=>console.log(bar));
 ```
-基本的に `EventEmitter`は内部的にマップされた配列の形でデータを格納します：
+基本的に`EventEmitter`は内部的にマップされた配列の形でデータを格納します：
 ```ts
 {foo: [fooListeners], bar: [barListeners]}
 ```
-代わりに、* event *型の安全のために、エミッタ* per *イベントタイプを作成することができます：
+代わりに、*event*型の安全のために、イベントタイプごとのエミッタを作成することができます：
 ```ts
 const onFoo = new TypedEvent<Foo>();
 const onBar = new TypedEvent<Bar>();
@@ -29,11 +29,11 @@ onBar.on((bar)=>console.log(bar));
 ```
 
 これには次の利点があります。
-* イベントの種類は変数として簡単に検出可能です。
-* イベントエミッタ変数は簡単に独立してリファクタリングされます。
-* イベントデータ構造の型安全。
+* イベントの種類は変数として簡単に検出可能です
+* イベントエミッタ変数は簡単に独立してリファクタリングできます
+* イベントデータ構造は型安全です
 
-### リファレンスTypedEvent
+### Reference TypedEvent
 ```ts
 export interface Listener<T> {
   (event: T): any;
