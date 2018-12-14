@@ -1,10 +1,10 @@
-## 変更
-> プロジェクトの進捗状況を示すマークダウンファイルを読むことは、コミットログを読むより簡単です。
+## Changelog
+> プロジェクトの進捗状況をマークダウンで読むことは、コミットログを読むより簡単です。
 
-コミットメッセージからの自動変更ログの生成は、今日はかなり一般的なパターンです。 [Convention-changelog](https://github.com/conventional-changelog/conventional-changelog)というプロジェクトがあり、* convention *に続くコミットメッセージから変更履歴を生成します。
+コミットメッセージからのChangelog生成は、今はかなり一般的なパターンです。[Convention-changelog](https://github.com/conventional-changelog/conventional-changelog)というプロジェクトがあり、*convention*に続くコミットメッセージからChangelogを生成します。
 
-### コミットメッセージのコンベンション
-もっとも一般的なのは、* angular * commitメッセージの規約です(https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines)。
+### コミットメッセージの規約
+もっとも一般的なのは、[*angular*のCommitメッセージ](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines)の規約です。
 
 ### セットアップ
 * インストール：
@@ -13,7 +13,7 @@
 npm install standard-version -D
 ```
 
-* あなたの `package.json`に`script`ターゲットを追加してください：
+* あなたの`package.json`に`script`ターゲットを追加してください：
 
 ```js
 {
@@ -23,7 +23,7 @@ npm install standard-version -D
 }
 ```
 
-* オプション：新しい* git commitとtag *を自動的にプッシュして、npmにパブリッシュして `postrelease`スクリプトを追加します：
+* オプション： 自動的に新しいgit commitとtagをpushして、npmにpublishする`postrelease`スクリプトを追加します:
 
 ```js
 {
@@ -36,13 +36,13 @@ npm install standard-version -D
 
 ### リリース
 
-単に実行する：
+単に以下を実行します：
 
 ```bash
 npm run release
 ```
 
-コミットメッセージ `major`に基づいて|マイナーチェンジ`patch`が自動的に決定されます。 *明示的にバージョンを指定するには、例えば--release-asを指定することができます：
+バージョンはコミットメッセージ`major`|`minor`|`patch`に基づいて自動的に決定されます。明示的にバージョンを指定したい場合は、`--release-as`を指定することができます：
 
 ```bash
 npm run release -- --release-as minor
