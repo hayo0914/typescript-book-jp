@@ -1,14 +1,14 @@
-## 束縛は有害である
+## バインドは有害である
 
-これは `lib.d.ts`の`bind`の定義です：
+これは`lib.d.ts`の`bind`の定義です：
 
 ```ts
 bind(thisArg: any, ...argArray: any[]): any;
 ```
 
-あなたが見ることができるように、** any **を返します!つまり、関数の `bind`を呼び出すと、元の関数の署名の型の安全性が完全に失われます。
+見ての通り、**any**を返します!つまり、関数の`bind`を呼び出すと、元の関数のシグネチャの型安全性が完全に失われます。
 
-たとえば、次のようにコンパイルします。
+たとえば、次のようにコンパイルします:
 
 ```ts
 function twoParams(a:number,b:number) {
@@ -19,7 +19,7 @@ curryOne(456); // Okay but is not type checked!
 curryOne('456'); // Allowed because it wasn't type checked!
 ```
 
-それを書くためのよりよい方法は、明示的な型の注釈を持つ単純な[arrow関数](../ arrow-functions.md)です。
+それを書くためのよりよい方法は、明示的な型アノテーションを持つ単純な[アロー関数](../arrow-functions.md)です。
 ```ts
 function twoParams(a:number,b:number) {
     return a + b;
@@ -29,12 +29,12 @@ curryOne(456); // Okay and type checked!
 curryOne('456'); // Error!
 ```
 
-しかし、あなたがカレー化された機能を望むなら(それにはより良いパターンがあります)(./ currying.md)。
+しかし、あなたがカリー化された関数を必要とする場合は、[それにはより良いパターンがあります](./currying.md)。
 
 ### クラスメンバー
-別の一般的な使い方は、クラス関数を渡すときに `this`の正しい値を保証するために`bind`を使うことです。それをしないでください!
+`bind`の別の一般的な使い方は、クラス関数を渡すときに`this`の正しい値を保証するために`bind`を使うことです。それはやらないでください!
 
-次の例は、 `bind`を使うとパラメータ型の安全性を失うという事実を示しています：
+次の例は、`bind`を使うとパラメータの型安全性を失うことを示しています：
 
 ```ts
 class Adder {
@@ -54,7 +54,7 @@ useAdd(adder.add.bind(adder)); // No compile error!
 useAdd((x) => adder.add(x)); // Error: number is not assignable to string
 ```
 
-あなたが**期待している** **クラスメンバー関数を持っているなら、[最初の矢印関数を使う](../ arrow-functions.md)のように、同じ `Adder`クラスを書くでしょう：
+もしあなたが他に渡すことを期待しているクラスメンバ関数を持つ場合は、そもそも[アロー関数](../arrow-functions.md)を使います。例えば、上記と同じ`Adder`クラスを以下に示します:
 
 ```ts
 class Adder {
@@ -67,7 +67,7 @@ class Adder {
 }
 ```
 
-もう1つの方法は、バインドする変数のタイプを手動で指定することです。
+もう1つの方法は、バインドする変数の型を手動で指定することです。
 
 ```ts
 const add: typeof adder.add = adder.add.bind(adder);
