@@ -1,6 +1,6 @@
 # シングルトンパターン
 
-従来のシングルトンパターンは、実際には、すべてのコードが「クラス」内になければならないという事実を克服するために使用されるものです。
+従来のシングルトンパターンは、実際には、すべてのコードが`class`内になければならないという事実を克服するために使用されるものです。
 
 ```ts
 class Singleton {
@@ -23,7 +23,7 @@ let something = new Singleton() // Error: constructor of 'Singleton' is private.
 let instance = Singleton.getInstance() // do something with the instance...
 ```
 
-しかし、怠惰な初期化をしたくない場合は、単に `namespace`を使うことができます：
+しかし、遅延初期化をしたくない場合は、単に`namespace`を使うことができます：
 
 ```ts
 namespace Singleton {
@@ -34,9 +34,9 @@ namespace Singleton {
 Singleton.someMethod();
 ```
 
-> 警告：シングルトンは[global](http://stackoverflow.com/a/142450/390330)の単なる名です。
+> 警告：シングルトンは単に [global](http://stackoverflow.com/a/142450/390330) ファンシーな名前にしたものです。
 
-ほとんどのプロジェクトでは、 `namespace`をさらに* module *に置き換えることができます。
+ほとんどのプロジェクトでは、`namespace`をさらにモジュールに置き換えることができます。
 
 ```ts
 // someFile.ts
