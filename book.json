@@ -1,8 +1,8 @@
 {
-  "language": "en",
-  "author": "Basarat Ali Syed",
-  "title": "TypeScript Deep Dive",
-  "plugins": ["edit-link", "github", "adsense","header"],
+  "language": "ja",
+  "author": "Basarat Ali Syed Translated by yohamta",
+  "title": "TypeScript Deep Dive Japanese",
+  "plugins": ["edit-link", "github", "adsense", "header"],
   "pluginsConfig": {
     "layout": {
       "headerPath" : "header.html"
@@ -11,11 +11,11 @@
       "ignoreSpecialCharacters": true
     },
     "edit-link": {
-      "base": "https://github.com/basarat/typescript-book/tree/master",
+      "base": "https://github.com/yohamta/typescript-book-jp/tree/master",
       "label": "Edit This Page"
     },
     "github": {
-      "url": "https://github.com/basarat/typescript-book/"
+      "url": "https://github.com/yohamta/typescript-book-jp/"
     },
     "adsense": {
       "client": "ca-pub-4656761253552116",
