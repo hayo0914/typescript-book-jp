@@ -15,11 +15,11 @@
 * [`null`と`undefined`](#null-vs-undefined)
 * [書式設定](#書式設定)
 * [一重引用符と二重引用符](#引用符)
-* [Tabs vs. Spaces](スペース数)
-* [セミコロンを使用](セミコロン)
-* [配列を `Type []`として注釈する(#配列)
+* [Tabs vs. Spaces](#スペース数)
+* [セミコロンを使用](#セミコロン)
+* [配列](#配列)
 * [ファイル名](#filename)
-* [`type`対`interface`](#type-vs-interface)
+* [`type` vs `interface`](#type-vs-interface)
 
 ## 変数と関数
 * 変数と関数名には `camelCase`を使います
