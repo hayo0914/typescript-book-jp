@@ -1,16 +1,16 @@
-## スキャナ
-TypeScriptスキャナのソースコードは、完全に `scanner.ts`にあります。スキャナはソースコードをASTに変換するために `Parser`によって内部的に*制御されます。ここでは、望ましい結果が何であるかです。
+## Scanner
+TypeScript Scannerのソースコードは、完全に`scanner.ts`にあります。ScannerはソースコードをASTに変換するために`Parser`によって内部的に制御されます。以下に示すのは、どんな結果が望まれるかです:
 
 ```
 SourceCode ~~ scanner ~~> Token Stream ~~ parser ~~> AST
 ```
 
-### パーサーによる使用法
-スキャナーを何度も作成するコストを避けるために、 `parser.ts`に*シングルトン*`scanner`が作成されています。このスキャナは、 `initializeState`関数を使ってオンデマンドでパーサーによってプリムされます。
+### Parserによる使用法
+Scannerを何度も作成するコストを避けるために、`parser.ts`にシングルトンの`scanner`が作成されています。このスキャナは、`initializeState`関数を使ってオンデマンドにParserによって準備されます。
 
-ここでは、このコンセプトを実証できるパーザー内の実際のコードの*シンプル*バージョンを示します：
+ここでは、この概念を説明するParser内の実際のコードのシンプルバージョンを示します：
 
-`code / compiler / scanner / runScanner.ts`
+`code/compiler/scanner/runScanner.ts`
 ```ts
 import * as ts from "ntypescript";
 
@@ -51,9 +51,9 @@ SemicolonToken
 ```
 
 ### スキャナの状態
-`scan`を呼び出すと、スキャナはローカル状態(スキャン中の位置、現在のトークンの詳細など)を更新します。スキャナには、現在のスキャナの状態を取得するためのユーティリティ機能が用意されています。以下のサンプルでは、​​スキャナを作成し、それを使用してコード内のトークンとその位置を特定しています。
+`scan`を呼び出すと、スキャナはローカル状態(スキャン中の位置、現在のトークンの詳細など)を更新します。スキャナには、現在のスキャナの状態を取得するためのユーティリティ機能が用意されています。以下のサンプルでは、スキャナを作成し、それを使用してコード内のトークンとその位置を特定しています。
 
-`code / compiler / scanner / runScannerWithPosition.ts`
+`code/compiler/scanner/runScannerWithPosition.ts`
 ```ts
 // Sample usage
 initializeState(`
@@ -80,5 +80,5 @@ FirstLiteralToken 9 13
 SemicolonToken 13 14
 ```
 
-### スタンドアロンスキャナ
-typescriptパーサーはシングルトンスキャナーを持っていますが、 `createScanner`を使ってスタンドアロンスキャナーを作成し、`setText` / `setTextPos`を使って、アミューズメントのためにファイル内の異なる点をスキャンすることができます。
+### スタンドアロンScanner
+typescript ParserはシングルトンのScannerを持っていますが、`createScanner`を使ってスタンドアロンScannerを作成し、`setText`/`setTextPos`を使って、一興のためにファイル内の異なる位置をスキャンすることができます。
