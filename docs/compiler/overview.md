@@ -1,29 +1,29 @@
 # コンパイラ
-typescriptコンパイラのソースは、[`src / compiler`](https://github.com/Microsoft/TypeScript/tree/master/src/compiler)フォルダの下にあります。
+typescriptコンパイラのソースは、[`src/compiler`](https://github.com/Microsoft/TypeScript/tree/master/src/compiler)フォルダの下にあります。
 
 それは以下の主要な部分に分割されます：
-* スキャナ( `scanner.ts`)
-* パーサー( `parser.ts`)
-* バインダー( `バインダー.ts`)
-* チェッカー( `checker.ts`)
-* エミッタ( `emitter.ts`)
+* Scanner(`scanner.ts`)
+* Parser(`parser.ts`)
+* Binder(`binder.ts`)
+* checker(`checker.ts`)
+* emitter(`emitter.ts`)
 
 これらのそれぞれは、ソース内で独自のファイルを取得します。これらの部分については、この章の後半で説明します。
 
-## バイツ
-私たちは、[Bring Your Own TypeScript(BYOTS)]というプロジェクト(https://github.com/basarat/byots)を持っています。内部APIを公開することによってこれを使用して、ローカルアプリケーションのTypeScriptのバージョンをグローバルに公開することができます。
+## BYOTS
+私たちは、[Bring Your Own TypeScript(BYOTS)](https://github.com/basarat/byots)というプロジェクトを持っています。これは内部APIを公開する等によって、コンパイラのAPIを使って遊びやすくしています。あなたはこれを使用して、ローカルアプリケーションのTypeScriptのバージョンをグローバルに公開することができます。
 
-## シンタックスとセマンティクス
-文法的に正しいものが*意味的*正しいことを意味するわけではありません。以下のTypeScriptコードを考えてみましょう。*構文的には有効ですが*意味的には*間違っています
+## シンタックスとセマンティクスの違い
+*文法*(シンタックス)が正しいものが*意味*(セマンティクス)が正しいことを意味するわけではありません。以下のTypeScriptコードを考えてみましょう。文法は有効ですが、意味は間違っています:
 
 ```ts
 var foo: number = "not a number";
 ```
 
-「セマンティック」は英語で「意味」を意味します。このコンセプトはあなたの頭の中にあると便利です。
+`Semantic`は英語で「意味」を意味します。このコンセプトが頭の中にあると便利です。
 
-## 処理の概要
-以下は、TypeScriptコンパイラのこれらの主要部分がどのように構成されているかを簡単に見直したものです。
+## 処理の概要(Processing Overview)
+以下は、TypeScriptコンパイラのこれらの主要部分の構成の概要です。
 
 ```code
 SourceCode ~~ scanner ~~> Token Stream
@@ -36,9 +36,9 @@ Token Stream ~~ parser ~~> AST
 ```code
 AST ~~ binder ~~> Symbols
 ```
-`Symbol`はTypeScript * semantic *システムの主要ビルディングブロックです。示されているように、シンボルはバインディングの結果として作成されます。シンボルは、AST内の宣言ノードを、同じエンティティに寄与する他の宣言に接続します。
+`Symbol`はTypeScript *semantic*システムの主要な建設部材です。示されているように、シンボルはバインディングの結果として作成されます。シンボルは、AST内の宣言ノードを、同じエンティティに寄与する他の宣言に接続します。
 
-Symbols + ASTは、ソースコードを意味的に*検証するためにチェッカーが使用するものです
+Symbols + ASTは、ソースコードの意味(セマンティクス)を検証するためにチェッカーが使用するものです
 ```code
 AST + Symbols ~~ checker ~~> Type Validation
 ```
@@ -47,26 +47,25 @@ AST + Symbols ~~ checker ~~> Type Validation
 ```code
 AST + Checker ~~ emitter ~~> JS
 ```
+TypeScriptコンパイラには、これらの主要部分にユーティリティを提供するいくつかのファイルがあります。次で説明します。
 
-TypeScriptコンパイラには、次に説明するキー部分の多くにユーティリティを提供するいくつかの追加ファイルがあります。
-
-## ファイル：ユーティリティ
+## File: Utilities
 `core.ts`：TypeScriptコンパイラが使うコアユーティリティ。いくつか重要なもの：
 
-* `let objectAllocator：ObjectAllocator`：シングルトングローバルとして定義された変数です。 `getSymbolConstructor`(シンボルは`binder`でカバーされています)、 `getTypeConstructor`(型は`checker`で扱います)、 `getNodeConstructor`(ノードは`parser` / `AST`を見るとカバーされます)、`getSymbolConstructor` 、 `getSignatureConstructor`(シグネチャはインデックス、コール、シグネチャを構成します)。
+* `let objectAllocator：ObjectAllocator`：シングルトンのグローバルとして定義された変数です。それは、`getNodeConstructor`(Nodeは`parser`/`AST`を見るときに扱います)、`getSymbolConstructor`(シンボルは`binder`のときに扱います)、`getTypeConstructor`(型は`checker`で扱います)、 `getSignatureConstructor`(シグネチャはインデックス、シグネチャの呼び出しと構成物です)。
 
-## ファイル：主要なデータ構造
-`types.ts`には、主要なデータ構造とインタフェースがコンパイラ全体で使用されます。いくつかの重要なサンプルの抜粋です：
+## File： 主要なデータ構造
+`types.ts`には、コンパイラ全体で使用される、主要なデータ構造とインタフェースがあります。いくつかの重要なサンプルの抜粋です：
 * `SyntaxKind`
-ASTノードタイプは、 `SyntaxKind` enumによって識別されます。
+ASTノードタイプは、`SyntaxKind`enumによって識別されます。
 * `TypeChecker`
 TypeCheckerが提供するインターフェイスです。
 * `CompilerHost`
-これは `Program`が`System`と対話するために使用します。
+これは`Program`が`System`と対話するために使用されます。
 * `Node`
-ASTノード。
+ASTのノードです。
 
-## ファイルシステム
-`system.ts`です。 TypeScriptコンパイラとオペレーティングシステムとのすべての対話は、 `System`インタフェースを介して行われます。インターフェースとその実装( `WScript`と`Node`)は `system.ts`で定義されています。あなたは* Operating Environment *(OE)と考えることができます。
+## File: System
+`system.ts`です。TypeScriptコンパイラとオペレーティングシステムとのすべての対話は、`System`インタフェースを介して行われます。インターフェースとその実装( `WScript`と`Node`)は`system.ts`で定義されています。あなたはそれを*Operating Environment*(OE)として考えることができます。
 
-主要なファイルの概要を知ったので、 `Program`の概念を見ることができます
+主要なファイルの概要を知ったので、`Program`の概念を見ていきましょう。
