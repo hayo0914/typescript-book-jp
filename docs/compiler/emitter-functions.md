@@ -1,11 +1,11 @@
 ### `emitFiles`
-`emitter.ts`で定義されているのは関数シグネチャです：
+`emitter.ts`で定義されています。下記が関数シグネチャです:
 ```ts
 // targetSourceFile is when users only want one file in entire project to be emitted. This is used in compileOnSave feature
 export function emitFiles(resolver: EmitResolver, host: EmitHost, targetSourceFile?: SourceFile): EmitResult {
 ```
 
-`EmitHost`は`CompilerHost`の簡略化された(狭められたような)バージョンです(実際には多くのユースケースでは実行時に `CompilerHost`となります)。
+`EmitHost`は`CompilerHost`を簡略化した(狭めたような)バージョンです(実行時においては、実際には多くのユースケースで`CompilerHost`となります)。
 
 `emitFiles`からの最も興味深いコールスタックは次のとおりです：
 
@@ -111,7 +111,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
 }
 ```
 
-基本的にはローカルの束を設定します(これらの関数は `emitter.ts`の* bulk *を形成します)。次にemitを起動するローカル関数`emitSourceFile`に渡します。 `emitSourceFile`関数は単に`currentSourceFile`を設定してローカルの `emit`関数に渡します。
+基本的にそれはたくさんのローカルのものを準備します(これらの関数は`emitter.ts`の*バルク*(bulk)を形成します)。そして次にemitを起動するローカル関数`emitSourceFile`に渡します。`emitSourceFile`関数は単に`currentSourceFile`を設定し、順番に`emit`関数に渡します。
 
 ```ts
 function emitSourceFile(sourceFile: SourceFile): void {
@@ -121,11 +121,11 @@ function emitSourceFile(sourceFile: SourceFile): void {
 }
 ```
 
-`emit`関数は* comment * emit + *実際のJavaScript * emitを処理します。 *実際のJavaScript * emitは、 `emitJavaScriptWorker`関数の仕事です。
+`emit`関数は*comment* emit + *実際のJavaScript* emitを処理します。*実際のJavaScript* emitは、`emitJavaScriptWorker`関数の仕事です。
 
 ### `emitJavaScriptWorker`
 
-完全な機能：
+関数の全体:
 ```ts
 function emitJavaScriptWorker(node: Node) {
     // Check if the node can be emitted regardless of the ScriptTarget
@@ -299,7 +299,7 @@ function emitJavaScriptWorker(node: Node) {
 }
 ```
 
-再帰は、単に必要に応じてこれらの関数から他の `emitFoo`関数を呼び出すことによって行われます。 `emitFunctionDeclaration`から：
+再帰は、単に必要に応じてこれらの関数から他の`emitFoo`関数を呼び出すことによって行われます。`emitFunctionDeclaration`の抜粋です：
 ```ts
 function emitFunctionDeclaration(node: FunctionLikeDeclaration) {
     if (nodeIsMissing(node.body)) {
