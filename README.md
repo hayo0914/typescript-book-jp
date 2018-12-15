@@ -1,5 +1,5 @@
 # TypeScript Deep Dive 日本語版
-これは[Type Script Deep Dive](https://github.com/basarat/typescript-book/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
+これは[Type Script Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
 
 ## リンク
 [TypeScript Deep Dive 日本語版](https://typescript-jp.gitbook.io/deep-dive/getting-started)
