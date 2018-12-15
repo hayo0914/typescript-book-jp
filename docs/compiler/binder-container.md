@@ -1,6 +1,6 @@
-### コンテナ
+### Container
 
-ASTノードはコンテナです。これは、Nodeとそれに関連するSymbolが持つSymbolTablesの種類を決定します。コンテナは抽象的な概念です(つまり、関連するデータ構造はありません)。このコンセプトは、いくつかのものによって駆動されます.1つは `ContainerFlags`enumです。関数 `getContainerFlags`(`binder.ts`にあります)がこのフラグを駆動し、以下に示します：
+AST nodeはContainerになる可能性もあります。これは、Nodeとそれに関連するSymbolが持つ`SymbolTables`の種類が決定します。Containerは抽象的な概念です(つまり、関連するデータ構造はありません)。この概念は、いくつかのものによって駆動されます。1つは`ContainerFlags`のenumです。関数`getContainerFlags`(`binder.ts`にあります)がこのフラグを駆動します。それを下記に示します:
 
 ```ts
 function getContainerFlags(node: Node): ContainerFlags {
@@ -62,7 +62,7 @@ function getContainerFlags(node: Node): ContainerFlags {
 }
 ```
 
-これはバインダーの `bindChildren`関数から呼び出され、`getContainerFlags`関数の評価に応じてノードを `container`および/または`blockScopedContainer`として設定します。関数 `bindChildren`を以下に示します：
+これはBinderの`bindChildren`関数から*のみ*呼び出され、nodeを`container`として、もしくは、`blockScopedContainer`として設定します。これは`getContainerFlags`関数の評価に依存します。`bindChildren`を以下に示します：
 
 ```ts
 // All container nodes are kept on a linked list in declaration order. This list is used by
@@ -120,4 +120,4 @@ function bindChildren(node: Node) {
 }
 ```
 
-バインダー関数のセクションから思い出してくるように、 `bind`関数から`bindChildren`が呼び出されます。だから我々は再帰的なバインディングの設定を持っている： `bind`を呼び出す`bindChildren`はそれぞれの子に対して `bind`を呼び出します。
+Binder関数のセクションから思い出されるように`bind`関数から`bindChildren`が呼び出されます。だから我々は再帰的なbindingの設定が行えます。つまり、`bind`は、`bindChildren`を呼び出し、それはそれぞれの子に対して`bind`を呼び出します。
