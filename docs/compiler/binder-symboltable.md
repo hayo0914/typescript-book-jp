@@ -8,24 +8,24 @@ interface SymbolTable {
 }
 ```
 
-シンボルテーブルはバインディングで初期化されます。コンパイラで使用されるいくつかのSymbolTableがあります：
+SymbolTableはBindingによって初期化されます。コンパイラで使用されるいくつかのSymbolTableがあります：
 
-`Node`について：
+`Node`上で：
 ```ts
 locals?: SymbolTable;                   // Locals associated with node
 ```
 
-`Symbol`について：
+`Symbol`上で：
 
 ```ts
 members?: SymbolTable;                  // Class, interface or literal instance members
 exports?: SymbolTable;                  // Module exports
 ```
 
-注： `ContainerFlags`に基づいて`bindChildren`によって `locals`が({}}に)初期化されているのを見ました。
+注： `ContainerFlags`に基づいて`bindChildren`によって`locals`が(`{}`に)初期化されているのを見てきました。
 
-#### シンボルテーブルの人口
-SymbolTablesは主に `declareSymbol`の呼び出しによって`Symbols`で埋められます。この機能の全体を以下に示す：
+#### SymbolTableへの登録
+主に`declareSymbol`の呼び出しによってSymbolTablesに`Symbol`が登録されます。この機能の全体を以下に示します:
 
 ```ts
 /**
@@ -100,7 +100,7 @@ function declareSymbol(symbolTable: SymbolTable, parent: Symbol, node: Declarati
 }
 ```
 
-どのSymbolTableが実装されるかは、この関数の最初の引数によって決まります。例えば`SyntaxKind.ClassDeclaration`または`SyntaxKind.ClassExpression`の* container *に宣言を追加すると、 `declareClassMember`関数が呼び出され、次のコードを持ちます：
+どのSymbolTableに登録されるかは、この関数の最初の引数によって決まります。例えば`SyntaxKind.ClassDeclaration`または`SyntaxKind.ClassExpression`の*container*にdeclarationを追加するときに、以下にコードを示す`declareClassMember`関数が呼び出されます:
 
 ```ts
 function declareClassMember(node: Declaration, symbolFlags: SymbolFlags, symbolExcludes: SymbolFlags) {
