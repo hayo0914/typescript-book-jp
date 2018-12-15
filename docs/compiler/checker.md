@@ -1,8 +1,8 @@
-## チェッカー
-以前に述べたように* checker *は、TypeScriptを他のJavaScriptトランスファーよりもユニークに強力にするものです。チェッカーは `checker.ts 'にあり、この時点ではTypeScriptの23k +行(コンパイラの最大部分)です。
+## Checker
+以前に述べたように*checker*は、TypeScriptを他のJavaScriptトランスパイラよりもユニークに強力にするものです。Checkerは`checker.ts`にあり、この時点ではTypeScriptの23k+行(コンパイラの最大部分)です。
 
-### プログラムによる使用
-`checker`は`program`で初期化されます。以下はコールスタックのサンプルです( `バインダー`を見ると同じものを示しています)：
+### Programによる使用方法
+`checker`は`program`により初期化されます。以下はコールスタックのサンプルです(`binder`で見たものと同じです)：
 
 ```
 program.getTypeChecker ->
@@ -13,10 +13,10 @@ program.getTypeChecker ->
             for each SourceFile `ts.mergeSymbolTable` (in checker)
 ```
 
-### エミッタとの関連
-`getDiagnostics`が呼び出されると、真の型チェックが行われます。この機能は、例えば、 `Program.emit`が要求されると、チェッカーは`EmitResolver`(プログラムはチェッカー `getEmitResolver`関数を呼び出します)を返します。これは`createTypeChecker`のローカル関数の集合です。エミッタを見ると再びこれについて言及します。
+### Emitterとの関連付け
+`getDiagnostics`が呼び出されると、本当の型チェックが行われます。この機能は、例えば、`Program.emit`が一度要求されると、Checkerは`EmitResolver`を返します(ProgramはCheckerの`getEmitResolver`関数を呼び出します)。これは単に`createTypeChecker`のローカル関数の集合です。Emitterを見るときにこれについて再び言及します。
 
-ここでコールスタックは `checkSourceFile`(`createTypeChecker`のローカル関数)です。
+`checkSourceFile`(`createTypeChecker`のローカル関数)の下のコールスタックは以下の通りです。
 
 ```
 program.emit ->
