@@ -1,4 +1,4 @@
-# TypeScript Deep Dive
+# TypeScript Deep Dive 日本語版
 これは[Type Script Deep Dive](https://github.com/basarat/typescript-book/)の日本語バージョンです。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
 
 ## リンク
