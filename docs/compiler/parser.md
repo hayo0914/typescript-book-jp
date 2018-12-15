@@ -1,14 +1,14 @@
-## パーサー
-TypeScriptパーサーのソースコードは完全に `parser.ts`にあります。スキャナはソースコードをASTに変換するために `Parser`によって内部的に*制御されます。ここでは、望ましい結果が何であるかのレビューです。
+## Parser
+TypeScript Parserのソースコードは完全に`parser.ts`にあります。ScannerはソースコードをASTに変換するために`Parser`によって内部的に制御されます。下記は、望まれる結果の概要です。
 
 ```
 SourceCode ~~ scanner ~~> Token Stream ~~ parser ~~> AST
 ```
 
-パーサーはシングルトンとして実装されています( `scanner`と同様の理由、再作成が可能な場合は再作成したくありません)。実際には、Parserのための* state *変数とシングルトン `scanner`を含む`namespace Parser`として実装されています。前に述べたように、 `const scanner`を含んでいます。パーサ関数はこのスキャナを管理します。
+Parserはシングルトンとして実装されています(`scanner`と同様の理由です。再初期化が可能な場合は再作成したくありません)。実際には、Parserのための*state*変数とシングルトン`scanner`を含む`namespace Parser`として実装されています。前に述べたように、`const scanner`を含んでいます。Parserの関数はこのScannerを管理します。
 
-### プログラムによる使用
-パーサーはプログラムによって間接的に駆動されます(間接的に、実際には前述の `CompilerHost`によって実際に実行されます)。基本的にこれは単純化されたコールスタックです：
+### Programによる使用例
+ParserはProgramによって間接的に駆動されます(実際には前述の`CompilerHost`によって実際に実行されるので、間接的です)。基本的に以下が、単純化したコールスタックです：
 
 ```
 Program ->
@@ -17,12 +17,12 @@ Program ->
             Parser.parseSourceFile
 ```
 
-`parseSourceFile`は、Parserの状態を準備するだけでなく、`initializeState`を呼び出すことによって `scanner`の状態を準備します。その後、 `parseSourceFileWorker`を使ってソースファイルを解析します。
+`parseSourceFile`は、Parserのstateを準備するだけでなく、`initializeState`を呼び出すことによって`scanner`の状態を準備します。その後、 `parseSourceFileWorker`を使ってソースファイルを解析します。
 
 ### サンプルの使用法
-パーザ内部を深く掘り下げる前に、(ts.createSourceFile`を使用して)ソースファイルのASTを取得するためにTypeScriptのパーサを使用するサンプルコードを次に示します。
+Parser内部を深く掘り下げる前に、(`ts.createSourceFile`を使用して)ソースファイルのASTを取得するためにTypeScriptのParserを使用するサンプルコードを次に示します。
 
-`code / compiler / parser / runParser.ts`
+`code/compiler/parser/runParser.ts`
 ```ts
 import * as ts from "ntypescript";
 
@@ -56,4 +56,4 @@ SourceFile 0 14
 ------------ SemicolonToken 13 14
 ---- EndOfFileToken 14 14
 ```
-あなたの頭を左に傾けると、これは非常に右側の木のように見えます。
+あなたの頭を左に傾けると、これは非常に右に偏った木のように見えます。
