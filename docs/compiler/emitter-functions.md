@@ -111,7 +111,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
 }
 ```
 
-基本的にそれはたくさんのローカルのものを準備します(これらの関数は`emitter.ts`の*バルク*(bulk)を形成します)。そして次にemitを起動するローカル関数`emitSourceFile`に渡します。`emitSourceFile`関数は単に`currentSourceFile`を設定し、順番に`emit`関数に渡します。
+基本的にそれはたくさんのローカルのものを準備します(これらの関数は`emitter.ts`の大部分を形成します)。そして次にemitを起動するローカル関数`emitSourceFile`に渡します。`emitSourceFile`関数は単に`currentSourceFile`を設定し、順番に`emit`関数に渡します。
 
 ```ts
 function emitSourceFile(sourceFile: SourceFile): void {
