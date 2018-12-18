@@ -8,7 +8,7 @@ const foo = 123;
 
 > この構文は`let constant foo`のようなものを入力させる他の言語よりもずっと優れています(IMHO: In my honest opinion)。つまり、変数+動作指定子です。
 
-`const`は可読性とメンテナンス性の両方において良い習慣であり、魔法のりテラル(magic literals)を使うことを避けられます。
+`const`は可読性とメンテナンス性の両方において良い習慣であり、魔法のリテラル(magic literals)を使うことを避けられます。
 
 ```ts
 // Low readability
