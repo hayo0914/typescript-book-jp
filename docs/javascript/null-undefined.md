@@ -25,7 +25,7 @@ console.log(false == undefined); // false
 ```ts
 function foo(arg: string | null | undefined) {
   if (arg != null) {
-    // `!=` がnulllとundefinedを除外しているので、引数argは文字列です
+    // `!=` がnullとundefinedを除外しているので、引数argは文字列です
   }
 }
 ```
