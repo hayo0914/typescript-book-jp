@@ -6,7 +6,7 @@
 TypeScriptはJavaScriptにコンパイルされます。実際に実行されるのは、JavaScriptです(ブラウザでもサーバーでも)。よって、次のものが必要です：
 
 * TypeScriptコンパイラ(OSSが[ソース](https://github.com/Microsoft/TypeScript/)と[NPM](https://www.npmjs.com/package/typescript)で利用可能です)
-* TypeScriptエディタ(そうしたければ、メモ帳を使えますが、私は [vscode🌹](https://code.visualstudio.com/) を [私が作成したプラグイン](https//marketplace.visualstudio.com/items?itemName=basarat.god) とともに使います。また、[様々なIDE](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support)がサポートされています。)
+* TypeScriptエディタ(そうしたければ、メモ帳を使えますが、私は [vscode🌹](https://code.visualstudio.com/) を [私が作成したプラグイン](https://marketplace.visualstudio.com/items?itemName=basarat.god) とともに使います。また、[様々なIDE](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support)がサポートされています。)
 
 
 ## TypeScriptのバージョン
