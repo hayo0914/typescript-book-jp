@@ -103,6 +103,18 @@ function toInt(str: string): { valid: boolean, int?: number } {
 }
 ```
 
+### JSONとシリアライズ
+
+JSON標準では、`null`のエンコードはサポートしていますが、`undefined`のエンコードはサポートしていません。値が`null`である属性を持つオブジェクトをJSONにエンコードするとき、その属性は`null`値とともにJSONに含まれますが、値が`undefined`である属性は完全に除外されます。
+
+```ts
+JSON.stringify({willStay: null, willBeGone: undefined}); // {"willStay":null}
+```
+
+結果として、JSONベースのデータベースは、`null`はサポートしますが`undefined`はサポートしないことがあります。`null`値を持つ属性はエンコードされるため、オブジェクトをエンコードしてリモートのデータストアに送る前に、ある属性値を`null`にすることで、その属性を削除したいという意図を伝えることができます。
+
+属性値を`undefined`にすると、その属性名はエンコードされないため、データの保存と転送のコストを節約することができます。しかし、これによって値を削除することと値が存在しないことの意味づけが複雑になってしまいます。
+
 ### 結論
 TypeScriptチームは、`null`を使いません: [TypeScriptコーディングガイドライン](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined)。 そして、問題は起きていません。 Douglas Crockfordは[nullはbad idea](https://www.youtube.com/watch?v=PSGEjv3Tqo0&feature=youtu.be&t=9m21s)であると考えています。我々は全部において`undefined`を使うべきです。
 
