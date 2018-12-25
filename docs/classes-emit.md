@@ -67,7 +67,7 @@ var __extends = this.__extends || function (d, b) {
 1. `new`の関数の内側の`this`に対する効果
 1. `new`の`prototype`と`__proto__`に対する効果
 
-JavaScriptのすべてのオブジェクトは `__proto__`メンバを含んでいます。このメンバは古いブラウザではアクセスできないことがよくあります(ドキュメントでは、この魔法のプロパティを `[[prototype]]`と呼ぶことがあります)。それは1つの目的を持っています：検索しているプロパティがオブジェクトに見つからない場合(例えば `obj.property`)、`obj .__ proto __。property`を検索します。それでもまだ見つからなければ、 `obj .__ proto __.__ proto __。property`を検索します： それが見つかるか、最後の`.__ proto__`自体が`null`となるまで続きます。これは、JavaScriptが*プロトタイプ継承*(prototypal inheritance)をサポートしていることを説明しています。次の例でこれを示します。chromeコンソールまたはNode.jsで実行することが可能です。
+JavaScriptのすべてのオブジェクトは `__proto__`メンバを含んでいます。このメンバは古いブラウザではアクセスできないことがよくあります(ドキュメントでは、この魔法のプロパティを `[[prototype]]`と呼ぶことがあります)。それは1つの目的を持っています：検索しているプロパティがオブジェクトに見つからない場合(例えば `obj.property`)、`obj .__ proto __.property`を検索します。それでもまだ見つからなければ、 `obj .__ proto __.__ proto __.property`を検索します： それが見つかるか、最後の`.__ proto__`自体が`null`となるまで続きます。これは、JavaScriptが*プロトタイプ継承*(prototypal inheritance)をサポートしていることを説明しています。次の例でこれを示します。chromeコンソールまたはNode.jsで実行することが可能です。
 
 ```ts
 var foo = {}
