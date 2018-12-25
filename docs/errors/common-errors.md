@@ -26,7 +26,7 @@ try { something(); }
 catch (e: Error) { // Catch clause variable cannot have a type annotation
 }
 ```
-TypeScriptはワイルドで間違ったJavaScriptからあなたを守ろうとします。TypeGuardを代わりに使ってください。
+TypeScriptはワイルドで間違ったJavaScriptからあなたを守ろうとします。Type Guardを代わりに使ってください。
 ```js
 try { something(); }
 catch (e) {
