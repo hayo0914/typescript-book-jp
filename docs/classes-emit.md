@@ -53,6 +53,7 @@ var __extends = this.__extends || function (d, b) {
 };
 ```
 ここで `d`は派生クラスを指し、`b`はベースクラスを指します。この関数は2つのことを行います：
+
 1. 親クラスの静的メンバを子クラスにコピーする:`(b.hasOwnProperty(p))d [p] = b [p];`
 1. 子クラス関数のプロトタイプを準備し、任意に親の`proto`のメンバを検索できるようにする。つまり、`d.prototype.__ proto__ = b.prototype`を実現する
 

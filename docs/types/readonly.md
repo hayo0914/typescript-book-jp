@@ -140,10 +140,12 @@ person.fullName = "Dear Reader"; // Error! fullName is readonly
 
 ### `const`との相違点
 `const`
+
 1. 変数参照に利用するものである
 1. 他の値を再度割り当てることはできない
 
 `readonly`
+
 1. プロパティに利用するものである
 1. エイリアシングによってプロパティが変更されることがありえる
 
