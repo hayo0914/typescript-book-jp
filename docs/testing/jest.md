@@ -47,7 +47,7 @@ module.exports = {
 
 説明：
 
-* すべての* ypeScriptファイルをプロジェクトの`src`フォルダに入れることを常にお勧めします。これが前提とし、`roots`オプションを使用してこれを指定します。
+* *すべての*TypeScriptファイルをプロジェクトの`src`フォルダに入れることを常にお勧めします。これが前提とし、`roots`オプションを使用してこれを指定します。
 * `transform`設定は、`jest`にts/tsxファイルに対して`ts-jest`を使うように指示します。
 * `testRegex`はJestに`__tests__`フォルダ内のテストを検索するよう指示します。また`(.test|.spec).(ts|tsx)`拡張子を使用する任意のファイルを検索します。 例えば、`asdf.test.tsx`など。
 * `moduleFileExtensions`はjestに私達のファイル拡張子を認識させます。これは`ts`/`tsx`をデフォルト(`js|jsx|json|node`)に追加するときに必要です。
