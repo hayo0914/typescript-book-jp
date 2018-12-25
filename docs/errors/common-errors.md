@@ -19,14 +19,14 @@
 
 [モジュール](../project/modules.html)のセクションをチェックしてください。
 
-## キャッチ句の変数は型アノテーションを持つことはできません
+## キャッチ句の変数は型アノテーションを持つことはできません(Catch clause variable cannot have a type annotation)
 サンプル：
 ```js
 try { something(); }
 catch (e: Error) { // Catch clause variable cannot have a type annotation
 }
 ```
-TypeScriptはワイルドで間違ったJavaScriptからあなたを守ろうとします。型ガードを代わりに使ってください。
+TypeScriptはワイルドで間違ったJavaScriptからあなたを守ろうとします。TypeGuardを代わりに使ってください。
 ```js
 try { something(); }
 catch (e) {
@@ -36,7 +36,7 @@ catch (e) {
 }
 ```
 
-## Interface `ElementClass`は`Component`と `Component`の型を同時に継承することはできません。
+## Interface `ElementClass`は`Component`と `Component`の型を同時に継承することはできません。(Interface `ElementClass` cannot simultaneously extend types `Component` and `Component`)
 これはコンパイルコンテキストに2つの`react.d.ts`(`@types/react/index.d.ts`)があるときに起こります。
 
 **修正**：
