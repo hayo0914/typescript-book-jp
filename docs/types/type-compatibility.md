@@ -76,7 +76,7 @@ iTakePoint2D({ x: 0 }); // Error: missing information `y`
 
 * コバリアント(Covariant)：(coはjointの意味)同じ方向のみ
 * コントラバリアント(Contravariant)：(contraはnegativeの意味)反対の方向にのみ
-* バイバリアント(Bivariant)：(biはbothの意味)coととcontraの両方。
+* バイバリアント(Bivariant)：(biはbothの意味)coとcontraの両方。
 * インバリアント(Invariant)：型がまったく同じでない場合、それらは互換性がありません。
 
 > 注意：JavaScriptのようなミュータブル(変更可能)なデータの存在下で、完全に健全な型システムのためには`invariant`が唯一有効なオプションです。しかし、述べたように利便性によって、私たちは不健全な選択をせざるを得ません。
