@@ -3,9 +3,9 @@ JavaScriptにおいて、クラスを第一級(first class)のオブジェクト
 
 1. [クラスが提供する有用な構造抽象化](./tips/classesAreUseful.md)
 1. それぞれのフレームワーク(emberjs、reactjsなど)が独自に異なったバージョンのクラスを実装する代わりに、一貫したクラスを利用する方法を提供する
-1. オブジェクト指向の開発者はすでにクラスを理解している
+1. オブジェクト指向のDeveloperはすでにクラスを理解している
 
-ようやくJavaScript開発者は`class`を使うことができます。ここではPointという初歩的なクラスがあります：
+ようやくJavaScript Developerは`class`を使うことができます。ここではPointという初歩的なクラスがあります：
 ```ts
 class Point {
     x: number;
