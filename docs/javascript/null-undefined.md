@@ -7,7 +7,7 @@ JavaScript(と、TypeScript)は、`null`と`undefined`という2つのボトム�
 
 ### どちらであるかをチェックする
 
-現実としては、開発者は両方とも対応する必要があります。`==`でチェックしましょう:
+現実としては、あなたは両方とも対応する必要があります。`==`でチェックしましょう:
 
 ```ts
 /// Imagine you are doing `foo.bar == undefined` where bar can be one of:
@@ -20,7 +20,7 @@ console.log('' == undefined); // false
 console.log(false == undefined); // false
 ```
 
-`== null`を使って`undefined`と `null`を両方ともチェックすることを推奨します。開発者は一般的に２つを区別する必要はありません。
+`== null`を使って`undefined`と `null`を両方ともチェックすることを推奨します。一般的に２つを区別する必要はありません。
 
 ```ts
 function foo(arg: string | null | undefined) {
@@ -48,7 +48,7 @@ if (typeof someglobal !== 'undefined') {
 ```
 
 ### `undefined`を使わないようにする
-TypeScriptにおいて開発者は、変数と構造を分離して型を記述することができます。下記のように書く代わりに:
+TypeScriptにおいて、あなたは、変数と構造を分離して型を記述することができます。下記のように書く代わりに:
 ```ts
 function foo(){
   // if Something

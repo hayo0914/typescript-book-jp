@@ -4,7 +4,7 @@ JavaScriptにコンパイルされるプログラミング言語に関しては�
 
 ![JavaScriptはTypeScriptです](https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png)
 
-しかし、これは、開発者がJavaScriptを学ぶ必要があることを意味しています(良いニュースは、JavaScriptだけ学べば良いということです)。TypeScriptは、単に、JavaScriptコードを良いドキュメントにする方法を標準化したものに過ぎません。
+しかし、これは、あなたがJavaScriptを学ぶ必要があることを意味しています(良いニュースは、JavaScriptだけ学べば良いということです)。TypeScriptは、単に、JavaScriptコードを良いドキュメントにする方法を標準化したものに過ぎません。
 
 * 新しいプログラミング構文はバグ修正の助けにはなりません(CoffeeScriptを見てください)
 * 新しいプログラミング言語は、理論に偏り、開発者を実行環境やコミュニティから遠ざけます(Dartを見てください)
