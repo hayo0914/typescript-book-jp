@@ -19,3 +19,15 @@ TypeScriptを勉強する中で[Type Script Deep Dive](https://github.com/basara
 - 上記をIssueによって指摘する
 - [オリジナルのType Script Deep Dive](https://github.com/basarat/typescript-book/)の最新を反映する
 
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars3.githubusercontent.com/u/1092564?v=4" width="100px;"/><br /><sub><b>DotaKobayashi</b></sub>](https://github.com/DotaKobayashi)<br />[📖](https://github.com/yohamta/typescript-book/commits?author=DotaKobayashi "Documentation") | [<img src="https://avatars2.githubusercontent.com/u/40785264?v=4" width="100px;"/><br /><sub><b>domekomi</b></sub>](https://github.com/domekomi)<br />[📖](https://github.com/yohamta/typescript-book/commits?author=domekomi "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/44207?v=4" width="100px;"/><br /><sub><b>Kanasansoft</b></sub>](http://www.kanasansoft.com/)<br />[📖](https://github.com/yohamta/typescript-book/commits?author=Kanasansoft "Documentation") | [<img src="https://avatars0.githubusercontent.com/u/1013588?v=4" width="100px;"/><br /><sub><b>tsubasa</b></sub>](https://github.com/tsubasa)<br />[📖](https://github.com/yohamta/typescript-book/commits?author=tsubasa "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/3702151?v=4" width="100px;"/><br /><sub><b>kazuau</b></sub>](https://github.com/kazuau)<br />[📖](https://github.com/yohamta/typescript-book/commits?author=kazuau "Documentation") | [<img src="https://avatars3.githubusercontent.com/u/22269397?v=4" width="100px;"/><br /><sub><b>hello</b></sub>](https://github.com/yam-net)<br />[📖](https://github.com/yohamta/typescript-book/commits?author=yam-net "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/27814360?v=4" width="100px;"/><br /><sub><b>szk0u</b></sub>](https://github.com/szk0u)<br />[📖](https://github.com/yohamta/typescript-book/commits?author=szk0u "Documentation") |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!

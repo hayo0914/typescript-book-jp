@@ -1,0 +1,76 @@
+{
+  "projectName": "typescript-book",
+  "projectOwner": "yohamta",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "DotaKobayashi",
+      "name": "DotaKobayashi",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1092564?v=4",
+      "profile": "https://github.com/DotaKobayashi",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "domekomi",
+      "name": "domekomi",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/40785264?v=4",
+      "profile": "https://github.com/domekomi",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Kanasansoft",
+      "name": "Kanasansoft",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/44207?v=4",
+      "profile": "http://www.kanasansoft.com/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "tsubasa",
+      "name": "tsubasa",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1013588?v=4",
+      "profile": "https://github.com/tsubasa",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "kazuau",
+      "name": "kazuau",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/3702151?v=4",
+      "profile": "https://github.com/kazuau",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "yam-net",
+      "name": "hello",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/22269397?v=4",
+      "profile": "https://github.com/yam-net",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "szk0u",
+      "name": "szk0u",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/27814360?v=4",
+      "profile": "https://github.com/szk0u",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ]
+}
