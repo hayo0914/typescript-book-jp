@@ -183,7 +183,7 @@ const good: FromIndex = {b:1, c:2}
 const bad: FromIndex = {b:1, c:2, d:3};
 ```
 
-これは、次のページで説明するように、`keyof typeof`と一緒に使用されて語彙(vocabulary)の種類を補足することがよくあります。次のページで説明します。
+これは、次のページで説明するように、`keyof typeof`と一緒に使用されて語彙(vocabulary)の種類を捕捉することがよくあります。次のページで説明します。
 
 語彙(vocabulary)の明記は一般的に後回しにされ得ます。
 

@@ -268,7 +268,7 @@ var Tristate;
 })(Tristate || (Tristate = {}));
 ```
 
-`Tristate[Tristate["False"] = 0] = "False";`部分については、すでに説明しました。今は、`(function (Tristate) { /*code here */ })(Tristate || (Tristate = {}));`部分を見ましょう。特に`(Tristate || (Tristate = {}));`。これは、基本的に既に補足されたローカル変数`Tristate`を指し示すか、新しい空のオブジェクト`{}`で初期化するローカル変数`TriState`を取得します。
+`Tristate[Tristate["False"] = 0] = "False";`部分については、すでに説明しました。今は、`(function (Tristate) { /*code here */ })(Tristate || (Tristate = {}));`部分を見ましょう。特に`(Tristate || (Tristate = {}));`。これは、基本的に既に捕捉されたローカル変数`Tristate`を指し示すか、新しい空のオブジェクト`{}`で初期化するローカル変数`TriState`を取得します。
 
 つまり、列挙型定義を複数のファイルに分割(および拡張)することができます。たとえば、以下の例では、`Color`の定義を2つのブロックに分割しています
 
