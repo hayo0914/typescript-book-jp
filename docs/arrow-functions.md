@@ -3,15 +3,15 @@
 アロー関数は*fat arrow*(なぜなら`->`は薄い矢印で `=>`は太い矢印であるため)、またはlambda関数(他の言語にならって)と呼ばれています。もう1つの一般的に使用される機能は、アロー関数`()=> something`です。これを使う理由：
 
 1. `function`を何度もタイプしなくて済む
-1. `this`を補足する
-1. 引数(`arguments`)を補足する
+1. `this`をレキシカルに捕捉する
+1. `arguments`をレキシカルに捕捉する
 
 関数的であると公言する言語、JavaScriptでは`function`を頻繁にタイプしやすい傾向があります。アロー関数を使うと、関数をシンプルに作成できます
 ```ts
 var inc = (x)=>x+1;
 ```
 `this`はJavaScriptにおいて昔から頭痛の種でした。
-ある賢い人はかつて「私は`this`の意味をすぐに忘れるJavaScriptが嫌いだ」と言いました。アロー関数は、それを囲んだコンテキストから`this`を補足します。この純粋なJavaScriptだけで書かれたクラスを考えてみましょう：
+ある賢い人はかつて「私は`this`の意味をすぐに忘れるJavaScriptが嫌いだ」と言いました。アロー関数は、それを囲んだコンテキストから`this`を捕捉します。この純粋なJavaScriptだけで書かれたクラスを考えてみましょう：
 
 ```ts
 function Person(age) {
@@ -38,7 +38,7 @@ setTimeout(person.growOld,1000);
 
 setTimeout(function() { console.log(person.age); },2000); // 2
 ```
-これがうまくいく理由は、アロー関数が、関数ボディの外側の`this`を補足するからです。次のJavaScriptコードは同等の動きをします(TypeScriptを使用しない場合の書き方です)。
+これがうまくいく理由は、アロー関数が、関数ボディの外側の`this`を捕捉するからです。次のJavaScriptコードは同等の動きをします(TypeScriptを使用しない場合の書き方です)。
 ```ts
 function Person(age) {
     this.age = age;
