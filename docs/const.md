@@ -37,7 +37,7 @@ foo = 456; // ERROR: Left-hand side of an assignment expression cannot be a cons
 ```
 
 #### ブロックスコープ
-`const`は`let`(./let.md)で見たようにブロックスコープです：
+`const`は[`let`](./let.md)で見たようにブロックスコープです：
 
 ```ts
 const foo = 123;
