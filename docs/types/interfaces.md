@@ -100,4 +100,4 @@ class CrazyClass implements Crazy {
 const crazy = new CrazyClass(); // crazy would be {hello:123}
 ```
 
-あなたはインターフェイスを使ってクレイジーなJSを宣言し、TypeScriptから安全に使用することもできます。しかし、そｒはTypeScriptクラスを使用して、それらを実装できることを意味しているわけではありません。
+インターフェイスを使って世にあるクレイジーなJSを宣言し、TypeScriptから安全に使用することもできます。しかし、それらをTypeScriptクラスとして実装できることを意味しているわけではありません。
