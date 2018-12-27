@@ -135,7 +135,7 @@ ReactDOM.render(
 > 最新のパッケージを入手するには`npm install typescript@latest react@latest react-dom@latest @types/react@latest @types/react-dom@latest webpack@latest webpack-dev-server@latest webpack-cli@latest ts-loader@latest clean-webpack-plugin@latest html-webpack-plugin@latest --save-exact`を実行してください。
 
 * `npm start`を実行してライブ開発を行います
-    *  [http：//localhost：8080](http：//localhost：8080) を参照してください
+    *  [http://localhost:8080](http://localhost:8080) を参照してください
     * `src/app/app.tsx`(または`src/app/app.tsx`に使われるts/tsxファイル)を編集すれば、サーバーがライブリロードします
     * `src/templates/index.html`を編集すれば、サーバーがライブリロードします
 * `npm run build`を実行して本番用のアセットをビルドします
