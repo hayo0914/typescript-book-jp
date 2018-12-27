@@ -130,7 +130,7 @@ ReactDOM.render(
 );
 ```
 
-# あなたのすばらしいアプリケーションを開発する
+# あなたのすばらしいアプリケーションを開発する {#あなたのすばらしいアプリケーションを開発する}
 
 > 最新のパッケージを入手するには`npm install typescript@latest react@latest react-dom@latest @types/react@latest @types/react-dom@latest webpack@latest webpack-dev-server@latest webpack-cli@latest ts-loader@latest clean-webpack-plugin@latest html-webpack-plugin@latest --save-exact`を実行してください。
 
