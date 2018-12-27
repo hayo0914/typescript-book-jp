@@ -34,7 +34,7 @@ namespace Singleton {
 Singleton.someMethod();
 ```
 
-> 警告：シングルトンは単に [global](http://stackoverflow.com/a/142450/390330) ファンシーな名前にしたものです。
+> 警告：シングルトンは単に [global](http://stackoverflow.com/a/142450/390330) をファンシーな名前にしたものです。
 
 ほとんどのプロジェクトでは、`namespace`をさらにモジュールに置き換えることができます。
 
