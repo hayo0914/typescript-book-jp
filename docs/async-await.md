@@ -192,7 +192,7 @@ dramaticWelcome();
 完全な例を [ここ][asyncawaites5code] で見ることができます。
 
 
-**注意**：両方のターゲットシナリオでは、実行時にグローバルにECMAScriptに準拠したPromiseがあることを確認する必要があります。PromiseのためにPolyfillを用意する必要があるかもしれません。また、libフラグを "dom"、 "es2015"、 "dom"、 "es2015.promise"、 "es5"のように設定することで、TypeScriptがPromiseを認識していることを確認する必要があります。
+**注意**：両方のターゲットシナリオでは、実行時にグローバルにECMAScriptに準拠したPromiseがあることを確認する必要があります。PromiseのためにPolyfillを用意する必要があるかもしれません。また、libフラグを "dom", "es2015"もしくは"dom", "es2015.promise", "es5"のように設定することで、TypeScriptがPromiseを認識していることを確認する必要があります。
 **各ブラウザのPromiseサポート(ネイティブおよびPolyfill)の有無を [ここ](https://kangax.github.io/compat-table/es6/#test-Promise) で確認できます。**
 
 [ジェネレータ]:./generators.md
