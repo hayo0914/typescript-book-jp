@@ -7,7 +7,7 @@ declare var process: any;
 
 > すでに [コミュニティ](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/node/index.d.ts) が`node.d.ts`をメンテナンスしているので、`process`のためにこれを行う必要はありません。
 
-これにより、TypeScriptを使わずに `process`変数を使うことができます：
+これにより、TypeScriptのエラーが発生することなく`process`変数を使うことができます：
 
 ```ts
 process.exit();
