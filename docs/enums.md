@@ -52,7 +52,7 @@ var Tristate;
 })(Tristate || (Tristate = {}));
 ```
 
-`Tristate[Tristate["False"] = 0] = "False";`という行に焦点を当てましょう。`Tristate["False"] = 0`は自己説明的でなければなりません。つまり、`Tristate`変数の`"False"`メンバを`0`に設定します。JavaScriptでは、代入演算子は割り当てられた値(この場合は`0`)を返します。したがって、JavaScriptランタイムによって次に実行されるのは、`Tristate [0] ="False"`です。これは、`Tristate`変数を使用して、列挙型の文字列バージョンを列挙型の数値または数値バージョンに変換することができることを意味します。これは以下のとおりです：
+`Tristate[Tristate["False"] = 0] = "False";`という行に焦点を当てましょう。`Tristate["False"] = 0`は自己説明的でなければなりません。つまり、`Tristate`変数の`"False"`メンバを`0`に設定します。JavaScriptでは、代入演算子は割り当てられた値(この場合は`0`)を返します。したがって、JavaScriptランタイムによって次に実行されるのは、`Tristate[0] = "False"`です。これは、`Tristate`変数を使用して、列挙型の文字列バージョンを列挙型の数値または数値バージョンに変換することができることを意味します。これは以下のとおりです：
 
 ```ts
 enum Tristate {
@@ -173,7 +173,7 @@ export enum EvidenceTypeEnum {
 
 ```ts
 // Where `someStringFromBackend` will be '' | 'passport_visa' | 'passport' ... etc.
-const value = someStringFromBackend as EvidenceTypeEnum; 
+const value = someStringFromBackend as EvidenceTypeEnum;
 
 // Sample use in code
 if (value === EvidenceTypeEnum.PASSPORT){
@@ -220,7 +220,7 @@ var lie = 0;
 1. enum定義用のJavaScriptを生成しない(実行時に`Tristate`変数はありません)。使用箇所はインライン展開される
 
 ##### 定数列挙型に対する`--preserveConstEnums`(Const enum preserveConstEnums)
-インライン化には明らかなパフォーマンス上の利点があります。実行時に`Tristate`変数がないという事実は、実行時に実際には使用されないJavaScriptを生成しないことによって、コンパイラを助けることです。しかし、それでも先程のように数値型と文字列型を相互に検索できる列挙型を生成したい場合があるかもしれません。この場合、コンパイラフラグ`--preserveConstEnums`を使用することができます。また`var Tristate`定義を生成するので、実行時に`Tristate [" False "]`や `Tristate [0]`をランタイムで手動で使用することができます。これはインライン展開には決して影響しません。
+インライン化には明らかなパフォーマンス上の利点があります。実行時に`Tristate`変数がないという事実は、実行時に実際には使用されないJavaScriptを生成しないことによって、コンパイラを助けることです。しかし、それでも先程のように数値型と文字列型を相互に検索できる列挙型を生成したい場合があるかもしれません。この場合、コンパイラフラグ`--preserveConstEnums`を使用することができます。また`var Tristate`定義を生成するので、実行時に`Tristate["False"]`や`Tristate[0]`をランタイムで手動で使用することができます。これはインライン展開には決して影響しません。
 
 ### 静的関数を持つ列挙型(Enum with static functions)
 宣言`enum`と`namespace`を合体させて、静的メソッドを列挙型に追加することができます。以下は、静的メンバー`isBusinessDay`を列挙型`Weekday`に追加する例を示しています：
