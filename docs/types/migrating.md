@@ -82,7 +82,7 @@ declare var $: JQuery;
 
 # サードパーティ製NPMモジュール
 
-グローバル変数宣言と同様に、グローバルモジュールを簡単に宣言できます。例えば`jquery`をモジュール(https://www.npmjs.com/package/jquery)として使用したい場合は、あなた自身で以下のように書くことができます：
+グローバル変数宣言と同様に、グローバルモジュールを簡単に宣言できます。例えば`jquery`をモジュール(<https://www.npmjs.com/package/jquery>)として使用したい場合は、あなた自身で以下のように書くことができます：
 
 ```ts
 declare module "jquery";
