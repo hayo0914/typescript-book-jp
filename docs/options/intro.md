@@ -24,4 +24,4 @@ tsc --someBooleanOption
 
 > これらはすべてデフォルトでは`false`です。
 
-[here](https://www.typescriptlang.org/docs/handbook/compiler-options.html)をクリックすると、すべてのコンパイラオプションが表示されます。
+[ここ](https://www.typescriptlang.org/docs/handbook/compiler-options.html)をクリックすると、すべてのコンパイラオプションが表示されます。
