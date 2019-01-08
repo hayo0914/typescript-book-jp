@@ -5,19 +5,19 @@
 サンプル：
 > `Cannot find name ga` `Cannot find name $` `Cannot find module jquery`
 
-おそらく第三者のライブラリ(Googleアナリティクスなど)を使用しており、宣言していません。TypeScriptは、*スペルミス*や宣言しないで変数を使用すると、あなたを助けようとします。あなたは外部ライブラリを取り込んでいるので実行時に利用可能なものに明示する必要があります[修正方法](../types/ambient/d.ts.html)。
+おそらく第三者のライブラリ(Googleアナリティクスなど)を使用しており、宣言していません。TypeScriptは、*スペルミス*や宣言しないで変数を使用すると、あなたを助けようとします。あなたは外部ライブラリを取り込んでいるので実行時に利用可能なものに明示する必要があります([修正方法](../types/ambient/d.ts.md))。
 
 ## TS2307
 サンプル：
 > `Cannot find module 'underscore'`
 
-おそらく、サードパーティのライブラリ(underscoreなど)を*モジュール*([モジュールの詳細](../project/modules.html)はこちらです)として使用していて、それに対する環境宣言ファイルがありません。
+おそらく、サードパーティのライブラリ(underscoreなど)を*モジュール*([モジュールの詳細はこちらです](../project/modules.md))として使用していて、それに対する環境宣言ファイルがありません。
 
 ## TS1148
 サンプル：
 > `'Cannot compile modules unless the '--module' flag is provided`
 
-[モジュール](../project/modules.html)のセクションをチェックしてください。
+[モジュール](../project/modules.md)のセクションをチェックしてください。
 
 ## キャッチ句の変数は型アノテーションを持つことはできません(Catch clause variable cannot have a type annotation)
 サンプル：
