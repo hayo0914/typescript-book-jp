@@ -46,7 +46,7 @@ getMember()
   })
 ```
 
-## Nullアサーション演算子(Non-Null Assertion Operator)
+## 非nullアサーション演算子(Non-Null Assertion Operator)
 
 新しい`!`ポストフィックス式演算子を使用して、型チェッカーが結論付けられないコンテキストにおいて、そのオペランドが非nullでかつ非undefinedであることをアサートすることができます。例えば：
 
