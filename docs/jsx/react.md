@@ -86,7 +86,7 @@ class MyComponent extends React.Component<Props, {}> {
     }
 }
 
-<MyComponent foo="bar" />
+<MyComponent header="This is header." body="This is body." />
 ```
 
 ### React JSXヒント：コンポーネントのインスタンスを受け入れる
