@@ -101,4 +101,4 @@ function Timestamped<TBase extends Constructor>(Base: TBase) {
 }
 ```
 
-それが🌹です
+これだけです🌹
