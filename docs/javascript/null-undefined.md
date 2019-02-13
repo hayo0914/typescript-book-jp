@@ -67,8 +67,8 @@ function foo():{a:number,b?:number}{
 }
 ```
 
-### ノードスタイル(node style)のコールバック
-ノードスタイル(node style)のコールバック関数(例: `(err, somethingElse)=> {/* something */}`)は、エラーがなければ `err`に`null`を設定して呼び出されます。開発者は一般的にtruthyチェックを行います：
+### Nodeスタイルのコールバック
+Nodeスタイルのコールバック関数(例: `(err, somethingElse)=> {/* something */}`)は、エラーがなければ `err`に`null`を設定して呼び出されます。開発者は一般的にtruthyチェックを行います：
 
 ```ts
 fs.readFile('someFile', 'utf8', (err,data) => {
@@ -79,7 +79,7 @@ fs.readFile('someFile', 'utf8', (err,data) => {
   }
 });
 ```
-独自のAPIを作成するときは、一貫性のために`null`を使用することは、良くはありませんが、問題ありません。独自のAPIでは、確実にプロミス(promises)を返すようにするべきです。その場合、`err`の存在を気にかける必要はありません(`.then`と`.catch`を使います)。
+独自のAPIを作成するときは、一貫性のために`null`を使用することは、良くはありませんが、問題ありません。とはいえ、できればPromiseを返すようにするべきです。そうすれば、`err`が`null`かどうかを気にかける必要はなくなります(`.then`と`.catch`を使います)。
 
 ### 有効性(validity)の意味で`undefined`を使用しない
 
@@ -116,6 +116,6 @@ JSON.stringify({willStay: null, willBeGone: undefined}); // {"willStay":null}
 属性値を`undefined`にすると、その属性名はエンコードされないため、データの保存と転送のコストを節約することができます。しかし、これによって値を削除することと値が存在しないことの意味づけが複雑になってしまいます。
 
 ### 結論
-TypeScriptチームは、`null`を使いません: [TypeScriptコーディングガイドライン](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined)。 そして、問題は起きていません。 Douglas Crockfordは[nullはbad idea](https://www.youtube.com/watch?v=PSGEjv3Tqo0&feature=youtu.be&t=9m21s)であると考えています。我々は全部において`undefined`を使うべきです。
+TypeScriptチームは、`null`を使いません: [TypeScriptコーディングガイドライン](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined)。 そして、問題は起きていません。 Douglas Crockfordは[nullはbad idea](https://www.youtube.com/watch?v=PSGEjv3Tqo0&feature=youtu.be&t=9m21s)であり、誰もが`undefined`だけを使うべきだと考えています。
 
-しかし、ノードスタイルのコードでは、Error引数に`null`が標準で使われています。これは`現在利用できません`という意味です。私は個人的に、ほとんどのプロジェクトにおいて、意見がバラバラのライブラリを使っていますが、`== null`で除外するだけなので、2つを区別しません。
+しかし、Nodeスタイルのコードでは、Error引数に`null`が標準で使われています。これは`現在利用できません`という意味です。私は個人的に、ほとんどのプロジェクトにおいて、意見がバラバラのライブラリを使っていますが、`== null`で除外するだけなので、2つを区別しません。
