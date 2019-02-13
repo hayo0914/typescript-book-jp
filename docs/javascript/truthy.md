@@ -12,14 +12,14 @@ truthyでないものは、`falsy`と呼ばれます。
 
 これは開発者のための便利なリファレンスです。
 
-| 変数の型         | *falsy*                  | *truthy*                 |
+| 変数の型         | *falsyな値*              | *truthyな値*             |
 |-----------------|--------------------------|--------------------------|
 | `boolean`       | `false`                  | `true`                   |
-| `string`        | `''` (empty string)      | その他の文字列             |
+| `string`        | `''` (空文字列)      | その他の文字列             |
 | `number`        | `0`  `NaN`               | その他の数値               |
-| `null`          | 常にfalsy                 | - (never)                 |
-| `undefined`     | 常にfalsy                  | - (never)                |
-| Any other Object including empty ones like `{}`,`[]` | あり得ない | 常にtruthy |
+| `null`          | 常にfalsy                 | なし                     |
+| `undefined`     | 常にfalsy                 | なし                     |
+| その他のオブジェクト(`{}`や`[]`といった空のものも含む) | なし | 常にtruthy |
 
 
 ### 明示的にする
