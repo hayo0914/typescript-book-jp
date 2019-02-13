@@ -114,7 +114,7 @@ console.log(Number.MAX_VALUE + 10**1000);  // Infinity
 console.log(-Number.MAX_VALUE - 10**1000); // -Infinity
 ```
 
-もちろん、これらの無限大値も、それを必要とする算術演算で現れます。
+もちろん、これらの無限大値は、それを必要とする算術演算でも現れます。
 
 ```js
 console.log( 1 / 0); // Infinity
