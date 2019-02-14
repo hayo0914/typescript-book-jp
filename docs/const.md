@@ -28,7 +28,7 @@ if (x > maxRows) {
 const foo; // ERROR: const declarations must be initialized
 ```
 
-#### 代入の左辺は定数ではない
+#### 代入の左辺に定数は置けない
 定数は作成後は不変です。したがって、それらを新しい値に代入しようとするとコンパイラエラーになります：
 
 ```ts
@@ -37,7 +37,7 @@ foo = 456; // ERROR: Left-hand side of an assignment expression cannot be a cons
 ```
 
 #### ブロックスコープ
-`const`は[`let`](./let.md)で見たようにブロックスコープです：
+`const`は[`let`](./let.md)と同様にブロックスコープです：
 
 ```ts
 const foo = 123;
