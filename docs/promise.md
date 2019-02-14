@@ -172,7 +172,7 @@ function loadJSON(filename: string, cb: (error: Error) => void) {
 
 ## Promiseを作る
 
-Promiseの状態は、`pending`(保留中)または`fulfilled`(履行済み)または`regected`(拒絶済み)のいずれかになります。
+Promiseの状態は、`pending`(保留中)または`fulfilled`(履行済み)または`rejected`(拒絶済み)のいずれかになります。
 
 ![Promiseの宣言と運命](https://raw.githubusercontent.com/basarat/typescript-book/master/images/promise%20states%20and%20fates.png)
 
