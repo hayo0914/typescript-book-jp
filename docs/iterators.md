@@ -9,7 +9,7 @@ interface Iterator<T> {
     throw?(e?: any): IteratorResult<T>;
 }
 ```
-
+([`<T>`記法についてはのちに説明します](./types/generics.html))  
 このインタフェースは、コレクションまたはシーケンスのオブジェクトに属する値を取得することを可能にします。
 
 `IteratorResult`は単なる`value`+`done`のペアです：
