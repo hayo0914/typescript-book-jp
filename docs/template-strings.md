@@ -53,7 +53,7 @@ var say = "a bird in hand > two in the bush";
 var html = htmlEscape `<div> I would just like to say : ${say}</div>`;
 
 // a sample tag function
-function htmlEscape(literals, ...placeholders) {
+function htmlEscape(literals: TemplateStringsArray, ...placeholders: string[]) {
     let result = "";
 
     // interleave the literals with the placeholders
@@ -72,6 +72,7 @@ function htmlEscape(literals, ...placeholders) {
     return result;
 }
 ```
+> メモ: `placeholders`は、任意の`[]`として型指定することができます。どの型を指定したにせよ、TypeScriptは型チェックを行って、タグを呼び出すときに渡されたplaceholdersが指定された型と一致することを確かめます。たとえば、`string`か`number`の配列を期待する場合、`...placeholders:(string | number)[]`と型指定することができます。
 
 #### 生成されたJS
 ES6未満をターゲットにしたコンパイルの場合、コードはかなりシンプルです。複数行の文字列はエスケープ文字列になります。文字列補間は文字列連結(string concatenation)になります。タグ付きテンプレート(Tagged Templates)は関数呼び出しになります。
