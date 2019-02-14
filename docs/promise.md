@@ -495,7 +495,7 @@ Promise.race([task1, task2]).then(function(value) {
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 ```
 
-NodeJSにはこれを行う素晴らしく便利な関数があります。これは`ノードスタイルの関数 => Promiseを返す関数`という魔法をかけてくれます。
+NodeJSにはこれを行う素晴らしく便利な関数があります。これは`Nodeスタイルの関数 => Promiseを返す関数`という魔法をかけてくれます。
 
 ```ts
 /** Sample usage */
