@@ -69,7 +69,7 @@ setTimeout(function() { console.log(person.age); },2000); // 2
 > [このパターンについてのSweetなビデオ🌹](https://egghead.io/lessons/typescript-make-usages-of-this-safe-in-class-methods)
 
 #### Tip：アロー関数の必要性
-簡潔な構文が得られること以外に、もし関数を他の誰かに呼び出してほしい場合は、アロー関数を使うだけでできます。つまり:
+簡潔な構文が得られることに加えて、関数を他の誰かに呼び出してもらいたい場合も、アロー関数を使うだけですみます。つまり:
 ```ts
 var growOld = person.growOld;
 // Then later someone else calls it:
@@ -83,7 +83,7 @@ person.growOld();
 
 #### Tip：アロー関数の危険性
 
-実際に`this`を呼び出しコンテキスト(calling context)にしたい場合はアロー関数を使うべきではありません。jquery、underscore、mochaなどのライブラリで使用されるコールバックのケースです。ドキュメントが`this`の関数を記述している場合は、たぶんアロー関数の代わりに`function`を使うべきでしょう。同様に、`arguments`を使う場合は、アロー関数を使用しないでください。
+実は、`this`を呼び出しコンテキスト(calling context)にしたい場合はアロー関数を使うべきではありません。jquery、underscore、mochaなどのライブラリで使用されるコールバックのケースです。ドキュメントが`this`の機能について言及している場合は、おそらくアロー関数の代わりに`function`を使うべきでしょう。同様に、`arguments`を使う場合は、アロー関数を使用しないでください。
 
 #### Tip：`this`を使用するライブラリのアロー関数
 多くのライブラリ、例えば`jQuery`の反復(例: <https://api.jquery.com/jquery.each/>)は`this`を使って現在反復中のオブジェクトを渡します。このようなケースでは、ライブラリが渡した`this`だけでなく周囲のコンテキストにもアクセスしたい場合は、アロー関数が無いときに行うように`_self`のような一時変数を使用してください。
