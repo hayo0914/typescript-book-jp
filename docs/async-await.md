@@ -46,7 +46,7 @@ const foo = wrapToReturnPromise(function* () {
 });
 ```
 
-`wrapToReturnPromise`はジェネレータ関数を実行して`generator`を取得し、`generator.next()`を使います。返却値が`promise`なら、その`promise`を`try`+`catch`し、結果に応じて、`generator.next(result)`または `generator.throw(error)`をコールします。それでおしまい!
+`wrapToReturnPromise`はジェネレータ関数を実行して`generator`を取得し、`generator.next()`を使います。返却値が`promise`なら、その`promise`を`then`+`catch`し、結果に応じて、`generator.next(result)`または `generator.throw(error)`をコールします。それでおしまい!
 
 
 
