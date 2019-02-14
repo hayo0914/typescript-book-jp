@@ -77,7 +77,7 @@ const fooBar = {...foo, ...bar};
 ```
 
 #### 要約
-`apply`はJavaScriptでよく使うので、これの引数に醜い`null`を書かないようにすることは良いことです。また、配列を分解したり、他の配列に代入したりする専用の構文を使うことにより、簡潔な構文で部分配列に対する処理を行うことができます。
+スプレッド演算子は、JavaScriptでよく使われる`apply`の`this`引数に醜い`null`を渡さなくてもすむようになる、すぐれた構文です。また、配列を分解したり、他の配列に代入したりする専用の構文を使うことにより、簡潔な構文で部分配列に対する処理を行うことができます。
 
 
 [Pull Request: Support spread operator in call expressions](https://github.com/Microsoft/TypeScript/pull/1931)
