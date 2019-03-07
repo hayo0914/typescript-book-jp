@@ -92,8 +92,8 @@ foo = '456';
 ### 型による開発環境へのメリット
 TypeScriptの設計における大きなゴールは、TypeScriptで既存のJavaScriptライブラリを安全かつ簡単に利用できることです。TypeScriptはこれを型宣言(declaration)で行います。TypeScriptにおいて、型宣言にどれくらいの労力をかけるかは調整可能です。より多くの労力をかければ、より多くの型安全性とIDEによるコード補完(code intelligence)が手に入ります。メジャーなJavaScriptライブラリの型定義は、[DefinitelyTyped community](https://github.com/borisyankov/DefinitelyTyped)によって既に作成されているため、
 
-1. 定義ファイルが既に存在する
-1. あるいは、最低でも、きちんとレビューされた多くのTypeScript宣言のテンプレートが既に利用可能である
+1. 定義ファイルが既に存在します。
+1. あるいは、最低でも、きちんとレビューされた多くのTypeScript宣言のテンプレートが既に利用可能です。
 
 独自の型宣言ファイルを作成する短い例として、[jquery](https://jquery.com/)の簡単な例を考えてみましょう。TypeScriptは、デフォルト設定において(望ましいJavaScriptコードのように)、変数を使う前に宣言する(つまり、どこかで`var`を使う)ことを期待しています。
 ```ts
