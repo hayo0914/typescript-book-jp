@@ -1,4 +1,4 @@
-* [TypeScript入門](#getting-started-with-typescript)
+* [TypeScriptを始めよう](#getting-started-with-typescript)
 * [TypeScriptのバージョン](#typescript-version)
 
 # TypeScriptを始めよう
