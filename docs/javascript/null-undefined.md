@@ -47,8 +47,8 @@ if (typeof someglobal !== 'undefined') {
 }
 ```
 
-### `undefined`を使わないようにする
-TypeScriptにおいて、あなたは、変数と構造を分離して型を記述することができます。下記のように書く代わりに:
+### `undefined` の明示的な利用を制限する
+なぜなら、TypeScript においては値から構造を分離してドキュメント化するための良い機会だからです。下記のように書く代わりに:
 ```ts
 function foo(){
   // if Something
