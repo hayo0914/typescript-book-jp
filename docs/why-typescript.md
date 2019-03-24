@@ -140,7 +140,7 @@ var inc = x => x+1;
 ```
 
 ### 要約
-この章では、TypeScriptを使う動機とTypeScriptの設計ゴールを説明しました。これで、TypeScriptの微に入り細を穿つ詳細の説明を行うことができます。
+この章では、TypeScriptを使う動機とTypeScriptの設計ゴールを説明しました。これで、TypeScriptの隅々まで詳細を追うことができます。
 
 [](Interfaces are open ended)
 [](Type Inferernce rules)
