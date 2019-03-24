@@ -5,7 +5,7 @@
 JavaScriptにはたった1つの数値型しかありません。倍精度の64ビットの数値(`Number`)です。以下でその限界と望ましい解決策について説明します。
 
 ### 10進数(Decimal)
-他の言語におけるdouble / floatに精通している人であれば、バイナリの浮動小数は10進数の少数と正しく対応していないことを知っているでしょう。 JavaScriptの数値を使った簡単な(そして有名な)例を以下に示します：
+他の言語におけるdouble / floatに精通している人であれば、バイナリの浮動小数は10進数の小数と正しく対応していないことを知っているでしょう。 JavaScriptの数値を使った簡単な(そして有名な)例を以下に示します：
 
 ```js
 console.log(.1 + .2); // 0.30000000000000004
@@ -14,7 +14,7 @@ console.log(.1 + .2); // 0.30000000000000004
 > 正しい少数演算のためには、以下に述べる`big.js`を使います。
 
 ### 整数(Integer)
-Javascriptの数値型の制限は、`Number.MAX_SAFE_INTEGER`と`Number.MIN_SAFE_INTEGER`です。
+整数値の限界は、組み込みの数値型`Number.MAX_SAFE_INTEGER`と`Number.MIN_SAFE_INTEGER`によって決まります。
 
 ```js
 console.log({max: Number.MAX_SAFE_INTEGER, min: Number.MIN_SAFE_INTEGER});
@@ -76,7 +76,7 @@ const x: number = Number(bar.toString()); // 少数点以下の精度を失う
 > このライブラリは、チャートやキャンバスの描画など、UI /パフォーマンスが重視される目的には使用しないでください。
 
 ### NaN
-数値計算が有効な数値で表現できない場合、JavaScriptは特別なNaN値を返します。古典的な例は虚数です。
+数値計算が有効な数値で表現できない場合、JavaScriptは特別な`NaN`値を返します。古典的な例は虚数です。
 
 ```js
 console.log(Math.sqrt(-1)); // NaN
