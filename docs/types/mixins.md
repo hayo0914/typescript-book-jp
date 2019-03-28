@@ -14,7 +14,7 @@ class User extends Tagged, Timestamped { // ERROR : no multiple inheritance
 > [mixinは]
 >
 > 1. コンストラクタをとり、
-> 1. 新機能でそのコンストラクタを拡張するクラスを作成する
+> 1. コンストラクタを拡張し、新しい機能を持つクラスを作成する
 > 1. 新しいクラスを返す
 
 完全な例
@@ -81,7 +81,7 @@ console.log(timestampedActivatableUserExample.isActivated);
 
 ## コンストラクタを取る
 
-ミックスインはクラスを取り、それを新しい機能で拡張します。したがって、*コンストラクタ*を定義する必要があります。簡単に：
+ミックスインはクラスを拡張し、新しい機能を追加します。したがって、*コンストラクタ*を定義する必要があります。次のように簡単です：
 
 ```ts
 // Needed for all mixins
@@ -90,7 +90,7 @@ type Constructor<T = {}> = new (...args: any[]) => T;
 
 ## クラスを拡張して返します
 
-とても簡単：
+とても簡単です：
 
 ```ts
 // A mixin that adds a property
