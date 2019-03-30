@@ -1,5 +1,5 @@
-* [TypeScriptを始めよう](#getting-started-with-typescript)
-* [TypeScriptのバージョン](#typescript-version)
+* [TypeScriptを始めよう](#typescriptwomeyou)
+* [TypeScriptのバージョン](#typescriptnobjon)
 
 # TypeScriptを始めよう
 
