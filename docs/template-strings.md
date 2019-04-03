@@ -46,7 +46,7 @@ Never gonna let you down`;
 * すべての静的リテラルは、最初の引数に配列として渡されます。
 * プレースホルダのすべての値は、残りの引数として渡されます。一般的には、単に可変長引数(Rest Parameters)を使用してこれらを配列に変換します。
 
-ここでは、すべてのプレースホルダからhtmlをエスケープするタグ関数(htmlEscape)が存在する例を示します。
+ここでは、すべてのプレースホルダからhtmlをエスケープするタグ関数(`htmlEscape`)が存在する例を示します。
 
 ```ts
 var say = "a bird in hand > two in the bush";
