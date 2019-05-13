@@ -58,7 +58,7 @@ package
 
 * `tsconfig.json`について
   * `compilerOptions`に`"outDir": "lib"`と、`"declaration": true`を設定します < これは宣言ファイルとjsファイルをlibフォルダに生成します
-  * `include：["./src / ** / *"]`を設定します < これは`src`ディレクトリからのすべてのファイルを対象に含めます
+  * `"include"：["./src / ** / *"]`を設定します < これは`src`ディレクトリからのすべてのファイルを対象に含めます
 
 * `package.json`について
   * `"main"： "lib/index"` <これはNode.jsに`lib/index.js`をロードするように指示します
