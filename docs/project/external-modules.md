@@ -116,7 +116,7 @@ export default function someFunction() { }
 export default class SomeClass { }
 ```
 
-* `import someName using someModule`構文を使用してインポートする(インポートには任意の名前を付けることができます):
+* `import someName from "someModule"`構文を使用してインポートする(インポートには任意の名前を付けることができます):
 
 ```js
 import someLocalNameForThisFile from "../foo";
