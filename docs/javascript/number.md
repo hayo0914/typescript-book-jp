@@ -11,7 +11,7 @@ JavaScriptにはたった1つの数値型しかありません。倍精度の64�
 console.log(.1 + .2); // 0.30000000000000004
 ```
 
-> 正しい少数演算のためには、以下に述べる`big.js`を使います。
+> 正しい小数演算のためには、以下に述べる`big.js`を使います。
 
 ### 整数(Integer)
 整数値の限界は、組み込みの数値型`Number.MAX_SAFE_INTEGER`と`Number.MIN_SAFE_INTEGER`によって決まります。
