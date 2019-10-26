@@ -15,7 +15,7 @@ TypeScriptの外部モジュールパターンには大きなパワーと利便�
 
 どのようにTypeScriptモジュールを書くかについても、ちょっと混乱があります。今日それを避けるには:
 
-* `import foo = require( 'foo')`、つまり、`import/require`を避けて、代わりにESモジュールの構文を使用してください。
+* `import foo = require('foo')`、つまり、`import/require`を避けて、代わりにESモジュールの構文を使用してください。
 
 クール!ではESモジュールの構文を見てみましょう。
 
