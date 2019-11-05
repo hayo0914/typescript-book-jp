@@ -13,7 +13,7 @@
 
 ## HTMLタグとComponentの違い
 
-Reactは、HTMLタグ(文字列)またはReact Component(クラス)をレンダリングします。これらに対するJavaScriptの出力は異なります(`React.createElement( 'div')`と`React.createElement(MyComponent)`)。これが決まる方法は最初の文字の*ケース*(大文字小文字)です。`foo`はHTMLタグとして扱われ、`Foo`はコンポーネントとして扱われます。
+Reactは、HTMLタグ(文字列)またはReact Component(クラス)をレンダリングします。これらに対するJavaScriptの出力は異なります(`React.createElement('div')`と`React.createElement(MyComponent)`)。これが決まる方法は最初の文字の*ケース*(大文字小文字)です。`foo`はHTMLタグとして扱われ、`Foo`はコンポーネントとして扱われます。
 
 ## 型チェック(Type Checking)
 
