@@ -28,7 +28,7 @@ function log(someArg: number) {
 }
 ```
 
-あなたが本当にゼロの安全性を望むなら*明示的*に`any`とマークすることができます：
+あなたが本当にゼロの安全性を望むなら*明示的*に`any`とマークすることができます:
 
 ```ts
 function log(someArg: any) {
