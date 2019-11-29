@@ -34,6 +34,6 @@ var bar = foo; // ERROR: "cannot find name 'foo'"
 import { foo } from "./foo";
 var bar = foo; // allowed
 ```
-`bar.ts`で`import`を使うと、他のファイルから取り込むことができるだけでなく、ファイル`bar.ts`をモジュールとして認識するので、`bar.ts`での宣言は `グローバル名前空間を汚染しません。
+`bar.ts`で`import`を使うと、他のファイルから取り込むことができるだけでなく、ファイル`bar.ts`をモジュールとして認識するので、`bar.ts`での宣言はグローバル名前空間を汚染しません。
 
 外部モジュールを使用するTypeScriptファイルのJavaScriptへのコンパイルは、`module`というコンパイラフラグが必要です。
