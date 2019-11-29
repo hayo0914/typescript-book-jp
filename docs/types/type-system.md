@@ -10,7 +10,7 @@
 
 次の例は、変数、関数パラメータ、および関数戻り値の型アノテーションを示しています。
 
-```
+```ts
 var num: number = 123;
 function identity(num: number): number {
     return num;
