@@ -33,7 +33,7 @@ console.log.apply(console, new Array(1000000000)); // RangeError: Invalid array 
 console.log(notValidVar); // ReferenceError: notValidVar is not defined
 ```
 
-### 構文エラー
+### SyntaxError
 
 有効でないJavaScriptを解析する際に発生する構文エラーを表すインスタンスを作成します。
 
