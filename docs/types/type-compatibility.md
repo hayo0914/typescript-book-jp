@@ -83,7 +83,7 @@ iTakePoint2D({ x: 0 }); // Error: missing information `y`
 
 ## 関数(Functions)
 
-2つの機能を比較するときには、いくつか些細なことを考慮する必要があります。
+2つの関数を比較するときには、いくつか些細なことを考慮する必要があります。
 
 ### 戻り値の型(Return Type)
 
