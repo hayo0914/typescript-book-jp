@@ -69,7 +69,7 @@ const simple: (foo: number) => string
 
 ### ニューアブル(Newable)
 
-ニューアブル(Newable)は、接頭辞`new`を持つ特殊なコーラブル型アノテーションです。これは単にnewを使ってを呼び出す必要があることを意味します。
+ニューアブル(Newable)は、接頭辞`new`を持つ特殊なコーラブル型アノテーションです。これは単にnewを使って呼び出す必要があることを意味します。
 
 ```ts
 interface CallMeWithNewToGetString {
