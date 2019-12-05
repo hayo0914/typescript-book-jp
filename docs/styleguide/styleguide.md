@@ -266,12 +266,12 @@ const foo: string = "hello";
 
 * ユニオン型や交差型が必要な場合には`type`を使います：
 
-```
+```ts
 type Foo = number | { someProperty: number }
 ```
 * `extend`や`implements`をしたいときは`interface`を使います。
 
-```
+```ts
 interface Foo {
   foo: string;
 }
