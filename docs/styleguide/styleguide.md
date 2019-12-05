@@ -78,7 +78,7 @@ class Foo {
 
 > 理由：クラスに似ています
 
-* **プレフィックスに`I`をつけないでください
+* プレフィックスに`I`をつけないでください
 
 > Reason： 慣例的ではないため。`lib.d.ts`は`I`のない重要なインターフェース(例えば、Window、Documentなど)を定義します。
 
@@ -181,7 +181,7 @@ return null;
 return undefined;
 ```
 
-* APIまたは従来のAPIの一部である場合は `null 'を使用します
+* APIまたは従来のAPIの一部である場合は`null`を使用します
 
 > 理由：Node.jsの慣例通りです。NodeBackスタイルコールバックの`error`は`null`です。
 
