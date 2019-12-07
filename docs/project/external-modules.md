@@ -144,7 +144,7 @@ import someLocalNameForThisFile from "../foo";
 
 #### 動的ルックアップ(Dynamic lookup)
 
-インポートパスが相対でない場合、検索は [ノードJSスタイルのモジュール解決](https://nodejs.org/api/modules.html#modules_all_together) によって行われます。ここでは簡単な例を示します。
+インポートパスが相対でない場合、検索は [Node.jsスタイルのモジュール解決](https://nodejs.org/api/modules.html#modules_all_together) によって行われます。ここでは簡単な例を示します。
 
 * あなたが`import * as foo from 'foo'`を書いた場合、以下の場所が順番にチェックされます
   * `./node_modules/foo`
