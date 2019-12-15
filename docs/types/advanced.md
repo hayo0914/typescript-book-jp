@@ -76,7 +76,7 @@ callMe('jenny', '5309');
 
 # アンビエント宣言
 
-以前は、なぜtypescript？*というセクションのアンビエント宣言について簡単に見てきました。 TypeScriptの主要な設計目標の1つは、既存のJavaScriptライブラリを簡単に使用できるようにすることです。 * ambient宣言*を使用して、既存のJavaScriptの型情報を宣言することができます。あなたは `declare`キーワードを使って周囲のものを宣言します。実際、これは、ブラウザ環境(例えば `window`、`document`など)でデフォルトで利用できるたくさんのものが `lib.d.ts`というファイルでどのように宣言されているかです
+以前は、なぜTypeScript？*というセクションのアンビエント宣言について簡単に見てきました。 TypeScriptの主要な設計目標の1つは、既存のJavaScriptライブラリを簡単に使用できるようにすることです。 * ambient宣言*を使用して、既存のJavaScriptの型情報を宣言することができます。あなたは `declare`キーワードを使って周囲のものを宣言します。実際、これは、ブラウザ環境(例えば `window`、`document`など)でデフォルトで利用できるたくさんのものが `lib.d.ts`というファイルでどのように宣言されているかです
 
 
 注：[DefinitelyTyped](https://github.com/borisyankov/DefinitelyTyped)には、最も人気のあるJavaScriptライブラリのほぼ90％のタイプ定義が[たくさんの開発者](https://github.com)から寄せられています/ borisyankov / DefinitelyTyped /グラフ/投稿者)。

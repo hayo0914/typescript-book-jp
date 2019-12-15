@@ -81,4 +81,4 @@ SemicolonToken 13 14
 ```
 
 ### スタンドアロンScanner
-typescript ParserはシングルトンのScannerを持っていますが、`createScanner`を使ってスタンドアロンScannerを作成し、`setText`/`setTextPos`を使って、一興のためにファイル内の異なる位置をスキャンすることができます。
+TypeScript ParserはシングルトンのScannerを持っていますが、`createScanner`を使ってスタンドアロンScannerを作成し、`setText`/`setTextPos`を使って、一興のためにファイル内の異なる位置をスキャンすることができます。

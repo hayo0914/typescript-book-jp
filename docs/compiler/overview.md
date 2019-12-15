@@ -1,5 +1,5 @@
 # コンパイラ
-typescriptコンパイラのソースは、[`src/compiler`](https://github.com/Microsoft/TypeScript/tree/master/src/compiler)フォルダの下にあります。
+TypeScriptコンパイラのソースは、[`src/compiler`](https://github.com/Microsoft/TypeScript/tree/master/src/compiler)フォルダの下にあります。
 
 それは以下の主要な部分に分割されます：
 * Scanner(`scanner.ts`)
