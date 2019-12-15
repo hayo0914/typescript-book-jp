@@ -27,7 +27,7 @@ TypeScriptは、Node.jsを公式にサポートしています。素早くNode.j
 
 * nodemonはそのコマンド(ts-node)を再実行する
 * ts-nodeは自動的にtsconfig.jsonとインストールされたTypeScriptバージョンを取得し、トランスパイルを行う
-* ts-nodeは出力されたjavascriptをNode.jsで実行する
+* ts-nodeは出力されたJavaScriptをNode.jsで実行する
 
 ## TypeScriptのnode moduleを作成する
 
