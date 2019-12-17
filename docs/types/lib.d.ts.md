@@ -5,7 +5,7 @@
 * このファイルは、TypeScriptプロジェクトのコンパイルコンテキストに自動的に含まれます
 * このファイルの目的は型チェックのあるJavaScript開発を簡単に始めることです
 
-コンパイルオプションに`--noLib`を指定してこのファイルをコンパイルコンテキストから除外することができます(`tsconfig.json`に`noLib：true`を指定)。
+コンパイルオプションに`--noLib`を指定してこのファイルをコンパイルコンテキストから除外することができます(`tsconfig.json`に`noLib : true`を指定)。
 
 ### 使用例
 
@@ -282,7 +282,7 @@ libsは次のように分類できます。
 ES5にシンボル(Symbol)を含む例：
 
 ターゲットがes5の場合、Symbol APIは含まれません。実際のところ"[ts]Cannot find name 'Symbol'"ようなエラーが表示されます。
-"target"： "es5"と "lib"を組み合わせて、TypeScriptにSymbol APIを提供することができます：
+"target": "es5"と "lib"を組み合わせて、TypeScriptにSymbol APIを提供することができます：
 
 ```json
 "compilerOptions": {

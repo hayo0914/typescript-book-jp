@@ -52,7 +52,7 @@ const test = {
 iTakeFoo(test.someProp); // Error: Argument of type string is not assignable to parameter of type 'foo'
 ```
 
-これは、`test`が`{someProp：string} `型であると推定されるためです。この問題を解決するには、シンプルな型アサーションを使用して、TypeScriptに以下のようにリテラルを推測させます。
+これは、`test`が`{someProp: string} `型であると推定されるためです。この問題を解決するには、シンプルな型アサーションを使用して、TypeScriptに以下のようにリテラルを推測させます。
 
 ```js
 function iTakeFoo(foo: 'foo') { }
@@ -67,7 +67,7 @@ iTakeFoo(test.someProp); // Okay!
 
 #### 文字列ベースの列挙型
 
-[TypeScript enumsは数字ベースです](../enums.md)。上記の`CardinalDirection`の例のようにユニオン型の文字列リテラルを使用して文字列ベースの列挙型を模倣することができます。次の関数を使って`Key：Value`構造体を生成することさえできます：
+[TypeScript enumsは数字ベースです](../enums.md)。上記の`CardinalDirection`の例のようにユニオン型の文字列リテラルを使用して文字列ベースの列挙型を模倣することができます。次の関数を使って`Key:Value`構造体を生成することさえできます：
 
 ```ts
 /** Utility function to create a K:V from a list of strings */

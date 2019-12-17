@@ -14,4 +14,4 @@ OEとの相互作用メカニズムを示します：
 
 ### ソースファイル
 
-programは、ソースファイルを取得するためのAPI`getSourceFiles()：SourceFile [];`を提供します。それぞれは、ASTのルートレベルのノード(`SourceFile`と呼ばれます)として表されます。
+programは、ソースファイルを取得するためのAPI`getSourceFiles(): SourceFile[];`を提供します。それぞれは、ASTのルートレベルのノード(`SourceFile`と呼ばれます)として表されます。

@@ -11,7 +11,7 @@ TypeScriptの外部モジュールパターンには大きなパワーと利便�
 * SystemJS：良い実験でした。ESモジュールによって置き換えられました
 * ESモジュール：まだ使えません
 
-これはJavaScriptを生成するためのオプションです。これらのオプションの代わりに、`module：commonjs`を使ってください。
+これはJavaScriptを生成するためのオプションです。これらのオプションの代わりに、`module:commonjs`を使ってください。
 
 どのようにTypeScriptモジュールを書くかについても、ちょっと混乱があります。今日それを避けるには:
 
@@ -19,7 +19,7 @@ TypeScriptの外部モジュールパターンには大きなパワーと利便�
 
 クール!ではESモジュールの構文を見てみましょう。
 
-> 概要： `module：commonjs`を使い、ESモジュール構文を使ってモジュールをimport/export/作成します。
+> 概要： `module:commonjs`を使い、ESモジュール構文を使ってモジュールをimport/export/作成します。
 
 ### ESモジュールの構文
 
@@ -124,7 +124,7 @@ import someLocalNameForThisFile from "../foo";
 
 ### モジュールのパス
 
-> 私は`moduleResolution：commonjs`を仮定しています。これはあなたのTypeScript設定に含めるべきオプションです。この設定は`module：commonjs`によって暗黙的に設定されます。
+> 私は`moduleResolution: commonjs`を仮定しています。これはあなたのTypeScript設定に含めるべきオプションです。この設定は`module:commonjs`によって暗黙的に設定されます。
 
 2つの異なる種類のモジュールがあります。この区別は、import文のパスセクション(path section)によって行われます(たとえば、`import foo from 'これがパスセクションです'`)。
 

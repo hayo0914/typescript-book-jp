@@ -105,7 +105,7 @@ console.log((2).toString()); // 2
 
 ### インデックスシグネチャを宣言する
 
-今まで私たちは、TypeScriptに私たちが望むことをさせるために`any`を使ってきました。私たちは、実際にはインデックスシグネチャを明示的に指定できます。例えば文字列を使ってオブジェクトに格納されているものが構造体`{message：string}`に従っていることを確認したいとします。これは`{[index：string]：{message：string}}`の宣言で行うことができます。これは以下のとおりです：
+今まで私たちは、TypeScriptに私たちが望むことをさせるために`any`を使ってきました。私たちは、実際にはインデックスシグネチャを明示的に指定できます。例えば文字列を使ってオブジェクトに格納されているものが構造体`{message: string}`に従っていることを確認したいとします。これは`{ [index:string] : {message: string} }`の宣言で行うことができます。これは以下のとおりです：
 
 ```ts
 let foo:{ [index:string] : {message: string} } = {};
@@ -127,9 +127,9 @@ foo['a'].message;
 foo['a'].messages;
 ```
 
-> ヒント： インデックスシグネチャの名前`{[index：string]：{message：string}}`の`index`はTypeScriptにとっては意味がなく、可読性のためだけのものです。例えばもしそれがユーザー名であれば、コードを見る次の開発者のために`{[username：string]：{message：string}}`と宣言することができます。
+> ヒント： インデックスシグネチャの名前`{ [index:string] : {message: string} }`の`index`はTypeScriptにとっては意味がなく、可読性のためだけのものです。例えばもしそれがユーザー名であれば、コードを見る次の開発者のために`{ [username:string] : {message: string} }`と宣言することができます。
 
-もちろん、`number`インデックスもサポートされています。例:`{[count：number]：SomeOtherTypeYouWantToStoreEgRebate}`
+もちろん、`number`インデックスもサポートされています。例:`{ [count: number] : SomeOtherTypeYouWantToStoreEgRebate }`
 
 ### すべてのメンバは`string`インデックスシグネチャに従わなければならない
 

@@ -8,7 +8,7 @@ TypeScriptは、Node.jsを公式にサポートしています。素早くNode.j
 1. `node.d.ts`を追加する(`npm install @types/node --save-dev`)
 1. TypeScriptの設定ファイル`tsconfig.json`をいくつかの重要なオプションを使って初期化する(`npx tsc --init --rootDir src --outDir lib --esModuleInterop --resolveJsonModule --lib es6,dom --module commonjs`)。
 
-それでおしまい!あなたのIDE(例えば`code .`)を起動して遊んでください。TypeScriptの安全性と開発者人間工学とあわせて、組み込みのすべてのノードモジュールを使用することができます(例：`import fs = require( 'fs');`)。
+それでおしまい!あなたのIDE(例えば`code .`)を起動して遊んでください。TypeScriptの安全性と開発者人間工学とあわせて、組み込みのすべてのノードモジュールを使用することができます(例：`import * as fs from 'fs';`)。
 
 ## ボーナス： ライブコンパイル+実行
 * nodeでのライブコンパイル+実行のために使う`ts-node`を追加する(`npm install ts-node --save-dev`)
@@ -58,11 +58,11 @@ package
 
 * `tsconfig.json`について
   * `compilerOptions`に`"outDir": "lib"`と、`"declaration": true`を設定します < これは宣言ファイルとjsファイルをlibフォルダに生成します
-  * `"include"：["./src / ** / *"]`を設定します < これは`src`ディレクトリからのすべてのファイルを対象に含めます
+  * `"include": ["./src / ** / *"]`を設定します < これは`src`ディレクトリからのすべてのファイルを対象に含めます
 
 * `package.json`について
-  * `"main"： "lib/index"` <これはNode.jsに`lib/index.js`をロードするように指示します
-  * `"types"： "lib/index"` <これはTypeScriptに`lib/index.d.ts`をロードするように指示します
+  * `"main": "lib/index"` <これはNode.jsに`lib/index.js`をロードするように指示します
+  * `"types": "lib/index"` <これはTypeScriptに`lib/index.d.ts`をロードするように指示します
 
 
 パッケージの例：

@@ -158,7 +158,7 @@ const getJSON = <T>(config: {
   }
 ```
 
-あなたは依然としてアノテーションを明示しなければならないことに注意してください。しかし、`getJSON<T>`のシグネチャ`(config)=> Promise <T>`は、キータイプを減らすことができます(`loadUsers`の戻り値の型は、TypeScriptが推論可能なのでアノテーションする必要はありません):
+あなたは依然としてアノテーションを明示しなければならないことに注意してください。しかし、`getJSON<T>`のシグネチャ`(config) => Promise<T>`は、キータイプを減らすことができます(`loadUsers`の戻り値の型は、TypeScriptが推論可能なのでアノテーションする必要はありません):
 
 ```ts
 type LoadUsersResponse = {

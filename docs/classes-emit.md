@@ -55,20 +55,20 @@ var __extends = this.__extends || function (d, b) {
 ここで `d`は派生クラスを指し、`b`はベースクラスを指します。この関数は2つのことを行います：
 
 1. 親クラスの静的メンバを子クラスにコピーする:`for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];`
-1. 子クラス関数のプロトタイプを準備し、任意に親の`proto`のメンバを検索できるようにする。つまり、`d.prototype.__ proto__ = b.prototype`を実現する
+1. 子クラス関数のプロトタイプを準備し、任意に親の`proto`のメンバを検索できるようにする。つまり、`d.prototype.__proto__ = b.prototype`を実現する
 
 1を理解するのに苦労する人はほとんどいませんが、2については多くの人が理解に苦労します。なので順番に説明します。
 
-#### `d.prototype .__ proto__ = b.prototype`
+#### `d.prototype.__proto__ = b.prototype`
 
-これについて多くの人を教えた結果、次のような説明が最もシンプルだと分かりました。まず、`__extends`のコードが、単純な`d.prototype .__ proto__ = b.prototype`とどうして同じなのか、そしてなぜ、この行それ自体が重要であるのかを説明します。これをすべて理解するためには、これらのことを理解する必要があります:
+これについて多くの人を教えた結果、次のような説明が最もシンプルだと分かりました。まず、`__extends`のコードが、単純な`d.prototype.__proto__ = b.prototype`とどうして同じなのか、そしてなぜ、この行それ自体が重要であるのかを説明します。これをすべて理解するためには、これらのことを理解する必要があります:
 
 1. `__proto__`
 1. `prototype`
 1. `new`の関数の内側の`this`に対する効果
 1. `new`の`prototype`と`__proto__`に対する効果
 
-JavaScriptのすべてのオブジェクトは `__proto__`メンバを含んでいます。このメンバは古いブラウザではアクセスできないことがよくあります(ドキュメントでは、この魔法のプロパティを `[[prototype]]`と呼ぶことがあります)。それは1つの目的を持っています：検索しているプロパティがオブジェクトに見つからない場合(例えば `obj.property`)、`obj .__ proto __.property`を検索します。それでもまだ見つからなければ、 `obj .__ proto __.__ proto __.property`を検索します： それが見つかるか、最後の`.__ proto__`自体が`null`となるまで続きます。これは、JavaScriptが*プロトタイプ継承*(prototypal inheritance)をサポートしていることを説明しています。次の例でこれを示します。chromeコンソールまたはNode.jsで実行することが可能です。
+JavaScriptのすべてのオブジェクトは `__proto__`メンバを含んでいます。このメンバは古いブラウザではアクセスできないことがよくあります(ドキュメントでは、この魔法のプロパティを `[[prototype]]`と呼ぶことがあります)。それは1つの目的を持っています：検索しているプロパティがオブジェクトに見つからない場合(例えば `obj.property`)、`obj.__proto__.property`を検索します。それでもまだ見つからなければ、 `obj.__proto__.__proto__.property`を検索します： それが見つかるか、最後の`.__proto__`自体が`null`となるまで続きます。これは、JavaScriptが*プロトタイプ継承*(prototypal inheritance)をサポートしていることを説明しています。次の例でこれを示します。chromeコンソールまたはNode.jsで実行することが可能です。
 
 ```ts
 var foo = {}
@@ -121,11 +121,11 @@ console.log(foo.__proto__ === Foo.prototype); // True!
 3   d.prototype = new __();
 ```
 
-この関数を逆から見ると、3行目の`d.prototype = new __()`は、 `d.prototype = {__proto__：__.prototype}`を意味します(`prototype`と`__proto__`に対する`new`の効果によるものです)。それを2行目(`__.prototype = b.prototype;`)と組み合わせると、`d.prototype = {__proto__：b.prototype}`となります。
+この関数を逆から見ると、3行目の`d.prototype = new __()`は、 `d.prototype = {__proto__ : __.prototype}`を意味します(`prototype`と`__proto__`に対する`new`の効果によるものです)。それを2行目(`__.prototype = b.prototype;`)と組み合わせると、`d.prototype = {__proto__ : b.prototype}`となります。
 
-しかし、待ってください。私達は、単に`d.prototype.__proto__`が変更され、`d.prototype.constructor`は、それまで通り維持されることを望んでいました。そこで重要な意味があるのが、最初の行(`function __(){this.constructor = d;}`)です。これは`d.prototype = {__proto__：__.prototype, constructor：d}`を実現できます(これは関数の内側の`this`に対する`new`による効果のためです)。したがって`d.prototype.constructor`を復元しているので、我々が変更したものは、`__proto__`たった1つだけであり、それゆえ`d.prototype.__proto__ = b.prototype`となります。
+しかし、待ってください。私達は、単に`d.prototype.__proto__`が変更され、`d.prototype.constructor`は、それまで通り維持されることを望んでいました。そこで重要な意味があるのが、最初の行(`function __() { this.constructor = d; }`)です。これは`d.prototype = {__proto__ : __.prototype, constructor : d}`を実現できます(これは関数の内側の`this`に対する`new`による効果のためです)。したがって`d.prototype.constructor`を復元しているので、我々が変更したものは、`__proto__`たった1つだけであり、それゆえ`d.prototype.__proto__ = b.prototype`となります。
 
-#### `d.prototype.__ proto__ = b.prototype`の意味
+#### `d.prototype.__proto__ = b.prototype`の意味
 
 これを行うことによって、子クラスにメンバ関数を追加しつつ、その他のメンバは基本クラスから継承することができます。次の簡単な例で説明します:
 
@@ -141,4 +141,4 @@ var bird = new Bird();
 bird.walk();
 bird.fly();
 ```
-基本的に`bird.fly`は`bird.__ proto __.fly`(`new`は`bird.__proto__`が`Bird.prototype`を指すようにすることを思い出してください)から検索され、`bird.walk`(継承されたメンバー)は`bird.__proto__.__proto__.walk`から検索されます(`bird.__proto__ == Bird.prototype`、そして、`bird.__proto __.__proto__` == `Animal.prototype`です)。
+基本的に`bird.fly`は`bird.__proto__.fly`(`new`は`bird.__proto__`が`Bird.prototype`を指すようにすることを思い出してください)から検索され、`bird.walk`(継承されたメンバー)は`bird.__proto__.__proto__.walk`から検索されます(`bird.__proto__ == Bird.prototype`、そして、`bird.__proto__.__proto__` == `Animal.prototype`です)。

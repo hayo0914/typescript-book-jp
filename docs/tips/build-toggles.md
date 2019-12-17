@@ -9,7 +9,7 @@
 "build:prod": "webpack -p --define process.env.NODE_ENV='\"production\"' --config ./src/webpack.config.js",
 ```
 
-もちろん、あなたは`npm install webpack --save-dev`を行っていることを前提にしています。これで`npm run build：test`などを実行できます。
+もちろん、あなたは`npm install webpack --save-dev`を行っていることを前提にしています。これで`npm run build:test`などを実行できます。
 
 この変数を使うのも簡単です：
 

@@ -1,7 +1,7 @@
 ### SymbolとDeclaration
 `node`と`symbol`の間のリンクは、いくつかの関数によって実行されます。ある1つの関数は、`SourceFile`NodeをSource File Symbolにバインドするために使われます。それは、`addDeclarationToSymbol`関数です。
 
-注：外部モジュールソースファイルの`Symbol`は`flags ： SymbolFlags.ValueModule`と`name： '"' + removeFileExtension(file.fileName) + '"'`)としてセットアップされています。
+注：外部モジュールソースファイルの`Symbol`は`flags : SymbolFlags.ValueModule`と`name: '"' + removeFileExtension(file.fileName) + '"'`)としてセットアップされています。
 
 ```ts
 function addDeclarationToSymbol(symbol: Symbol, node: Declaration, symbolFlags: SymbolFlags) {

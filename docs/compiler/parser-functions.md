@@ -24,10 +24,10 @@ function parseEmptyStatement(): Statement {
 これは、3つの重要な関数`createNode`、`parseExpected`と`finishNode`を示しています。
 
 #### `createNode`
-Parserの`createNode`関数`function createNode(kind：SyntaxKind、pos ?: number)：Node`はノードの作成、渡されたときの`SyntaxKind`のセットアップ、渡された場合の初期位置の設定(または、現在のスキャナの位置を使います)を行います。
+Parserの`createNode`関数`function createNode(kind: SyntaxKind, pos?: number): Node`はノードの作成、渡されたときの`SyntaxKind`のセットアップ、渡された場合の初期位置の設定(または、現在のスキャナの位置を使います)を行います。
 
 #### `parseExpected`
-Parserの`parseExpected`関数`function parseExpected(kind：SyntaxKind、diagnosticMessage ?: DiagnosticMessage)：boolean`は、Parserの状態に含まれる現在のトークンが目的の`SyntaxKind`と一致することをチェックします。そうでなければ、送られた`diagnosticMessage`を報告するか、`foo expected`の形式の一般的なものを作成します。これは内部的に`parseErrorAtPosition`関数(スキャン位置を使用します)を使用して良いエラー報告を行います。
+Parserの`parseExpected`関数`function parseExpected(kind: SyntaxKind, diagnosticMessage?: DiagnosticMessage): boolean`は、Parserの状態に含まれる現在のトークンが目的の`SyntaxKind`と一致することをチェックします。そうでなければ、送られた`diagnosticMessage`を報告するか、`foo expected`の形式の一般的なものを作成します。これは内部的に`parseErrorAtPosition`関数(スキャン位置を使用します)を使用して良いエラー報告を行います。
 
 ### `finishNode`
-Parserの`finishNode`関数`function finishNode <T extends Node>(node：T、end ?:: number)：T`はNodeの`end`位置や、`parserContextFlags`のように便利なモノを設定します。これは、このNodeを解析する前にエラーがあったとしても、同じようにパースされます(その場合、インクリメンタルパーシングでこのASTノードを再利用できません)。
+Parserの`finishNode`関数`function finishNode<T extends Node>(node: T, end?: number): T`はNodeの`end`位置や、`parserContextFlags`のように便利なモノを設定します。これは、このNodeを解析する前にエラーがあったとしても、同じようにパースされます(その場合、インクリメンタルパーシングでこのASTノードを再利用できません)。

@@ -157,7 +157,7 @@ function validate(value: number) {
 }
 ```
 
-このような場合に`Error`を使うのは、validate関数の型定義(`(value：number)=> void`)で表現されていないので、悪い考えです。代わりに、検証メソッドを作成するためのより良い方法は次のとおりです。
+このような場合に`Error`を使うのは、validate関数の型定義(`(value:number) => void`)で表現されていないので、悪い考えです。代わりに、検証メソッドを作成するためのより良い方法は次のとおりです。
 
 ```ts
 function validate(value: number): {error?: string} {

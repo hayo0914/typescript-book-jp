@@ -7,7 +7,7 @@
 私たちの[ブラウザ向けのクイックスタートに、すでにReactアプリケーションの開発のセットアップの仕方を説明しています](../quick/browser.md)。主なハイライトは次の通りです。
 
 * ファイル拡張子`.tsx`(`.ts`の代わりに)を使用してください。
-* あなたの`tsconfig.json`の`compilerOptions`で `"jsx" ： "react"を使ってください。
+* あなたの`tsconfig.json`の`compilerOptions`で `"jsx" : "react"`を使ってください。
 * JSXとReactの定義をあなたのプロジェクトにインストールします：(`npm i -D @types/react @types/react-dom`)。
 * reactを`.tsx`ファイルにインポートします(`import * as React from "react"`となります)。
 

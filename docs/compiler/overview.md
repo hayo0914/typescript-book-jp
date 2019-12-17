@@ -52,7 +52,7 @@ TypeScriptコンパイラには、これらの主要部分にユーティリテ�
 ## File: Utilities
 `core.ts`：TypeScriptコンパイラが使うコアユーティリティ。いくつか重要なもの：
 
-* `let objectAllocator：ObjectAllocator`：シングルトンのグローバルとして定義された変数です。それは、`getNodeConstructor`(Nodeは`parser`/`AST`を見るときに扱います)、`getSymbolConstructor`(シンボルは`binder`のときに扱います)、`getTypeConstructor`(型は`checker`で扱います)、 `getSignatureConstructor`(シグネチャはインデックス、シグネチャの呼び出しと構成物です)。
+* `let objectAllocator: ObjectAllocator`：シングルトンのグローバルとして定義された変数です。それは、`getNodeConstructor`(Nodeは`parser`/`AST`を見るときに扱います)、`getSymbolConstructor`(シンボルは`binder`のときに扱います)、`getTypeConstructor`(型は`checker`で扱います)、 `getSignatureConstructor`(シグネチャはインデックス、シグネチャの呼び出しと構成物です)。
 
 ## File： 主要なデータ構造
 `types.ts`には、コンパイラ全体で使用される、主要なデータ構造とインタフェースがあります。いくつかの重要なサンプルの抜粋です：
