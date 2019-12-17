@@ -67,4 +67,4 @@ import(/* webpackChunkName: "momentjs" */ "moment")
 
 完全な例は[ここ][dynamicimportcode]で見ることができます。
 
-[dynamicimportcode]:https：//cdn.rawgit.com/basarat/typescript-book/705e4496/code/dynamic-import-expressions/dynamicImportExpression.js
+[dynamicimportcode]:https://cdn.rawgit.com/basarat/typescript-book/705e4496/code/dynamic-import-expressions/dynamicImportExpression.js

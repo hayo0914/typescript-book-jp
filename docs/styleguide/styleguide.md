@@ -231,7 +231,7 @@ const foo: string = "hello";
 
 * エスケープしない限り、シングルクォート(`'`)を使用することをお勧めします。
 
-> 理由：他のJavaScriptチームがこれを行っています([airbnb](https://github.com/airbnb/javascript)、[標準](https://github.com/feross/standard)、[npm](https：//github.com/npm/npm)、[NodeJS](https://github.com/nodejs/node)、[google/angular](https://github.com/angular/angular/)、[facebook/react](https://github.com/facebook/react))。入力が簡単です(ほとんどのキーボードでシフトが必要ありません)。[Prettierチームもシングルクォートを勧めています](https://github.com/prettier/prettier/issues/1105)
+> 理由：他のJavaScriptチームがこれを行っています([airbnb](https://github.com/airbnb/javascript)、[標準](https://github.com/feross/standard)、[npm](https://github.com/npm/npm)、[NodeJS](https://github.com/nodejs/node)、[google/angular](https://github.com/angular/angular/)、[facebook/react](https://github.com/facebook/react))。入力が簡単です(ほとんどのキーボードでシフトが必要ありません)。[Prettierチームもシングルクォートを勧めています](https://github.com/prettier/prettier/issues/1105)
 
 > ダブルクォートはメリットがないわけではありません: オブジェクトをJSONに簡単にコピーできます。ユーザーが他の言語を使用して、引用文字を変更せずに作業できるようにします。たとえばアポストロフィを使用できます。例えば、`He's not going.`。しかし、私は、JSコミュニティが公正に決定したものから逸脱することはありません。
 
