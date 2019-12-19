@@ -104,14 +104,16 @@ enum AnimalFlags {
 ここでは、左シフト演算子を使用して、特定のビットレベルに1を移動することにより、ビット単位の「0001」、「0010」、「0100」および「1000」になります(これらは10進数の1、2、4、8です。興味があれば)。ビット演算子`|`(or)/`&`(and)/`~`(not)は、ビットフラグを使って作業するときの友達です。
 
 ```ts
-
 enum AnimalFlags {
     None           = 0,
     HasClaws       = 1 << 0,
     CanFly         = 1 << 1,
 }
+type Animal = {
+    flags: AnimalFlags
+}
 
-function printAnimalAbilities(animal) {
+function printAnimalAbilities(animal: Animal) {
     var animalFlags = animal.flags;
     if (animalFlags & AnimalFlags.HasClaws) {
         console.log('animal has claws');
@@ -124,7 +126,7 @@ function printAnimalAbilities(animal) {
     }
 }
 
-var animal = { flags: AnimalFlags.None };
+let animal: Animal = { flags: AnimalFlags.None };
 printAnimalAbilities(animal); // nothing
 animal.flags |= AnimalFlags.HasClaws;
 printAnimalAbilities(animal); // animal has claws
@@ -286,4 +288,4 @@ enum Color {
 }
 ```
 
-注意しなければならないのは、前の定義(つまり、`0`、`1`、...)を除外するために、列挙の最初のメンバ(ここでは`DarkRed = 3`)を再初期化しないといけないことです。それを行わない場合は、TypeScriptは警告します(エラーメッセージ:`In an enum with multiple declarations, only one declaration can omit an initializer for its first enum element`)。
+注意しなければならないのは、前の定義(つまり、`0`、`1`、...)を除外するために、列挙の最初のメンバ(ここでは`DarkRed = 3`)を再初期化しないといけないことです。それを行わない場合は、TypeScriptは警告します(エラーメッセージ:`In an enum with multiple declarations, only one declaration can omit an initializer for its first enum element.`)。
