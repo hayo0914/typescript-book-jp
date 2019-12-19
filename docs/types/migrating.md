@@ -112,5 +112,6 @@ declare module "*.css";
 declare module "*.html";
 ```
 
-# More 
-If you want to be more silent about your upgrade because you couldn't get team buy in to move to TypeScript, [TypeScript has a blog post on upgrading silently without having to convince your team up front](https://devblogs.microsoft.com/typescript/how-to-upgrade-to-typescript-without-anybody-noticing-part-1/).
+# その他
+
+もしチームがTypeScriptへの移行に積極的でなくて、もっと静かにアップグレードしたいときは、[チームを説得せずに気づかれずにアップグレードする方法について、TypeScriptチームがブログ記事を書いています](https://devblogs.microsoft.com/typescript/how-to-upgrade-to-typescript-without-anybody-noticing-part-1/)。
