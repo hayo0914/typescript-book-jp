@@ -249,7 +249,7 @@ libsは次のように分類できます。
     * dom
     * dom.iterable
     * webworker
-    * スクリプトホスト
+    * scripthost
 * ESNext By-Featureオプション(バルク機能よりも小さい)
     * es2015.core
     * es2015.collection
