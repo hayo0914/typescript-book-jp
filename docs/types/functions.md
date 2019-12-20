@@ -140,3 +140,25 @@ padding(1,1,1); // Error: Not a part of the available overloads
 
 > TypeScriptの関数オーバーロードにランタイムでのオーバーヘッドはありません。関数が呼び出されると予想される方法を文書化し、コンパイラがコードの残りの部分をチェックするだけです。
 
+### Declaring Functions
+> Quick Tip: *Type Declarations* are how you describe the types of existing implementations.
+
+There are two ways to *declare* the type of a function without providing an implementation. E.g.
+
+```ts
+type LongHand = {
+    (a: number): number;
+};
+
+type ShortHand = (a: number) => number;
+```
+The example above are both *exactly* equivalent. The differences exist when you want to add overloads. You can only add overloads in the long hand declaration version e.g.
+
+```ts
+type LongHandAllowsOverloadDeclarations = {
+    (a: number): number;
+    (a: string): string;
+};
+```
+
+[](### Type Compatibility)
