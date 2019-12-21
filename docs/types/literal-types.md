@@ -9,7 +9,7 @@
 let foo: 'Hello';
 ```
 
-ここでは`foo`という名前の変数を作成しました。それに代入されるリテラル値は`Hello`のみを許可します。これは以下のとおりです：
+ここでは`foo`という名前の変数を作成しました。それに代入されるリテラル値は`'Hello'`のみを許可します。これは以下のとおりです：
 
 ```ts
 let foo: 'Hello';
@@ -20,7 +20,7 @@ foo = 'Bar'; // Error: "Bar" is not assignable to type "Hello"
 
 ```ts
 type CardinalDirection =
-    "North"
+    | "North"
     | "East"
     | "South"
     | "West";
@@ -59,6 +59,19 @@ function iTakeFoo(foo: 'foo') { }
 const test = {
   someProp: 'foo' as 'foo'
 };
+iTakeFoo(test.someProp); // Okay!
+```
+
+or use a type annotation that helps TypeScript infer the correct thing at the point of declaration:
+
+```
+function iTakeFoo(foo: 'foo') { }
+type Test = {
+  someProp: 'foo',
+}
+const test: Test = { // Annotate - inferred someProp is always === 'foo'
+  someProp: 'foo' 
+}; 
 iTakeFoo(test.someProp); // Okay!
 ```
 
