@@ -53,7 +53,7 @@ class Foo {
 declare let _foo: Foo;
 
 // Same as before
-let bar: typeof _foo.foo;
+let bar: typeof _foo.foo; // `bar` has type `number`
 ```
 
 ## マジック文字列の種類を取得する
@@ -88,7 +88,7 @@ type Colors = keyof typeof colors;
 let color: Colors; // same as let color: "red" | "blue"
 color = 'red'; // okay
 color = 'blue'; // okay
-color = 'anythingElse'; // Error
+color = 'anythingElse'; // Error: Type '"anythingElse"' is not assignable to type '"red" | "blue"'
 ```
 
 上記の例のように、文字列列挙型+定数のようなものを簡単に作成することができます。
