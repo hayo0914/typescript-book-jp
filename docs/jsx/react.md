@@ -34,22 +34,22 @@ declare module JSX {
 }
 ```
 
-### ステートレスな関数コンポーネント(Stateless Functional Components)
+### 関数コンポーネント(Functional Components)
 
-あなたは単に`React.SFC`インターフェースを使ってステートレスなコンポーネントを定義することができます。
+あなたは単に`React.FunctionComponent`インターフェースを使ってステートレスなコンポーネントを定義することができます。
 
 ```ts
 type Props = {
   foo: string;
 }
-const MyComponent: React.SFC<Props> = (props) => {
+const MyComponent: React.FunctionComponent<Props> = (props) => {
     return <span>{props.foo}</span>
 }
 
 <MyComponent foo="bar" />
 ```
 
-### ステートフルなコンポーネント(Stateful Components)
+### クラスコンポーネント(Class Components)
 
 コンポーネントは、コンポーネントの`props`プロパティに基づいて型チェックされます。これは、JSXがどのように変換されるかによってモデル化されています。例えば属性がコンポーネントの`props`になるようにモデル化されています。
 
@@ -181,7 +181,7 @@ class FocusingInput extends React.Component<{ value: string, onChange: (value: s
       <input
         ref={(input) => this.input = input}
         value={this.props.value}
-        onChange={(e) => { this.props.onChange(this.ctrls.input.value) } }
+        onChange={(e) => { this.props.onChange(e.target.value) } }
         />
       );
     }
