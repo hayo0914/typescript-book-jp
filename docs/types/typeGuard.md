@@ -99,7 +99,7 @@ function doStuff(q: A | B) {
 
 ### リテラル型のType Guard
 
-You can use `===` / `==` / `!==` / `!=` to distinguish between literal values
+異なるリテラル値を区別するには、`===` / `==` / `!==` / `!=` が利用できます。
 
 ```ts
 type TriState = 'yes' | 'no' | 'unknown';
@@ -115,9 +115,7 @@ function logOutState(state:TriState) {
 }
 ```
 
-This even works when you have literal types in a union. You can check the value of a shared property name to discriminate the union e.g.
-
-あなたがユニオン型にリテラル型を持っているとき、それらをチェックして区別することができます。
+ユニオン型の中にリテラル型がある場合にも同じ方法が使えます。次のように共通するプロパティの値をチェックすることで、異なるユニオン型を区別できます。
 
 ```ts
 type Foo = {
