@@ -143,8 +143,9 @@ function area(s: Shape) {
 }
 ```
 
-### Throw in exhaustive checks
-You can write a function that takes a `never` (and therefore can only be called with a variable that is inferred as `never`) and then throws an error if its body ever executes:
+### 網羅チェックの中で例外を投げる
+
+引数として`never`を取る関数を書くことができます(したがって、この関数は`never`として推論された変数で呼ばれた場合にのみ呼ばれます)。そして、次のように、関数の本体が実行された場合に例外を投げるように書きます。
 
 ```ts
 function assertNever(x:never): never {
@@ -152,7 +153,7 @@ function assertNever(x:never): never {
 }
 ```
 
-Example use with the area function:
+以下に、`area`関数とともに使用する例を示します。
 
 ```ts
 interface Square {
@@ -178,14 +179,16 @@ function area(s: Shape) {
 ```
 
 ### Retrospective Versioning
-Say you have a data structure of the form:
+
+次のような形のデータ構造があるとします。
 
 ```ts
 type DTO = {
   name: string
 }
 ```
-And after you have a bunch of `DTO`s you realize that `name` was a poor choice. You can add versioning retrospectively by creating a new *union* with *literal number* (or string if you want) of DTO. Mark the version 0 as `undefined` and if you have *strictNullChecks* enabled it will just work out:
+
+そして、`DTO`をさまざまな場所で使用した後に、`name`という名前は良くない選択だったことに気が付いたとします。このような場合には、*リテラルの数値*(または望むなら文字列)を追加したDTOの新しい*ユニオン型*を定義することで、後から型にバージョニングを追加することができます。*strictNullChecks*を有効にしていれば、バージョン0を`undefined`とマークするだけで、そのバージョンの型が使われているかどうかのチェックを自動的に行えます。
 
 ```ts
 type DTO = 
@@ -208,7 +211,7 @@ type DTO =
 // So on
 ```
 
- Example usage of such a DTO:
+このように定義したDTOは、次のように利用します。
 
 ```ts
 function printDTO(dto:DTO) {
@@ -226,7 +229,7 @@ function printDTO(dto:DTO) {
 
 ### Redux
 
-これを活用しているポピュラーなライブラリはreduxです。
+ユニオン判別を活用しているポピュラーなライブラリはreduxです。
 
 ここに、TypeScript型アノテーションを追加した [*gist of redux*](https://github.com/reactjs/redux#the-gist) があります：
 
