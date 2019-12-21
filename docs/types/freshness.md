@@ -81,8 +81,8 @@ Freshnessの概念を使用する場合は、すべてのメンバーをオプ�
 ```ts
 // Assuming
 interface State {
-  foo?: string;
-  bar?: string;
+    foo?: string;
+    bar?: string;
 }
 
 // You want to do: 
