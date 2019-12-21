@@ -139,9 +139,9 @@ function doStuff(arg: Foo | Bar) {
 }
 ```
 
-### null and undefined with `strictNullChecks`
+### `strictNullChecks`を使用したnullとundefinedのチェック
 
-TypeScript is smart enough to rule out both `null` and `undefined` with a `== null` / `!= null` check. For example:
+TypeScriptは十分賢いので、次のように`== null` / `!= null`チェックをすることで`null`と`undefined`の両方を排除できます。
 
 ```ts
 function foo(a?: number | null) {
@@ -193,11 +193,11 @@ doStuff({ foo: 123, common: '123' });
 doStuff({ bar: 123, common: '123' });
 ```
 
-### Type Guards and callbacks
+### Type Guardsとコールバック
 
 TypeScript doesn't assume type guards remain active in callbacks as making this assumption is dangerous. e.g.
 
-```js
+```ts
 // Example Setup
 declare var foo:{bar?: {baz: string}};
 function immediate(callback: ()=>void) {
