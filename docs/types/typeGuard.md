@@ -99,11 +99,29 @@ function doStuff(q: A | B) {
 
 ### リテラル型のType Guard
 
+You can use `===` / `==` / `!==` / `!=` to distinguish between literal values
+
+```ts
+type TriState = 'yes' | 'no' | 'unknown';
+
+function logOutState(state:TriState) {
+  if (state == 'yes') {
+    console.log('User selected yes');
+  } else if (state == 'no') {
+    console.log('User selected no');
+  } else {
+    console.log('User has not made a selection yet');
+  }
+}
+```
+
+This even works when you have literal types in a union. You can check the value of a shared property name to discriminate the union e.g.
+
 あなたがユニオン型にリテラル型を持っているとき、それらをチェックして区別することができます。
 
 ```ts
 type Foo = {
-  kind: 'foo', // Literal type 
+  kind: 'foo', // Literal type
   foo: number
 }
 type Bar = {
@@ -120,6 +138,18 @@ function doStuff(arg: Foo | Bar) {
         console.log(arg.foo); // Error!
         console.log(arg.bar); // OK
     }
+}
+```
+
+### null and undefined with `strictNullChecks`
+
+TypeScript is smart enough to rule out both `null` and `undefined` with a `== null` / `!= null` check. For example:
+
+```ts
+function foo(a?: number | null) {
+  if (a == null) return;
+
+  // a is number now.
 }
 ```
 
@@ -163,4 +193,38 @@ function doStuff(arg: Foo | Bar) {
 
 doStuff({ foo: 123, common: '123' });
 doStuff({ bar: 123, common: '123' });
+```
+
+### Type Guards and callbacks
+
+TypeScript doesn't assume type guards remain active in callbacks as making this assumption is dangerous. e.g.
+
+```js
+// Example Setup
+declare var foo:{bar?: {baz: string}};
+function immediate(callback: ()=>void) {
+  callback();
+}
+
+
+// Type Guard
+if (foo.bar) {
+  console.log(foo.bar.baz); // Okay
+  functionDoingSomeStuff(() => {
+    console.log(foo.bar.baz); // TS error: Object is possibly 'undefined'"
+  });
+}
+```
+
+The fix is as easy as storing the inferred safe value in a local variable, automatically ensuring it doesn't get changed externally, and TypeScript can easily understand that:
+
+```js
+// Type Guard
+if (foo.bar) {
+  console.log(foo.bar.baz); // Okay
+  const bar = foo.bar;
+  functionDoingSomeStuff(() => {
+    console.log(bar.baz); // Okay
+  });
+}
 ```
