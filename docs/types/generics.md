@@ -161,13 +161,13 @@ function loadUsers() {
 
 戻り値としての`Promise<T>`は、`Promise<any>`よりも断然優れています。
 
-Another example is where a generic is only used as an argument:
+次の例では、ジェネリックが引数のみに使用されています。
 
 ```ts
 declare function send<T>(arg: T): void;
 ```
 
-Here the generic `T` can be used to annote the type that you want the argument to match e.g.
+このようにすると、次のように、引数にマッチさせたい型をアノテートするのにジェネリック`T`を利用できます。
 
 ```ts
 send<Something>({
