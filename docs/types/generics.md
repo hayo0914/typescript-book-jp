@@ -14,8 +14,8 @@
 ```ts
 class Queue {
   private data = [];
-  push = (item) => this.data.push(item);
-  pop = () => this.data.shift();
+  push(item) { this.data.push(item); }
+  pop() { return this.data.shift(); }
 }
 ```
 
@@ -24,8 +24,8 @@ class Queue {
 ```ts
 class Queue {
   private data = [];
-  push = (item) => this.data.push(item);
-  pop = () => this.data.shift();
+  push(item) { this.data.push(item); }
+  pop() { return this.data.shift(); }
 }
 
 const queue = new Queue();
@@ -40,10 +40,9 @@ console.log(queue.pop().toPrecision(1)); // RUNTIME ERROR
 1つの解決策(実際にはジェネリックをサポートしていない言語での唯一の解決策)は、これらの制約のために特別なクラスを作成することです。例えば素早くダーティに数値型のキューを作ります：
 
 ```ts
-class QueueNumber {
-  private data = [];
-  push = (item: number) => this.data.push(item);
-  pop = (): number => this.data.shift();
+class QueueNumber extends Queue {
+  push(item: number) { super.push(item); }
+  pop(): number { return this.data.shift(); }
 }
 
 const queue = new QueueNumber();
@@ -59,8 +58,8 @@ queue.push("1"); // ERROR : cannot push a string. Only numbers allowed
 /** A class definition with a generic parameter */
 class Queue<T> {
   private data = [];
-  push = (item: T) => this.data.push(item);
-  pop = (): T => this.data.shift();
+  push(item: T) { this.data.push(item); }
+  pop(): T | undefined { return this.data.shift(); }
 }
 
 /** Again sample usage */
@@ -108,20 +107,8 @@ class Utility {
 }
 ```
 
-> ヒント：必要に応じてジェネリックパラメータを呼び出すことができます。単純なジェネリックを使うときは `T`、`U`、`V`を使うのが普通です。複数のジェネリック引数がある場合は、意味のある名前を使用してください。例えば`TKey`と`TValue`です(一般に`T`を接頭辞として使用する規約は、他の言語(例えばC++)ではテンプレートと呼ばれることもあります)。
+> ヒント：必要に応じてジェネリックパラメータを呼び出すことができます。単純なジェネリックを使うときは `T`、`U`、`V`を使うのが普通です。複数のジェネリック引数がある場合は、意味のある名前を使用してください。例えば`TKey`と`TValue`です(一般に`T`を接頭辞として使用する規約は、他の言語(例えばC++)では*テンプレート*と呼ばれることもあります)。
 
-## 役に立たずのジェネリック
-
-私は人々が興味本位でジェネリックを使用しているのを見ました。考えるべき質問は、何を表現しようとしているのか？です。あなたが簡単にそれに答えることができない場合は、役に立たないジェネリックかもしれません。例えば次の関数です:
-
-```ts
-declare function foo<T>(arg: T): void;
-```
-ここでは、ジェネリック`T`は、一箇所の引数の位置でのみ使用されるので完全に不要です。これは次のコードと同じです:
-
-```ts
-declare function foo(arg: any): void;
-```
 
 ### デザインパターン：便利なジェネリック
 
@@ -173,3 +160,19 @@ function loadUsers() {
 ```
 
 戻り値としての`Promise<T>`は、`Promise<any>`よりも断然優れています。
+
+Another example is where a generic is only used as an argument:
+
+```ts
+declare function send<T>(arg: T): void;
+```
+
+Here the generic `T` can be used to annote the type that you want the argument to match e.g.
+
+```ts
+send<Something>({
+  x:123,
+  // Also you get autocomplete  
+}); // Will TSError if `x:123` does not match the structure expected for Something
+
+```
