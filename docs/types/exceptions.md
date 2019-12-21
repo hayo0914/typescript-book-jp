@@ -78,7 +78,7 @@ catch(e) {
 
 `Error`オブジェクトを渡すことは大丈夫です。これは、Node.jsのコールバックスタイルコードでは、最初の引数をエラーオブジェクトとしてコールバックを受け取ります。
 
-```js
+```ts
 function myFunction (callback: (e?: Error)) {
   doSomethingAsync(function () {
     if (somethingWrong) {
