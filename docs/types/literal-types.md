@@ -44,7 +44,7 @@ type Bools = true | false;
 ### 推論
 かなり一般的に`Type string is not assignable to type "foo"`というエラーを受け取ります。次の例はこれを示しています。
 
-```js
+```ts
 function iTakeFoo(foo: 'foo') { }
 const test = {
   someProp: 'foo'
@@ -54,7 +54,7 @@ iTakeFoo(test.someProp); // Error: Argument of type string is not assignable to 
 
 これは、`test`が`{someProp: string} `型であると推定されるためです。この問題を解決するには、シンプルな型アサーションを使用して、TypeScriptに以下のようにリテラルを推測させます。
 
-```js
+```ts
 function iTakeFoo(foo: 'foo') { }
 const test = {
   someProp: 'foo' as 'foo'
@@ -62,9 +62,9 @@ const test = {
 iTakeFoo(test.someProp); // Okay!
 ```
 
-or use a type annotation that helps TypeScript infer the correct thing at the point of declaration:
+あるいは、型アノテーションを使うことで、宣言した時点でTypeScriptが正しい型を推論するのを助けることができます。
 
-```
+```ts
 function iTakeFoo(foo: 'foo') { }
 type Test = {
   someProp: 'foo',
