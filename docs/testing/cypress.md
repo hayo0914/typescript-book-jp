@@ -53,7 +53,7 @@ Cypressの最初のdry runを行い、Cypressのフォルダ構造を準備し�
 npx cypress open
 ```
 
-`e2e/cypress/plugins/index.js`を次のように編集して、CypressをTypeScriptのトランスパイルようにセットアップします：
+`e2e/cypress/plugins/index.js`を次のように編集して、CypressをTypeScriptのトランスパイル用にセットアップします：
 
 ```js
 const wp = require('@cypress/webpack-preprocessor')
