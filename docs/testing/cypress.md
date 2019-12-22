@@ -10,6 +10,8 @@ Cypressは素晴らしいE2Eテストツールです。これを考慮する大�
 
 ## インストール
 
+> You can skip this section by just cloning [the template github repo 🌹](https://github.com/basarat/cypress-ts)
+
 > このインストールプロセスで提供される手順は、あなたの組織のボイラープレートとして使用できる素敵なe2eフォルダを提供します。このe2eフォルダをCypressでテストしたい既存のプロジェクトに貼り付けてコピーすることができます
 
 e2eディレクトリを作成し、cypressとその依存関係をTypeScriptのトランスパイルのためにインストールします。
@@ -165,64 +167,93 @@ const page = new LoginPage();
 page.visit();
 
 page.username.type('john');
-```
 
-## ヒント：暗黙のアサーション
-Cypresssコマンドが失敗したときには、(他の多くのフレームワークでは`null`のようなものではなく)素晴らしいエラーが発生するので、すばやく失敗し、テストが失敗したときを正確に知ることができます。
-
-```
-cy.get('#foo') 
-// If there is no element with id #foo cypress will wait for 4 seconds automatically 
-// If still not found you get an error here ^ 
-// \/ This will not trigger till an element #foo is found
-  .should('have.text', 'something') 
 ```
 
 ## ヒント：明示的なアサーション
 Cypressには、ウェブ用のほんのいくつかのアサーションヘルプが付属しています。例えば、chai-jquery https://docs.cypress.io/guides/references/assertions.html#Chai-jQuery です。 それらを使うには、`.should`コマンドを使用して、chainerに文字列として渡します:
 
 ```
-cy.get('#foo') 
-  .should('have.text', 'something') 
+cy.get('#foo')
+  .should('have.text', 'something')
 ```
+> You get intellisense for `should` chainers as cypress ships with correct TypeScript definitions 👍🏻
+
+The complete list of chainers is available here : https://docs.cypress.io/guides/references/assertions.html
+
+If you want something complex you can even use `should(callback)` and e.g.
+
+```
+cy.get('div')
+  .should(($div) => {
+    expect($div).to.have.length(1);
+    expect($div[0].className).to.contain('heading');
+  })
+// This is just an example. Normally you would `.should('have.class', 'heading')
+```
+
+> TIP: cypress with do automatic retries on the callback as well, so they are just as flake free as standard string chainers.
 
 ## ヒント：コマンドとチェーン
 cypressチェーン内のすべての関数呼び出しは`command`です。`should`コマンドはアサーションです。チェーンとアクションの別々の*カテゴリ*を別々に開始することは慣習になっています:
 
 ```ts
-// Don't do this 
-cy.get(/**something*/) 
+// Don't do this
+cy.get(/**something*/)
   .should(/**something*/)
   .click()
   .should(/**something*/)
-  .get(/**something else*/) 
+  .get(/**something else*/)
   .should(/**something*/)
 
-// Prefer seperating the two gets 
-cy.get(/**something*/) 
+// Prefer separating the two gets
+cy.get(/**something*/)
   .should(/**something*/)
   .click()
   .should(/**something*/)
 
-cy.get(/**something else*/) 
+cy.get(/**something else*/)
   .should(/**something*/)
 ```
 
 他の何かのライブラリは、同時にこのコードを評価し、実行します。それらのライブラリは、単一のチェーンが必要になります。それはセレクタやアサーションが混在してデバッグを行うのが難しくなります。
 
-サイプレスコマンドは、本質的に、コマンドを後で実行するためのCypressランタイムへの*宣言*です。端的な言葉：Cypressはより簡単にします
+Cypressのコマンドは、本質的に、コマンドを後で実行するためのCypressランタイムへの*宣言*です。端的な言葉：Cypressはより簡単にします
 
 ## ヒント: より容易なクエリのために`contains`を使う
 
 下記に例を示します:
 ```ts
-cy.get('#foo') 
+cy.get('#foo')
   // Once #foo is found the following:
-  .contains('Submit') 
-  // ^ will continue to search for something that has text `Submit` and fail if it times out.
+  .contains('Submit')
   .click()
-  // ^ will trigger a click on the HTML Node that contained the text `Submit`.
+  // ^ will continue to search for something that has text `Submit` and fail if it times out.
+  // ^ After it is found trigger a click on the HTML Node that contained the text `Submit`.
 ```
+
+## ヒント：スマートディレイとリトライ
+Cypressはたくさんの非同期のものに対して、自動的に待ち（そしてリトライし)ます。
+```
+// If there is no request against the `foo` alias cypress will wait for 4 seconds automatically
+cy.wait('@foo')
+// If there is no element with id #foo cypress will wait for 4 seconds automatically and keep retrying
+cy.get('#foo')
+```
+これにより、テストコードフローに常に任意のタイムアウトのロジックを追加する必要がなくなります。
+
+## Tip: Implicit assertion
+Cypress has a concept of implicit assertion. These kick in if a future command is erroring because of a previous command. E.g. the following will error at `contains` (after automatic retries of course) as nothing found can get `click`ed:
+
+```ts
+cy.get('#foo')
+  // Once #foo is found the following:
+  .contains('Submit')
+  .click()
+  // ^ Error: #foo does not have anything that `contains` `'Submit'`
+```
+
+In traditional frameworks you would get a horrible error like `click` doesn't exist on `null`. In Cypress you get a nice error `#foo` does not contain `Submit`. This error is a form of an implicit assertion.
 
 ## ヒント： HTTPリクエストを待つ
 アプリケーションが作るXHRに必要なすべてのタイムアウトが原因となり、多くのテストが脆くなりました。`cy.server`は次のことを簡単にします。
@@ -240,7 +271,7 @@ cy.server()
 cy.visit('/')
 
 // wait for the call
-cy.wait('@load') 
+cy.wait('@load')
 
 // Now the data is loaded
 ```
@@ -249,7 +280,21 @@ cy.wait('@load')
 `route`を使ってリクエストのレスポンスを簡単にモックすることもできます：
 ```ts
 cy.server()
-  .route('POST', 'https://example.com/api/application/load', /* Example payload response */{success:true})
+  .route('POST', 'https://example.com/api/application/load', /* Example payload response */{success:true});
+```
+
+### Tip: Asserting an Http request response
+You can assert requests without mocking using `route` `onRequest` / `onResponse` e.g.
+
+```ts
+cy.route({
+  method: 'POST',
+  url: 'https://example.com/api/application/load',
+  onRequest: (xhr) => {
+    // Example assertion
+    expect(xhr.request.body.data).to.deep.equal({success:true});
+  }
+})
 ```
 
 ## ヒント：時間をモックする
@@ -271,23 +316,13 @@ cy.tick(waitMilliseconds);
 cy.get('#logoutNotification').should('be.visible');
 ```
 
-## ヒント：スマートディレイとリトライ
-Cypressはたくさんの非同期のものに対して、自動的に待ち（そしてリトライし)ます。
-```
-// If there is no request against the `foo` alias cypress will wait for 4 seconds automatically 
-cy.wait('@foo') 
-// If there is no element with id #foo cypress will wait for 4 seconds automatically 
-cy.get('#foo')
-```
-これにより、テストコードフローに常に任意のタイムアウトのロジックを追加する必要がなくなります。
-
 ## ヒント: アプリケーションコードのユニットテスト
 あなたはCypressを使ってアプリケーションコードを分離してユニットテストを行うことも可能です。
 
 ```ts
-import { once } from '../../../src/app/utils'; 
+import { once } from '../../../src/app/utils';
 
-// Later 
+// Later
 it('should only call function once', () => {
   let called = 0;
   const callMe = once(()=>called++);
@@ -304,7 +339,10 @@ it('should only call function once', () => {
 
 ```ts
 import { navigate } from 'takeme';
-export function foo() { navigate('/foo'); }
+
+export function foo() {
+  navigate('/foo');
+}
 ```
 
 * 下記を`some.spec.ts`で行います
@@ -323,6 +361,29 @@ describe('should work', () => {
   })
 });
 ```
+
+## Tip: Command - execution separation
+When you invoke a cypress command (or assertion) e.g. `cy.get('#something')`, the function immediately returns without actually carrying out the action. What it does do, is informs the cypress test runner that you will need to carry out (execute) an action (in this case a `get`) at some point.
+
+You are basically building a command list that the runner will then go ahead and execute. You can verify this command - execution separation with a simple test, observe that you will see the `start / between / end` `console.log` statements execute immediately before the runner starts *executing* the commands:
+
+```ts
+/// <reference types="cypress"/>
+
+describe('Hello world', () => {
+  it('demonstrate command - execution separation', () => {
+    console.log('start');
+    cy.visit('http://www.google.com');
+    console.log('between');
+    cy.get('.gLFyf').type('Hello world');
+    console.log('end');
+  });
+});
+```
+
+This command execution separation has two big benefits:
+* The runner can execute the commands in a *flake resistant* manner with automatic retries and implicit assertions.
+* Allows you to write asynchronous code in a synchronous fashion without having to do a constant *chaining* which results in difficult to maintain code.
 
 ## TIP: ブレークポイント
 Cypressテストによって生成された自動スナップショット+コマンドログは、デバッグに最適です。とはいえ、それは、あなたが望むならテストの実行を一時停止できます。
@@ -353,4 +414,7 @@ package.jsonの例:
 * ウェブサイト：https://www.cypress.io/
 * あなたの最初のCypressテストを書く(Cypress IDEの素晴らしいツアー)：https://docs.cypress.io/guides/getting-started/writing-your-first-test.html
 * CI環境を設定する(例えば、そのまま`cypress run`で動く提供されたdockerイメージ)：https://docs.cypress.io/guides/guides/continuous-integration.html
-* レシピ(説明付きのレシピの一覧です。レシピのソースコードに移動するには見出しをクリックしてください)：https://docs.cypress.io/examples/examples/recipes.html
+* レシピ(説明付きのレシピの一覧です。レシピのソースコードに移動するには見出しをクリックしてください): https://docs.cypress.io/examples/examples/recipes.html
+* Visual Testing: https://docs.cypress.io/guides/tooling/visual-testing.html
+* Optionally set a `baseUrl` in cypress.json to [prevent an initial reload that happens after first `visit`.](https://github.com/cypress-io/cypress/issues/2542)
+* Code coverage with cypress: [Webcast](https://www.youtube.com/watch?v=C8g5X4vCZJA)
