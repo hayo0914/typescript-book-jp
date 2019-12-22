@@ -3,7 +3,9 @@
 
 ## TS2304
 サンプル：
-> `Cannot find name ga` `Cannot find name $` `Cannot find module jquery`
+> `Cannot find name ga`
+> `Cannot find name $`
+> `Cannot find module jquery`
 
 おそらく第三者のライブラリ(Googleアナリティクスなど)を使用しており、宣言していません。TypeScriptは、*スペルミス*や宣言しないで変数を使用すると、あなたを助けようとします。あなたは外部ライブラリを取り込んでいるので実行時に利用可能なものに明示する必要があります([修正方法](../types/ambient/d.ts.md))。
 
@@ -15,7 +17,7 @@
 
 ## TS1148
 サンプル：
-> `'Cannot compile modules unless the '--module' flag is provided`
+> `Cannot compile modules unless the '--module' flag is provided`
 
 [モジュール](../project/modules.md)のセクションをチェックしてください。
 
