@@ -16,9 +16,9 @@ npm i jest @types/jest ts-jest -D
 
 説明：
 
-* `jest`フレームワークをインストールします(`jest`)
-* `jest`の型をインストールしてください(`@types/jest`)
-* Jest(`ts-jest`)用のTypeScriptプリプロセッサをインストールしてください。これにより、Jestはその場でTypeScriptをトランスパイルすることができ、source-mapをサポートします
+* `jest`フレームワーク(`jest`)をインストールします
+* `jest`の型(`@types/jest`)をインストールします
+* Jest用のTypeScriptプリプロセッサ(`ts-jest`)をインストールします。これにより、Jestはその場でTypeScriptをトランスパイルすることができ、source-mapをサポートします
 * これらのすべてを、あなたのdevの依存関係に保存してください(テストはほとんど常にnpmのdev-dependencyです)
 
 ## ステップ2：Jestを設定する
@@ -30,27 +30,21 @@ module.exports = {
   "roots": [
     "<rootDir>/src"
   ],
-  "transform": {
-    "^.+\\.tsx?$": "ts-jest"
-  },
-  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
-  "moduleFileExtensions": [
-    "ts",
-    "tsx",
-    "js",
-    "jsx",
-    "json",
-    "node"
+  "testMatch": [
+    "**/__tests__/**/*.+(ts|tsx|js)",
+    "**/?(*.)+(spec|test).+(ts|tsx|js)"
   ],
+  "transform": {
+    "^.+\\.(ts|tsx)$": "ts-jest"
+  },
 }
 ```
 
 説明：
 
 * *すべての*TypeScriptファイルをプロジェクトの`src`フォルダに入れることを常にお勧めします。これが前提とし、`roots`オプションを使用してこれを指定します。
+* `testMatch`設定は、ts/tsx/jsフォーマットで書かれた.test/.specファイルを発見するためのglobのパターンマッチャーです。
 * `transform`設定は、`jest`にts/tsxファイルに対して`ts-jest`を使うように指示します。
-* `testRegex`はJestに`__tests__`フォルダ内のテストを検索するよう指示します。また`(.test|.spec).(ts|tsx)`拡張子を使用する任意のファイルを検索します。 例えば、`asdf.test.tsx`など。
-* `moduleFileExtensions`はjestに私達のファイル拡張子を認識させます。これは`ts`/`tsx`をデフォルト(`js|jsx|json|node`)に追加するときに必要です。
 
 ## 手順3：テストを実行する
 
@@ -86,7 +80,7 @@ export const sum
 * 単純な`foo.test.ts`：
 
 ```js
-import { sum } from '../';
+import { sum } from '../foo';
 
 test('basic', () => {
   expect(sum()).toBe(0);
@@ -107,7 +101,7 @@ test('basic again', () => {
 Jestには、async/awaitサポートが組み込まれています。例えば:
 
 ```js
-test('basic',async () => {
+test('basic', async () => {
   expect(sum()).toBe(0);
 });
 
@@ -131,15 +125,15 @@ module.exports = {
 
   // Setup Enzyme
   "snapshotSerializers": ["enzyme-to-json/serializer"],
-  "setupTestFrameworkScriptFile": "<rootDir>/src/setupEnzyme.ts",
+  "setupFilesAfterEnv": ["<rootDir>/src/setupEnzyme.ts"],
 }
 ```
 
-3. `src / setupEnzyme.ts`ファイルを作成します。
+3. `src/setupEnzyme.ts`ファイルを作成します。
 
 ```js
 import { configure } from 'enzyme';
-import * as EnzymeAdapter from 'enzyme-adapter-react-16';
+import EnzymeAdapter from 'enzyme-adapter-react-16';
 configure({ adapter: new EnzymeAdapter() });
 ```
 
@@ -197,7 +191,7 @@ test('CheckboxWithLabel changes the text after click', () => {
   expect(checkbox.text()).toEqual('On');
   
   // Snapshot demo
-  expect(shallow).toMatchSnapshot();
+  expect(checkbox).toMatchSnapshot();
 });
 ```
 
