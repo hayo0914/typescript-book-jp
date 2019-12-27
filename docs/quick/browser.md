@@ -35,6 +35,9 @@ cd your-project
   "compilerOptions": {
     "sourceMap": true,
     "module": "commonjs",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
     "target": "es5",
     "jsx": "react",
     "lib": [
@@ -65,15 +68,17 @@ cd your-project
     "start": "webpack-dev-server -d --content-base ./public"
   },
   "dependencies": {
-    "@types/react": "16.4.2",
-    "@types/react-dom": "16.0.6",
-    "react": "16.4.1",
-    "react-dom": "16.4.1",
-    "ts-loader": "4.4.1",
-    "typescript": "2.9.2",
-    "webpack": "4.12.1",
-    "webpack-cli": "3.0.8",
-    "webpack-dev-server": "3.1.4"
+    "@types/react": "16.4.10",
+    "@types/react-dom": "16.0.7",
+    "clean-webpack-plugin": "0.1.19",
+    "html-webpack-plugin": "3.2.0",
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
+    "ts-loader": "4.4.2",
+    "typescript": "3.0.1",
+    "webpack": "4.16.5",
+    "webpack-cli": "3.1.0",
+    "webpack-dev-server": "3.1.5"
   }
 }
 ```
@@ -81,11 +86,22 @@ cd your-project
 * すべてのリソースを含む単一の`app.js`ファイルにモジュールをバンドルするための`webpack.config.js`を作成する:
 
 ```js
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   entry: './src/app/app.tsx',
+  plugins: [
+    new CleanWebpackPlugin({
+      cleanAfterEveryBuildPatterns: ['public/build']
+    }),
+    new HtmlWebpackPlugin({
+      template: 'src/templates/index.html'
+    }),
+  ],
   output: {
     path: __dirname + '/public',
-    filename: 'build/app.js'
+    filename: 'build/[name].[contenthash].js'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
@@ -104,18 +120,18 @@ module.exports = {
 <html>
   <body>
       <div id="root"></div>
-      <script src="./build/app.js"></script>
   </body>
 </html>
+
 ```
 
 あなたのフロントエンドアプリケーションのエントリポイントである`src/app/app.tsx`：
 
-```js
+```ts
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-const Hello: React.SFC<{ compiler: string, framework: string }> = (props) => {
+const Hello: React.FunctionComponent<{ compiler: string, framework: string }> = (props) => {
   return (
     <div>
       <div>{props.compiler}</div>
