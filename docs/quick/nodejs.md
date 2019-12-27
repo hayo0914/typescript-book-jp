@@ -19,7 +19,8 @@ TypeScriptは、Node.jsを公式にサポートしています。素早くNode.j
 ```json
   "scripts": {
     "start": "npm run build:live",
-    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./index.ts"
+    "build": "tsc -p .",
+    "build:live": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
   },
 ```
 
@@ -29,50 +30,7 @@ TypeScriptは、Node.jsを公式にサポートしています。素早くNode.j
 * ts-nodeは自動的にtsconfig.jsonとインストールされたTypeScriptバージョンを取得し、トランスパイルを行う
 * ts-nodeは出力されたJavaScriptをNode.jsで実行する
 
-## TypeScriptのnode moduleを作成する
-
-* [Typecriptのnodemoduleの作成に関するレッスン](https://egghead.io/lessons/typescript-create-high-quality-npm-packages-using-typescript)
-
-TypeScriptで書かれたモジュールを使用することは、コンパイル時の安全性とオートコンプリートが得られるので、非常に楽しいことです。
-
-高品質のTypeScriptモジュールの作成は簡単です。以下の望ましいフォルダ構造を仮定します。
-
-```text
-package
-├─ package.json
-├─ tsconfig.json
-├─ src
-│  ├─ All your source files
-│  ├─ index.ts
-│  ├─ foo.ts
-│  └─ ...
-└─ lib
-  ├─ All your compiled files
-  ├─ index.d.ts
-  ├─ index.js
-  ├─ foo.d.ts
-  ├─ foo.js
-  └─ ...
-```
-
-
-* `tsconfig.json`について
-  * `compilerOptions`に`"outDir": "lib"`と、`"declaration": true`を設定します < これは宣言ファイルとjsファイルをlibフォルダに生成します
-  * `"include": ["./src / ** / *"]`を設定します < これは`src`ディレクトリからのすべてのファイルを対象に含めます
-
-* `package.json`について
-  * `"main": "lib/index"` <これはNode.jsに`lib/index.js`をロードするように指示します
-  * `"types": "lib/index"` <これはTypeScriptに`lib/index.d.ts`をロードするように指示します
-
-
-パッケージの例：
-* `npm install typestyle` [for TypeStyle](https://www.npmjs.com/package/typestyle)
-* 使用法：`import { style } from 'typestyle';`は、完全な型安全性を提供します
-
-MORE:
-
-* あなたのパッケージが他のTypeScriptで作られたパッケージに依存している場合は、そのまま生のJSパッケージと同様に`dependencies`/`devDependencies`/ `peerDependencies`に入れてください
-* パッケージが他のJavaScript作成パッケージに依存していて、プロジェクトで型安全性を使用する場合は、それらの型定義(`@types/foo`など)を`devDependencies`に入れます。JavaScriptの型は、主なNPMの流れの*範囲外で*管理する必要があります。JavaScriptのエコシステムでは、セマンティックなバージョン管理が行われていない場合、型をあまりにも簡単に壊すので、ユーザーが型を必要とする場合は、それらに対応する`@types/foo`のバージョンをインストールする必要があります。
+And when you are ready to deploy your JavaScript application run `npm run build`.
 
 ## ボーナスポイント
 
