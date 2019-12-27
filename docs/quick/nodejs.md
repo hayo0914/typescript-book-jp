@@ -30,7 +30,7 @@ TypeScriptは、Node.jsを公式にサポートしています。素早くNode.j
 * ts-nodeは自動的にtsconfig.jsonとインストールされたTypeScriptバージョンを取得し、トランスパイルを行う
 * ts-nodeは出力されたJavaScriptをNode.jsで実行する
 
-And when you are ready to deploy your JavaScript application run `npm run build`.
+JavaScriptアプリケーションのデプロイの準備が完了したが、`npm run build`を実行します。
 
 ## ボーナスポイント
 
