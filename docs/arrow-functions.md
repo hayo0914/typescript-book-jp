@@ -1,17 +1,17 @@
 ### アロー関数(Arrow Functions)
 
-アロー関数は*fat arrow*(なぜなら`->`は細い矢印で `=>`は太い矢印であるため)、または*lambda関数*(他の言語にならって)と呼ばれています。もう1つの一般的に使用される機能は、アロー関数`()=> something`です。これを使う理由：
+アロー関数は、可愛いらしく*fat arrow*(なぜなら`->`は細く `=>`は太い)、または*lambda関数*(他の言語でそう名付けられているため)とも呼ばれます。一般的に利用される機能のひとつは、このアロー関数`()=> something`です。これを使う理由は次の通りです：
 
-1. `function`を何度もタイプしなくて済む
-1. `this`をレキシカルに捕捉する
-1. `arguments`をレキシカルに捕捉する
+1. `function`を何度も打ち込まなくて済む
+1. `this`の意味をレキシカルスコープで捕捉する
+1. `arguments`の意味をレキシカルスコープで捕捉する
 
-関数型であると公言する言語と比べると、JavaScriptでは`function`を頻繁にタイプしやすい傾向があります。アロー関数を使うと、関数をシンプルに作成できます
+関数型であると公言する言語と比べると、JavaScriptでは`function`を頻繁に打ち込まなければならない傾向があります。アロー関数を使うと、関数をシンプルに作成できます
 ```ts
 var inc = (x)=>x+1;
 ```
 `this`はJavaScriptにおいて昔から頭痛の種でした。
-ある賢い人はかつて「私は`this`の意味をすぐに忘れるJavaScriptが嫌いだ」と言いました。アロー関数は、それを囲んだコンテキストから`this`を捕捉します。この純粋なJavaScriptだけで書かれたクラスを考えてみましょう：
+ある賢い人はかつて「私は`this`の意味をすぐに忘れるJavaScriptが嫌いだ」と言いました。アロー関数は、それを囲んだコンテキストから`this`を捕捉します。純粋なJavaScriptだけで書かれたクラスを使って考えてみましょう：
 
 ```ts
 function Person(age) {
@@ -25,7 +25,7 @@ setTimeout(person.growOld,1000);
 
 setTimeout(function() { console.log(person.age); },2000); // 1, should have been 2
 ```
-このコードをブラウザで実行すると、関数内の`this`は`window`を指します。なぜなら、`window`が`growOld`関数を実行するものだからです。修正方法は、アロー関数を使うことです：
+このコードをブラウザで実行すると、関数内の`this`は`window`を指します。なぜなら、`window`が`growOld`関数を実行しているからです。修正方法は、アロー関数を使うことです：
 ```ts
 function Person(age) {
     this.age = age;
@@ -38,7 +38,7 @@ setTimeout(person.growOld,1000);
 
 setTimeout(function() { console.log(person.age); },2000); // 2
 ```
-これがうまくいく理由は、アロー関数が、関数ボディの外側の`this`を捕捉するからです。次のJavaScriptコードは同等の動きをします(TypeScriptを使用しない場合の書き方です)。
+これがうまくいく理由は、アロー関数が、関数本体の外側の`this`を捕捉するからです。次のJavaScriptコードは同等の動きをします(TypeScriptを使用しない場合の書き方です)。
 ```ts
 function Person(age) {
     this.age = age;
@@ -52,7 +52,7 @@ setTimeout(person.growOld,1000);
 
 setTimeout(function() { console.log(person.age); },2000); // 2
 ```
-TypeScriptを使っているので、ずっと気持ち良い構文で書けます。アロー関数とクラスを組み合わせることができます:
+TypeScriptを使っているので、はるかに快適な構文で書けます。アロー関数とクラスは、組み合わせることができます:
 ```ts
 class Person {
     constructor(public age:number) {}
@@ -69,24 +69,24 @@ setTimeout(function() { console.log(person.age); },2000); // 2
 > [このパターンについてのSweetなビデオ🌹](https://egghead.io/lessons/typescript-make-usages-of-this-safe-in-class-methods)
 
 #### Tip：アロー関数の必要性
-簡潔な構文が得られることに加えて、関数を他の誰かに呼び出してもらいたい場合も、アロー関数を使うだけですみます。つまり:
+簡潔な構文が得られることに加えて、関数を他の何かに呼び出してもらいたい場合も、アロー関数を使うだけで良いのです。本質的には以下の通りです:
 ```ts
 var growOld = person.growOld;
 // Then later someone else calls it:
 growOld();
 ```
-自分で呼び出す場合:
+自分で呼び出す場合は以下のようになります:
 ```ts
 person.growOld();
 ```
-いずれにしても`this`は正しい呼び出しコンテキストになります(この例では`person`)。
+どちらでも、`this`は正しいコンテキストになります(この例では`person`)。
 
 #### Tip：アロー関数の危険性
 
-実は、`this`を*呼び出しコンテキスト(calling context)にしたい*場合は*アロー関数を使うべきではありません*。jquery、underscore、mochaなどのライブラリで使用されるコールバックのケースです。ドキュメントが`this`の機能について言及している場合は、おそらくアロー関数の代わりに`function`を使うべきでしょう。同様に、`arguments`を使う場合は、アロー関数を使用しないでください。
+実は、`this`を*呼び出しコンテキストにしたい*場合は*アロー関数を使うべきではありません*。jquery、underscore、mochaのようなライブラリで使用するコールバックのケースです。ドキュメントが`this`の機能について言及している場合は、おそらくアロー関数の代わりに`function`を使うべきでしょう。同様に、あなたが`arguments`を使うことを予定している場合は、アロー関数を使用しないでください。
 
 #### Tip：`this`を使用するライブラリのアロー関数
-多くのライブラリ、例えば`jQuery`の反復(例: <https://api.jquery.com/jquery.each/>)は`this`を使って現在反復中のオブジェクトを渡します。このようなケースでは、ライブラリが渡した`this`だけでなく周囲のコンテキストにもアクセスしたい場合は、アロー関数が無いときに行うように`_self`のような一時変数を使用してください。
+thisを使う多くのライブラリ、例えば`jQuery`の反復(例: <https://api.jquery.com/jquery.each/>)は`this`を使って現在反復中のオブジェクトを渡します。このようなケースにおいて、ライブラリが渡した`this`だけでなく周囲のコンテキストにもアクセスしたい場合は、アロー関数が無いときに行うように`_self`のような一時変数を使用してください。
 
 ```ts
 let _self = this;
@@ -149,7 +149,7 @@ var foo = () => {
 ```
 JavaScriptランタイム(JavaScriptの仕様に原因がある)によって*JavaScript Label*を含む*ブロック*として解釈されます。
 
-> この意味がわからなくても心配しないでください。いずれにしろ、"unused label"(未使用のラベル)というTypeScriptのナイスなコンパイラエラーが発生します。Labelは古い(そしてほとんどは使用されていない)JavaScript機能で、現代のGOTO(経験豊富な開発者が悪いと考える🌹)として無視して構いません。
+> この意味がわからなくても心配しないでください。いずれにしろ、"unused label"(未使用のラベル)というTypeScriptのナイスなコンパイラエラーが発生します。Labelは古い(そしてほとんどは使用されていない)JavaScript機能で、現代のGOTO(経験豊富な開発者は悪いものとみなす🌹)として無視して構いません。
 
 `()`でオブジェクトのリテラルを囲むことで修正できます：
 
