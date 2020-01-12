@@ -1,4 +1,4 @@
-## プロミス(Promise)
+## Promise
 
 `Promise`クラスは、多くのモダンなJavaScriptエンジンに存在し、簡単に[polyfill](https://github.com/stefanpenner/es6-promise)することができます。Promiseを使う主な理由は、非同期/コールバックスタイルのコードに対して、同期処理的にエラー処理を行えるようにすることです。
 
