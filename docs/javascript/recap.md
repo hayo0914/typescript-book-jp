@@ -1,19 +1,19 @@
 # あなたの書いたJavaScriptはTypeScriptである
 
-JavaScriptにコンパイルされるプログラミング言語に関しては、たくさんの競合がありました(そして今後も)。 TypeScriptは、*JavaScriptがTypeScriptである*点において、それらと一線を画しています。これを表す図：
+JavaScriptにコンパイルされるプログラミング言語に関しては、たくさんの競合がありました(そして今後も)。 TypeScriptは、*JavaScriptがTypeScriptである*点において、それらと一線を画しています。これを表す図がこちらです：
 
 ![JavaScriptはTypeScriptです](https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png)
 
-しかし、これは、あなたがJavaScriptを学ぶ必要があることを意味しています(良いニュースは、JavaScriptだけ学べば良いということです)。TypeScriptは、単に、JavaScriptコードを良いドキュメントにする方法を標準化したものに過ぎません。
+しかしながら、これは、あなたがJavaScriptを学ぶ必要があることを意味しています(良いニュースは、JavaScript**だけ**学べば良いということです)。TypeScriptは、単に、JavaScriptコードを良いドキュメントにする方法を標準化したものに過ぎません。
 
-* 新しいプログラミング構文はバグ修正の助けにはなりません(CoffeeScriptを見てください)
-* 新しいプログラミング言語は、理論に偏り、開発者を実行環境やコミュニティから遠ざけます(Dartを見てください)
+* 単なる新しいプログラミング構文はバグを見つける助けにはなりません - でも、よりクリーンなコードや、少ないバグの助けにはなるかもしれません(例：CoffeeScript)
+* 新しいプログラミング言語の抽象化は、開発者をランタイムやコミュニティから遠ざけます - でも、もしあなたが既に親しんでいる概念であれば、学習が容易になるかもしれません(例：Dart は Java/C# に近い)
 
-TypeScriptは単にドキュメント付きのJavaScriptです。
+**TypeScriptは単にドキュメント付きのJavaScriptです。**
 
 ## JavaScriptを改善する
 
-TypeScriptは、JavaScriptのイカれた仕様から開発者を守ります(こんなのを覚えておく必要はありません)：
+TypeScriptは、JavaScriptの全く意味を成さない仕様から開発者を守ります(こんなことを覚えておく必要はありません)：
 
 ```ts
 [] + []; // JavaScript will give you "" (which makes little sense), TypeScript will error
@@ -38,6 +38,6 @@ function add(a,b) {
 
 ## 開発者は、まだJavaScriptを学ぶ必要がある
 
-TypeScriptは、「実際にはJavaScriptを書くものである」という点から非常に実用的なプログラミング言語だと言われていますが、それゆえ足をすくわれないように、JavaScriptに関して知っておくべきことがあります。次にそれらについて説明しましょう。
+TypeScriptは、「実際はJavaScriptを書く」という点から非常に実用的なプログラミング言語だと言われています。しかし、だからこそJavaScriptに関して知っておくべきことがあります。次にそれらについて説明しましょう。
 
 > 注意：TypeScriptはJavaScriptのスーパーセット(上位互換)であり、JavaScriptにコンパイラやIDEで使う型情報が付いただけのものです
