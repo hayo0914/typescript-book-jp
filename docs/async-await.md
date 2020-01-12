@@ -2,7 +2,7 @@
 
 > [同内容をカバーするPRO eggheadのビデオコース](https://egghead.io/courses/async-await-using-typescript)
 
-思考実験として、次のことを想像してみてください： `await` キーワードがPromiseに対して使われた場合、JavaScriptコードの実行を一時停止する。そして、その関数から返されたPromiseが完了した場合にだけ、コードの実行が再開される。そのように、JavaScriptランタイムに指示する方法:
+思考実験として、次のことを想像してみてください： `await` キーワードがPromiseに対して使われた場合、JavaScriptコードの実行を一時停止する。そして、その関数から返されたPromiseが完了した場合にだけ、コードの実行が再開される。そのように、JavaScriptランタイムに指示する方法を想像してみてください:
 
 ```ts
 // Not actual code. A thought experiment
