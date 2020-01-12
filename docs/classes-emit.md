@@ -1,5 +1,5 @@
 #### IIFE(Immediately-Invoked Function Expression)
-クラスを実現するために生成されるjsは以下のようになることも考えられました:
+クラスを実現するために生成されるjsは、以下のようになるかもしれません:
 ```ts
 function Point(x, y) {
     this.x = x;
@@ -21,7 +21,7 @@ TypeScriptが生成するクラスは、Immediately-Invoked Function Expression(
 })();
 ```
 
-クラスがIIFEに包まれている理由は、継承に関係しています。IIFEは、TypeScriptが親クラスを変数`_super`として取り込むことを可能にします:
+クラスがIIFEに包まれている理由は、継承に関係しています。IIFEは、TypeScriptがベースクラスを変数`_super`として補足することを可能にしています:
 
 ```ts
 var Point3D = (function (_super) {
@@ -38,11 +38,11 @@ var Point3D = (function (_super) {
 })(Point);
 ```
 
-IIFEは、TypeScriptが基本クラス `Point`を`_super`変数に簡単に取り込むことを可能にし、クラス本体で一貫して使用されることに注意してください。
+IIFEは、TypeScriptがベースクラス `Point`を`_super`変数に補足することを簡単にし、かつ、それがクラス本体で一貫して使用されていることに注意してください。
 
 ### `__extends`
 
-クラスを継承するとTypeScriptが次の関数を生成することに、あなたはすぐ気がつくでしょう:
+クラスを継承するとTypeScriptが次の関数を生成することに、すぐに気づくでしょう:
 
 ```ts
 var __extends = this.__extends || function (d, b) {
@@ -52,12 +52,12 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 ```
-ここで `d`は派生クラスを指し、`b`はベースクラスを指します。この関数は2つのことを行います：
+ここで `d`は派生クラスを指し、`b`はベースクラスを指します。この関数は次の2つのことを行います：
 
 1. 親クラスの静的メンバを子クラスにコピーする:`for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];`
-1. 子クラス関数のプロトタイプを準備し、任意に親の`proto`のメンバを検索できるようにする。つまり、`d.prototype.__proto__ = b.prototype`を実現する
+1. 子クラス関数のプロトタイプを準備し、必要に応じて親の`proto`のメンバを検索できるようにする。つまり、実質的に `d.prototype.__proto__ = b.prototype` です。
 
-1を理解するのに苦労する人はほとんどいませんが、2については多くの人が理解に苦労します。なので順番に説明します。
+1を理解するのに苦労する人はほとんどいませんが、2については多くの人が理解に苦しみます。そのため、順番に説明します。
 
 #### `d.prototype.__proto__ = b.prototype`
 
