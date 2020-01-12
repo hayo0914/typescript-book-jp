@@ -61,7 +61,8 @@ let component = iteratorResult1.value; //Component { name: 'top' }
 
 繰り返しになりますが、イテレータ自体はTypeScriptの機能ではありません。このコードは`Iterator`と`IteratorResult`のインターフェースを明示的に実装しなくても動作します。しかしながら、ES6の[インターフェース](./types/interfaces.md)を使うことはコードの一貫性を保つ上で非常に便利です。
 
-それはOK、良いことです。しかし、さらに役立つことがあるかもしれません。ES6はイテラブルプロトコル(iterable protocol)を定義しています。それを実装する場合は、[Symbol.iterator]シンボル(`symbol`)を含みます：
+OK、これでも良いでしょう。でも、もっと便利にできます。反復処理インターフェースを実装する場合、ES６は、[Symbol.iterator]プロパティを含む、反復処理プロトコル(iterable protocol)を定義しています。:
+
 ```ts
 //...
 class Frame implements Iterable<Component> {
@@ -96,7 +97,7 @@ for (let cmp of frame) {
 }
 ```
 
-残念ながら `frame.next()`はこのパターンでは動作しません。また、見た目が少し不格好です。そこで救いになるのがIterableIteratorインターフェースです!
+残念ながら `frame.next()`はこのパターンでは動作しません。また、見た目が少し不格好です。そこで助けになるのが、 `IterableIterator` インターフェースです!
 ```ts
 //...
 class Frame implements IterableIterator<Component> {
@@ -178,4 +179,4 @@ for(let num of fibMax21) {
 ```
 
 #### ES5で動作するイテレータを使ってコードを書く
-上記のコード例はES6に対応しているJSエンジンが必要ですが、ES5をターゲットとするJSエンジンであっても、`Symbol.iterator`をサポートしている場合は、動作する可能性があります。これは、ES6 lib(es6.d.ts)をプロジェクトに追加してES5をターゲットにコンパイルすることで可能です。コンパイルされたコードは、node 4+、Google Chrome、その他のブラウザで動作するはずです。
+上記のコード例はES6をターゲットにコンパイルする必要がありますが、ES5をターゲットにしても、 `Symbol.iterator` をサポートしている場合は、動作する可能性があります。これは、ES6 lib(es6.d.ts)をプロジェクトに追加してES5をターゲットにコンパイルすることで可能です。コンパイルされたコードは、node 4+、Google Chrome、その他のブラウザで動作するはずです。
