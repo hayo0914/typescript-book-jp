@@ -2,7 +2,7 @@
 
 > [同内容をカバーするPRO eggheadのビデオコース](https://egghead.io/courses/async-await-using-typescript)
 
-思考実験として、`await`キーワードがPromiseに対して使われたときにコードの実行を一時停止し、その関数から返されたPromiseが完了したときだけ実行が再開されるようにJavaScriptランタイムに指示する方法を考えてみましょう：
+思考実験として、次のことを想像してみてください： `await` キーワードがPromiseに対して使われた場合、JavaScriptコードの実行を一時停止する。そして、その関数から返されたPromiseが完了した場合にだけ、コードの実行が再開される。そのように、JavaScriptランタイムに指示する方法:
 
 ```ts
 // Not actual code. A thought experiment
@@ -18,17 +18,17 @@ async function foo() {
 ```
 
 Promiseが完了したとき、次の処理を続けます
-* Promiseがresolveされた場合、値が返されることを待つ
-* Promiseがrejectされた場合、同期的にキャッチ可能なエラーを投げる
+* そのPromiseが `resolve` され、 `await` が値が返す場合
+* そのPromiseが `reject` され、同期的に補足できるエラーを投げる場合
 
 
-これは一瞬にして(そして魔法のように)非同期プログラミングを同期プログラミングと同じように簡単にします。この思考実験に必要な3つのものは次のとおりです。
+これは一瞬にして(そして魔法のように)非同期処理のプログラミングを同期処理のプログラミングと同じように簡単に変えます。この思考実験に必要なものは、下記の３つです:
 
-* 関数実行を一時停止する能力
-* 関数の内側に値を入れる能力
-* 関数の内側に例外をスローする能力
+* 関数の実行を一時停止できること
+* 関数の内側に値を入れられること
+* 関数の内側に例外を投げられること
 
-これはまさにジェネレータが可能にしたことです!上記の思考実験は実際の事実です。なので、TypeScript/JavaScriptの`async`/`await`の実装も存在します。裏側の仕組みは、単にジェネレータを使っています。
+これはまさにジェネレータが可能にしたことです!上記の思考実験は、実際のところ、現実なので、TypeScript/JavaScriptに`async`/`await`の実装も存在します。それらのう内側の仕組みは、単にジェネレータを使っているのです。
 
 ### 生成されたJavaScript
 
@@ -46,17 +46,17 @@ const foo = wrapToReturnPromise(function* () {
 });
 ```
 
-`wrapToReturnPromise`はジェネレータ関数を実行して`generator`を取得し、`generator.next()`を使います。返却値が`promise`なら、その`promise`を`then`+`catch`し、結果に応じて、`generator.next(result)`または `generator.throw(error)`をコールします。それでおしまい!
+この`wrapToReturnPromise`は単にジェネレータ関数を実行して`generator`を取得します。そして、`generator.next()`を使います。返り値が`promise`なら、その`promise`を`then`+`catch`し、結果に応じて `generator.next(result)` または `generator.throw(error)` を呼び出します。それだけです!
 
 
 
-### TypeScriptにおけるAsync Awaitのサポート
-**Async - Await**は[TypeScript1.7以降](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-7.html)でサポートされています。非同期関数の先頭に*async*キーワードが付きます。 *await*は、非同期関数の戻り値promiseが満たされ、*Promise*からの値を取得するまで実行を中断します。
-以前は、**ターゲットがES6**の場合のみサポートされていて、**ES6ジェネレータ**に直接トランスパイルしていました。
+### TypeScriptにおける Async Await のサポート
+**Async - Await**は[TypeScript1.7以降](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-7.html)でサポートされています。非同期関数の先頭に*async*キーワードが付きます。 *await*は、非同期関数の戻り値promiseが完了し、*Promise*から値を取得するまで実行を中断します。
+以前は、**ターゲットがES6**の場合のみサポートしており、**ES6ジェネレータ**に直接トランスパイルしていました。
 
-**TypeScript2.1**は、[ES3とES5のランタイムにAsync/Await機能を追加](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-1.html)しました。あなたが使っている環境を気にせずに利用することができます。TypeScript 2.1以降で、async/awaitを使用できることに注意することが重要です。もちろん多くのブラウザがサポートされています。もちろん、Promiseのためのpolyfillがグローバルに追加されています。
+**TypeScript2.1**は、[ES3とES5のランタイムにAsync/Await機能を追加](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-1.html)しました。これは、あなたがブラウザの環境に関係なく、それを利用できるということを意味しています。TypeScript 2.1以降、Promiseのためのポリフィルがグローバルに追加されたことにより、多くのブラウザでasync/awaitがサポートされています。
 
-この例のコードを見て、TypeScriptのasync/await記法がどのように働くかを理解してください。
+この例のコードを見て、TypeScriptのasync/await記法がどのように機能するかを理解してください。
 ```ts
 function delay(milliseconds: number, count: number): Promise<number> {
     return new Promise<number>(resolve => {
@@ -192,8 +192,8 @@ dramaticWelcome();
 完全な例を [ここ][asyncawaites5code] で見ることができます。
 
 
-**注意**：両方のターゲットシナリオでは、実行時にグローバルにECMAScriptに準拠したPromiseがあることを確認する必要があります。PromiseのためにPolyfillを用意する必要があるかもしれません。また、libフラグを "dom", "es2015"もしくは"dom", "es2015.promise", "es5"のように設定することで、TypeScriptがPromiseを認識していることを確認する必要があります。
-**各ブラウザのPromiseサポート(ネイティブおよびPolyfill)の有無を [ここ](https://kangax.github.io/compat-table/es6/#test-Promise) で確認できます。**
+**注意**：ES6、ES5のどちらをターゲットにする場合でも、ランタイムがグローバルにECMAScriptに準拠したPromiseの機能を持っていることを確認する必要があります。Promiseのためにポリフィルを用意する必要があるかもしれません。また、libフラグを "dom", "es2015"もしくは"dom", "es2015.promise", "es5"のように設定することで、TypeScriptがPromiseの存在を認識できるようにする必要があります。
+**各ブラウザのPromiseサポート(ネイティブ実装およびポリフィル)の有無を [ここ](https://kangax.github.io/compat-table/es6/#test-Promise) で確認できます。**
 
 [ジェネレータ]:./generators.md
 [asyncawaites5code]:https://cdn.rawgit.com/basarat/typescript-book/705e4496/code/async-await/es5/asyncAwaitES5.js
