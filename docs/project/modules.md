@@ -13,10 +13,10 @@ var foo = 123;
 ```ts
 var bar = foo; // allowed
 ```
-言うまでもありませんが、グローバル名前空間を使うとコードで名前が競合する危険があります。次のファイルモジュール(File Module)を使用することをお勧めします。
+言うまでもありませんが、グローバル名前空間を使うと、あなたのコードが名前競合の危険にさらされます。次のファイルモジュール(File Module)を使用することをお勧めします。
 
 ### ファイルモジュール(File Module)
-*external modules*とも呼ばれます。TypeScriptファイルのルートレベルに`import`または`export`が存在する場合、そのファイル内にローカルスコープ(local scope)が作成されます。したがって、以前の`foo.ts`を次のように変更した場合(`export`に注目)：
+外部モジュール(*external modules*)とも呼ばれます。TypeScriptファイルのルートレベルに`import`または`export`が存在する場合、そのファイル内にローカルスコープ(*local scope*)が作成されます。以前の`foo.ts`を次のように変更した場合を見てください(`export`に注目してください)：
 
 ```ts
 export var foo = 123;
