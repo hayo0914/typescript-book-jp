@@ -117,7 +117,7 @@ const X: React.Component<Props> = foo; // from somewhere
 <X {...props}/>;
 ```
 
-### React JSXヒント：ジェネリックコンポーネント(Generic Components)
+### React JSXヒント：ジェネリクスコンポーネント(Generic Components)
 
 期待どおりに動作します。次に例を示します。
 
@@ -130,7 +130,7 @@ class Select<T> extends React.Component<SelectProps<T>, any> { }
 const Form = () => <Select<string> items={['a','b']} />;
 ```
 
-### ジェネリック関数(Generic Functions)
+### ジェネリクス関数(Generic Functions)
 
 次のようなものがうまくいきます：
 
