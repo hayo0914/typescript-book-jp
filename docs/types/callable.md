@@ -65,7 +65,7 @@ const simple: (foo: number) => string
     = (foo) => foo.toString();
 ```
 
-> たった１つのアロー構文の制限： オーバーロードを指定することはできません。オーバーロードの場合、フルの`{(someArgs)：someReturn}`構文を使用する必要があります。
+> たった1つのアロー構文の制限： オーバーロードを指定することはできません。オーバーロードの場合、フルの`{(someArgs)：someReturn}`構文を使用する必要があります。
 
 ### ニューアブル(Newable)
 

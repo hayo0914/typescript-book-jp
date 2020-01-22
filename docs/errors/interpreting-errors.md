@@ -1,7 +1,7 @@
 # 解釈エラー(Interpreting Errors)
 TypeScriptは、*Developer Help*指向のプログラミング言語であることを非常に重視しているので、何かがうまく動いてない時のエラーメッセージは、高レベルなサポートになるよう努力しています。これは、コンパイラは助けにならないと考えるユーザにとっては、わずかな情報過多につながる可能性があります。 
 
-一つの例をIDEで見て、エラーメッセージを読むプロセスを１つ１つ見ていきましょう。
+1つの例をIDEで見て、エラーメッセージを読むプロセスを1つ1つ見ていきましょう。
 
 ```ts
 type SomethingComplex = {
@@ -28,7 +28,7 @@ takeSomethingComplex(fail); // TS ERROR HAPPENS HERE
 この例は関数呼び出しに失敗している一般的なプログラミングエラーです(`bar: getBar`は`bar: getBar()`であるべきです)。この不手際については、幸運なことに、TypeScriptによって型の要件が一致しないことが即座にキャッチされます。
 
 ## エラーのカテゴリ(Error Categories)
-TypeScriptのエラーメッセージには２種類あります（SuccintとDetailed)。
+TypeScriptのエラーメッセージには2種類あります（SuccintとDetailed)。
 
 ### 簡潔(Succint)
 succintエラーメッセージは、エラー番号とメッセージについての、通常のコンパイラの説明を提供することを意図したものです。例えば、succintメッセージは次のようなものです。

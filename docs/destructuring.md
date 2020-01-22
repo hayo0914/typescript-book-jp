@@ -30,7 +30,7 @@ rect.x = 10;
 ({x, y, width, height} = rect); // assign to existing variables using outer parentheses
 console.log(x, y, width, height); // 10,10,15,20
 ```
-ここでは、分解が無ければ、`rect`から`x、y、width、height`を一つずつ取得する必要があります。
+ここでは、分解が無ければ、`rect`から`x、y、width、height`を1つずつ取得する必要があります。
 
 展開した変数を、新しい変数名に割り当てるには、次のようにします。
 

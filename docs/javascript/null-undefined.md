@@ -20,7 +20,7 @@ console.log('' == undefined); // false
 console.log(false == undefined); // false
 ```
 
-`== null`を使って`undefined`と `null`を両方ともチェックすることを推奨します。一般的に２つを区別する必要はありません。
+`== null`を使って`undefined`と `null`を両方ともチェックすることを推奨します。一般的に2つを区別する必要はありません。
 
 ```ts
 function foo(arg: string | null | undefined) {
@@ -30,7 +30,7 @@ function foo(arg: string | null | undefined) {
 }
 ```
 
-１つだけ例外があります。次に説明するルートレベル(root level)のundefinedの値です。
+1つだけ例外があります。次に説明するルートレベル(root level)のundefinedの値です。
 
 ### ルートレベル(root level)のundefinedのチェック
 

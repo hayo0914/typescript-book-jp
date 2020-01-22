@@ -7,7 +7,7 @@
 
 私たちの開発ワークフローでwebpackを使用している場合、[TypeScript 2.4 dynamic import expressions](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#dynamic-import-expressions)は**自動的に**チャンク化されたバンドルを生成し、最終的なJSバンドルを自動的に分割します。しかし、**tsconfig.jsonの設定**に依存しているので、それはそう簡単ではありません。
 
-webpackのコード分割では、この目標を達成するための２つの同様なテクニックをサポートしています: **import()**(ECMAScriptの推奨)と**require.ensure()**(従来から存在するwebpack固有の方法)です。そして、それが意味するのは、TypeScriptにおいて**import()文**を他の何かにトランスパイルするのではなく、そのままの形で出力することです。
+webpackのコード分割では、この目標を達成するための2つの同様なテクニックをサポートしています: **import()**(ECMAScriptの推奨)と**require.ensure()**(従来から存在するwebpack固有の方法)です。そして、それが意味するのは、TypeScriptにおいて**import()文**を他の何かにトランスパイルするのではなく、そのままの形で出力することです。
 
 webpack + TypeScript 2.4の設定方法の例を見てみましょう。
 

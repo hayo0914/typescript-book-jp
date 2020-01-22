@@ -70,7 +70,7 @@ queue.push("1"); // ERROR : cannot push a string. Only numbers allowed
 // ^ if that error is fixed the rest would be fine too
 ```
 
-すでに見たもう一つの例は、*reverse*関数の例です。ここでは、関数に渡されるものと関数が返すものの間の制約があります。
+すでに見たもう1つの例は、*reverse*関数の例です。ここでは、関数に渡されるものと関数が返すものの間の制約があります。
 
 ```ts
 function reverse<T>(items: T[]): T[] {
@@ -126,7 +126,7 @@ declare function parse(name: string): any;
 const something = parse('something') as TypeOfSomething;
 ```
 
-一回だけ使用されるジェネリクスは、型安全性に関してはアサーションよりも劣っています。それは、既に述べたように、あなたのAPIに利便性を提供するものです。
+1回だけ使用されるジェネリクスは、型安全性に関してはアサーションよりも劣っています。それは、既に述べたように、あなたのAPIに利便性を提供するものです。
 
 より明らかな例は、jsonレスポンスをロードする関数です。それは、あなたが渡した任意の型のPromiseを返します：
 ```ts

@@ -75,7 +75,7 @@ import * as foo from './foo';
 // you can use `foo.someVar` and `foo.SomeType` and anything else that foo might export.
 ```
 
-* 副作用のためだけに一つのファイルをインポートする:
+* 副作用のためだけに1つのファイルをインポートする:
 
 ```js
 import 'core-js'; // a common polyfill library
@@ -137,7 +137,7 @@ import someLocalNameForThisFile from "../foo";
 簡単です。単に相対的なパスに従います :)
 
 * ファイル`bar.ts`が`import * as foo from './foo';`を実行した場合、`foo`を同じフォルダに置く必要がある
-* ファイル`bar.ts`が`import * as foo from '../foo';`を実行する場合、`foo`は１つ上のフォルダ内に存在する必要がある
+* ファイル`bar.ts`が`import * as foo from '../foo';`を実行する場合、`foo`は1つ上のフォルダ内に存在する必要がある
 * ファイル`bar.ts`が`import * as foo from '../someFolder/foo';`を実行する場合、1つ上のフォルダにfooが存在する`someFolder`というフォルダが存在する必要がある
 
 もしくは他に思いついた相対パスが使えます :)
@@ -281,7 +281,7 @@ export function loadFoo() {
 
 ### ユースケース：循環依存を避ける
 
-遅延ロードの使用例と同様に、特定のモジュールローダ(commonjs/nodeと、amd/requirejs)は循環依存のため、うまく動作しません。そのような場合には、一つの方向に遅延ロードを行うようにし、反対方向のロードの前にロードしておくと便利です。
+遅延ロードの使用例と同様に、特定のモジュールローダ(commonjs/nodeと、amd/requirejs)は循環依存のため、うまく動作しません。そのような場合には、1つの方向に遅延ロードを行うようにし、反対方向のロードの前にロードしておくと便利です。
 
 ### ユースケース：確実にインポートする
 

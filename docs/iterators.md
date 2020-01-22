@@ -61,7 +61,7 @@ let component = iteratorResult1.value; //Component { name: 'top' }
 
 繰り返しになりますが、イテレータ自体はTypeScriptの機能ではありません。このコードは`Iterator`と`IteratorResult`のインターフェースを明示的に実装しなくても動作します。しかしながら、ES6の[インターフェース](./types/interfaces.md)を使うことはコードの一貫性を保つ上で非常に便利です。
 
-OK、これでも良いでしょう。でも、もっと便利にできます。反復処理インターフェースを実装する場合、ES６は、[Symbol.iterator]プロパティを含む、反復処理プロトコル(iterable protocol)を定義しています。:
+OK、これでも良いでしょう。でも、もっと便利にできます。反復処理インターフェースを実装する場合、ES6は、[Symbol.iterator]プロパティを含む、反復処理プロトコル(iterable protocol)を定義しています。:
 
 ```ts
 //...

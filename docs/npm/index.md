@@ -90,7 +90,7 @@ npm i react
 ```
 
 ## Public vs. Private packages
-公開された一般的なnpmパッケージを何か１つでも使っている場合は、これは必要ありません。ただ、enterprise/commercial cusomers向けがあることを知ってください。
+公開された一般的なnpmパッケージを何か1つでも使っている場合は、これは必要ありません。ただ、enterprise/commercial cusomers向けがあることを知ってください。
 
 ### Public packages
 * パッケージはデフォルトでPublicです 
@@ -99,7 +99,7 @@ npm i react
  
 publicパッケージをダウンロードするには、アカウントは必要ありません。
 
-これは無料でシェアするパッケージであり、npmが成功した理由の一つです🌹
+これは無料でシェアするパッケージであり、npmが成功した理由の1つです🌹
 
 ### Private packages 
 もしあなたの会社/チームのためにprivateパッケージを必要とする場合は、有料プランにサインアップする必要があります。詳細はこちらです:https://www.npmjs.com/pricing

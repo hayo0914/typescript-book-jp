@@ -84,7 +84,7 @@ delete foo.__proto__.bar; // remove from foo.__proto__
 console.log(foo.bar); // undefined
 ```
 
-これで、あなたは `__proto__`を理解できました。もう一つの便利な事実は、JavaScriptの関数(`function`)には`prototype`というプロパティがあり、そして、その`constructor`メンバは、逆に関数を指しているということです。これを以下に示します:
+これで、あなたは `__proto__`を理解できました。もう1つの便利な事実は、JavaScriptの関数(`function`)には`prototype`というプロパティがあり、そして、その`constructor`メンバは、逆に関数を指しているということです。これを以下に示します:
 
 ```ts
 function Foo() { }

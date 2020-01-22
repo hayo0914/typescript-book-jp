@@ -69,15 +69,15 @@ const HighChart = await import('https://code.highcharts.com/js/es-modules/master
 Highcharts.default.chart('container', { ... }); // Notice `.default`
 ```
 
-## 非クラス/非関数の場合、２行必要です
+## 非クラス/非関数の場合、2行必要です
 
-関数/クラスに対しては、１行で書けます:
+関数/クラスに対しては、1行で書けます:
 ```ts
 export default function foo() {
 }
 ```
 
-名前が無い/型アノテーションされたオブジェクトに対しても、１行で書けます:
+名前が無い/型アノテーションされたオブジェクトに対しても、1行で書けます:
 ```ts
 export default {
   notAFunction: 'Yeah, I am not a function or a class',
