@@ -29,7 +29,7 @@ logName({ name: 'matt' }); // okay
 logName({ name: 'matt', job: 'being awesome' }); // Error: object literals must only specify known properties. `job` is excessive here.
 ```
 
-このエラーはオブジェクトリテラルでのみ発生することに注意してください。このエラーがなければ、`logName({ name: 'matt', job: 'being awesome' })`という呼び出しを見て、logNameが`job`を渡すと何かを便利なことを実行すると思うかもしれません。現実的には完全に無視されます。
+このエラーはオブジェクトリテラルでのみ発生することに注意してください。このエラーがなければ、`logName({ name: 'matt', job: 'being awesome' })`という呼び出しを見て、logNameに`job`を渡すと何か便利なことを実行すると思うかもしれません。現実的には完全に無視されます。
 
 もう1つの大きなユースケースは、オプションのメンバを持つインターフェイスで、このようなオブジェクトのリテラルチェックなしでは、型チェックはタイプミスを見逃します。これは以下のとおりです：
 
