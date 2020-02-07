@@ -161,7 +161,7 @@ addEventListener(EventType.Mouse, <(e: Event) => void>((e: MouseEvent) => consol
 addEventListener(EventType.Mouse, (e: number) => console.log(e));
 ```
 
-また、`Array<Child>`を`Array<Base>`(Covariance)に関数として割り当てることもできます。配列のCovarianceは全ての`Array<Child>`関数が`Array<Base>`に代入可能であることを必要とします。例えば`push(t:Child)`は関数パラメータのBivarianceによって`push(t:Base)`に代入可能です。
+また、`Array<Child>`を`Array<Base>`(Covariance)に関数として割り当てることもできます。配列のCovarianceはすべての`Array<Child>`関数が`Array<Base>`に代入可能であることを必要とします。例えば`push(t:Child)`は関数パラメータのBivarianceによって`push(t:Base)`に代入可能です。
 
 これは他の言語から来た人はエラーになると予測するかもしれません。**混乱を招く可能性がありますが、**これはTypeScriptではエラーになりません：
 

@@ -81,7 +81,7 @@ import * as foo from './foo';
 import 'core-js'; // a common polyfill library
 ```
 
-* 別のモジュールから全てのものを再エクスポートする
+* 別のモジュールからすべてのものを再エクスポートする
 
 ```js
 export * from './foo';

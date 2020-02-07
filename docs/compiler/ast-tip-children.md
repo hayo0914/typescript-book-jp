@@ -23,7 +23,7 @@ export function forEachChild<T>(node: Node, cbNode: (node: Node) => T, cbNodeArr
             // .... lots more
 ```
 
-基本的に`node.kind`をチェックし、それに基づいて`node`が提供するインターフェースを推測し、子に対して`cbNode`を呼び出します。ただし、この関数は全ての子(例えばSyntaxKind.SemicolonToken)に対して`visitNode`を呼び出すわけではないことに注意してください。AST内のノードのすべての子を望むのであれば、単に`Node`の`.getChildren`メンバ関数を呼び出してください
+基本的に`node.kind`をチェックし、それに基づいて`node`が提供するインターフェースを推測し、子に対して`cbNode`を呼び出します。ただし、この関数はすべての子(例えばSyntaxKind.SemicolonToken)に対して`visitNode`を呼び出すわけではないことに注意してください。AST内のノードのすべての子を望むのであれば、単に`Node`の`.getChildren`メンバ関数を呼び出してください
 
 例えば、ここにはノードの冗長な`AST`を出力する関数があります：
 
