@@ -394,7 +394,7 @@ Cypressテストによって生成された自動スナップショット+コマ
 * テストコードのブレークポイント: あなたは`.debug()`コマンドを使い、cypressのテスト実行をそこで停止できます。例えば、`.then(() => { debugger })`です。あなたはいくつかのエレメントを得ること(`cy.get('#foo').then(($ /* a reference to the dom element */) => { debugger; })`)や、ネットワーク呼び出し(`cy.request('https://someurl').then((res /* network response */) => { debugger });`)すら可能です。しかし、慣用的な方法は、`cy.get('#foo').debug()`です。そして、テストランナーが`debug`で止まったときに、`get`をコマンドログでクリックすると自動的に`console.log`にあなたが知りたい`.get('#foo')`に関する情報が出力されます(そして、デバッグに必要な他のコマンドでも似たようなものです)
 
 ## ヒント: サーバーを開始してテストを実行する
-もしテストの前にローカルサーバを起動したい場合は`start-server-and-test` [https://github.com/bahmutov/start-server-and-test](https://github.com/bahmutov/start-server-and-test) を依存関係に追加できます。それは次の引数を受け取ります。
+もしテストの前にローカルサーバーを起動したい場合は`start-server-and-test` [https://github.com/bahmutov/start-server-and-test](https://github.com/bahmutov/start-server-and-test) を依存関係に追加できます。それは次の引数を受け取ります。
 * サーバーを実行するためのnpmスクリプト
 * サーバーが起動しているかをチェックするためのエンドポイント
 * テストを初期化するためのnpmスクリプト

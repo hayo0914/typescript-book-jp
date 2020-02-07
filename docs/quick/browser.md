@@ -114,7 +114,7 @@ module.exports = {
 }
 ```
 
-* webpackが生成するindex.htmlのテンプレートとして使われる`src/templates/index.html`ファイルです。生成されたファイルは`public`フォルダに配置され、Webサーバを通じてサーブされます：
+* webpackが生成するindex.htmlのテンプレートとして使われる`src/templates/index.html`ファイルです。生成されたファイルは`public`フォルダに配置され、Webサーバーを通じてサーブされます：
 
 ```html
 <html>
@@ -155,4 +155,4 @@ ReactDOM.render(
     * `src/app/app.tsx`(または`src/app/app.tsx`に使われるts/tsxファイル)を編集すれば、サーバーがライブリロードします
     * `src/templates/index.html`を編集すれば、サーバーがライブリロードします
 * `npm run build`を実行して本番用のアセットをビルドします
-    * Webサーバを通じて`public`フォルダ(ビルドされたアセットが配置される)をサーブします
+    * Webサーバーを通じて`public`フォルダ(ビルドされたアセットが配置される)をサーブします
