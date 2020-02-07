@@ -76,7 +76,7 @@ this.setState({foo: "Hello"}); // Error: missing property bar
 this.setState({foo: "Hello", bar: this.state.bar}};
 ```
 
-Freshnessの概念を使用する場合は、すべてのメンバーをオプションとマークすれば、あなたはまだタイプミスに気づくことができます!：
+Freshnessの概念を使用する場合は、すべてのメンバをオプションとマークすれば、あなたはまだタイプミスに気づくことができます!：
 
 ```ts
 // Assuming

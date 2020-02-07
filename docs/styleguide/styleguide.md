@@ -50,7 +50,7 @@ class foo { }
 ```ts
 class Foo { }
 ```
-* クラスメンバーとメソッドの `camelCase`を使う
+* クラスメンバとメソッドの `camelCase`を使う
 
 > 理由：当然のことながら、変数と関数の命名規則に従います。
 
@@ -74,7 +74,7 @@ class Foo {
 
 > 理由：クラスに似ています
 
-* メンバーには`camelCase`を使います。
+* メンバには`camelCase`を使います。
 
 > 理由：クラスに似ています
 
@@ -99,7 +99,7 @@ interface Foo {
 
 > 理由：クラスに似ています
 
-* メンバーには`camelCase`を使います。
+* メンバには`camelCase`を使います。
 
 > 理由：クラスに似ています
 
@@ -108,7 +108,7 @@ interface Foo {
 
 * 名前に`PascalCase`を使用する
 
-> 理由：TypeScriptチームに続くコンベンション。名前空間は事実上静的メンバーを持つクラスです。クラス名は`PascalCase`=>名前空間名は`PascalCase`です
+> 理由：TypeScriptチームに続くコンベンション。名前空間は事実上静的メンバを持つクラスです。クラス名は`PascalCase`=>名前空間名は`PascalCase`です
 
 **悪い**
 ```ts
@@ -138,7 +138,7 @@ enum Color {
 }
 ```
 
-* enumメンバーに `PascalCase`を使用する
+* enumメンバに `PascalCase`を使用する
 
 > 理由：言語作成者、TypeScriptチームに従った慣例です。例えば`SyntaxKind.StringLiteral`です。他の言語からTypeScriptへの翻訳(コード生成)にも役立ちます。
 

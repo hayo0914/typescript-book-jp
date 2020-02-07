@@ -121,7 +121,7 @@ console.log( 1 / 0); // Infinity
 console.log(-1 / 0); // -Infinity
 ```
 
-以下のように、これらの`Infinity`値を手動で使うか、`Number`クラスの静的メンバーを使うことができます：
+以下のように、これらの`Infinity`値を手動で使うか、`Number`クラスの静的メンバを使うことができます：
 
 ```js
 console.log(Number.POSITIVE_INFINITY === Infinity);  // true

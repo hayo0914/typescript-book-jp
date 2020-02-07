@@ -226,7 +226,7 @@ a = s;  // OK
 s = a;  // OK
 ```
 
-* `private`と`protected`メンバーは同じクラスで書かれたものでなければなりません。そのようなメンバは、本質的にそのクラスをnominalにします。
+* `private`と`protected`メンバは同じクラスで書かれたものでなければなりません。そのようなメンバは、本質的にそのクラスをnominalにします。
 
 ```ts
 /** A class hierarchy */

@@ -40,7 +40,7 @@ bar = 456; // Okay
 bar = '789'; // ERROR: Type `string` is not `assignable` to type `number`
 ```
 
-## クラスメンバーのタイプを取得する
+## クラスメンバのタイプを取得する
 
 変数の型を取り込むのと同様に、単に型取得の目的で変数を宣言するだけです。
 

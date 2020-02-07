@@ -111,7 +111,7 @@ let [a, b] = bar;
 // a = "hello"; // Would Error: cannot assign `string` to a `number`
 ```
 
-関数のパラメータの型が推測できれば、その構造化されたプロパティも同様に推測されます。例えばここでは引数を`a`/`b`のメンバーに分解します。
+関数のパラメータの型が推測できれば、その構造化されたプロパティも同様に推測されます。例えばここでは引数を`a`/`b`のメンバに分解します。
 
 ```ts
 type Adder = (numbers: { a: number, b: number }) => number;

@@ -141,4 +141,4 @@ var bird = new Bird();
 bird.walk();
 bird.fly();
 ```
-基本的に`bird.fly`は`bird.__proto__.fly`(`new`は`bird.__proto__`が`Bird.prototype`を指すようにすることを思い出してください)から検索され、`bird.walk`(継承されたメンバー)は`bird.__proto__.__proto__.walk`から検索されます(`bird.__proto__ == Bird.prototype`、そして、`bird.__proto__.__proto__` == `Animal.prototype`です)。
+基本的に`bird.fly`は`bird.__proto__.fly`(`new`は`bird.__proto__`が`Bird.prototype`を指すようにすることを思い出してください)から検索され、`bird.walk`(継承されたメンバ)は`bird.__proto__.__proto__.walk`から検索されます(`bird.__proto__ == Bird.prototype`、そして、`bird.__proto__.__proto__` == `Animal.prototype`です)。
