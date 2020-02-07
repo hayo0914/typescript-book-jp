@@ -35,7 +35,7 @@ var bar = foo.toString(); // ERROR: Property 'toString' does not exist on type '
 ```ts
 declare var window: Window;
 ```
-これは単純な`declare var`の後に変数名(ここでは`window`)とタイプアノテーションのインターフェース(`Window`インターフェース)が続きます。これらの変数は、一般的にいくつかのグローバルインターフェースを指し示します。例として、ここに`Window`インタフェースの小さな(実際には非常に大規模な)サンプルを提示します：
+これは単純な`declare var`の後に変数名(ここでは`window`)とタイプアノテーションのインターフェース(`Window`インターフェース)が続きます。これらの変数は、一般的にいくつかのグローバルインターフェースを指し示します。例として、ここに`Window`インターフェースの小さな(実際には非常に大規模な)サンプルを提示します：
 
 ```ts
 interface Window extends EventTarget, WindowTimers, WindowSessionStorage, WindowLocalStorage, WindowConsole, GlobalEventHandlers, IDBEnvironment, WindowBase64 {
@@ -53,7 +53,7 @@ interface Window extends EventTarget, WindowTimers, WindowSessionStorage, Window
 
 ### ネイティブ型(Native Types)を変更する
 
-TypeScriptの`interface`はオープンエンドなので、`lib.d.ts`で宣言されたインターフェースにメンバーを追加するだけで、TypeScriptはその追加を認識します。これらのインタフェースを`lib.d.ts`に関連付けるには、これらの変更を [グローバルモジュール](../project/modules.md) で行う必要があることに注意してください。このために、 [`globals.d.ts`](../project/globals.md) という特別なファイルを作成することをお勧めします。
+TypeScriptの`interface`はオープンエンドなので、`lib.d.ts`で宣言されたインターフェースにメンバーを追加するだけで、TypeScriptはその追加を認識します。これらのインターフェースを`lib.d.ts`に関連付けるには、これらの変更を [グローバルモジュール](../project/modules.md) で行う必要があることに注意してください。このために、 [`globals.d.ts`](../project/globals.md) という特別なファイルを作成することをお勧めします。
 
 ここでは、 `window`、`Math`、`Date`に要素を追加する例をいくつか示します：
 
@@ -175,7 +175,7 @@ console.log('foo bar'.endsWith('bas')); // false
 console.log('foo bas'.endsWith('bas')); // true
 ```
 
-同様の変数とインタフェースは、`Number`、`Boolean`、`RegExp`などの静的メンバとインスタンスメンバの両方を持つ他のものにも存在し、これらのインターフェースはこれらの型のリテラルのインスタンスにも影響します。
+同様の変数とインターフェースは、`Number`、`Boolean`、`RegExp`などの静的メンバとインスタンスメンバの両方を持つ他のものにも存在し、これらのインターフェースはこれらの型のリテラルのインスタンスにも影響します。
 
 ### `string`後方一致の例
 

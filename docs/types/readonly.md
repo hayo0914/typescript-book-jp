@@ -1,5 +1,5 @@
 ## readonly
-TypeScriptの型システムでは、インターフェイス上の個々のプロパティを`readonly`としてマークすることができます。これにより、関数的に作業することができます(予期しない変更は良くありません)。
+TypeScriptの型システムでは、インターフェース上の個々のプロパティを`readonly`としてマークすることができます。これにより、関数的に作業することができます(予期しない変更は良くありません)。
 
 ```ts
 function foo(config: {
@@ -112,7 +112,7 @@ console.log(foo[0]);   // Okay (reading)
 foo[0] = 456;          // Error (mutating): Readonly
 ```
 
-ネイティブのJavaScript配列を不変的(immutable)な方法で使用したいと思うことは、素晴らしいことです。実際、ちょうどそのためにTypeScriptには`ReadonlyArray<T>`インタフェースが付属しています。
+ネイティブのJavaScript配列を不変的(immutable)な方法で使用したいと思うことは、素晴らしいことです。実際、ちょうどそのためにTypeScriptには`ReadonlyArray<T>`インターフェースが付属しています。
 
 ```ts
 let foo: ReadonlyArray<number> = [1, 2, 3];

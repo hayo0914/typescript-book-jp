@@ -55,17 +55,17 @@ TypeScriptコンパイラには、これらの主要部分にユーティリテ�
 * `let objectAllocator: ObjectAllocator`：シングルトンのグローバルとして定義された変数です。それは、`getNodeConstructor`(Nodeは`parser`/`AST`を見るときに扱います)、`getSymbolConstructor`(シンボルは`binder`のときに扱います)、`getTypeConstructor`(型は`checker`で扱います)、 `getSignatureConstructor`(シグネチャはインデックス、シグネチャの呼び出しと構成物です)。
 
 ## File： 主要なデータ構造
-`types.ts`には、コンパイラ全体で使用される、主要なデータ構造とインタフェースがあります。いくつかの重要なサンプルの抜粋です：
+`types.ts`には、コンパイラ全体で使用される、主要なデータ構造とインターフェースがあります。いくつかの重要なサンプルの抜粋です：
 * `SyntaxKind`
 ASTノードタイプは、`SyntaxKind`enumによって識別されます。
 * `TypeChecker`
-TypeCheckerが提供するインターフェイスです。
+TypeCheckerが提供するインターフェースです。
 * `CompilerHost`
 これは`Program`が`System`と対話するために使用されます。
 * `Node`
 ASTのノードです。
 
 ## File: System
-`system.ts`です。TypeScriptコンパイラとオペレーティングシステムとのすべての対話は、`System`インタフェースを介して行われます。インターフェースとその実装( `WScript`と`Node`)は`system.ts`で定義されています。あなたはそれを*Operating Environment*(OE)として考えることができます。
+`system.ts`です。TypeScriptコンパイラとオペレーティングシステムとのすべての対話は、`System`インターフェースを介して行われます。インターフェースとその実装( `WScript`と`Node`)は`system.ts`で定義されています。あなたはそれを*Operating Environment*(OE)として考えることができます。
 
 主要なファイルの概要を知ったので、`Program`の概念を見ていきましょう。

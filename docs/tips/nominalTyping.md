@@ -72,9 +72,9 @@ str = fooId;
 str = barId;
 ```
 
-## インタフェースの使用
+## インターフェースの使用
 
-`numbers`は`enum`と型互換性があるため、これまでの手法は使用できません。代わりに、インターフェイスを使用して構造の互換性を破ることができます。この方法はTypeScriptコンパイラチームによっても使用されているので、言及する価値があります。`_`プレフィックスと`Brand`サフィックスを使用する規約を強くお薦めします(そして、[TypeScriptチームに採用されている規約です](https://github.com/Microsoft/TypeScript/blob/7b48a182c05ea4dea81bab73ecbbe9e013a79e99/src/compiler/types.ts#L693-L698))。
+`numbers`は`enum`と型互換性があるため、これまでの手法は使用できません。代わりに、インターフェースを使用して構造の互換性を破ることができます。この方法はTypeScriptコンパイラチームによっても使用されているので、言及する価値があります。`_`プレフィックスと`Brand`サフィックスを使用する規約を強くお薦めします(そして、[TypeScriptチームに採用されている規約です](https://github.com/Microsoft/TypeScript/blob/7b48a182c05ea4dea81bab73ecbbe9e013a79e99/src/compiler/types.ts#L693-L698))。
 
 この回避策には、以下が含まれます。
 * 構造上の互換性を破るために、型に未使用のプロパティを追加する。

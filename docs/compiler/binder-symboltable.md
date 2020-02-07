@@ -1,6 +1,6 @@
 ### SymbolTable
 
-SymbolTableは単純なHashMapとして実装されています。ここにインターフェイスがあります( `types.ts`)：
+SymbolTableは単純なHashMapとして実装されています。ここにインターフェースがあります( `types.ts`)：
 
 ```ts
 interface SymbolTable {
