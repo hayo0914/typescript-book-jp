@@ -54,7 +54,7 @@ console.log(foo[0]); // World
 
 ## TypeScriptのインデックスシグネチャ
 
-JavaScriptはインデックスシグネチャにオブジェクトを使った場合、暗黙的に`toString`を呼び出します。そのため、TypeScriptは、初心者が落とし穴にはまるのを防ぐために、エラーを出します(私はいつもstackoverflowで落とし穴にはまるJavaScriptユーザをたくさん見ています)：
+JavaScriptはインデックスシグネチャにオブジェクトを使った場合、暗黙的に`toString`を呼び出します。そのため、TypeScriptは、初心者が落とし穴にはまるのを防ぐために、エラーを出します(私はいつもstackoverflowで落とし穴にはまるJavaScriptユーザーをたくさん見ています)：
 
 ```ts
 let obj = {
@@ -72,7 +72,7 @@ foo[obj] = 'World';
 foo[obj.toString()] = 'World';
 ```
 
-ユーザに明示的に`toString`を使うことを強制する理由は、オブジェクトのデフォルトの`toString`実装がかなりひどいためです。v8では常に`[object Object]`を返します：
+ユーザーに明示的に`toString`を使うことを強制する理由は、オブジェクトのデフォルトの`toString`実装がかなりひどいためです。v8では常に`[object Object]`を返します：
 
 ```ts
 let obj = {message:'Hello'}

@@ -3,7 +3,7 @@ Type Guardを使用すると、条件ブロック内のオブジェクトの型�
 
 ### typeof
 
-TypeScriptはJavaScriptの`instanceof`と`typeof`演算子の使用を認識しています。条件付きブロックでこれらを使用すると、TypeScriptはその条件ブロック内で異なる変数の型を理解します。ここでは、TypeScriptが特定の関数が`string`に存在せず、おそらくユーザのタイプミスであったことを指摘する簡単な例を示します：
+TypeScriptはJavaScriptの`instanceof`と`typeof`演算子の使用を認識しています。条件付きブロックでこれらを使用すると、TypeScriptはその条件ブロック内で異なる変数の型を理解します。ここでは、TypeScriptが特定の関数が`string`に存在せず、おそらくユーザーのタイプミスであったことを指摘する簡単な例を示します：
 
 ```ts
 function doSomething(x: number | string) {
@@ -152,7 +152,7 @@ function foo(a?: number | null) {
 ```
 
 ### ユーザー定義のType Guard
-JavaScriptには非常に豊富な実行時の解析サポートが組み込まれていません。単純なJavaScriptオブジェクトだけを使用している場合(構造型を使用する場合)、 `instanceof`または`typeof`にアクセスすることさえできません。これらの場合、Type Guard関数をユーザが定義することができます。これは、`someArgumentName is SomeType`を返す関数です。次に例を示します。
+JavaScriptには非常に豊富な実行時の解析サポートが組み込まれていません。単純なJavaScriptオブジェクトだけを使用している場合(構造型を使用する場合)、 `instanceof`または`typeof`にアクセスすることさえできません。これらの場合、Type Guard関数をユーザーが定義することができます。これは、`someArgumentName is SomeType`を返す関数です。次に例を示します。
 
 ```ts
 /**

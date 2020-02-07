@@ -33,7 +33,7 @@ import {Foo} from "./foo";
 下にもいくつかの理由を書きます。
 
 ## CommonJSとの相互運用
-`default`は、`const {Foo} = require('module/foo')`の代わりに、`const {default} = require('module/foo');`を書かないといけないCommonJSユーザにとって、恐ろしい体験になります。あなたはたいてい`default`エクスポートをインポートしたときに他の何かにリネームすることになるでしょう。
+`default`は、`const {Foo} = require('module/foo')`の代わりに、`const {default} = require('module/foo');`を書かないといけないCommonJSユーザーにとって、恐ろしい体験になります。あなたはたいてい`default`エクスポートをインポートしたときに他の何かにリネームすることになるでしょう。
 
 ## 低い検出性(Poor Discoverability)
 デフォルトエクスポートは検出性(Discoverability)が低いです。あなたはインテリセンスでモジュールを辿り、それがデフォルトエクスポートを持っているかどうかを知ることができません。

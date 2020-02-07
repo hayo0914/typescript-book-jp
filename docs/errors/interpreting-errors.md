@@ -1,5 +1,5 @@
 # 解釈エラー(Interpreting Errors)
-TypeScriptは、*Developer Help*指向のプログラミング言語であることを非常に重視しているので、何かがうまく動いてない時のエラーメッセージは、高レベルなサポートになるよう努力しています。これは、コンパイラは助けにならないと考えるユーザにとっては、わずかな情報過多につながる可能性があります。 
+TypeScriptは、*Developer Help*指向のプログラミング言語であることを非常に重視しているので、何かがうまく動いてない時のエラーメッセージは、高レベルなサポートになるよう努力しています。これは、コンパイラは助けにならないと考えるユーザーにとっては、わずかな情報過多につながる可能性があります。 
 
 1つの例をIDEで見て、エラーメッセージを読むプロセスを1つ1つ見ていきましょう。
 
@@ -47,7 +47,7 @@ Argument of type '{ foo: number; bar: () => string; }' is not assignable to para
   Types of property 'bar' are incompatible.
     Type '() => string' is not assignable to type 'string'.
 ```
-detailedメッセージの目的は、ユーザに、なぜ何かのエラー（この例では型の非互換性）が起きたかをユーザにガイドすることです。最初の行はsuccintと同じですが、その後ろにチェーンが繋がっています。あなたは、これらのチェーンを、行と行の間の「WHY?」に対する答えの繋がりとして読むべきです。
+detailedメッセージの目的は、ユーザーに、なぜ何かのエラー（この例では型の非互換性）が起きたかをユーザーにガイドすることです。最初の行はsuccintと同じですが、その後ろにチェーンが繋がっています。あなたは、これらのチェーンを、行と行の間の「WHY?」に対する答えの繋がりとして読むべきです。
 
 ```
 ERROR: Argument of type '{ foo: number; bar: () => string; }' is not assignable to parameter of type 'SomethingComplex'.

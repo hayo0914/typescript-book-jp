@@ -10,4 +10,4 @@ JSXの背景にある動機は、ユーザーがHTMLのようなビューをJava
 * ビューを操作するコンテキストを認識させる(つまり、従来のMVCでの*controller-view*の接続を強化する)。
 * HTMLのメンテナンスに、JavaScriptパターン(`Array.prototype.map`、`?:`、`switch`など)を(新しい代替(おそらくほとんど型付けされない)を作成する代わりに)再利用する。
 
-これにより、エラーの可能性が減り、ユーザーインターフェースの保守性が向上します。現時点でのJSXの主なユーザは[ReactJS from facebook](http://facebook.github.io/react/)です。ここではJSXの使い方について説明します。
+これにより、エラーの可能性が減り、ユーザーインターフェースの保守性が向上します。現時点でのJSXの主なユーザーは[ReactJS from facebook](http://facebook.github.io/react/)です。ここではJSXの使い方について説明します。
