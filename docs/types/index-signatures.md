@@ -167,9 +167,9 @@ let x = 'x'
 foo[x]; // number
 ```
 
-### 文字列リテラルを制限する
+### 限られた個数の文字列リテラルを使う
 
-インデックスシグネチャでは、マップ型(Mapped Types)などを使用して、インデックス文字列をリテラル文字列のユニオン(Union)のメンバであることを強制することができます。
+マップ型(Mapped Types)を使うことで、インデックス文字列が「リテラル文字型のユニオン型(Union)」のメンバであることを要求するようなインデックスシグニチャを作ることができます。
 
 ```ts
 type Index = 'a' | 'b' | 'c'
@@ -183,9 +183,9 @@ const good: FromIndex = {b:1, c:2}
 const bad: FromIndex = {b:1, c:2, d:3};
 ```
 
-これは、次のページで説明するように、`keyof typeof`と一緒に使用されて語彙(vocabulary)の種類を捕捉することがよくあります。次のページで説明します。
+辞書の語彙(vocabulary)の型を得るために、次のページで解説するkeyof typeofがしばしば共に使われます。
 
-語彙(vocabulary)の明記は一般的に後回しにされ得ます。
+語彙の指定はジェネリクスを使うことで後回しにできます。
 
 ```ts
 type FromSomeIndex<K extends string> = { [key in K]: number }
