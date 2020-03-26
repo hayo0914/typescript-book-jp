@@ -199,7 +199,7 @@ class FocusingInput extends React.Component<{ value: string, onChange: (value: s
 
 * デフォルトPropsを持ったステートフルなコンポーネント：あなたは*Nullアサーション演算子*を使って、プロパティが外部から(Reactによって)提供されることをTypeScriptに伝えることができます(これは理想的ではありませんが、しかし私が思いつく中では、最もシンプルでミニマムなコードです)。
 
-```tsx
+```ts
 class Hello extends React.Component<{
   /**
    * @default 'TypeScript'
@@ -229,7 +229,7 @@ ReactDOM.render(
 
 * デフォルトPropsを備えたSFC ：シンプルなJavaScriptパターンを活用してTypeScriptの型システムとうまく動作するようにすることをお勧めします。
 
-```tsx
+```ts
 const Hello: React.SFC<{
   /**
    * @default 'TypeScript'
