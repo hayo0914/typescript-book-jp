@@ -1,4 +1,4 @@
-### 判別されるUnion型(Discriminated Union)
+### 判別Union(Discriminated Union)
 
 [*literal型のメンバ*](./literal-types.md)を持つクラスがある場合、そのプロパティを使用して、Union型のメンバを判別することができます。
 
