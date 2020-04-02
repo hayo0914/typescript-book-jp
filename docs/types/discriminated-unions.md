@@ -1,8 +1,8 @@
-### ユニオン判別(Discriminated Union)
+### 判別されるUnion型(Discriminated Union)
 
-[*literal型のメンバ*](./literal-types.md)を持つクラスがある場合、そのプロパティを使用して、ユニオン型のメンバを判別することができます。
+[*literal型のメンバ*](./literal-types.md)を持つクラスがある場合、そのプロパティを使用して、Union型のメンバを判別することができます。
 
-例として、`Square`と`Rectangle`のユニオンを考えてみましょう。ここでは`kind`（特定のリテラル型）は両方のユニオン型のメンバに存在しています:
+例として、`Square`と`Rectangle`のUnionを考えてみましょう。ここでは`kind`（特定のリテラル型）は両方のUnion型のメンバに存在しています:
 
 ```ts
 interface Square {
