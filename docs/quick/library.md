@@ -34,7 +34,7 @@ package
 
 * `package.json`について
   * `"main": "lib/index"` < これはNode.jsに`lib/index.js`をロードするように指示します
-  * `"types": "lib/index"` < これはTypeScriptに`lib/index.d.ts`をロードするように指示します
+  * `"types": "lib/index"` < これはTypeScriptに`lib/index.d.ts`をロードするように指示します
 
 
 パッケージの例：

@@ -103,9 +103,9 @@ export { someVar as aDifferentName } from './foo';
 あなたが後で知るように、私はデフォルトのexportが好きではありません。しかし、ここではexportの構文とデフォルトのexportの使い方を説明します。
 
 * `export default`を使ってエクスポートする
-  * 変数の前に(`let / const / var`は必要ありません)
-  * 関数の前
-  * クラスの前
+  * 変数の前に(`let / const / var`は必要ありません)
+  * 関数の前
+  * クラスの前
 
 ```js
 // some var
@@ -148,14 +148,14 @@ import someLocalNameForThisFile from "../foo";
 
 * あなたが`import * as foo from 'foo'`を書いた場合、以下の場所が順番にチェックされます
   * `./node_modules/foo`
-  * `../node_modules/foo`
-  * `../../node_modules/foo`
+  * `../node_modules/foo`
+  * `../../node_modules/foo`
   * ファイルシステムのルートに到達するまで続く
 
 * あなたが`import * as foo from 'something/foo'`を書いた場合、以下の場所が順番にチェックされます
-  * `./node_modules/something/foo`
-  * `../node_modules/something/foo`
-  * `../../node_modules/something/foo`
+  * `./node_modules/something/foo`
+  * `../node_modules/something/foo`
+  * `../../node_modules/something/foo`
   * ファイルシステムのルートに到達するまで続く
 
 ### 場所(place)とは何か

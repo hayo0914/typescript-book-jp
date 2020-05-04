@@ -238,36 +238,36 @@ tsc --target es5 --lib dom,es6
 libsは次のように分類できます。
 
 * JavaScriptのバルク機能：
-    * es5
-    * es6
-    * es2015
-    * es7
-    * es2016
-    * es2017
-    * esnext
+    * es5
+    * es6
+    * es2015
+    * es7
+    * es2016
+    * es2017
+    * esnext
 * 実行時環境
     * dom
-    * dom.iterable
-    * webworker
-    * scripthost
+    * dom.iterable
+    * webworker
+    * scripthost
 * ESNext By-Featureオプション(バルク機能よりも小さい)
-    * es2015.core
-    * es2015.collection
-    * es2015.generator
-    * es2015.iterable
-    * es2015.promise
-    * es2015.proxy
-    * es2015.reflect
-    * es2015.symbol
-    * es2015.symbol.wellknown
-    * es2016.array.include
-    * es2017.object
-    * es2017.sharedmemory
-    * esnext.asynciterable
+    * es2015.core
+    * es2015.collection
+    * es2015.generator
+    * es2015.iterable
+    * es2015.promise
+    * es2015.proxy
+    * es2015.reflect
+    * es2015.symbol
+    * es2015.symbol.wellknown
+    * es2016.array.include
+    * es2017.object
+    * es2017.sharedmemory
+    * esnext.asynciterable
 
 > 注意： `--lib`オプションは非常に細かく調整された制御を提供します。したがって、たいていは、バルク機能と環境カテゴリから対象を選択すれば良いでしょう。
 > --libが指定されていない場合、デフォルトのライブラリが選択されます：
-   * --target es5の場合 => es5、dom、scripthost
+   * --target es5の場合 => es5、dom、scripthost
    * --target es6の場合 => es6、dom、dom.iterable、scripthost
 
 私の個人的な推奨：

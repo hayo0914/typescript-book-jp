@@ -5,8 +5,8 @@ TypeScriptは、React with JSX以外のものをタイプセーフな方法で�
 * `"jsx" : "preserve"`オプションを使って`react`形式の出力を無効にすることができます。これは、JSXが*そのままの状態で*出力されることを意味します。そして、あなた自身のカスタムトランスパイラを使用してJSX部分をトランスパイルすることができます
 * `JSX`グローバルモジュールを使う：
     * `JSX.IntrinsicElements`インターフェースのメンバをカスタマイズすることで、どのHTMLタグが利用可能で、どのように型チェックされるかを制御することができます。
-    * コンポーネントを使用する場合：
-        *デフォルトの`interface ElementClass extends React.Component<any, any> { }`宣言をカスタマイズすることによって、どのクラスがコンポーネントによって継承されなければならないかを制御できます
+    * コンポーネントを使用する場合：
+        * デフォルトの`interface ElementClass extends React.Component<any, any> { }`宣言をカスタマイズすることによって、どのクラスがコンポーネントによって継承されなければならないかを制御できます
         * どのプロパティが属性(デフォルトは`props`)の型チェックに使われるかを制御できます。`declare module JSX { interface ElementAttributesProperty { props: {}; } }`の宣言をカスタマイズすることで行います。
 
 ## `jsxFactory`
