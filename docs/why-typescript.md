@@ -143,7 +143,7 @@ var inc = x => x+1;
 この章では、TypeScriptを使う動機とTypeScriptの設計ゴールを説明しました。これで、TypeScriptの隅々まで詳細を追うことができます。
 
 [](Interfaces are open ended)
-[](Type Inferernce rules)
+[](Type Inference rules)
 [](Cover all the annotations)
 [](Cover all ambients : also that there are no runtime enforcement)
 [](.ts vs. .d.ts)

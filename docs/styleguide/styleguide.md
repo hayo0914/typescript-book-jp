@@ -258,7 +258,7 @@ const foo: string = "hello";
 > 理由：読みやすい。TypeScriptチームによって使用されています。脳が`[]`を検出するように訓練されているので、何かが配列であることを知りやすくなります。
 
 ## ファイル名
-`camelCase`を使ってファイルに名前を付けます。例えば`accordian.tsx`、`myControl.tsx`、`utils.ts`、`map.ts`などです。
+`camelCase`を使ってファイルに名前を付けます。例えば`accordion.tsx`、`myControl.tsx`、`utils.ts`、`map.ts`などです。
 
 > 理由：多くのJSチームで慣習的です。
 

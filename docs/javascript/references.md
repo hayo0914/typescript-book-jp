@@ -1,6 +1,6 @@
-## 参照(Refences)
+## 参照(References)
 
-リテラル以外にも、JavaScriptにおけるすべてのオブジェクト(関数、配列、正規表現 etc)は参照(reference)です。これは、以下のことを意味します。
+リテラル以外にも、JavaScriptにおけるすべてのオブジェクト(関数、配列、正規表現 etc)は参照(references)です。これは、以下のことを意味します。
 
 ### 変更(Mutation)はすべての参照(references)に影響する
 

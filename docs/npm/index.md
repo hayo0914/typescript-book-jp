@@ -90,7 +90,7 @@ npm i react
 ```
 
 ## Public vs. Private packages
-公開された一般的なnpmパッケージを何か1つでも使っている場合は、これは必要ありません。ただ、enterprise/commercial cusomers向けがあることを知ってください。
+公開された一般的なnpmパッケージを何か1つでも使っている場合は、これは必要ありません。ただ、enterprise/commercial customers向けがあることを知ってください。
 
 ### Public packages
 * パッケージはデフォルトでPublicです 

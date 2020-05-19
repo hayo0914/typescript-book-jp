@@ -28,10 +28,10 @@ takeSomethingComplex(fail); // TS ERROR HAPPENS HERE
 この例は関数呼び出しに失敗している一般的なプログラミングエラーです(`bar: getBar`は`bar: getBar()`であるべきです)。この不手際については、幸運なことに、TypeScriptによって型の要件が一致しないことが即座にキャッチされます。
 
 ## エラーのカテゴリ(Error Categories)
-TypeScriptのエラーメッセージには2種類あります（SuccintとDetailed)。
+TypeScriptのエラーメッセージには2種類あります（SuccinctとDetailed)。
 
-### 簡潔(Succint)
-succintエラーメッセージは、エラー番号とメッセージについての、通常のコンパイラの説明を提供することを意図したものです。例えば、succintメッセージは次のようなものです。
+### 簡潔(Succinct)
+succinctエラーメッセージは、エラー番号とメッセージについての、通常のコンパイラの説明を提供することを意図したものです。例えば、succinctメッセージは次のようなものです。
 
 ```
 TS2345: Argument of type '{ foo: number; bar: () => string; }' is not assignable to parameter of type 'SomethingComplex'.
@@ -47,7 +47,7 @@ Argument of type '{ foo: number; bar: () => string; }' is not assignable to para
   Types of property 'bar' are incompatible.
     Type '() => string' is not assignable to type 'string'.
 ```
-detailedメッセージの目的は、ユーザーに、なぜ何かのエラー（この例では型の非互換性）が起きたかをユーザーにガイドすることです。最初の行はsuccintと同じですが、その後ろにチェーンが繋がっています。あなたは、これらのチェーンを、行と行の間の「WHY?」に対する答えの繋がりとして読むべきです。
+detailedメッセージの目的は、ユーザーに、なぜ何かのエラー（この例では型の非互換性）が起きたかをユーザーにガイドすることです。最初の行はsuccinctと同じですが、その後ろにチェーンが繋がっています。あなたは、これらのチェーンを、行と行の間の「WHY?」に対する答えの繋がりとして読むべきです。
 
 ```
 ERROR: Argument of type '{ foo: number; bar: () => string; }' is not assignable to parameter of type 'SomethingComplex'.
@@ -67,9 +67,9 @@ CAUSE ERROR: Type '() => string' is not assignable to type 'string'.
 
 ## IDEのツールチップでの見え方(How it shows up in an IDE Tooltip)
 
-IDEは通常、`detailed`メッセージ、`succint`バージョンの順にツールチップを表示します。下記は例です:
+IDEは通常、`detailed`メッセージ、`succinct`バージョンの順にツールチップを表示します。下記は例です:
 
 ![IDE error message example](https://raw.githubusercontent.com/basarat/typescript-book/master/images/errors/interpreting-errors/ide.png)
 
 * あなたは通常は、ただ`detailed`バージョンを見て、`WHY?`のチェーンを頭の中に作ります
-* あなたは似たようなエラーを検索するために`succint`バージョンを使います(`TSXXXX`エラーコードか、エラーメッセージの一部を使います)
+* あなたは似たようなエラーを検索するために`succinct`バージョンを使います(`TSXXXX`エラーコードか、エラーメッセージの一部を使います)
