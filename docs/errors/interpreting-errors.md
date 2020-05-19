@@ -28,7 +28,7 @@ takeSomethingComplex(fail); // TS ERROR HAPPENS HERE
 この例は関数呼び出しに失敗している一般的なプログラミングエラーです(`bar: getBar`は`bar: getBar()`であるべきです)。この不手際については、幸運なことに、TypeScriptによって型の要件が一致しないことが即座にキャッチされます。
 
 ## エラーのカテゴリ(Error Categories)
-TypeScriptのエラーメッセージには2種類あります（SuccinctとDetailed)。
+TypeScriptのエラーメッセージには2種類あります(SuccinctとDetailed)。
 
 ### 簡潔(Succinct)
 succinctエラーメッセージは、エラー番号とメッセージについての、通常のコンパイラの説明を提供することを意図したものです。例えば、succinctメッセージは次のようなものです。

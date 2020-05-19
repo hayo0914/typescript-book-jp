@@ -232,7 +232,7 @@ cy.get('#foo')
 ```
 
 ## ヒント: スマートディレイとリトライ
-Cypressはたくさんの非同期のものに対して、自動的に待ち（そしてリトライし)ます。
+Cypressはたくさんの非同期のものに対して、自動的に待ち(そしてリトライし)ます。
 ```
 // If there is no request against the `foo` alias cypress will wait for 4 seconds automatically
 cy.wait('@foo')
