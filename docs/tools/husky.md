@@ -9,7 +9,7 @@
 * `npm install husky -D`
 * `scripts`を`package.json`に追加します：
 
-```
+```json
     "precommit": "npm run prettier:write",
 ```
 

@@ -15,7 +15,7 @@ npm install standard-version -D
 
 * あなたの`package.json`に`script`ターゲットを追加してください：
 
-```js
+```json
 {
   "scripts": {
     "release": "standard-version"
@@ -25,7 +25,7 @@ npm install standard-version -D
 
 * オプション： 自動的に新しいgit commitとtagをpushして、npmにpublishする`postrelease`スクリプトを追加します:
 
-```js
+```json
 {
   "scripts": {
     "release": "standard-version",

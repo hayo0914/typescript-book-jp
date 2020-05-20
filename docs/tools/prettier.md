@@ -7,7 +7,7 @@ Prettierは、Facebookによる優れたツールです。それは言及に値�
 * `npm install prettier -D`
 * `scripts`を`package.json`に追加します：
 
-```
+```json
     "prettier:base": "prettier --parser typescript --single-quote",
     "prettier:check": "npm run prettier:base -- --list-different \"src/**/*.{ts,tsx}\"",
     "prettier:write": "npm run prettier:base -- --write \"src/**/*.{ts,tsx}\""
