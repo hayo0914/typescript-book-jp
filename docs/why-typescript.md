@@ -89,7 +89,7 @@ foo = '456';
 
 これにより、JavaScriptコードを段階的にTypeScriptに移行することができます。これは他の言語のコンパイラの動作とは全く異なっており、そして、TypeScriptに移行する理由の1つです。
 
-### 型による開発環境へのメリット
+### 型を使える環境のメリット
 TypeScriptの設計における大きなゴールは、TypeScriptで既存のJavaScriptライブラリを安全かつ簡単に利用できることです。TypeScriptはこれを型宣言(declaration)で行います。TypeScriptにおいて、型宣言にどれくらいの労力をかけるかは場合によって調整可能です。より多くの労力をかければ、より多くの型安全性とIDEによるコード補完(code intelligence)が獲得できます。有名なJavaScriptライブラリの型定義は、[DefinitelyTyped community](https://github.com/borisyankov/DefinitelyTyped)によって既に作成されています。そのため、
 
 1. 型定義ファイルが既に存在します。
