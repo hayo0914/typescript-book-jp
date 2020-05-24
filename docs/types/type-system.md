@@ -1,5 +1,5 @@
 # TypeScriptの型システム
-[Why TypeScript？](../why-typescript.md)について説明したとき、TypeScriptの型システムの主な機能を取り上げました。下記は、改めて説明する必要がない、いくつかのキーポイントです：
+[なぜTypeScriptを使うのか？](../why-typescript.md)について説明したとき、TypeScriptの型システムの主な機能を取り上げました。下記は、改めて説明する必要がない、いくつかのキーポイントです：
 * TypeScriptの型システムは*使うかどうか選べるもの*として設計されているので、*あなたが書いたJavaScriptはTypeScriptでもあります*。
 * TypeScriptは型エラーがあってもJavaScriptの生成をブロックしないので、*徐々にJSをTSに更新していくことができます*。
 
