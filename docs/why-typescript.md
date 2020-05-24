@@ -72,7 +72,7 @@ iTakePoint2D(point3D); // extra information okay
 iTakePoint2D({ x: 0 }); // Error: missing information `y`
 ```
 
-### 型エラーがあってもJavaScriptは出力される
+### 型のエラーがあってもJavaScriptは出力される
 JavaScriptのコードをTypeScriptに移行することを簡単にするため、デフォルトでは、コンパイルエラーがあったとしても、TypeScriptは有効なJavaScriptを出力します。例:
 
 ```ts
