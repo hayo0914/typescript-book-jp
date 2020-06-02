@@ -23,7 +23,7 @@ npm install -g typescript@next
 
 これで、`tsc`コマンドは最新かつ最高のものになります。IDEでもそれを利用することが可能です。例:
 
-* vscodeで利用するTypeScriptのバージョンのパスを `.vscode/settings.json`で指定できます
+* VSCodeで利用するTypeScriptのバージョンのパスを `.vscode/settings.json`で指定できます
 
 ```javascript
 {
