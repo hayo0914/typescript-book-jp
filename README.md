@@ -1,6 +1,6 @@
 # はじめに
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
@@ -61,6 +61,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/tbotaq"><img src="https://avatars1.githubusercontent.com/u/140096?v=4" width="100px;" alt=""/><br /><sub><b>tbotaq</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=tbotaq" title="Documentation">📖</a></td>
     <td align="center"><a href="https://munieru.jp"><img src="https://avatars2.githubusercontent.com/u/20086673?v=4" width="100px;" alt=""/><br /><sub><b>Munieru</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=munierujp" title="Documentation">📖</a></td>
     <td align="center"><a href="https://about.hellorusk.net"><img src="https://avatars2.githubusercontent.com/u/36184621?v=4" width="100px;" alt=""/><br /><sub><b>Kaito Sugimoto</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=7ma7X" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/jmblog"><img src="https://avatars0.githubusercontent.com/u/86085?v=4" width="100px;" alt=""/><br /><sub><b>Yoshihide Jimbo</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=jmblog" title="Documentation">📖</a></td>
   </tr>
 </table>
 
