@@ -41,5 +41,5 @@ npm install -g typescript@next
 // 対象のコード
 ```
 
-次に、TypeScriptで開発するための設定を行いましょう。そして、TypeScriptの構文を見ていきましょう。
+では、TypeScriptで開発するための設定を行いましょう。そして、TypeScriptの構文を見ていきましょう。
 
