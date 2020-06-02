@@ -1,6 +1,6 @@
 # はじめに
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
@@ -40,6 +40,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/DotaKobayashi"><img src="https://avatars3.githubusercontent.com/u/1092564?v=4" width="100px;" alt=""/><br /><sub><b>Dota Kobayashi</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=DotaKobayashi" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/domekomi"><img src="https://avatars2.githubusercontent.com/u/40785264?v=4" width="100px;" alt=""/><br /><sub><b>domekomi</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=domekomi" title="Documentation">📖</a></td>
     <td align="center"><a href="http://www.kanasansoft.com/"><img src="https://avatars1.githubusercontent.com/u/44207?v=4" width="100px;" alt=""/><br /><sub><b>Kanasansoft</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=Kanasansoft" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/tsubasa"><img src="https://avatars0.githubusercontent.com/u/1013588?v=4" width="100px;" alt=""/><br /><sub><b>tsubasa</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=tsubasa" title="Documentation">📖</a></td>
   </tr>
 </table>
 
