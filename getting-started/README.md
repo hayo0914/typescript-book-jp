@@ -1,4 +1,4 @@
-# TypeScriptを始めよう！
+# TypeScript入門
 
 * [TypeScriptを始めよう](./#typescriptwomeyou)
 * [TypeScriptのバージョン](./#typescriptnobjon)
