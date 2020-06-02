@@ -5,10 +5,10 @@
 
 ## TypeScript入門
 
-TypeScriptは、 最終的にJavaScriptにコンパイルされます。実際に実行されるのは、JavaScriptです(ブラウザでも、サーバーでも同じです)。よって、TypeScriptを利用するには、次のものが必要です：
+TypeScriptは、 最終的にJavaScriptにコンパイルされます。実際に実行されるのは、JavaScriptです(ブラウザでも、サーバーでも同じです)。なので、TypeScriptを利用するには、次のものが必要です：
 
-* TypeScriptコンパイラ (OSSの[ソース](https://github.com/Microsoft/TypeScript/)および、[NPM](https://www.npmjs.com/package/typescript)で利用可能です)
-* TypeScriptのエディタ (メモ帳を使うことも可能ですが、 [vscode](https://code.visualstudio.com/) と [私が作成したプラグイン](https://marketplace.visualstudio.com/items?itemName=basarat.god) を併用することをお勧めします。また、[様々なIDE](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support) がサポートされています。)
+* TypeScriptコンパイラ ([NPM](https://www.npmjs.com/package/typescript)のパッケージとして提供されています。または、OSSの[ソース](https://github.com/Microsoft/TypeScript/)が利用できます)
+* TypeScriptのエディタ (メモ帳を使うこともできますが、 [vscode](https://code.visualstudio.com/) と [私が作成したプラグイン](https://marketplace.visualstudio.com/items?itemName=basarat.god) を利用することをお勧めします。また、[様々なIDE](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support) がサポートされています。)
 
 ### TypeScriptのバージョン
 
@@ -38,8 +38,8 @@ npm install -g typescript@next
 `this/will/be/the/link/to/the/code.ts`
 
 ```typescript
-// 議論中のコード
+// 対象のコード
 ```
 
-開発設定をして、TypeScriptの構文を見ていきましょう。
+次に、TypeScriptで開発するための設定を行いましょう。そして、TypeScriptの構文を見ていきましょう。
 
