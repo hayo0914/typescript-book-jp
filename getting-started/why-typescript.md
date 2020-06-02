@@ -85,7 +85,7 @@ JavaScriptのコードをTypeScriptに移行することを簡単にするため
 
 ```typescript
 var foo = 123;
-foo = '456'; // Error: cannot assign a `string` to a `number`
+foo = '456'; // エラー: `string` を `number` に代入できません
 ```
 
 次のjsを出力します：
