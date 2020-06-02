@@ -2,7 +2,7 @@
 
 * [はじめに](README.md)
 * [TypeScript入門](getting-started/README.md)
-  * [なぜ TypeScript を使うのか？](getting-started/why-typescript.md)
+  * [TypeScript を使う理由](getting-started/why-typescript.md)
 * [JavaScript](recap/README.md)
   * [等価演算子の同一性](recap/equality.md)
   * [参照（リファレンス）](recap/references.md)

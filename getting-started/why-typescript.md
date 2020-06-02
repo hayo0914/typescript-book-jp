@@ -1,4 +1,4 @@
-# なぜ TypeScript を使うのか？
+# TypeScript を使う理由
 
 TypeScriptの主要なゴールは2つです。
 
