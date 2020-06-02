@@ -28,9 +28,9 @@ TypeScriptは、生産性へのコストを最小限に抑えて型の安全性�
 
 ```typescript
 var foo = 123;
-foo = '456'; // Error: cannot assign `string` to `number`
+foo = '456'; // エラー: `string` を `number` に代入できません
 
-// Is foo a number or a string?
+// foo は number でしょうか？ それとも string でしょうか？
 ```
 
 型推論を必要とすることには大きな理由があります。この例のようなコードを書いた場合、残りのコードにおいて`foo`が`number`であるか`string`であるかを確定できません。このような問題は、大規模なコードベースで頻繁に発生します。後で型推論のルールの詳細を説明します。
@@ -51,7 +51,7 @@ var foo: number = 123;
 何かが間違っていたら、コンパイラはエラーを出します：
 
 ```typescript
-var foo: number = '123'; // Error: cannot assign a `string` to a `number`
+var foo: number = '123'; // エラー: `string` を `number` に代入できません
 ```
 
 TypeScriptでサポートされている型アノテーションの詳細については、今後の章で説明します。
@@ -72,11 +72,11 @@ interface Point3D {
 }
 var point2D: Point2D = { x: 0, y: 10 }
 var point3D: Point3D = { x: 0, y: 10, z: 20 }
-function iTakePoint2D(point: Point2D) { /* do something */ }
+function iTakePoint2D(point: Point2D) { /* なんらかの処理 */ }
 
-iTakePoint2D(point2D); // exact match okay
-iTakePoint2D(point3D); // extra information okay
-iTakePoint2D({ x: 0 }); // Error: missing information `y`
+iTakePoint2D(point2D); // 全く同じ構造なので問題なし
+iTakePoint2D(point3D); // 追加のプロパティがあっても問題なし
+iTakePoint2D({ x: 0 }); // エラー: `y` が存在しない
 ```
 
 ### 型エラーがあってもJavaScriptは出力される
@@ -107,14 +107,14 @@ TypeScriptの設計における大きなゴールは、TypeScriptで既存のJav
 独自の型宣言ファイルを作成する簡単な例として、[jquery](https://jquery.com/)の簡単な例を考えてみましょう。TypeScriptは、デフォルトの設定では、\(望ましいJavaScriptコードのように\)、変数を使う前に宣言する\(つまり、どこかで`var`を使う\)ことを期待しています。
 
 ```typescript
-$('.awesome').show(); // Error: cannot find name `$`
+$('.awesome').show(); // エラー: `$` が存在しません。
 ```
 
 簡単な修正方法は、`declare`を使って、変数`$`が実際にグローバル変数として存在することをTypeScriptに伝えることです。
 
 ```typescript
 declare var $: any;
-$('.awesome').show(); // Okay!
+$('.awesome').show(); // 問題なし!
 ```
 
 必要に応じて、より詳細に型を定義し、プログラミングエラーを防止することができます。
@@ -123,8 +123,8 @@ $('.awesome').show(); // Okay!
 declare var $: {
     (selector:string): any;
 };
-$('.awesome').show(); // Okay!
-$(123).show(); // Error: selector needs to be a string
+$('.awesome').show(); // 問題なし!
+$(123).show(); // エラー: selector は string でなければなりません
 ```
 
 TypeScriptの基本を理解した後で、既存のJavaScriptコードのTypeScriptにおける型定義について、詳しく説明します\(`interface`や`any`など\)。
