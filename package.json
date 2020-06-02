@@ -1,6 +1,18 @@
 {
+  "name": "typescript-book-jp",
+  "description": "TypeScript Deep Dive 日本語版",
+  "version": "1.0.0",
   "scripts": {
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate"
-  }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "all-contributors-cli": "^6.15.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yohamta/typescript-book-jp.git"
+  },
+  "homepage": "https://typescript-jp.gitbook.io/deep-dive/"
 }
