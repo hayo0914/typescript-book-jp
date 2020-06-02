@@ -129,9 +129,9 @@ $(123).show(); // Error: selector needs to be a string
 
 TypeScriptの基本を理解した後で、既存のJavaScriptコードのTypeScriptにおける型定義について、詳しく説明します\(`interface`や`any`など\)。
 
-## Future JavaScript =&gt; Now
+## 次世代のJavaScriptの機能を今すぐに利用できる
 
-TypeScriptは、古いJavaScriptエンジン\(ES5のみをサポートする\)でも、ES6以降で計画されている多くの機能を使えるようにしています。TypeScriptチームは積極的に機能を追加しています。機能は今後もどんどん増えていく予定です。これらについては独自の章で説明します。ただのサンプルとしてクラスの例を提示しておきます:
+TypeScriptは、古いJavaScriptエンジン\(ES5のみをサポートする\)でも、ES6以降で計画されている多くの機能を使えるようにしています。TypeScriptチームは積極的に機能を追加しています。機能は今後もどんどん増えていく予定です。これらについては独自の章で説明します。サンプルとしてクラス\(ES6で追加された機能\)の例を提示しておきます:
 
 ```typescript
 class Point {
