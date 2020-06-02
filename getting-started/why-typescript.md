@@ -104,20 +104,20 @@ TypeScriptの設計における大きなゴールは、TypeScriptで既存のJav
 1. 型定義ファイル\(アンビエント宣言が書かれたファイル\)が既に存在します。
 2. あるいは、最低でも、きちんとレビューされた多くのTypeScript宣言のテンプレートが既に利用可能です。
 
-独自の型宣言ファイルを作成する簡単な例として、[jquery](https://jquery.com/)の簡単な例を考えてみましょう。TypeScriptは、デフォルトの設定では、\(望ましいJavaScriptコードのように\)、変数を使う前に宣言する\(つまり、どこかで`var`を使う\)ことを期待しています。
+独自の型定義ファイルを作成する簡単な例として、[jquery](https://jquery.com/)の簡単な例を考えてみましょう。TypeScriptは、デフォルトの設定では、\(望ましいJavaScriptコードのように\)、変数を使う前に宣言する\(つまり、どこかで`var`を使う\)ことを期待しています。
 
 ```typescript
 $('.awesome').show(); // エラー: `$` が存在しません。
 ```
 
-簡単な修正方法は、`declare`を使って、変数`$`が実際にグローバル変数として存在することをTypeScriptに伝えることです。
+簡単な修正方法は、`declare`を使って、グローバル変数`$`が、実行時に存在することをTypeScriptに伝えることです。
 
 ```typescript
 declare var $: any;
 $('.awesome').show(); // 問題なし!
 ```
 
-必要に応じて、より詳細に型を定義し、プログラミングエラーを防止することができます。
+必要に応じて、より詳細に型を定義し、プログラミングのエラーを防止することができます。
 
 ```typescript
 declare var $: {
@@ -127,7 +127,7 @@ $('.awesome').show(); // 問題なし!
 $(123).show(); // エラー: selector は string でなければなりません
 ```
 
-TypeScriptの基本を理解した後で、既存のJavaScriptコードのTypeScriptにおける型定義について、詳しく説明します\(`interface`や`any`など\)。
+TypeScriptの基本を理解した後で、既存のJavaScriptコードの型定義を追加する方法について、詳しく説明します\(`interface`や`any`など\)。
 
 ## 次世代のJavaScriptの機能を今すぐに利用できる
 
