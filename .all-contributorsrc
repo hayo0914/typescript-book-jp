@@ -126,6 +126,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "waddlaw",
+      "name": "Shinya Yamaguchi",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24648398?v=4",
+      "profile": "https://haskell.e-bigmoon.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7

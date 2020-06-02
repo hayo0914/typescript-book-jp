@@ -1,6 +1,6 @@
 # はじめに
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
@@ -52,6 +52,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://mononofu.hatenablog.com/"><img src="https://avatars3.githubusercontent.com/u/28998?v=4" width="100px;" alt=""/><br /><sub><b>tmitz</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=tmitz" title="Documentation">📖</a></td>
     <td align="center"><a href="https://shuuji3.xyz"><img src="https://avatars0.githubusercontent.com/u/1425259?v=4" width="100px;" alt=""/><br /><sub><b>TAKAHASHI Shuuji</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=shuuji3" title="Documentation">📖</a></td>
     <td align="center"><a href="https://gitlab.com/gyo"><img src="https://avatars0.githubusercontent.com/u/35870680?v=4" width="100px;" alt=""/><br /><sub><b>Gyo Tamura</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=t-gyo" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://haskell.e-bigmoon.com/"><img src="https://avatars3.githubusercontent.com/u/24648398?v=4" width="100px;" alt=""/><br /><sub><b>Shinya Yamaguchi</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=waddlaw" title="Documentation">📖</a></td>
   </tr>
 </table>
 
