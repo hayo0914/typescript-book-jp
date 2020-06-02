@@ -1,6 +1,6 @@
 # はじめに
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
@@ -57,6 +57,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/kg0r0"><img src="https://avatars0.githubusercontent.com/u/33596117?v=4" width="100px;" alt=""/><br /><sub><b>56</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=kg0r0" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/akihiro117"><img src="https://avatars0.githubusercontent.com/u/35517210?v=4" width="100px;" alt=""/><br /><sub><b>Akihiro Yamada</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=akihiro117" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://y-temp4.com"><img src="https://avatars0.githubusercontent.com/u/13657589?v=4" width="100px;" alt=""/><br /><sub><b>Yuki Terashima</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=y-temp4" title="Documentation">📖</a></td>
   </tr>
 </table>
 
