@@ -216,6 +216,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "sinack",
+      "name": "Sinack",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1048112?v=4",
+      "profile": "http://sinack.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7
