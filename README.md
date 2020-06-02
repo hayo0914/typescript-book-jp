@@ -1,6 +1,6 @@
 # はじめに
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-25-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-26-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
@@ -68,6 +68,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://www.napoleon-na.com"><img src="https://avatars0.githubusercontent.com/u/4202537?v=4" width="100px;" alt=""/><br /><sub><b>Naomi Watanabe</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=napoleon-na" title="Documentation">📖</a></td>
     <td align="center"><a href="http://sinack.com"><img src="https://avatars3.githubusercontent.com/u/1048112?v=4" width="100px;" alt=""/><br /><sub><b>Sinack</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=sinack" title="Documentation">📖</a></td>
     <td align="center"><a href="https://numb86.net/"><img src="https://avatars1.githubusercontent.com/u/16703337?v=4" width="100px;" alt=""/><br /><sub><b>numb86</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=numb86" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://nagoya-benkyokai.com"><img src="https://avatars1.githubusercontent.com/u/2564871?v=4" width="100px;" alt=""/><br /><sub><b>シュール</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=shule517" title="Documentation">📖</a></td>
   </tr>
 </table>
 
