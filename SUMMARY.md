@@ -11,7 +11,7 @@
   * [クロージャ](recap/closure.md)
   * [Number 型](recap/number.md)
   * [Truthy な値（Trueに変換される値）](recap/truthy.md)
-* [モダンな JavaScript を今すぐに使う](future-javascript/README.md)
+* [次世代の JavaScript を今すぐに使う](future-javascript/README.md)
   * [クラス](future-javascript/classes/README.md)
     * [Classes Emit](future-javascript/classes/classes-emit.md)
   * [アロー関数](future-javascript/arrow-functions.md)
