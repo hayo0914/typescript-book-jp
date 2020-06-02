@@ -1,6 +1,6 @@
 # はじめに
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
@@ -47,6 +47,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="http://suzuki.tdiary.net/"><img src="https://avatars2.githubusercontent.com/u/10488?v=4" width="100px;" alt=""/><br /><sub><b>Norio Suzuki</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=suzuki" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/cnomiya"><img src="https://avatars2.githubusercontent.com/u/332808?v=4" width="100px;" alt=""/><br /><sub><b>cnomiya</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=cnomiya" title="Documentation">📖</a></td>
   </tr>
 </table>
 
