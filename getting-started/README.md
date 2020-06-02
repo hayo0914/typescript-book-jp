@@ -8,7 +8,7 @@
 TypeScriptは、 最終的にJavaScriptにコンパイルされます。実際に実行されるのは、JavaScriptです(ブラウザでも、サーバーでも同じです)。なので、TypeScriptを利用するには、次のものが必要です：
 
 * TypeScriptコンパイラ ([NPM](https://www.npmjs.com/package/typescript)のパッケージとして提供されています。または、OSSの[ソース](https://github.com/Microsoft/TypeScript/)が利用できます)
-* TypeScriptのエディタ (メモ帳を使うこともできますが、TypeScriptのサポートがデフォルトで組み込まれている[Visual Studio Code](https://code.visualstudio.com/)を利用することをお勧めします。また、[様々なIDE](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support)がサポートされています。)
+* TypeScriptのエディタ (メモ帳を使うこともできますが、TypeScriptのサポートがデフォルトで組み込まれている[Visual Studio Code](https://code.visualstudio.com/)を利用することをお勧めします。また、他にも[様々なIDE](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support)がサポートされています。)
 
 ### TypeScriptのバージョン
 
