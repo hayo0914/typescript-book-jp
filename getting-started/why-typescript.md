@@ -153,7 +153,7 @@ var p3 = p1.add(p2); // { x: 10, y: 30 }
 var inc = x => x+1;
 ```
 
-### 要約
+### まとめ
 
-この章では、TypeScriptを使う理由と、TypeScriptが目指しているゴールを説明しました。これで、TypeScriptの隅々まで詳細を追うことができます。
+この章では、TypeScriptを使う理由と、TypeScriptが目指しているゴールを説明しました。これで、TypeScriptの詳細を隅々まで見ていくことができます。
 
