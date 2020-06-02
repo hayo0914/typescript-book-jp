@@ -15,7 +15,7 @@ TypeScriptは、 最終的にJavaScriptにコンパイルされます。実際�
 安定版のTypeScriptコンパイラを使用する代わりに、本書ではバージョン番号に関連付けられていない多くの新規要素を紹介します。
 コンパイラのテスト環境は時間が経過するほど多くのバグを見つけるため、私は一般的に夜間ビルド(nightly version)の最新版を使用することを推奨します。
 
-次のコマンドでインストールできます。npmコマンドは[Node.js](https://nodejs.org/ja/)をインストールすると利用できます。
+次のコマンドでインストールできます。`npm`コマンドは[Node.js](https://nodejs.org/ja/)をインストールすると利用できます。
 
 ```text
 npm install -g typescript@next
