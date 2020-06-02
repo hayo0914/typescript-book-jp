@@ -79,7 +79,7 @@ iTakePoint2D(point3D); // 追加のプロパティがあっても問題なし
 iTakePoint2D({ x: 0 }); // エラー: `y` が存在しない
 ```
 
-### 型エラーがあってもJavaScriptは出力される
+### 型チェックでエラーがあってもJavaScriptは出力される
 
 JavaScriptのコードをTypeScriptに移行することを簡単にするため、デフォルトでは、コンパイルエラーがあったとしても、TypeScriptは有効なJavaScriptを出力します。例:
 
@@ -97,11 +97,11 @@ foo = '456';
 
 これにより、JavaScriptコードを段階的にTypeScriptに移行することができます。これは他の言語のコンパイラの動作とは全く異なっています。そして、これが、TypeScriptに移行する理由の1つです。
 
-### 型による開発環境へのメリット
+### アンビエント宣言\(declare\)によって、既存のJavaScriptライブラリでも型を利用できる
 
 TypeScriptの設計における大きなゴールは、TypeScriptで既存のJavaScriptライブラリを安全かつ簡単に利用できることです。TypeScriptはこれを型宣言で行います。TypeScriptにおいて、型宣言にどれくらいの労力をかけるかは自由です。より多くの労力をかければ、より多くの型安全性とIDEによるコード補完が得られます。有名で人気のあるJavaScriptライブラリの型定義は、[DefinitelyTyped コミュニティ](https://github.com/borisyankov/DefinitelyTyped)によって既に作成されています。そのため、
 
-1. 定義ファイルが既に存在します。
+1. 型定義ファイル\(アンビエント宣言が書かれたファイル\)が既に存在します。
 2. あるいは、最低でも、きちんとレビューされた多くのTypeScript宣言のテンプレートが既に利用可能です。
 
 独自の型宣言ファイルを作成する簡単な例として、[jquery](https://jquery.com/)の簡単な例を考えてみましょう。TypeScriptは、デフォルトの設定では、\(望ましいJavaScriptコードのように\)、変数を使う前に宣言する\(つまり、どこかで`var`を使う\)ことを期待しています。
