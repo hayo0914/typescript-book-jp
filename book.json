@@ -3,6 +3,9 @@
   "author": "Basarat Ali Syed Translated by yohamta",
   "title": "TypeScript Deep Dive Japanese",
   "plugins": ["edit-link", "github", "adsense", "header"],
+  "styles": {
+    "website": "styles/website.css"
+   },
   "pluginsConfig": {
     "layout": {
       "headerPath" : "header.html"
