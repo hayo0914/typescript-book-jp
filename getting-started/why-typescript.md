@@ -20,7 +20,7 @@ TypeScriptの主なゴールは2つです。
 
 ### あなたの書いたJavaScriptはTypeScriptです
 
-TypeScriptは、JavaScriptコードのコンパイル時の型安全性を提供します。その名前はこれを表しています。素晴らしい点は、型の使用が完全に任意\(オプション\)であることです。あなたのJavaScriptコード`.js`ファイルを`.ts`ファイルに名前を変更したとしても、TypeScriptは元のJavaScriptファイルと同じ有効な`.js`を返します。TypeScriptは意図的かつ厳密なJavaScriptのスーパーセットであり、任意の型チェック機構を持ったプログラミング言語です。
+TypeScriptは、JavaScriptコードのコンパイル時の型安全性を提供します。その名前はこれを表しています。素晴らしい点は、型の使用が完全に任意\(オプション\)であることです。あなたのJavaScriptコード`.js`ファイルを`.ts`ファイルに名前を変更したとしても、TypeScriptは元のJavaScriptファイルと同じ有効な`.js`を返します。TypeScriptは意図的かつ厳密なJavaScriptのスーパーセット\(上位互換\)であり、任意の型チェック機構を持ったプログラミング言語です。
 
 ### 暗黙的な型推論 \(Type inference\)
 
