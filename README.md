@@ -1,6 +1,6 @@
 # はじめに
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
@@ -50,6 +50,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/cnomiya"><img src="https://avatars2.githubusercontent.com/u/332808?v=4" width="100px;" alt=""/><br /><sub><b>cnomiya</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=cnomiya" title="Documentation">📖</a></td>
     <td align="center"><a href="http://enk.hatenablog.com/archive/category/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2"><img src="https://avatars2.githubusercontent.com/u/1446527?v=4" width="100px;" alt=""/><br /><sub><b>Kotaro Noguchi</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=ko-noguchi" title="Documentation">📖</a></td>
     <td align="center"><a href="http://mononofu.hatenablog.com/"><img src="https://avatars3.githubusercontent.com/u/28998?v=4" width="100px;" alt=""/><br /><sub><b>tmitz</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=tmitz" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://shuuji3.xyz"><img src="https://avatars0.githubusercontent.com/u/1425259?v=4" width="100px;" alt=""/><br /><sub><b>TAKAHASHI Shuuji</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=shuuji3" title="Documentation">📖</a></td>
   </tr>
 </table>
 
