@@ -72,6 +72,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "suzuki",
+      "name": "Norio Suzuki",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/10488?v=4",
+      "profile": "http://suzuki.tdiary.net/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7

@@ -1,6 +1,6 @@
 # はじめに
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
@@ -44,6 +44,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/kazuau"><img src="https://avatars1.githubusercontent.com/u/3702151?v=4" width="100px;" alt=""/><br /><sub><b>kazuau</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=kazuau" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/szk0u"><img src="https://avatars1.githubusercontent.com/u/27814360?v=4" width="100px;" alt=""/><br /><sub><b>szk0u</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=szk0u" title="Documentation">📖</a></td>
     <td align="center"><a href="https://pandanoir.net"><img src="https://avatars2.githubusercontent.com/u/2884499?v=4" width="100px;" alt=""/><br /><sub><b>Naoto Ikuno</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=pandanoir" title="Documentation">📖</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://suzuki.tdiary.net/"><img src="https://avatars2.githubusercontent.com/u/10488?v=4" width="100px;" alt=""/><br /><sub><b>Norio Suzuki</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=suzuki" title="Documentation">📖</a></td>
   </tr>
 </table>
 
