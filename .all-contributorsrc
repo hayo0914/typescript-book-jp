@@ -117,6 +117,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "t-gyo",
+      "name": "Gyo Tamura",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/35870680?v=4",
+      "profile": "https://gitlab.com/gyo",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7
