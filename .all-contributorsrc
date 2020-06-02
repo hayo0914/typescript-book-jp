@@ -243,6 +243,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "nishio",
+      "name": "NISHIO Hirokazu",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/315198?v=4",
+      "profile": "http://www.nhiro.org/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7
