@@ -33,7 +33,7 @@ npm install -g typescript@next
 
 ### ソースコード取得
 
-ここで紹介しているソースコードは、(githubのリポジトリ)(https://github.com/basarat/typescript-book/tree/master/code) にあります。 ほとんどのコードサンプルは、VSCode(Visual Studio Codeの略称)にコピーしてそのまま実行できます。追加設定が必要なコードサンプル\(例：npmモジュール\)では、そのコードを表示する前にコードサンプルのパスにリンクします。例:
+ここで紹介しているソースコードは、[githubのリポジトリ](https://github.com/basarat/typescript-book/tree/master/code) にあります。 ほとんどのコードサンプルは、VSCode(Visual Studio Codeの略称)にコピーしてそのまま実行できます。追加設定が必要なコードサンプル\(例：npmモジュール\)では、そのコードを表示する前にコードサンプルのパスにリンクします。例:
 
 `this/will/be/the/link/to/the/code.ts`
 
