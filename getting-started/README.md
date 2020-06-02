@@ -1,26 +1,27 @@
 # TypeScript入門
 
-* [TypeScriptを始めよう](./#typescriptwomeyou)
+* [TypeScript入門](./#typescriptwomeyou)
 * [TypeScriptのバージョン](./#typescriptnobjon)
 
-## TypeScriptを始めよう
+## TypeScript入門
 
-TypeScriptはJavaScriptにコンパイルされます。実際に実行されるのは、JavaScriptです\(ブラウザでもサーバーでも\)。よって、次のものが必要です：
+TypeScriptは、 最終的にJavaScriptにコンパイルされます。実際に実行されるのは、JavaScriptです(ブラウザでも、サーバーでも同じです)。よって、TypeScriptを利用するには、次のものが必要です：
 
-* TypeScriptコンパイラ\(OSSが[ソース](https://github.com/Microsoft/TypeScript/)と[NPM](https://www.npmjs.com/package/typescript)で利用可能です\)
-* TypeScriptエディタ\(そうしたければ、メモ帳を使えますが、私は [vscode🌹](https://code.visualstudio.com/) を [私が作成したプラグイン](https://marketplace.visualstudio.com/items?itemName=basarat.god) とともに使います。また、[様々なIDE](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support)がサポートされています。\)
+* TypeScriptコンパイラ (OSSの[ソース](https://github.com/Microsoft/TypeScript/)および、[NPM](https://www.npmjs.com/package/typescript)で利用可能です)
+* TypeScriptのエディタ (メモ帳を使うことも可能ですが、 [vscode](https://code.visualstudio.com/) と [私が作成したプラグイン](https://marketplace.visualstudio.com/items?itemName=basarat.god) を併用することをお勧めします。また、[様々なIDE](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support) がサポートされています。)
 
 ### TypeScriptのバージョン
 
-安定版のTypeScriptコンパイラを使用する代わりに、本書ではバージョン番号に関連付けられていない多くの新規要素を紹介します。コンパイラのテスト環境は時間が経過するほど多くのバグを見つけるため、私は一般的に夜間ビルド\(nightly version\)の最新版を使用することを推奨します。
+安定版のTypeScriptコンパイラを使用する代わりに、本書ではバージョン番号に関連付けられていない多くの新規要素を紹介します。
+コンパイラのテスト環境は時間が経過するほど多くのバグを見つけるため、私は一般的に夜間ビルド(nightly version)の最新版を使用することを推奨します。
 
-次のコマンドでインストールできます。
+次のコマンドでインストールできます。npmコマンドは[Node.js](https://nodejs.org/ja/)をインストールすると利用できます。
 
 ```text
 npm install -g typescript@next
 ```
 
-そして、今、`tsc`コマンドは最新かつ至高のものです。様々なIDEもそれを可能にしています。例:
+これで、`tsc`コマンドは最新かつ最高のものになります。IDEでもそれを利用することが可能です。例:
 
 * vscodeで利用するTypeScriptのバージョンのパスを `.vscode/settings.json`で指定できます
 
