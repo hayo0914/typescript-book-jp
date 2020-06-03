@@ -9,7 +9,7 @@
 * JSXとReactの定義をあなたのプロジェクトにインストールします：\(`npm i -D @types/react @types/react-dom`\)。
 * reactを`.tsx`ファイルにインポートします\(`import * as React from "react"`となります\)。
 
-ReactとTypeScriptのプロジェクトをセットアップする一番簡単な方法は、Create React Appを使うことです。このツールはReactチームから提供されているツールです。公式にTypeScriptのテンプレートが提供されています。Create React Appを使うには、`$ npm i -g create-react-app`というコマンドでローカルPCにグローバルにインストールできます。そうすれば、[Reactの公式Webサイト](https://reactjs.org/docs/static-type-checking.html#using-typescript-with-create-react-app)に書かれているように`$ npx create-react-app my-app --template typescript`というコマンドで、最初からTypeScriptを利用可能なプロジェクトを簡単に作成できます。
+ReactとTypeScriptのプロジェクトをセットアップする一番簡単な方法は、[Create React App](https://github.com/facebook/create-react-app)を使うことです。このツールはReactチームから提供されているツールです。公式にTypeScriptのテンプレートが提供されています。Create React Appを使うには、`$ npm i -g create-react-app`というコマンドでローカルPCにグローバルにインストールできます。そうすれば、[Reactの公式Webサイト](https://reactjs.org/docs/static-type-checking.html#using-typescript-with-create-react-app)に書かれているように`$ npx create-react-app my-app --template typescript`というコマンドで、最初からTypeScriptを利用可能なプロジェクトを簡単に作成できます。
 
 ## HTMLタグ vs Component
 
