@@ -2,10 +2,11 @@
 
 ## `lib.d.ts`
 
-特別な宣言ファイル`lib.d.ts`はTypeScriptをインストールしたときに付属しています。このファイルには、JavaScriptランタイムとDOMに存在するさまざまな一般的なJavaScriptの構成物の環境宣言が含まれています。
+特別な宣言ファイル`lib.d.ts`はTypeScriptをインストールしたときに付属しています。このファイルには、JavaScriptランタイムとDOMに存在するさまざまな一般的なJavaScriptを構成する機能のアンビエント宣言が含まれています。
 
 * このファイルは、TypeScriptプロジェクトのコンパイルコンテキストに自動的に含まれます
-* このファイルの目的は型チェックのあるJavaScript開発を簡単に始めることです
+* このファイルの目的は、JavaScriptやTypeScriptのプロジェクトで、すぐに型のサポートを得られるようにすることです 
+* TypeScriptをサポートしているIDE(Visual Studio Code等)であれば、JavaScriptのプロジェクトであっても、型の恩恵を得ることができます
 
 コンパイルオプションに`--noLib`を指定してこのファイルをコンパイルコンテキストから除外することができます\(`tsconfig.json`に`noLib : true`を指定\)。
 
@@ -27,13 +28,13 @@ var foo = 123;
 var bar = foo.toString(); // ERROR: Property 'toString' does not exist on type 'number'.
 ```
 
-もうあなたは`lib.d.ts`の重要性を理解したので、次にその内容を見てみましょう。
+これで、`lib.d.ts`の重要性を理解いただけたと思います。次にその内容を見てみましょう。
 
 ### `lib.d.ts`の内容
 
 `lib.d.ts`の内容は、主に変数宣言の集まりです。例えば`window`、`document`、`math`や、同様のインターフェース宣言`Window`、`Document`、`Math`です。
 
-このドキュメントと型アノテーションを読む一番簡単な方法は、あなたが動くと知っているもののコードを打ち込むことです。例えばIDEで`Math.floor`と打ち込み、F12を押下すると、定義に移動します\(VSCodeはこれを良くサポートしています\)。
+このドキュメントと型アノテーションを読む一番簡単な方法は、動くとわかっているコードをエディターで打ち込んでみることです。例えばIDEで`Math.floor`と打ち込み、F12を押下すると、定義に移動します\(VSCodeはこれをサポートしています\)。
 
 サンプルの変数宣言を見てみましょう。`window`は次のように定義されます：
 
@@ -41,7 +42,7 @@ var bar = foo.toString(); // ERROR: Property 'toString' does not exist on type '
 declare var window: Window;
 ```
 
-これは単純な`declare var`の後に変数名\(ここでは`window`\)とタイプアノテーションのインターフェース\(`Window`インターフェース\)が続きます。これらの変数は、一般的にいくつかのグローバルインターフェースを指し示します。例として、ここに`Window`インターフェースの小さな\(実際には非常に大規模な\)サンプルを提示します：
+この単純な`declare var`の後に、変数名\(ここでは`window`\)とアノテーションで指定されているインターフェース\(`Window`インターフェース\)が続きます。これらの変数は、一般的にグローバルなインターフェースを指し示しています。例として、ここに`Window`インターフェースの小さな\(実際には非常に大規模な\)サンプルを提示します：
 
 ```typescript
 interface Window extends EventTarget, WindowTimers, WindowSessionStorage, WindowLocalStorage, WindowConsole, GlobalEventHandlers, IDBEnvironment, WindowBase64 {
@@ -54,9 +55,9 @@ interface Window extends EventTarget, WindowTimers, WindowSessionStorage, Window
 }
 ```
 
-これらのインターフェースには、たくさんの型情報があることがわかります。TypeScriptが存在しない場合、あなたの頭にこれを保持する必要があります。コンパイルの知識を、インテリセンス\(Intellisense\)のようなものを使って容易にアクセスできるようにすることができます。
+これらのインターフェースには、たくさんの型情報があることがわかります。TypeScriptが存在しない場合、これを頭で覚えておかなければなりません。コンパイラが理解している知識を、インテリセンスや自動補完のようなもので容易にアクセスできるようにすることができます。
 
-これらのグローバルにインターフェースを使用するには良い理由があります。`lib.d.ts`を変更することなく、これらのグローバルのインターフェースにプロパティを追加することができます。次に、このコンセプトについて説明します。
+これらのグローバルにインターフェースを使用していることは良いことです。なぜなら、`lib.d.ts`を変更することなく、これらのグローバルのインターフェースにプロパティを追加することができるからです。次に、この概念について説明します。
 
 ### ネイティブ型\(Native Types\)を変更する
 
@@ -112,12 +113,12 @@ interface Math {
 }
 ```
 
-そして、あなたはそれを使うことができます：
+これで、それを使うことができます：
 
 ```typescript
 Math.seedrandom();
-// or
-Math.seedrandom("Any string you want!");
+// まはた
+Math.seedrandom("何らかの文字列");
 ```
 
 #### `Date`の例
@@ -133,28 +134,28 @@ declare var Date: DateConstructor;
 ```typescript
 interface DateConstructor {
     new (): Date;
-    // ... other construct signatures
+    // ... その他の構成シグネチャ
 
     now(): number;
-    // ... other member functions
+    // ... その他のメンバー関数
 }
 ```
 
-プロジェクト [`datejs`](https://github.com/abritinthebay/datejs) を考えてみましょう。 DateJSは、メンバを`Date`グローバル変数と`Date`インスタンスの両方に追加します。したがって、このライブラリのTypeScriptの定義は、以下のようになります\(ところで、[コミュニティはすでにそれをあなたのために書いています](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/datejs/index.d)\)：
+[`datejs`](https://github.com/abritinthebay/datejs) というプロジェクトを例にして考えてみましょう。 DateJSは、メンバを`Date`グローバル変数と`Date`インスタンスの両方に追加します。したがって、このライブラリのTypeScriptの定義は、以下のようになります\(ところで、[コミュニティはすでにそれをあなたのために書いています](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/datejs/index.d)\)：
 
 ```typescript
 /** DateJS Public Static Methods */
 interface DateConstructor {
     /** Gets a date that is set to the current date. The time is set to the start of the day (00:00 or 12:00 AM) */
     today(): Date;
-    // ... so on and so forth
+    // 続く
 }
 
 /** DateJS Public Instance Methods */
 interface Date {
     /** Adds the specified number of milliseconds to this instance. */
     addMilliseconds(milliseconds: number): Date;
-    // ... so on and so forth
+    // 続く
 }
 ```
 
@@ -167,7 +168,7 @@ var todayAfter1second = today.addMilliseconds(1000);
 
 #### `string`の例
 
-文字列の `lib.d.ts`を調べると、`Date`\(`String`グローバル変数、`StringConstructor`インターフェース、`String`インターフェース\)のようなものが見つかるでしょう。しかし、注意すべき点の1つは、以下のコードサンプルで示すように、`String`インターフェースは、文字列リテラルに対しても影響を与えます:
+文字列の `lib.d.ts`を調べると、`Date`\(`String`グローバル変数、`StringConstructor`インターフェース、`String`インターフェース\)のようなものが見つかるでしょう。しかし、注意すべき点の1つは、以下のコードサンプルで示すように、`String`インターフェースは、文字列リテラルに対しても影響がある、という点です:
 
 ```typescript
 interface String {
