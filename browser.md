@@ -2,7 +2,7 @@
 
 1. 手動でTypeScriptのプロジェクトをセットアップする場合と、2.Create React Appのテンプレートを利用する場合の両方について説明します。
 
-## 1. ブラウザでのTypeScript
+## 1. 手動でTypeScriptのプロジェクトをセットアップする
 
 TypeScriptを使用してWebアプリケーションを作成する場合は、簡単なTypeScript + React\(UIフレームワーク\)のプロジェクトのセットアップを作成することをお勧めします。
 
