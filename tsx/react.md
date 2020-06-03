@@ -261,7 +261,7 @@ ReactDOM.render(
 
 もしWebComponentを利用している場合、それはReactの型定義ファイル(`@types/react`)には定義されていません。しかし、アンビエント宣言(`declare`)を使って簡単に定義できます。例えば、`my-awesome-slider`というWebComponentがあるとします。これは、`MyAwesomeSliderProps`を受け取ります。この場合、以下のようになります:
 
-```tsx
+```typescript
 declare global {
   namespace JSX {
     interface IntrinsicElements {
