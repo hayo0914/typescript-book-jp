@@ -1,25 +1,25 @@
 # React
 
-> [Type ScriptとReactのPRO Eggheadコース](https://egghead.io/courses/use-typescript-to-develop-react-applications)
-
 ## セットアップ
 
-私たちの[ブラウザ向けのクイックスタートに、すでにReactアプリケーションの開発のセットアップの仕方を説明しています](../browser.md)。主なハイライトは次の通りです。
+[ブラウザ向けのクイックスタートで、すでにReactアプリケーションの開発のセットアップの仕方を説明しています](../browser.md)。要点をまとめると、次の通りです。
 
 * ファイル拡張子`.tsx`\(`.ts`の代わりに\)を使用してください。
-* あなたの`tsconfig.json`の`compilerOptions`で `"jsx" : "react"`を使ってください。
+* `tsconfig.json`の`compilerOptions`で `"jsx" : "react"`を使ってください。
 * JSXとReactの定義をあなたのプロジェクトにインストールします：\(`npm i -D @types/react @types/react-dom`\)。
 * reactを`.tsx`ファイルにインポートします\(`import * as React from "react"`となります\)。
 
-## HTMLタグとComponentの違い
+ReactとTypeScriptのプロジェクトをセットアップする一番簡単な方法は、Create React Appを使うことです。このツールはReactチームから提供されているツールです。公式にTypeScriptのテンプレートが提供されています。Create React Appを使うには、`$ npm i -g create-react-app`というコマンドでローカルPCにグローバルにインストールできます。そうすれば、[Reactの公式Webサイト](https://reactjs.org/docs/static-type-checking.html#using-typescript-with-create-react-app)に書かれているように`$ npx create-react-app my-app --template typescript`というコマンドで、最初からTypeScriptを利用可能なプロジェクトを簡単に作成できます。
 
-Reactは、HTMLタグ\(文字列\)またはReact Component\(クラス\)をレンダリングします。これらに対するJavaScriptの出力は異なります\(`React.createElement('div')`と`React.createElement(MyComponent)`\)。これが決まる方法は最初の文字の_ケース_\(大文字小文字\)です。`foo`はHTMLタグとして扱われ、`Foo`はコンポーネントとして扱われます。
+## HTMLタグ vs Component
+
+Reactは、HTMLタグ\(文字列\)または、React Component\(クラス\)を表示できます。これらのJavaScriptへのコンパイル結果は同じではありません\(例えば、、`React.createElement('div')`と`React.createElement(MyComponent)`のJavaScriptのコンパイル結果に同じではありません\)。どちらとして扱われるかは、最初の文字の_ケース_\(大文字小文字\)です。`foo`はHTMLタグとして扱われます。そして、`Foo`はコンポーネントとして扱われます。
 
 ## 型チェック\(Type Checking\)
 
 ### HTMLタグ
 
-HTMLタグ`foo`の型は`JSX.IntrinsicElements.foo`です。これらの型は、セットアップの一部としてインストールした`react-jsx.d.ts`ファイルにおいて主要なタグに対してすでに定義されています。次に、ファイルの内容のサンプルを示します。
+HTMLタグ`foo`の型は`JSX.IntrinsicElements.foo`です。これらの主要な型は、セットアップの一部としてインストールした型定義ファイル`react-jsx.d.ts`の中で、予め定義されています。下記にその中に含まれる型定義のサンプルを示します。
 
 ```typescript
 declare module JSX {
@@ -29,20 +29,20 @@ declare module JSX {
         div: React.HTMLAttributes;
         span: React.HTMLAttributes;
 
-        /// so on ...
+        /// などなど
     }
 }
 ```
 
-### 関数コンポーネント\(Functional Components\)
+### Functionコンポーネント\(Functional Components\)
 
-あなたは単に`React.FunctionComponent`インターフェースを使ってステートレスなコンポーネントを定義することができます。
+単に`React.FC`インターフェースを使ってステートレスなFunctionコンポーネントを定義することができます。`React.FC`は単に、`React.FunctionComponent`の短いバージョンです。
 
 ```typescript
 type Props = {
   foo: string;
 }
-const MyComponent: React.FunctionComponent<Props> = (props) => {
+const MyComponent: React.FC<Props> = (props) => {
     return <span>{props.foo}</span>
 }
 
@@ -50,10 +50,9 @@ const MyComponent: React.FunctionComponent<Props> = (props) => {
 ```
 
 ### クラスコンポーネント\(Class Components\)
+コンポーネントは、`props`プロパティに基づいて型チェックされます。コンポーネントは、JSXが、どのように変換されるか、ということを考慮して型チェックされます。例えばJSXのタグの属性は、コンポーネントの`props`の一部である必要があります。
 
-コンポーネントは、コンポーネントの`props`プロパティに基づいて型チェックされます。これは、JSXがどのように変換されるかによってモデル化されています。例えば属性がコンポーネントの`props`になるようにモデル化されています。
-
-ReactのStatefulコンポーネントを作成するには、ES6クラスを使用します。`react.d.ts`ファイルはあなた自身の`Props`と`State`インターフェースを提供する、あなたのクラスで継承するべき`React.Component<Props,State>`クラスを定義しています。これは以下のとおりです：
+Reactのステートフルなコンポーネントを作成するには、クラスを使用します。型定義ファイル`react.d.ts`は、`React.Component<Props,State>`クラスを定義しています。このクラスを、コンポーネントを作成するときに継承します。このクラスは、そのコンポーネント独自の`Props`と`State`の型をジェネリクスとして設定できるようになっています。これを以下の例で示します\(下記の例では、Stateには空のオブジェクト型を設定しています\)：
 
 ```typescript
 type Props = {
@@ -68,9 +67,9 @@ class MyComponent extends React.Component<Props, {}> {
 <MyComponent foo="bar" />
 ```
 
-### React JSX Tip： レンダリング可能なインターフェース
+### React JSX のヒント： レンダリング可能なインターフェース
 
-Reactは`JSX`や`string`のようなものをレンダリングすることができます。これらはすべて`React.ReactNode`型に統合されていますので、レンダリング可能なものを受け入れる場合などに使用してください。
+Reactは`JSX`や`string`をレンダリングすることができます。これらはすべて`React.ReactNode`型に統合されていますので、レンダリング可能なものを受け入れる場合などに使用してください。
 
 ```typescript
 type Props = {
@@ -86,17 +85,17 @@ class MyComponent extends React.Component<Props, {}> {
     }
 }
 
-<MyComponent header="This is header." body="This is body." />
+<MyComponent header="これはヘッダーです" body="これはボディです" />
 ```
 
-### React JSXヒント：コンポーネントのインスタンスを受け入れる
+### React JSX のヒント：コンポーネントのインスタンスを受け入れる
 
-React型の定義は、`React.ReactElement<T>`を提供しており、`<T/>`クラスコンポーネントのインスタンスにアノテーションを付けることができます。例えば
+Reactの型定義ファイルは、`React.ReactElement<T>`という型を提供しています。これを、`<T/>`クラスコンポーネントのインスタンスを保持できる型アノテーションに利用できます。例えば以下の通りです:
 
 ```javascript
 class MyAwesomeComponent extends React.Component {
   render() {
-    return <div>Hello</div>;
+    return <div>こんにちは</div>;
   }
 }
 
@@ -104,33 +103,33 @@ const foo: React.ReactElement<MyAwesomeComponent> = <MyAwesomeComponent />; // O
 const bar: React.ReactElement<MyAwesomeComponent> = <NotMyAwesomeComponent />; // Error!
 ```
 
-> もちろん、これを関数の引数のアノテーションやReact componentのprop memberとして使用することもできます。
+> もちろん、これを関数の引数や、コンポーネントのPropsの型として使用することもできます。
 
-### React JSXヒント： propに作用し、JSXを使用してレンダリングできる_Component_を受け入れる
+### React JSXのヒント： propsを受け取り、JSXでレンダリングできるコンポーネントを受け入れる
 
-型`React.Component<Props>`は`React.ComponentClass<P> | React.StatelessComponent<P>`を統合しています。なので、`Props`型を受け取り、JSXを使ってレンダリングする_何か_を受け入れることができます。
+型`React.Component<Props>`は`React.ComponentClass<P> | React.StatelessComponent<P>`のように２つの種類のコンポーネントの型を統合しています。なので、`Props`型を受け取り、JSXを使ってレンダリングする_何か_を受け入れることができます。
 
 ```typescript
-const X: React.Component<Props> = foo; // from somewhere
+const X: React.Component<Props> = foo; // どこかから渡されたコンポーネント
 
-// Render X with some props:
+// XコンポーネントにPropsを渡して表示:
 <X {...props}/>;
 ```
 
-### React JSXヒント：ジェネリクスコンポーネント\(Generic Components\)
+### React JSXのヒント： ジェネリックコンポーネント
 
-期待どおりに動作します。次に例を示します。
+これは、期待どおりに動作します。以下に例を示します:
 
 ```typescript
-/** A generic component */
+/** ジェネリックコンポーネント */
 type SelectProps<T> = { items: T[] }
 class Select<T> extends React.Component<SelectProps<T>, any> { }
 
-/** Usage */
+/** 使い方 */
 const Form = () => <Select<string> items={['a','b']} />;
 ```
 
-### ジェネリクス関数\(Generic Functions\)
+### ジェネリック関数
 
 次のようなものがうまくいきます：
 
@@ -138,26 +137,26 @@ const Form = () => <Select<string> items={['a','b']} />;
 function foo<T>(x: T): T { return x; }
 ```
 
-しかし、アローのジェネリック関数を使用しても、うまくいきません:
+しかし、アロー関数のジェネリック関数を利用しようとすると、構文エラーになります。
 
 ```typescript
-const foo = <T>(x: T) => x; // ERROR : unclosed `T` tag
+const foo = <T>(x: T) => x; // ERROR : `T` タグが閉じられていません
 ```
 
-**回避策**：ジェネリックパラメータに`extends`を使用すると、コンパイラがジェネリックであることを教えられます。
+**回避策**：ジェネリックのパラメータに`extends`を使用すると、コンパイラがジェネリックであることを教えられます。`extends`は、ジェネリックの型に制約を付けるためのキーワードです。`{}`を`extends`する、ということは、オブジェクトであれば、何でも良い、ということです。なので、単に構文エラーを回避するために、このようにすることができます:
 
 ```typescript
 const foo = <T extends {}>(x: T) => x;
 ```
 
-### Reactのヒント: React Tip: 厳密に型付けされた参照\(Strongly Typed Refs\)
+### Reactのヒント: 厳密に型付けされたRef
 
-あなたは基本的に参照のユニオンとして変数を`null`で初期化できます。そしてそれをコールバックとして初期化できます。
+基本的にRefの変数をユニオン型で定義することによって、`null`で初期化できます。そして、それをコンポーネントのrefプロパティに渡したコールバック関数で初期化できます。
 
 ```typescript
 class Example extends React.Component {
   example() {
-    // ... something
+    // ... 何らかの処理
   }
 
   render() { return <div>Foo</div> }
@@ -173,7 +172,7 @@ class Use {
 }
 ```
 
-そしてネイティブ要素の参照に対しても同じです。
+これは、DOM要素の参照を保持する変数についても同じです。
 
 ```typescript
 class FocusingInput extends React.Component<{ value: string, onChange: (value: string) => any }, {}>{
@@ -194,13 +193,13 @@ class FocusingInput extends React.Component<{ value: string, onChange: (value: s
 }
 ```
 
-### 型アサーション\(Type Assertions\)
+### 型アサーション
 
-我々が [前に述べた](https://github.com/yohamta/typescript-book-jp/tree/54f70152bab903def7bad5b9a83c204a96332a51/docs/jsx/type-assertion.md#as-foo-vs-foo) のように、型アサーションには`as Foo`構文を使います。
+ [既に説明した](https://github.com/yohamta/typescript-book-jp/tree/54f70152bab903def7bad5b9a83c204a96332a51/docs/jsx/type-assertion.md#as-foo-vs-foo) のように、型アサーションには`as Foo`構文を使います。
 
-## デフォルトProps\(Default Props\)
+## デフォルトProps
 
-* デフォルトPropsを持ったステートフルなコンポーネント：あなたは_Nullアサーション演算子_を使って、プロパティが外部から\(Reactによって\)提供されることをTypeScriptに伝えることができます\(これは理想的ではありませんが、しかし私が思いつく中では、最もシンプルでミニマムなコードです\)。
+* デフォルト値のあるPropsを持ったステートフルなコンポーネント： _Nullアサーション演算子_`?`を使って、デフォルト値のあるPropsを定義できます。このPropsには、\(外部からReactの仕組みによって\)値が渡されます\(これが最も理想的なものとは限りませんが、今思いつく限りでは、シンプルでミニマムなコードです\)。
 
 ```typescript
 class Hello extends React.Component<{
@@ -230,17 +229,17 @@ ReactDOM.render(
 );
 ```
 
-* デフォルトPropsを備えたSFC ：シンプルなJavaScriptパターンを活用してTypeScriptの型システムとうまく動作するようにすることをお勧めします。
+* デフォルトPropsのあるFunctionコンポーネント ：シンプルなJavaScriptの構文を活用して、TypeScriptの型システムとうまく組み合わせることをお勧めします。下記はその例です:
 
 ```typescript
-const Hello: React.SFC<{
+const Hello: React.FC<{
   /**
    * @default 'TypeScript'
    */
   compiler?: string,
   framework: string
 }> = ({
-  compiler = 'TypeScript', // Default prop
+  compiler = 'TypeScript', // デフォルト値のあるProps
   framework
 }) => {
     return (
@@ -256,5 +255,23 @@ ReactDOM.render(
   <Hello framework="React" />, // TypeScript React
   document.getElementById("root")
 );
+```
+
+## WebComponentの宣言
+
+もしWebComponentを利用している場合、それはReactの型定義ファイル(`@types/react`)には定義されていません。しかし、アンビエント宣言(`declare`)を使って簡単に定義できます。例えば、`my-awesome-slider`というWebComponentがあるとします。これは、`MyAwesomeSliderProps`を受け取ります。この場合、以下のようになります:
+
+```tsx
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'my-awesome-slider': MyAwesomeSliderProps;
+    }
+
+    interface MyAwesomeSliderProps extends React.Attributes {
+      name: string;
+    }
+  }
+}
 ```
 
