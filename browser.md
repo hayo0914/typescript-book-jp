@@ -2,7 +2,7 @@
 
 手動でTypeScriptのプロジェクトをセットアップする場合と、Create React Appのテンプレートを利用する場合の両方について説明します。
 
-## 1. 手動でTypeScriptのプロジェクトをセットアップする
+## 1. 手動でTypeScriptのプロジェクトをセットアップする場合
 
 TypeScriptを使用してWebアプリケーションを作成する場合は、簡単なTypeScript + React\(UIフレームワーク\)のプロジェクトのセットアップを作成することをお勧めします。
 
@@ -163,7 +163,7 @@ ReactDOM.render(
   * Webサーバーを通じて`public`フォルダ\(ビルドされたアセットが配置される\)をサーブします
 
 
-## 2. Create React Appの利用
+## 2. Create React Appを利用する場合
 
 TypeScriptを使用してReactのWebアプリケーションを作成する場合、最も一般的な方法は、[Create React App](https://github.com/facebook/create-react-app)を使うことです。このツールはReactの開発チームがメンテナンスを行っているツールです。公式にTypeScriptのテンプレートが提供されています。
 
