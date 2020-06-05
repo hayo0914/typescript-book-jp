@@ -1,4 +1,4 @@
-# TypeScript の型システム
+# TypeScriptの型システム
 
 [なぜTypeScriptを使うのか？](../getting-started/why-typescript.md)について説明したとき、TypeScriptの型システムの主な機能を取り上げました。下記は、改めて説明する必要がない、いくつかのキーポイントです：
 

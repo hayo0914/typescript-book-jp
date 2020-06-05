@@ -1,4 +1,4 @@
-# never 型
+# never
 
 ## Never
 

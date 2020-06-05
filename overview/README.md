@@ -1,4 +1,4 @@
-# TypeScript コンパイラの内側
+# TypeScriptコンパイラの内側
 
 TypeScriptコンパイラのソースは、[`src/compiler`](https://github.com/Microsoft/TypeScript/tree/master/src/compiler)フォルダの下にあります。
 

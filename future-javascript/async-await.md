@@ -1,4 +1,4 @@
-# async await キーワード
+# async await
 
 > [同内容をカバーするPRO eggheadのビデオコース](https://egghead.io/courses/async-await-using-typescript)
 

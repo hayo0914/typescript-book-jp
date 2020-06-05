@@ -1,4 +1,4 @@
-# namespace（名前空間）
+# namespace
 
 名前空間は、JavaScriptで使用される次の一般的なパターンの便利な構文を提供します。
 

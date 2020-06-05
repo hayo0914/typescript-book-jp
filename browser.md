@@ -1,4 +1,4 @@
-# React クイックスタート
+# React & TypeScriptクイックスタート
 
 手動でTypeScriptのプロジェクトをセットアップする場合と、Create React Appのテンプレートを利用する場合の両方について説明します。
 
@@ -162,7 +162,6 @@ ReactDOM.render(
 * `npm run build`を実行して本番用のアセットをビルドします
   * Webサーバーを通じて`public`フォルダ\(ビルドされたアセットが配置される\)をサーブします
 
-
 ## 2. Create React Appを利用する場合
 
 TypeScriptを使用してReactのWebアプリケーションを作成する場合、最も一般的な方法は、[Create React App](https://github.com/facebook/create-react-app)を使うことです。このツールはReactの開発チームがメンテナンスを行っているツールです。公式にTypeScriptのテンプレートが提供されています。
@@ -186,7 +185,7 @@ npm start # または、yarn start
 
 Create React Appでプロジェクトを作成すると、下記のような`tsconfig.json`が作成されます。これを必要に応じて修正し、TypeScriptのコンパイラの動作を、好みに合わせて調整することができます。
 
-```json
+```javascript
 {
   "compilerOptions": {
     "target": "es5",
@@ -217,3 +216,4 @@ Create React Appでプロジェクトを作成すると、下記のような`tsc
 ## プロジェクトのビルド
 
 `npm run build` または `yarn build` のコマンドで、本番環境用のビルドを実行できます。これで、Reactチームによって本番環境に最適化されたバンドルファイルを出力できます。
+

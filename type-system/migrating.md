@@ -1,4 +1,4 @@
-# JavaScript からの移行ガイド
+# JavaScriptからの移行ガイド
 
 前提事項：
 
@@ -15,7 +15,7 @@
 
 これらの点のいくつかをさらに議論しましょう。
 
-すべてのJavaScriptは_有効な_TypeScriptであることに注意してください。つまり、TypeScriptコンパイラにJavaScriptをいくつか与えると、TypeScriptコンパイラによって生成されたJavaScriptは元のJavaScriptとまったく同じように動作します。つまり、拡張子を`.js`から`.ts`に変更しても、コードベースに悪影響はありません。
+すべてのJavaScriptは\_有効な\_TypeScriptであることに注意してください。つまり、TypeScriptコンパイラにJavaScriptをいくつか与えると、TypeScriptコンパイラによって生成されたJavaScriptは元のJavaScriptとまったく同じように動作します。つまり、拡張子を`.js`から`.ts`に変更しても、コードベースに悪影響はありません。
 
 ### エラーを抑制する
 

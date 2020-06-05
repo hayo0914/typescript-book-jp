@@ -1,4 +1,4 @@
-# インデックス型（インデックスシグネチャ）
+# Index signature（インデックス型）
 
 JavaScript\(TypeScript\)の`Object`は、他のJavaScript**オブジェクト**への参照を保持し、**文字列**でアクセスできます。
 

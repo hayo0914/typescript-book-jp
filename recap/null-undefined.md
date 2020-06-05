@@ -1,4 +1,4 @@
-# null と undefined
+# nullとundefined
 
 JavaScript\(と、TypeScript\)は、`null`と`undefined`という2つのボトム型\(bottom type\)があります。これらは異なる意味を持っています。
 

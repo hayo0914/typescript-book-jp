@@ -1,4 +1,4 @@
-# Union 型の判別
+# 判別可能なUnion型
 
 ## Union型の判別\(Discriminated Union\)
 

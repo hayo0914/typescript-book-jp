@@ -1,4 +1,4 @@
-# Promise（プロミス）
+# Promise
 
 ## Promise
 

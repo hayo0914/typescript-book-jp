@@ -1,4 +1,4 @@
-# Node.js クイックスタート
+# Node.js & TypeScriptクイックスタート
 
 TypeScriptは、Node.jsを公式にサポートしています。素早くNode.jsプロジェクトを設定する方法は次のとおりです。
 

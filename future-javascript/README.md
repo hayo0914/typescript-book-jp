@@ -1,4 +1,4 @@
-# 次世代の JavaScript 機能
+# 次世代のJavaScript機能
 
 TypeScriptが提供する素晴らしいメリットの1つは、古い\(ES3およびES5レベルの\)JavaScript実行環境\(IE9やNode.jsなど\)で、新しいJavaScript\(ES6以降\)の機能を使用できることです。ここでは、これらの新しいJavaScriptの機能が便利である理由を詳しく説明します。その後で、TypeScriptでそれらがどのように実装されているかを説明します。
 

@@ -1,4 +1,4 @@
-# Truthy な値（Trueに変換される値）
+# Truthy
 
 JavaScriptは、特定の場所\(例えば、`if` 条件文とbooleanの`&&` `||` オペレータ\)で、Trueと評価される値\(`truthy`\)の概念を持っています。次に示すものは、JavaScriptにおいてtruthyです。例えば`0`以外の数値はtruthyです。
 
