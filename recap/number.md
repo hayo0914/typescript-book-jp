@@ -77,7 +77,7 @@ export const foo = new Big('111.11111111111111111111');
 export const bar = foo.plus(new Big('0.00000000000000000001'));
 
 // To get a number:
-const x: number = Number(bar.toString()); // 少数点以下の精度を失う
+const x: number = Number(bar.toString()); // 小数点以下の精度を失う
 ```
 
 > このライブラリは、チャートやキャンバスの描画など、UI /パフォーマンスが重視される目的には使用しないでください。
