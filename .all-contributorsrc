@@ -279,6 +279,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "roborovskii-info",
+      "name": "Ishimaru Sohei",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5865618?v=4",
+      "profile": "https://github.com/roborovskii-info",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7
