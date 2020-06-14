@@ -36,7 +36,7 @@
     * [globals.d.ts](project/modules/globals.md)
   * [名前空間](project/namespaces.md)
   * [動的インポート](project/dynamic-import-expressions.md)
-* [Node.js & TypeScriptクイックスタート](nodejs.md)
+* [Node.jsとTypeScriptの環境構築](nodejs.md)
 * [React & TypeScriptクイックスタート](browser.md)
 * [TypeScriptの型システム](type-system/README.md)
   * [JavaScriptからの移行ガイド](type-system/migrating.md)
