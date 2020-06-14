@@ -1,9 +1,11 @@
 # async await
 
-思考実験として、次のことを想像してみてください： `await` のキーワードがPromiseに対して使われた場合、JavaScriptコードの実行を一時停止します。そして、その関数から返されたPromiseが完了した場合にだけ、コードの実行が再開されます。このようにJavaScriptランタイムを制御する方法を想像してみてください:
+> [同内容をカバーするPRO eggheadのビデオコース](https://egghead.io/courses/async-await-using-typescript)
+
+思考実験として、次のことを想像してみてください： `await` キーワードがPromiseに対して使われた場合、JavaScriptコードの実行を一時停止する。そして、その関数から返されたPromiseが完了した場合にだけ、コードの実行が再開される。そのように、JavaScriptランタイムに指示する方法を想像してみてください:
 
 ```typescript
-// 実際のコードではありません。ただの思考実験です。
+// Not actual code. A thought experiment
 async function foo() {
     try {
         var val = await getMeAPromise();
@@ -26,11 +28,11 @@ Promiseが完了したとき、次の処理を続けます
 * 関数の内側に値を入れられること
 * 関数の内側に例外を投げられること
 
-これはまさにジェネレータが可能にしたことです！上記の思考実験は、TypeScript / JavaScript の`async`/`await`の実装に使われています。それらの内側の仕組みは、単にジェネレータを使っているのです。
+これはまさにジェネレータが可能にしたことです!上記の思考実験は、TypeScript / JavaScript の`async`/`await`の実装に使われています。それらの内側の仕組みは、単にジェネレータを使っているのです。
 
 ## 生成されたJavaScript
 
-これを理解する必要はありませんが、[ジェネレータ](generators.md)のことを知っていれば、かなり簡単です。関数`foo`は次のように単純に囲んだもので実現できます：
+これを理解する必要はありませんが、[ジェネレータ](generators.md)のことを知っていれば、かなり簡単です。関数`foo`は次のように単純にラップされたもので実現できます：
 
 ```typescript
 const foo = wrapToReturnPromise(function* () {
@@ -44,15 +46,15 @@ const foo = wrapToReturnPromise(function* () {
 });
 ```
 
-この`wrapToReturnPromise`は単にジェネレータ関数を実行して`generator`を取得します。そして、`generator.next()`を使います。返り値が`promise`なら、その`promise`を`then`+`catch`し、結果に応じて `generator.next(result)` または `generator.throw(error)` を呼び出します。それだけです！
+この`wrapToReturnPromise`は単にジェネレータ関数を実行して`generator`を取得します。そして、`generator.next()`を使います。返り値が`promise`なら、その`promise`を`then`+`catch`し、結果に応じて `generator.next(result)` または `generator.throw(error)` を呼び出します。それだけです!
 
 ## TypeScriptにおける Async Await のサポート
 
-**Async - Await**は[TypeScript1.7以降](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-7.html)でサポートされています。非同期関数の先頭に_async_キーワードが付きます。 _await_は、非同期関数の戻り値promiseが完了し、_Promise_から値を取得するまで実行を中断します。 以前は、**ターゲットがES6以降**の場合のみサポートしており、**ES6のジェネレータ**に直接トランスパイルしていました。
+**Async - Await**は[TypeScript1.7以降](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-7.html)でサポートされています。非同期関数の先頭に_async_キーワードが付きます。 _await_は、非同期関数の戻り値promiseが完了し、_Promise_から値を取得するまで実行を中断します。 以前は、**ターゲットがES6**の場合のみサポートしており、**ES6ジェネレータ**に直接トランスパイルしていました。
 
-**TypeScript2.1**は、[ES3とES5のランタイムにAsync/Await機能を追加](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-1.html)しました。これが意味することは、ブラウザの環境に関わらず、Async/Awaitを利用できるということです。TypeScript 2.1以降、Promiseのためのポリフィルがグローバルに追加されたことにより、多くのブラウザでasync/awaitがサポートされています。
+**TypeScript2.1**は、[ES3とES5のランタイムにAsync/Await機能を追加](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-1.html)しました。これは、あなたがブラウザの環境に関係なく、それを利用できるということを意味しています。TypeScript 2.1以降、Promiseのためのポリフィルがグローバルに追加されたことにより、多くのブラウザでasync/awaitがサポートされています。
 
-このコードの例を見て、TypeScriptのasync/awaitがどのように動作するかを理解してください。
+この例のコードを見て、TypeScriptのasync/await記法がどのように機能するかを理解してください。
 
 ```typescript
 function delay(milliseconds: number, count: number): Promise<number> {
@@ -63,12 +65,12 @@ function delay(milliseconds: number, count: number): Promise<number> {
         });
 }
 
-// async関数は常にPromiseを返します
+// async function always returns a Promise
 async function dramaticWelcome(): Promise<void> {
     console.log("Hello");
 
     for (let i = 0; i < 5; i++) {
-        // awaitは、Promise<number>をnumberに変換します
+        // await is converting Promise<number> into number
         const count:number = await delay(500, i);
         console.log(count);
     }
@@ -79,7 +81,7 @@ async function dramaticWelcome(): Promise<void> {
 dramaticWelcome();
 ```
 
-**ES6へのコンパイル結果\(--target es6\)**
+**ES6へのトランスパイル結果\(--target es6\)**
 
 ```javascript
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -97,12 +99,12 @@ function delay(milliseconds, count) {
         }, milliseconds);
     });
 }
-// async関数は常にPromiseを返します
+// async function always returns a Promise
 function dramaticWelcome() {
     return __awaiter(this, void 0, void 0, function* () {
         console.log("Hello");
         for (let i = 0; i < 5; i++) {
-            // awaitは、Promise<number>をnumberに変換します
+            // await is converting Promise<number> into number
             const count = yield delay(500, i);
             console.log(count);
         }
@@ -114,7 +116,7 @@ dramaticWelcome();
 
 完全な例を [ここ](https://cdn.rawgit.com/basarat/typescript-book/705e4496/code/async-await/es6/asyncAwaitES6.js) で見ることができます。
 
-**ES5へのコンパイル結果\(--target es5\)**
+**ES5へのトランスパイル結果\(--target es5\)**
 
 ```javascript
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -191,5 +193,5 @@ dramaticWelcome();
 
 完全な例を [ここ](https://cdn.rawgit.com/basarat/typescript-book/705e4496/code/async-await/es5/asyncAwaitES5.js) で見ることができます。
 
-**注意**：ES6、ES5のどちらをターゲットにする場合でも、ランタイムがグローバルにECMAScriptに準拠したPromiseの機能を持っていることを確認する必要があります。Promiseのためにポリフィルを用意する必要があるかもしれません。また、libフラグを "dom", "es2015"もしくは"dom", "es2015.promise", "es5"のように設定することで、TypeScriptがPromiseの存在を認識できるようにする必要があります。 **各ブラウザのPromiseサポート\(ネイティブ実装およびポリフィル\)の有無を** [**このサイト**](https://kangax.github.io/compat-table/es6/#test-Promise) **で確認できます。**
+**注意**：ES6、ES5のどちらをターゲットにする場合でも、ランタイムがグローバルにECMAScriptに準拠したPromiseの機能を持っていることを確認する必要があります。Promiseのためにポリフィルを用意する必要があるかもしれません。また、libフラグを "dom", "es2015"もしくは"dom", "es2015.promise", "es5"のように設定することで、TypeScriptがPromiseの存在を認識できるようにする必要があります。 **各ブラウザのPromiseサポート\(ネイティブ実装およびポリフィル\)の有無を** [**ここ**](https://kangax.github.io/compat-table/es6/#test-Promise) **で確認できます。**
 

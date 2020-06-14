@@ -1,12 +1,12 @@
 # ジェネレータ
 
-`function *`は_ジェネレータ関数_の作成に使う構文です。ジェネレータ関数を呼び出すと、_ジェネレータオブジェクト_が返されます。ジェネレータオブジェクトは、[イテレータ](iterators.md)インターフェースに準拠しています\(つまり`next`、`return`および`throw`関数を実装しています\)。
+`function *`は_ジェネレータ関数_の作成に使う構文です。ジェネレータ関数を呼び出すと、_ジェネレータオブジェクト_\(Generator Object\)が返されます。ジェネレータオブジェクトは、[イテレータ](iterators.md)インターフェースを踏襲しています\(つまり`next`、`return`および`throw`関数です\)。
 
-ジェネレータが必要となる背景には2つの重要な動機があります。
+ジェネレータ機能が必要となる背景には2つの重要な鍵があります。
 
-## 遅延評価
+## 遅延イテレータ\(Lazy Iterators\)
 
-ジェネレータ関数を使用して遅延評価されるイテレータを作成することができます。次の関数は、必要なだけの整数の**無限**リストを返します：
+ジェネレータ関数を使用して遅延イテレータを作成することができます。次の関数は、必要なだけの整数の**無限**リストを返します：
 
 ```typescript
 function* infiniteSequence() {
@@ -39,7 +39,7 @@ console.log(gen.next()); // { value: 2, done: false }
 console.log(gen.next()); // { done: true }
 ```
 
-## ジェネレータ関数の外部制御
+## 外部制御による実行\(Externally Controlled Execution\)
 
 これはジェネレータの真にエキサイティングな部分です。本質的には、関数がその実行を一時停止し、残りの関数実行の制御（運命）を呼び出し元に渡すことができます。
 
@@ -55,7 +55,7 @@ function* generator(){
 }
 
 var iterator = generator();
-console.log('Starting iteration'); // これはジェネレータ関数の本体の前に実行されます
+console.log('Starting iteration'); // This will execute before anything in the generator function body executes
 console.log(iterator.next()); // { value: 0, done: false }
 console.log(iterator.next()); // { value: 1, done: false }
 console.log(iterator.next()); // { value: undefined, done: true }
@@ -94,10 +94,10 @@ function* generator() {
 }
 
 const iterator = generator();
-// 最初に`yield`された値を取得するまで実行する
+// Start execution till we get first yield value
 const foo = iterator.next();
 console.log(foo.value); // foo
-// `bar`を注入して処理を再開する
+// Resume execution injecting bar
 const nextThing = iterator.next('bar');
 ```
 
@@ -114,20 +114,20 @@ function* generator() {
 }
 
 var iterator = generator();
-// 最初に`yield`された値を取得するまで実行する
+// Start execution till we get first yield value
 var foo = iterator.next();
 console.log(foo.value); // foo
-// 処理を再開させ、`bar`エラーを発生させる
+// Resume execution throwing an exception 'bar'
 var nextThing = iterator.throw(new Error('bar'));
 ```
 
-まとめると、このようになります：
+要約はこのようになります：
 
 * `yield`は、ジェネレータ関数の通信を一時停止し、関数の外部に制御を渡すことを可能にします
 * 外部から、ジェネレータ関数本体に値を送ることができます
-* 外部から、ジェネレータ関数本体に対して例外を`throw`することができます
+* 外部から、ジェネレータ関数本体に対して例外をスローすることができます
 
-これが、どのように便利なのでしょうか？ 次のセクション[**async/await**](async-await.md)でそれを説明します。
+これが、どのように便利なのでしょうか？ 次のセクション[**async/await**](async-await.md)に移動してそれを見てください。
 
 [iterator](iterators.md) [async-await](async-await.md)
 

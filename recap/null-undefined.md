@@ -10,11 +10,11 @@ JavaScript\(と、TypeScript\)は、`null`と`undefined`という2つのボト�
 現実としては、あなたは両方とも対応する必要があります。`==`でチェックしましょう:
 
 ```typescript
-/// `foo.bar == undefined` のようなコードを書いたときに、何が起きるか想像してみてください:
+/// Imagine you are doing `foo.bar == undefined` where bar can be one of:
 console.log(undefined == undefined); // true
 console.log(null == undefined); // true
 
-// このようなチェックをすれば、falsyな値について心配する必要はありません
+// You don't have to worry about falsy values making through this check
 console.log(0 == undefined); // false
 console.log('' == undefined); // false
 console.log(false == undefined); // false
@@ -42,31 +42,31 @@ function foo(arg: string | null | undefined) {
 
 ```typescript
 if (typeof someglobal !== 'undefined') {
-  // これでsomeglobalは安全に利用できます
+  // someglobal is now safe to use
   console.log(someglobal);
 }
 ```
 
 ## `undefined` の明示的な利用を制限する
 
-TypeScriptでは値と構造を分離してドキュメントのようにわかりやすくすることができます。下記のようなコードを想像してください:
+なぜなら、TypeScript においては値から構造を分離してドキュメント化するための良い機会だからです。下記のように書く代わりに:
 
 ```typescript
 function foo(){
-  // if 何らかの場合に返す値
+  // if Something
   return {a:1,b:2};
-  // else それ以外の場合に返す値
+  // else
   return {a:1,b:undefined};
 }
 ```
 
-これは、次のように型アノテーションを使用すべきです。
+型アノテーションを使用すべきです。
 
 ```typescript
 function foo():{a:number,b?:number}{
-  // if 何らかの場合に返す値
+  // if Something
   return {a:1,b:2};
-  // else それ以外の場合に返す値
+  // else
   return {a:1};
 }
 ```
@@ -78,18 +78,18 @@ Nodeスタイルのコールバック関数\(例: `(err, somethingElse)=> {/* so
 ```typescript
 fs.readFile('someFile', 'utf8', (err,data) => {
   if (err) {
-    // 何らかのエラー処理をする
+    // do something
   } else {
-    // エラーなし
+    // no error
   }
 });
 ```
 
 独自のAPIを作成するときは、一貫性のために`null`を使用することは、良くはありませんが、問題ありません。とはいえ、できればPromiseを返すようにするべきです。そうすれば、`err`が`null`かどうかを気にかける必要はなくなります\(`.then`と`.catch`を使います\)。
 
-## 値の有効性を表す意味で`undefined`を使用しない
+## 有効性\(validity\)の意味で`undefined`を使用しない
 
-下記は、ひどい関数の例です:
+ひどい関数の例:
 
 ```typescript
 function toInt(str:string) {
@@ -97,7 +97,7 @@ function toInt(str:string) {
 }
 ```
 
-下記のようにする方が、はるかに良いでしょう：
+このほうがはるかに良い：
 
 ```typescript
 function toInt(str: string): { valid: boolean, int?: number } {
@@ -119,13 +119,13 @@ JSON標準では、`null`のエンコードはサポートしていますが、`
 JSON.stringify({willStay: null, willBeGone: undefined}); // {"willStay":null}
 ```
 
-結果として、JSONベースのデータベースは、`null`はサポートしますが`undefined`はサポートしないことがあります。`null`値を持つ属性はエンコードされるため、オブジェクトをエンコードしてリモートのデータストアに送る前に、ある属性値を`null`にすることで、その属性をクリアしたいという意図を明確に伝えることができます。
+結果として、JSONベースのデータベースは、`null`はサポートしますが`undefined`はサポートしないことがあります。`null`値を持つ属性はエンコードされるため、オブジェクトをエンコードしてリモートのデータストアに送る前に、ある属性値を`null`にすることで、その属性を削除したいという意図を伝えることができます。
 
-属性値を`undefined`にすると、その属性はJSONにエンコードされないため、データのストレージと転送のコストを節約することができます。しかし、これによって、値をクリアすることと、値が存在しないことの文脈を曖昧にしてしまいます。
+属性値を`undefined`にすると、その属性名はエンコードされないため、データの保存と転送のコストを節約することができます。しかし、これによって値を削除することと値が存在しないことの意味づけが複雑になってしまいます。
 
 ## 結論
 
-TypeScriptチームは、`null`を使いません: [TypeScriptコーディングガイドライン](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined)。 そして、問題は起きていません。 Douglas Crockfordは[nullは良くない考え](https://www.youtube.com/watch?v=PSGEjv3Tqo0&feature=youtu.be&t=9m21s)であり、誰もが`undefined`だけを使うべきだと考えています。
+TypeScriptチームは、`null`を使いません: [TypeScriptコーディングガイドライン](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined)。 そして、問題は起きていません。 Douglas Crockfordは[nullはbad idea](https://www.youtube.com/watch?v=PSGEjv3Tqo0&feature=youtu.be&t=9m21s)であり、誰もが`undefined`だけを使うべきだと考えています。
 
-しかし、Nodeスタイルのコードでは、Error引数に`null`が標準で使われています。これは`何かがおかしいです`という意味です。私は個人的に、ほとんどのプロジェクトにおいて、意見がバラバラのライブラリを使っていますが、`== null`で除外するだけなので、2つの区別について気にすることはありません。
+しかし、Nodeスタイルのコードでは、Error引数に`null`が標準で使われています。これは`現在利用できません`という意味です。私は個人的に、ほとんどのプロジェクトにおいて、意見がバラバラのライブラリを使っていますが、`== null`で除外するだけなので、2つを区別しません。
 

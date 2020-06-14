@@ -2,9 +2,9 @@
 
 プログラミングで数値を扱うときは、その言語における数値の扱いに注意する必要があります。ここでは、JavaScriptで数字に関して注意するべき、いくつかの重要な点を説明します。
 
-## コアな型
+## コア型\(Core Type\)
 
-JavaScriptにはたった1つの数値型しかありません。倍精度の64ビットの数値\(`Number`\)です。以下でその限界値と望ましい解決策について説明します。
+JavaScriptにはたった1つの数値型しかありません。倍精度の64ビットの数値\(`Number`\)です。以下でその限界と望ましい解決策について説明します。
 
 ## 10進数\(Decimal\)
 
@@ -43,13 +43,13 @@ console.log(Number.MAX_SAFE_INTEGER + 4);  // 9007199254740996 - Rounded!
 安全性をチェックするには、ES6の`Number.isSafeInteger`を使用します：
 
 ```javascript
-// 安全な値
+// Safe value
 console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER)); // true
 
-// 危険な値
+// Unsafe value
 console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 1)); // false
 
-// なぜならオーバーフローによって値が丸められている可能性があるからです
+// Because it might have been rounded to it due to overflow
 console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 10)); // false
 ```
 
@@ -76,7 +76,7 @@ import { Big } from 'big.js';
 export const foo = new Big('111.11111111111111111111');
 export const bar = foo.plus(new Big('0.00000000000000000001'));
 
-// numberを得る方法
+// To get a number:
 const x: number = Number(bar.toString()); // 小数点以下の精度を失う
 ```
 
@@ -93,10 +93,10 @@ console.log(Math.sqrt(-1)); // NaN
 注：等価演算子は**NaN値では機能しません**。代わりに`Number.isNaN`を使用してください：
 
 ```javascript
-// これはしないでください
+// Don't do this
 console.log(NaN === NaN); // false!!
 
-// こうしてください
+// Do this
 console.log(Number.isNaN(NaN)); // true
 ```
 
@@ -137,7 +137,7 @@ console.log(Number.POSITIVE_INFINITY === Infinity);  // true
 console.log(Number.NEGATIVE_INFINITY === -Infinity); // true
 ```
 
-幸運なことに、比較演算子\(`<`/ `>`\)は無限値に対して確実に正しく動作します：
+幸運なことに、比較演算子\(`<`/ `>`\)は無限値に対して確実に動作します：
 
 ```javascript
 console.log( Infinity >  1); // true

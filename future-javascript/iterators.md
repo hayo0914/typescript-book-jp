@@ -1,6 +1,6 @@
 # Iterator
 
-イテレータ自体はTypeScriptまたはES6の機能ではなく、オブジェクト指向プログラミング言語において一般的な、"振る舞いに関するデザインパターン"です。これは、一般的に次のインターフェースを実装するオブジェクトです。
+イテレータ自体はTypeScriptまたはES6の機能ではなく、オブジェクト指向プログラミング言語において一般的な、振る舞いに関するデザインパターン\(Behavioral Design Pattern\)です。これは、一般に次のインターフェースを実装するオブジェクトです。
 
 ```typescript
 interface Iterator<T> {
@@ -22,7 +22,7 @@ interface IteratorResult<T> {
 }
 ```
 
-何らかのframeという名前のオブジェクトがあると想像してください。このframeは、コンポーネントの一覧で構成されています。イテレータのインターフェースは、frameオブジェクトのコンポーネントを次のように取得することを可能にします。
+何らかのフレームのようなオブジェクトがあるとしましょう。このフレームは、コンポーネントのリストで構成されています。イテレータのインターフェースは、フレームオブジェクトのコンポーネントを次のように取得することを可能にします。
 
 ```typescript
 class Component {
@@ -57,13 +57,13 @@ let iteratorResult3 = frame.next(); //{ done: false, value: Component { name: 'l
 let iteratorResult4 = frame.next(); //{ done: false, value: Component { name: 'right' } }
 let iteratorResult5 = frame.next(); //{ done: true }
 
-// `value`プロパティを経由して、イテレータの戻り値を取得することができます
-let component = iteratorResult1.value; // Component { name: 'top' }
+//It is possible to access the value of iterator result via the value property:
+let component = iteratorResult1.value; //Component { name: 'top' }
 ```
 
 繰り返しになりますが、イテレータ自体はTypeScriptの機能ではありません。このコードは`Iterator`と`IteratorResult`のインターフェースを明示的に実装しなくても動作します。しかしながら、ES6の[インターフェース](../type-system/interfaces.md)を使うことはコードの一貫性を保つ上で非常に便利です。
 
-上のコードでも良いでしょう。しかし、もっと便利にできます。ES6は反復可能プロトコルを定義していおり、その1つは\[Symbol.iterator\]シンボルです。これを利用して、`for...of`で反復可能なオブジェクトを実装できます:
+OK、これでも良いでしょう。でも、もっと便利にできます。反復処理インターフェースを実装する場合、ES6は、\[Symbol.iterator\]プロパティを含む、反復処理プロトコル\(iterable protocol\)を定義しています。:
 
 ```typescript
 //...
@@ -99,7 +99,7 @@ for (let cmp of frame) {
 }
 ```
 
-残念ながら `frame.next()`はこのパターンでは動作しません。また、見た目が少し不格好です。そこで助けになるのがTypeScriptで利用できる `IterableIterator` インターフェースです:
+残念ながら `frame.next()`はこのパターンでは動作しません。また、見た目が少し不格好です。そこで助けになるのが、 `IterableIterator` インターフェースです!
 
 ```typescript
 //...
@@ -133,7 +133,7 @@ class Frame implements IterableIterator<Component> {
 
 `frame.next()`と`for`ループの両方が、IterableIteratorインターフェースでうまく動作するようになりました。
 
-イテレータが反復する対象は有限個である必要はありません。典型的な例はフィボナッチ計算の処理です：
+イテレータが反復する対象は有限である必要はありません。典型的な例はフィボナッチ計算の処理です：
 
 ```typescript
 class Fib implements IterableIterator<number> {
@@ -185,5 +185,5 @@ for(let num of fibMax21) {
 
 ## ES5で動作するイテレータを使ってコードを書く
 
-上記のコード例はES6をターゲットにしてコンパイルする必要がありますが、ES5をターゲットにしても、 `Symbol.iterator` をサポートしている場合は、動作する可能性があります。これは、ES6 lib\(es6.d.ts\)をプロジェクトに追加してES5をターゲットにコンパイルすることで可能です。コンパイルされたコードは、node 4+、Google Chrome、その他のブラウザで動作するはずです。
+上記のコード例はES6をターゲットにコンパイルする必要がありますが、ES5をターゲットにしても、 `Symbol.iterator` をサポートしている場合は、動作する可能性があります。これは、ES6 lib\(es6.d.ts\)をプロジェクトに追加してES5をターゲットにコンパイルすることで可能です。コンパイルされたコードは、node 4+、Google Chrome、その他のブラウザで動作するはずです。
 

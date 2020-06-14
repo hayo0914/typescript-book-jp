@@ -4,17 +4,17 @@
 
 アロー関数は、可愛いらしく_fat arrow_\(なぜなら`->`は細く `=>`は太い\)、または_lambda関数_\(他の言語でそう名付けられているため\)とも呼ばれます。一般的に利用される機能のひとつは、このアロー関数`()=> something`です。これを使う理由は次の通りです：
 
-1. `function`を何度もタイプしなくて済む
-2. `this`の参照をレキシカルスコープで捕捉する
-3. `arguments`の参照をレキシカルスコープで捕捉する
+1. `function`を何度も打ち込まなくて済む
+2. `this`の意味をレキシカルスコープで捕捉する
+3. `arguments`の意味をレキシカルスコープで捕捉する
 
-関数型言語と比べると、JavaScriptでは`function`を頻繁に打ち込まなければならない傾向があります。アロー関数を使うと、関数をシンプルに作成できます
+関数型であると公言する言語と比べると、JavaScriptでは`function`を頻繁に打ち込まなければならない傾向があります。アロー関数を使うと、関数をシンプルに作成できます
 
 ```typescript
 var inc = (x)=>x+1;
 ```
 
-`this`はJavaScriptにおいて昔から頭痛の種でした。 ある賢い人は「`this`の意味をすぐに忘れるJavaScriptが嫌いだ」と言いました。アロー関数は、それを囲んだコンテキストから`this`を捕捉します。純粋なJavaScriptだけで書かれたクラスを使って考えてみましょう：
+`this`はJavaScriptにおいて昔から頭痛の種でした。 ある賢い人はかつて「私は`this`の意味をすぐに忘れるJavaScriptが嫌いだ」と言いました。アロー関数は、それを囲んだコンテキストから`this`を捕捉します。純粋なJavaScriptだけで書かれたクラスを使って考えてみましょう：
 
 ```typescript
 function Person(age) {
@@ -29,7 +29,7 @@ setTimeout(person.growOld,1000);
 setTimeout(function() { console.log(person.age); },2000); // 1, should have been 2
 ```
 
-このコードをブラウザで実行すると、関数内の`this`は`window`を参照します。なぜなら、`window`が`growOld`関数を実行しているからです。修正方法は、アロー関数を使うことです：
+このコードをブラウザで実行すると、関数内の`this`は`window`を指します。なぜなら、`window`が`growOld`関数を実行しているからです。修正方法は、アロー関数を使うことです：
 
 ```typescript
 function Person(age) {
@@ -60,7 +60,7 @@ setTimeout(person.growOld,1000);
 setTimeout(function() { console.log(person.age); },2000); // 2
 ```
 
-TypeScriptを使っているので、はるかに快適な構文で書けます。アロー関数とクラスは、組み合わせて利用できます:
+TypeScriptを使っているので、はるかに快適な構文で書けます。アロー関数とクラスは、組み合わせることができます:
 
 ```typescript
 class Person {
