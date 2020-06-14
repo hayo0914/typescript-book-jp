@@ -1,6 +1,6 @@
 # Table of contents
 
-* [TypeScript Deep Diveについて](README.md)
+* [TypeScript Deep Dive 日本語版について](README.md)
 * [TypeScript入門 & 環境構築](getting-started/README.md)
   * [なぜTypeScriptを使うのか？](getting-started/why-typescript.md)
 * [JavaScript](recap/README.md)
