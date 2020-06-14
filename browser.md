@@ -1,4 +1,4 @@
-# React & TypeScriptのプロジェクト作成
+# React & TypeScriptクイックスタート
 
 手動でTypeScriptのプロジェクトをセットアップする場合と、Create React Appのテンプレートを利用する場合の両方について説明します。
 

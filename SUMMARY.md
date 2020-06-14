@@ -100,7 +100,7 @@
   * [Barrel](main-1/barrel.md)
   * [Create Arrays](main-1/create-arrays.md)
   * [Typesafe Event Emitter](main-1/typed-event.md)
-* [コーディング規約](styleguide.md)
+* [スタイルガイド（コーディング規約）](styleguide.md)
 * [TypeScriptコンパイラの内側](overview/README.md)
   * [Program](overview/program.md)
   * [AST](overview/ast/README.md)
