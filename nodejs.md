@@ -1,4 +1,4 @@
-# Node.jsとTypeScriptの環境構築
+# Node.js & TypeScriptのプロジェクト作成
 
 TypeScriptは、Node.jsを公式にサポートしています。素早くNode.jsプロジェクトを設定する方法は次のとおりです。
 
