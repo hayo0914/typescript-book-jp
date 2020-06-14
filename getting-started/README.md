@@ -1,9 +1,9 @@
-# TypeScript環境構築
+# TypeScript入門 & 環境構築
 
 * [TypeScript入門](./#typescriptwomeyou)
 * [TypeScriptのバージョン](./#typescriptnobjon)
 
-## TypeScript環境構築
+## TypeScript 入門 & 環境構築
 
 TypeScriptは、 最終的にJavaScriptにコンパイルされます。実際に実行されるのは、JavaScriptです\(ブラウザでも、サーバーでも同じです\)。なので、TypeScriptを利用するには、次のものが必要です：
 

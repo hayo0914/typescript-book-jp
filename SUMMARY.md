@@ -1,7 +1,7 @@
 # Table of contents
 
 * [はじめに](README.md)
-* [TypeScript環境構築](getting-started/README.md)
+* [TypeScript入門 & 環境構築](getting-started/README.md)
   * [なぜTypeScriptを使うのか？](getting-started/why-typescript.md)
 * [JavaScript](recap/README.md)
   * [等価演算子の同一性](recap/equality.md)
