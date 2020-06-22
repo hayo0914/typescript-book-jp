@@ -121,7 +121,7 @@ $('.awesome').show(); // 問題なし!
 
 ```typescript
 declare var $: {
-    (selector:string): any;
+    (selector: string): any;
 };
 $('.awesome').show(); // 問題なし!
 $(123).show(); // エラー: selector は string でなければなりません
