@@ -117,7 +117,7 @@ interface Math {
 
 ```typescript
 Math.seedrandom();
-// まはた
+// または
 Math.seedrandom("何らかの文字列");
 ```
 
