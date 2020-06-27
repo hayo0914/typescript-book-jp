@@ -13,15 +13,16 @@
 * [名前空間](#名前空間)
 * [Enum](#enum)
 * [`null`と`undefined`](#null-vs-undefined)
-* [書式設定](#書式設定)
+* [フォーマット](#フォーマット)
 * [一重引用符と二重引用符](#引用符)
-* [Tabs vs. Spaces](#スペース数)
-* [セミコロンを使用](#セミコロン)
+* [Tab vs Space](#スペース)
+* [セミコロン](#セミコロン)
 * [配列](#配列)
-* [ファイル名](#filename)
+* [ファイル名](#ファイル名)
 * [`type` vs `interface`](#type-vs-interface)
 
-## 変数と関数
+## 変数と関数 {#変数と関数}
+
 * 変数と関数名には `camelCase`を使います
 
 > 理由：従来のJavaScript
@@ -37,7 +38,8 @@ var fooVar;
 function barFunc() { }
 ```
 
-## クラス
+## クラス {#クラス}
+
 * クラス名には `PascalCase`を使います。
 
 > 理由：これは実際には標準のJavaScriptではかなり一般的です。
@@ -68,7 +70,8 @@ class Foo {
     baz() { }
 }
 ```
-## インターフェース
+
+## インターフェース {#インターフェース}
 
 * 名前には`PascalCase`を使います。
 
@@ -93,7 +96,7 @@ interface Foo {
 }
 ```
 
-## タイプ
+## タイプ {#タイプ}
 
 * 名前には`PascalCase`を使います。
 
@@ -104,7 +107,7 @@ interface Foo {
 > 理由：クラスに似ています
 
 
-## 名前空間
+## 名前空間 {#名前空間}
 
 * 名前に`PascalCase`を使用する
 
@@ -155,7 +158,7 @@ enum Color {
 }
 ```
 
-## Null対Undefined
+## Null対Undefined {#null-vs-undefined}
 
 * 明示的に使用不可能にするためにどちらも使用しないことを推奨します。
 
@@ -216,7 +219,8 @@ if (error !== null)
 if (error != undefined)
 ```
 
-## フォーマット
+## フォーマット {#フォーマット}
+
 TypeScriptコンパイラには、非常に優れた言語フォーマットのサービスが付属しています。デフォルトで出力される出力は、チームの認知負荷を軽減するのに十分です。
 
 コマンドラインでコードを自動的にフォーマットするには、 [`tsfmt`](https://github.com/vvakame/typescript-formatter) を使います。また、あなたのIDE(atom/ vscode/vs/sublime)には、すでにフォーマットサポートが組み込まれています。
@@ -227,7 +231,7 @@ TypeScriptコンパイラには、非常に優れた言語フォーマットの�
 const foo: string = "hello";
 ```
 
-## 引用符
+## 引用符 {#引用符}
 
 * エスケープしない限り、シングルクォート(`'`)を使用することをお勧めします。
 
@@ -239,30 +243,31 @@ const foo: string = "hello";
 
 > 理由：これらは一般に、十分複雑な文字列の意図を表しています。
 
-## スペース
+## スペース {#スペース}
 
 * `2`スペースを使います。タブではありません。
 
 > 理由：他のJavaScriptチームがこれを行っています([airbnb](https://github.com/airbnb/javascript)、[idiomatic](https://github.com/rwaldron/idiomatic.js)、[標準]( https://github.com/feross/standard)、[npm](https://github.com/npm/npm)、[node](https://github.com/nodejs/node)、[google/angular](https://github.com/angular/angular/)、[facebook/react](https://github.com/facebook/react)を参照してください)。 TypeScript/VSCodeチームは4つのスペースを使用しますが、間違いなくエコシステムの例外です。
 
-## セミコロン
+## セミコロン {#セミコロン}
 
 * セミコロンを使用してください。
 
 > 理由：明示的なセミコロンは、言語書式設定ツールで一貫した結果を得るのに役立ちます。Missing ASI(Automatic semicolon insertion: 自動セミコロン挿入)は、例えば`foo() \n (function(){})`を単一の文(2つではなく)と間違えます。TC39でも同様に勧められています。
 
-## 配列
+## 配列 {#配列}
 
 * 配列に`foos:Array<Foo>`の代わりに`foos:Foo[]`として配列にアノテーションをつけます。
 
 > 理由：読みやすい。TypeScriptチームによって使用されています。脳が`[]`を検出するように訓練されているので、何かが配列であることを知りやすくなります。
 
-## ファイル名
+## ファイル名 {#ファイル名}
+
 `camelCase`を使ってファイルに名前を付けます。例えば`accordion.tsx`、`myControl.tsx`、`utils.ts`、`map.ts`などです。
 
 > 理由：多くのJSチームで慣習的です。
 
-## `type` vs `interface`
+## `type` vs `interface` {#type-vs-interface}
 
 * ユニオン型や交差型が必要な場合には`type`を使います：
 
