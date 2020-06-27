@@ -1,6 +1,6 @@
 # JavaScript
 
-JavaScriptにコンパイルされるプログラミング言語に関しては、他にも、たくさんの競合がありました\(そして今後も\)。 しかし、TypeScriptは、_JavaScriptがTypeScriptである_点において、他と一線を画しています。これを表す図がこちらです：
+JavaScriptにコンパイルされるプログラミング言語に関しては、他にも、たくさんの競合がありました\(そして今後もあるでしょう\)。 しかし、TypeScriptは、_JavaScriptがTypeScriptである、という_点において、他とは、一線を画しています。これを表す図がこちらです：
 
 ![JavaScript&#x306F;TypeScript&#x3067;&#x3059;](https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png)
 
