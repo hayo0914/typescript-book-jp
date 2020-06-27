@@ -50,6 +50,7 @@ const MyComponent: React.FC<Props> = (props) => {
 ```
 
 ### クラスコンポーネント\(Class Components\)
+
 コンポーネントは、`props`プロパティに基づいて型チェックされます。コンポーネントは、JSXが、どのように変換されるか、ということを考慮して型チェックされます。例えばJSXのタグの属性は、コンポーネントの`props`の一部である必要があります。
 
 Reactのステートフルなコンポーネントを作成するには、クラスを使用します。型定義ファイル`react.d.ts`は、`React.Component<Props,State>`クラスを定義しています。このクラスを、コンポーネントを作成するときに継承します。このクラスは、そのコンポーネント独自の`Props`と`State`の型をジェネリクスとして設定できるようになっています。これを以下の例で示します\(下記の例では、Stateには空のオブジェクト型を設定しています\)：
@@ -195,7 +196,7 @@ class FocusingInput extends React.Component<{ value: string, onChange: (value: s
 
 ### 型アサーション
 
- [既に説明した](https://github.com/yohamta/typescript-book-jp/tree/54f70152bab903def7bad5b9a83c204a96332a51/docs/jsx/type-assertion.md#as-foo-vs-foo) のように、型アサーションには`as Foo`構文を使います。
+[既に説明した](https://github.com/yohamta/typescript-book-jp/tree/54f70152bab903def7bad5b9a83c204a96332a51/docs/jsx/type-assertion.md#as-foo-vs-foo) のように、型アサーションには`as Foo`構文を使います。
 
 ## デフォルトProps
 
@@ -259,7 +260,7 @@ ReactDOM.render(
 
 ## WebComponentの宣言
 
-もしWebComponentを利用している場合、それはReactの型定義ファイル(`@types/react`)には定義されていません。しかし、アンビエント宣言(`declare`)を使って簡単に定義できます。例えば、`my-awesome-slider`というWebComponentがあるとします。これは、`MyAwesomeSliderProps`を受け取ります。この場合、以下のようになります:
+もしWebComponentを利用している場合、それはReactの型定義ファイル\(`@types/react`\)には定義されていません。しかし、アンビエント宣言\(`declare`\)を使って簡単に定義できます。例えば、`my-awesome-slider`というWebComponentがあるとします。これは、`MyAwesomeSliderProps`を受け取ります。この場合、以下のようになります:
 
 ```typescript
 declare global {

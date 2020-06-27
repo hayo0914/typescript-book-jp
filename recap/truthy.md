@@ -21,7 +21,7 @@ truthyでないものは、`falsy`と呼ばれます。
 | `undefined` | 常にfalsy | なし |
 | その他のオブジェクト\(`{}`や`[]`といった空のものも含む\) | なし | 常にtruthy |
 
-## 明示的にする
+## Booleanとして扱うことを明示的にする
 
 > The `!!` pattern
 
@@ -30,15 +30,15 @@ truthyでないものは、`falsy`と呼ばれます。
 これはあらゆる場面で共通的に使えるパターンです。
 
 ```javascript
-// Direct variables
+// 値を他のものに移す
 const hasName = !!name;
 
-// As members of objects
+// オブジェクトのメンバとして利用する
 const someObj = {
   hasName: !!name
 }
 
-// e.g. in ReactJS JSX
+// 例： ReactJS JSX
 {!!someName && <div>{someName}</div>}
 ```
 
