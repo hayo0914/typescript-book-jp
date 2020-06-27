@@ -1,6 +1,6 @@
 # const
 
-`const`はES6/TypeScriptで提供された非常に素晴らしい機能です。変数を**イミュータブル**\(immutable\)、つまり**不変**にすることができます。これは、可読性の面だけでなく実行時の面でも優れています。 constを使うには、単に`var`の代わりに`const`を使うだけです:
+`const`はES6/TypeScriptで提供された非常に歓迎すべき追加です。変数を**イミュータブル**\(immutable\)にできます。これは、可読性だけでなく実行時の視点からも優れています。 constを使うには、単に`var`を`const`で置き換えるだけです:
 
 ```typescript
 const foo = 123;
@@ -8,14 +8,14 @@ const foo = 123;
 
 > この構文は、`let constant foo`すなわち変数+動作指定子のようなものを入力させる他の言語よりも、ずっと優れています\(個人的な意見です\)。
 
-`const`を使うことは、可読性とメンテナンス性のどちらの面でも良いことです。そして、マジックリテラル（謎の定数、マジックナンバーとも呼びます）を使うことを避けることができます。
+`const`は可読性とメンテナンス性のどちらにとっても良い習慣です。そして、マジックリテラル\(magic literals\)を使うことを避けることができます。
 
 ```typescript
-// 可読性が低いコードです
+// Low readability
 if (x > 10) {
 }
 
-// このほうがベターです
+// Better!
 const maxRows = 10;
 if (x > maxRows) {
 }
@@ -26,16 +26,16 @@ if (x > maxRows) {
 以下はコンパイルエラーになります：
 
 ```typescript
-const foo; // ERROR: constの宣言は値を初期化する必要があります
+const foo; // ERROR: const declarations must be initialized
 ```
 
 ## 代入の左辺に定数は置けない
 
-作成された定数はイミュータブル（不変）です。したがって、新しい値を代入しようとするとコンパイルエラーになります：
+作成された定数はイミュータブルです。したがって、新しい値を代入しようとするとコンパイルエラーになります：
 
 ```typescript
 const foo = 123;
-foo = 456; // ERROR: 代入の左側に定数を置くことはできません
+foo = 456; // ERROR: Left-hand side of an assignment expression cannot be a constant
 ```
 
 ## ブロックスコープ

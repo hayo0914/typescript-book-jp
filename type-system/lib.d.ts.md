@@ -6,7 +6,7 @@
 
 * このファイルは、TypeScriptプロジェクトのコンパイルコンテキストに自動的に含まれます
 * このファイルの目的は、JavaScriptやTypeScriptのプロジェクトで、すぐに型のサポートを得られるようにすることです 
-* TypeScriptをサポートしているIDE\(Visual Studio Code等\)であれば、JavaScriptのプロジェクトであっても、型の恩恵を得ることができます
+* TypeScriptをサポートしているIDE(Visual Studio Code等)であれば、JavaScriptのプロジェクトであっても、型の恩恵を得ることができます
 
 コンパイルオプションに`--noLib`を指定してこのファイルをコンパイルコンテキストから除外することができます\(`tsconfig.json`に`noLib : true`を指定\)。
 

@@ -6,7 +6,7 @@
 
 ```javascript
 var foo = {};
-var bar = foo; // barは同じオブジェクトへの参照です
+var bar = foo; // bar is a reference to the same object
 
 foo.baz = 123;
 console.log(bar.baz); // 123
@@ -16,8 +16,8 @@ console.log(bar.baz); // 123
 
 ```javascript
 var foo = {};
-var bar = foo; // barはfooへの参照です
-var baz = {}; // bazはfooとは異なる新しいオブジェクトです
+var bar = foo; // bar is a reference
+var baz = {}; // baz is a *new object* distinct from `foo`
 
 console.log(foo === bar); // true
 console.log(foo === baz); // false

@@ -1,6 +1,6 @@
-# 名前空間
+# namespace
 
-名前空間は、JavaScriptで一般的に使われる次のようなパターンと同じことを実現できる構文です。
+名前空間は、JavaScriptで使用される次の一般的なパターンの便利な構文を提供します。
 
 ```typescript
 (function(something) {
@@ -30,7 +30,7 @@ console.log(something); // {foo:123}
 console.log(something); // {foo:123, bar:456}
 ```
 
-このパターンは、グローバルな名前空間を汚染しないようにJavaScriptでよく使われるパターンです。ファイルモジュールの場合、グローバルの名前空間の汚染を心配する必要はありません。しかし、それでも、一連の関数を論理的にグループ化することに役立ちます。TypeScriptは、`namespace`キーワードを使って、次のようにコードをグループ化する手段を提供しています:
+これは、グローバルな名前空間を汚染しないようにJavaScriptでよく使われます。ファイルベースのモジュールでは、これを心配する必要はありませんが、このパターンは、それでも、一連の関数の論理グループ化\(logical grouping\)に役立ちます。そのため、TypeScriptは、`namespace`キーワードを使ってグループ化する手段を提供します:
 
 ```typescript
 namespace Utility {
@@ -42,7 +42,7 @@ namespace Utility {
     }
 }
 
-// 使い方
+// usage
 Utility.log('Call me');
 Utility.error('maybe!');
 ```
@@ -52,12 +52,12 @@ Utility.error('maybe!');
 ```typescript
 (function (Utility) {
 
-// ユーティリティとして使う何らかのコード
+// Add stuff to Utility
 
 })(Utility || (Utility = {}));
 ```
 
-一点、注意していただきたいことは、名前空間を入れ子にすることができるということです。なので、`Utility`の下に`Messaging`名前空間を追加するために、`namespace Utility.Messaging`のようなことができます。
+注意すべきことは、名前空間を入れ子にすることができるので、`Utility`の下に`Messaging`名前空間を入れ子にするために`namespace Utility.Messaging`のようなことができるということです。
 
-大抵のプロジェクトでは、`namespace`ではなく、ファイルモジュールを使うことを推奨します。`namespace`は単に試したり、古いJavaScriptコードを移植するために使うことを推奨します。
+たいていのプロジェクトでは、簡単なデモと古いJavaScriptコードを移植するために、外部モジュールと`namespace`を使用することをオススメします。
 
