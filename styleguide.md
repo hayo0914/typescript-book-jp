@@ -1,8 +1,8 @@
-# コーディング規約
+# スタイルガイド（コーディング規約）
 
 > 非公式のTypeScriptスタイルガイド
 
-スタイルガイドについて意見を求められることはよくあります。個人的には、私は自分のチームやプロジェクトにコーディングスタイルをあまり強制してはいませんが、コードに一貫性が必要だと思う人がいるような状況において、スタイルを寄せる基準として以下で述べるようなスタイルガイドに言及することが役立つのは確かです。私はスタイルよりもはるかに強い意見を持っている観点があり、それについては[ヒントの章](main-1/)で扱っています（例えば、型アサーションはよくない、プロパティーsetterはよくない、など）🌹
+スタイルガイドについて意見を求められることはよくあります。個人的には、私は自分のチームやプロジェクトにコーディングスタイルをあまり強制してはいませんが、コードに一貫性が必要だと思う人がいるような状況において、基準として以下で述べるようなスタイルガイドがあることが役に立つのは確かです。個人的にはスタイルよりもはるかに強い意見を持っている観点があり、それについては[ヒントの章](main-1/)で説明しています（例えば、型アサーションはよくない、プロパティーsetterはよくない、など）🌹
 
 主要セクション：
 
@@ -12,11 +12,11 @@
 * [タイプ](styleguide.md#タイプ)
 * [名前空間](styleguide.md#名前空間)
 * [Enum](styleguide.md#enum)
-* [`null`と`undefined`](styleguide.md#null-vs-undefined)
+* [`null` vs `undefined`](styleguide.md#null-vs-undefined)
 * [書式設定](styleguide.md#書式設定)
 * [一重引用符と二重引用符](styleguide.md#引用符)
-* [Tabs vs. Spaces](styleguide.md#スペース数)
-* [セミコロンを使用](styleguide.md#セミコロン)
+* [タブ vs ](styleguide.md#スペース数)
+* [セミコロン](styleguide.md#セミコロン)
 * [配列](styleguide.md#配列)
 * [ファイル名](styleguide.md#filename)
 * [`type` vs `interface`](styleguide.md#type-vs-interface)
@@ -179,9 +179,9 @@ enum Color {
 }
 ```
 
-## Null対Undefined
+## `null` vs `undefined`
 
-* 明示的に使用不可能にするためにどちらも使用しないことを推奨します。
+* 明示的に使用不可能にするために、どちらも使用しないことを推奨します。
 
 > 理由：これらの値は、値間の一貫した構造を維持するためによく使用されます。TypeScriptでは型を使用して構造を表します
 
@@ -259,12 +259,12 @@ if (error != undefined)
 
 TypeScriptコンパイラには、非常に優れた言語フォーマットのサービスが付属しています。デフォルトで出力される出力は、チームの認知負荷を軽減するのに十分です。
 
-コマンドラインでコードを自動的にフォーマットするには、 [`tsfmt`](https://github.com/vvakame/typescript-formatter) を使います。また、あなたのIDE\(atom/ vscode/vs/sublime\)には、すでにフォーマットサポートが組み込まれています。
+コマンドラインでコードを自動的にフォーマットするには、 [`tsfmt`](https://github.com/vvakame/typescript-formatter) を使います。また、あなたのIDE\(atom/ vscode/vs/sublime\)には、すでにフォーマットのサポートが組み込まれています。
 
 例：
 
 ```typescript
-// Space before type i.e. foo:<space>string
+// 型の前にスペースを入れます。つまり、 foo:<スペース>string のようにします。
 const foo: string = "hello";
 ```
 
@@ -282,7 +282,7 @@ const foo: string = "hello";
 
 ## スペース
 
-* `2`スペースを使います。タブではありません。
+* `2`つのスペースを使います。タブではありません。
 
 > 理由：他のJavaScriptチームがこれを行っています\([airbnb](https://github.com/airbnb/javascript)、[idiomatic](https://github.com/rwaldron/idiomatic.js)、[標準](https://github.com/feross/standard)、[npm](https://github.com/npm/npm)、[node](https://github.com/nodejs/node)、[google/angular](https://github.com/angular/angular/)、[facebook/react](https://github.com/facebook/react)を参照してください\)。 TypeScript/VSCodeチームは4つのスペースを使用しますが、間違いなくエコシステムの例外です。
 

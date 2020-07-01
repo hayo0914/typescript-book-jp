@@ -1,20 +1,20 @@
 # クロージャ
 
-JavaScriptで最高のものはクロージャでした。 JavaScriptの関数は、外部スコープで定義された変数にアクセスできます。クロージャは、例を見るのが一番わかり易いです。
+JavaScriptで最も素晴らしいものは、クロージャでした。 JavaScript関数は、外部スコープで定義された変数にアクセスできます。クロージャを理解するには、例を見るのが一番です。
 
 ```typescript
 function outerFunction(arg) {
     var variableInOuterFunction = arg;
 
     function bar() {
-        console.log(variableInOuterFunction); // Access a variable from the outer scope
+        console.log(variableInOuterFunction); // 外側のスコープにある変数にアクセスします
     }
 
-    // Call the local function to demonstrate that it has access to arg
+    // argにアクセスできることを示すために、ローカル関数を呼び出します。
     bar();
 }
 
-outerFunction("hello closure"); // logs hello closure!
+outerFunction("hello closure"); // "hello closure"とログに出力されます
 ```
 
 内側の関数は外側のスコープの変数\(variableInOuterFunction\)にアクセスできることがわかります。外側の関数の変数は、内側の関数に閉包されています\(または束縛されています\)。したがって、クロージャ\(closure\)という用語のコンセプト自体は簡単で直感的です。
@@ -31,13 +31,13 @@ function outerFunction(arg) {
 
 var innerFunction = outerFunction("hello closure!");
 
-// Note the outerFunction has returned
-innerFunction(); // logs hello closure!
+// outerFunctionが返しているものに注意してください
+innerFunction(); // "hello closure" と出力されます
 ```
 
 ## なぜクロージャが素晴らしいか
 
-オブジェクトを簡単に作成することができます。リビーリングモジュールパターン\(revealing module pattern\)：
+オブジェクトを簡単に作成することができます。リヴィーリングモジュール\(revealing module pattern\)というコーディングパターンがあります：
 
 ```typescript
 function createCounter() {
@@ -55,13 +55,13 @@ counter.increment();
 console.log(counter.getVal()); // 2
 ```
 
-クロージャを使いこなせば、Node.jsのようなものを作ることもできます\(今ピンとこなくても、心配しないでください。最終的には分かります🌹\):
+クロージャを使いこなせば、Node.jsのようなものを作ることもできます\(今はピンとこなくても、心配しないでください。最終的には分かります🌹\):
 
 ```typescript
-// Pseudo code to explain the concept
+// 概念を説明するための疑似コード
 server.on(function handler(req, res) {
     loadData(req.id).then(function(data) {
-        // the `res` has been closed over and is available
+        // `res`が閉じ込められており、ここで利用可能です
         res.send(data);
     })
 });

@@ -42,7 +42,7 @@ module.exports = {
 
 説明：
 
-* 私達は_すべての_TypeScriptファイルをプロジェクトの`src`フォルダに入れることを常にお勧めします。また、これに倣い`roots`設定では`src`フォルダを指定します。
+* 私達は\_すべての\_TypeScriptファイルをプロジェクトの`src`フォルダに入れることを常にお勧めします。また、これに倣い`roots`設定では`src`フォルダを指定します。
 * `testMatch`設定は、ts/tsx/jsフォーマットで書かれた.test/.specファイルを発見するためのglobのパターンマッチャーです。
 * `transform`設定は、ts/tsxファイルに対して`ts-jest`を使うよう`jest`に指示します。
 
