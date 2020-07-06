@@ -10,75 +10,26 @@ Cypressは素晴らしいE2Eテストツールです。これを考慮する大�
 
 ## インストール
 
-> このセクションで行う設定は、[このテンプレートGitHubリポジトリ 🌹](https://github.com/basarat/cypress-ts)をcloneするだけで完了します。
+このインストールプロセスで提供される手順は、あなたの組織のボイラープレートとして使用できる素敵なe2eフォルダを提供します。
 
-> このインストールプロセスで提供される手順は、あなたの組織のボイラープレートとして使用できる素敵なe2eフォルダを提供します。このe2eフォルダをCypressでテストしたい既存のプロジェクトに貼り付けてコピーすることができます
+> 同じ手順を私の [youtubeチャンネル](https://www.youtube.com/watch?v=n3SvvZSWwfM)で動画で紹介しています。
 
-e2eディレクトリを作成し、cypressとその依存関係をTypeScriptのトランスパイルのためにインストールします。
+e2eディレクトリを作成し、cypress、TypeScriptをインストールし、typescriptとcypressの設定ファイルを追加します。
 
 ```sh
 mkdir e2e
 cd e2e
 npm init -y
-npm install cypress webpack @cypress/webpack-preprocessor typescript ts-loader
+npm install cypress typescript
+npx tsc --init --types cypress --lib dom,es6
+echo {} > cypress.json
 ```
 
 > ここでは特にサイプレスのために別々の`e2e`フォルダを作成するいくつかの理由があります：
 * 別のディレクトリや`e2e`を作成すると、`package.json`の依存関係を他のプロジェクトと簡単に分離することができます。これにより依存性の競合が少なくなります。
 * テストフレームワークには、グローバルな名前空間を`describe` `it` `expect`などのもので汚染する慣習があります。グローバルな型定義の競合を避けるために、e2e `tsconfig.json`と`node_modules`をこの特別な`e2e`フォルダに保存することが最善です。
 
-TypeScriptの`tsconfig.json`を設定します:
-
-```json
-{
-  "compilerOptions": {
-    "strict": true,
-    "sourceMap": true,
-    "module": "commonjs",
-    "target": "es5",
-    "lib": [
-      "dom",
-      "es6"
-    ],
-    "jsx": "react",
-    "experimentalDecorators": true
-  },
-  "compileOnSave": false
-}
-```
-
-Cypressの最初のdry runを行い、Cypressのフォルダ構造を準備します。 Cypress IDEが開きます。ウェルカムメッセージが表示されたらそれを閉じることができます。
-
-```sh
-npx cypress open
-```
-
-`e2e/cypress/plugins/index.js`を次のように編集して、CypressをTypeScriptのトランスパイル用にセットアップします：
-
-```js
-const wp = require('@cypress/webpack-preprocessor')
-module.exports = (on) => {
-  const options = {
-    webpackOptions: {
-      resolve: {
-        extensions: [".ts", ".tsx", ".js"]
-      },
-      module: {
-        rules: [
-          {
-            test: /\.tsx?$/,
-            loader: "ts-loader",
-            options: { transpileOnly: true }
-          }
-        ]
-      }
-    },
-  }
-  on('file:preprocessor', wp(options))
-}
-```
-
-任意に`e2e/package.json`ファイルにいくつかのスクリプトを追加します：
+`e2e/package.json`ファイルにいくつかのスクリプトを追加します：
 
 ```json
   "scripts": {
@@ -87,25 +38,31 @@ module.exports = (on) => {
   },
 ```
 
+最初のテストを`cypress/integration/basic.ts`に書きます:
+
+```ts
+it('should perform basic google search', () => {
+  cy.visit('https://google.com');
+  cy.get('[name="q"]')
+    .type('subscribe')
+    .type('{enter}');
+});
+```
+
+開発中は`npm run cypress:open`を、ビルドサーバーを起動するには`npm run cypress:run`を実行してください🌹
+
 ## キーとなるファイルの詳細
 `e2e`フォルダの下に、次のファイルがあります：
 
 * `/cypress.json`：Cypressを設定します。デフォルトは空で、必要なのはそれだけです。
 * `/cypress`サブフォルダ：
-    * `/fixtures`：テストフィクスチャ
-        * `example.json`が付属しています。削除しても構いません。
-        * 単純な`.json`ファイルを作成して、複数のテストで使用するサンプルデータ(フィクスチャ)を提供することができます。
     * `/integration`：あなたのすべてのテスト
-        * `examples`フォルダがあります。安全に削除することができます。
-        * `.spec.ts`で名前を付けます。例:`somthing.spec.ts`
         * より良い構成を作るためにサブフォルダの下にテストを作成することは自由です。例:`/someFeatureFolder/something.spec.ts`
 
 ## 最初のテスト
-* 次の内容の`/cypress/integration/first.spec.ts`ファイルを作成します：
+* 次の内容の`/cypress/integration/first.ts`ファイルを作成します：
 
 ```ts
-/// <reference types="cypress"/>
-
 describe('google search', () => {
   it('should work', () => {
     cy.visit('http://www.google.com');
@@ -137,9 +94,9 @@ Cypressテストはコンパイル/パックされ、ブラウザで実行され
 たとえば、UIセレクタとテストの間でID値を共有して、CSSセレクタが壊れないようにすることができます。
 
 ```ts
-import { Ids } from '../../../src/app/constants'; 
+import { Ids } from '../../../src/app/constants';
 
-// Later 
+// Later
 cy.get(`#${Ids.username}`)
   .type('john')
 ```
@@ -149,7 +106,7 @@ cy.get(`#${Ids.username}`)
 さまざまなテストがページで行う必要があるすべてのインタラクションに対して便利なハンドルを提供するオブジェクトを作成することは、一般的なテストの慣例です。getterとメソッドでTypeScriptクラスを使用してページオブジェクトを作成できます。
 
 ```ts
-import { Ids } from '../../../src/app/constants'; 
+import { Ids } from '../../../src/app/constants';
 
 class LoginPage {
   visit() {
