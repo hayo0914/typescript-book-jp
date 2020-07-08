@@ -324,6 +324,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "kubio",
+      "name": "Yuta KUBO",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/160728?v=4",
+      "profile": "https://github.com/kubio",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7
