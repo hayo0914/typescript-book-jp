@@ -92,7 +92,7 @@ function myFunction (callback: (e?: Error)) {
 
 ## 例外的なケース
 
-「例外は例外的でなければならない」は、コンピュータサイエンスの一般的な言葉です。これがJavaScript(およびTypeScript)にも当てはまる理由はいくつかあります。
+「例外は例外的でなければならない(Exceptions should be exceptional)」は、コンピュータサイエンスの一般的な言葉です。これがJavaScript(およびTypeScript)にも当てはまる理由はいくつかあります。
 
 ### どこに投げられるのか不明
 
