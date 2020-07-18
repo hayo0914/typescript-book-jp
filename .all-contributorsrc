@@ -351,6 +351,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "two-pack",
+      "name": "Tatsuya Saito",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/378981?v=4",
+      "profile": "http://two-pack-sbs.blogspot.jp/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7
