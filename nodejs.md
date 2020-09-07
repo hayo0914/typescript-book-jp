@@ -4,7 +4,7 @@ TypeScriptは、Node.jsを公式にサポートしています。素早くNode.j
 
 > 注意：これらのステップの多くは実際にはNode.jsの設定手順です
 
-1. プロジェクトの依存関係設定ファイルを`package.json`をセットアップします。素早くこれを行う方法はこれです：`npm init -y`
+1. プロジェクトの依存関係設定ファイルである`package.json`をセットアップします。素早くこれを行う方法はこれです：`npm init -y`
 2. TypeScriptをインストールします\(`npm install typescript --save-dev`\)
 3. Node.jsのプログラムに必要な型宣言ファイル`node.d.ts`をインストールします\(`npm install @types/node --save-dev`\)
 4. TypeScriptの設定ファイル`tsconfig.json`を初期化します\(`npx tsc --init --rootDir src --outDir lib --esModuleInterop --resolveJsonModule --lib es6,dom --module commonjs`\)
