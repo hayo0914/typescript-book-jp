@@ -1,6 +1,6 @@
 # TypeScript Deep Dive 日本語版について
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-40-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-41-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
@@ -98,6 +98,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://yktakaha4.github.io/"><img src="https://avatars1.githubusercontent.com/u/20282867?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yuuki Takahashi</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=yktakaha4" title="Documentation">📖</a></td>
     <td align="center"><a href="http://two-pack-sbs.blogspot.jp/"><img src="https://avatars2.githubusercontent.com/u/378981?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tatsuya Saito</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=two-pack" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/tenmihi"><img src="https://avatars2.githubusercontent.com/u/15909788?v=4?s=100" width="100px;" alt=""/><br /><sub><b>tenmihi</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=tenmihi" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://jkatagi.github.io/"><img src="https://avatars0.githubusercontent.com/u/7281503?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jkatagi</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=jkatagi" title="Documentation">📖</a></td>
   </tr>
 </table>
 
