@@ -197,7 +197,7 @@ doStuff({ bar: 123, common: '123' });
 
 ## Type Guardsとコールバック
 
-TypeScript doesn't assume type guards remain active in callbacks as making this assumption is dangerous. e.g.
+TypeScriptは、コールバック内でタイプガードがアクティブのままであることは危険なため、これを想定していません。例えば、
 
 ```typescript
 // Example Setup
@@ -216,7 +216,8 @@ if (foo.bar) {
 }
 ```
 
-The fix is as easy as storing the inferred safe value in a local variable, automatically ensuring it doesn't get changed externally, and TypeScript can easily understand that:
+この修正は、推測された安全な値をローカル変数に格納し、自動的に外部から変更されないようにするのと同じくらい簡単で、TypeScript はそれを簡単に理解することができます。
+
 
 ```javascript
 // Type Guard
