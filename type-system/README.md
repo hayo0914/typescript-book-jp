@@ -136,7 +136,7 @@ JavaScriptコードをTypeScriptに移植する場合、最初は`any`と友達�
 
 ### `null`と`undefined`
 
-`null`と`undefined`のJavaScriptリテラルは、型システムにおいては`any`型と同じようなものとして扱われます。これらのリテラルは他の型に代入することができます。以下に例を示します：
+`strictNullChecks`フラグ\(このフラグについては、後で扱います\)によって扱いが変わります。`strictNullChecks`が`false`の場合、`null`と`undefined`のJavaScriptリテラルは、型システムにおいては`any`型と同じようなものとして扱われます。これらのリテラルは他の型に代入することができます。以下に例を示します：
 
 ```typescript
 var num: number;
