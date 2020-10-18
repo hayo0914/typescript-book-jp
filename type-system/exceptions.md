@@ -59,7 +59,7 @@ decodeURI('%'); // URIError: URI malformed
 
 ## 常にエラーを使用する
 
-初心者のJavaScriptデベロッパーはたまに生の文字列を投げるだけです
+初心者のJavaScriptデベロッパーは、たまに生の文字列のみをエラーとして投げます。
 
 ```javascript
 try {
