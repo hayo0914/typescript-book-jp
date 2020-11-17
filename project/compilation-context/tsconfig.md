@@ -13,7 +13,7 @@
 または、`tsc init` のコマンドを実行し、デフォルトの `tsconfig.json` を生成することができます。
 
 ```bash
-$ tsc init
+$ tsc --init
 ```
 
 ## compilerOptions
