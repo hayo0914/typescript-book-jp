@@ -42,7 +42,7 @@ var Point3D = (function (_super) {
 })(Point);
 ```
 
-TypeScriptは、IIFEはによって、簡単にベースクラス `Point`を`_super`変数に捕捉できるようにしており、かつ、それがクラスの本体で一貫的に使用されていることに注意してください。
+TypeScriptは、IIFEによって、簡単にベースクラス `Point`を`_super`変数に捕捉できるようにしており、かつ、それがクラスの本体で一貫的に使用されていることに注意してください。
 
 ## `__extends`
 
