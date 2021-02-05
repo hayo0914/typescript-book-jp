@@ -175,7 +175,7 @@ import someLocalNameForThisFile from "../foo";
 
 例
 ```ts
-// globals.d.ts
+// global.d.ts
 declare module 'foo' {
   // Some variable declarations
   export var bar: number; /*sample*/

@@ -61,7 +61,7 @@ interface Window extends EventTarget, WindowTimers, WindowSessionStorage, Window
 
 ### ネイティブ型\(Native Types\)を変更する
 
-TypeScriptの`interface`はオープンエンドなので、`lib.d.ts`で宣言されたインターフェースにメンバを追加するだけで、TypeScriptはその追加を認識します。これらのインターフェースを`lib.d.ts`に関連付けるには、これらの変更を [グローバルモジュール](../project/modules/) で行う必要があることに注意してください。このために、 [`globals.d.ts`](../project/modules/globals.md) という特別なファイルを作成することをお勧めします。
+TypeScriptの`interface`はオープンエンドなので、`lib.d.ts`で宣言されたインターフェースにメンバを追加するだけで、TypeScriptはその追加を認識します。これらのインターフェースを`lib.d.ts`に関連付けるには、これらの変更を [グローバルモジュール](../project/modules/) で行う必要があることに注意してください。このために、 [`global.d.ts`](../project/modules/globals.md) という特別なファイルを作成することをお勧めします。
 
 ここでは、 `window`、`Math`、`Date`に要素を追加する例をいくつか示します：
 

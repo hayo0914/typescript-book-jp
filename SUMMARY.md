@@ -33,7 +33,7 @@
   * [宣言空間](project/declarationspaces.md)
   * [ファイルモジュール](project/modules/README.md)
     * [ファイルモジュールの詳細](project/modules/external-modules.md)
-    * [globals.d.ts](project/modules/globals.md)
+    * [global.d.ts](project/modules/globals.md)
   * [名前空間](project/namespaces.md)
   * [動的インポート](project/dynamic-import-expressions.md)
 * [Node.js & TypeScriptのプロジェクト作成](nodejs.md)

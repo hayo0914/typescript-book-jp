@@ -182,7 +182,7 @@ import someLocalNameForThisFile from "../foo";
 例：
 
 ```typescript
-// globals.d.ts
+// global.d.ts
 declare module 'foo' {
   // 何らかの変数の宣言
   export var bar: number; /* 例 */
