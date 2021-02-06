@@ -1,6 +1,6 @@
 # TypeScript Deep Dive 日本語版について
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-45-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-46-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
@@ -105,6 +105,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://nukinko.work/"><img src="https://avatars0.githubusercontent.com/u/56124650?v=4?s=100" width="100px;" alt=""/><br /><sub><b>hgkcho</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=hgkcho" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/yasuman"><img src="https://avatars1.githubusercontent.com/u/7850982?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yasuto Matsumura</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=yasuman" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/hikiroom"><img src="https://avatars.githubusercontent.com/u/25952997?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ひきこもり</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=hikiroom" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/youta32449999"><img src="https://avatars.githubusercontent.com/u/46958196?v=4?s=100" width="100px;" alt=""/><br /><sub><b>youta32449999</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=youta32449999" title="Documentation">📖</a></td>
   </tr>
 </table>
 
