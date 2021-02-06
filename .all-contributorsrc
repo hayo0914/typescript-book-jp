@@ -405,6 +405,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "hikiroom",
+      "name": "ひきこもり",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25952997?v=4",
+      "profile": "https://github.com/hikiroom",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7
