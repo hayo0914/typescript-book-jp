@@ -17,7 +17,7 @@ async function foo() {
 
 Promiseが完了したとき、次の処理を続けます
 
-* そのPromiseが `resolve` され、 `await` が値が返す場合
+* そのPromiseが `resolve` され、 `await` が値を返す場合
 * そのPromiseが `reject` され、同期的に捕捉できるエラーを投げる場合
 
 これは一瞬にして\(そして魔法のように\)非同期処理のプログラミングを同期処理のプログラミングと同じように簡単に変えます。この思考実験に必要なものは、下記の3つです:
@@ -192,4 +192,3 @@ dramaticWelcome();
 完全な例を [ここ](https://cdn.rawgit.com/basarat/typescript-book/705e4496/code/async-await/es5/asyncAwaitES5.js) で見ることができます。
 
 **注意**：ES6、ES5のどちらをターゲットにする場合でも、ランタイムがグローバルにECMAScriptに準拠したPromiseの機能を持っていることを確認する必要があります。Promiseのためにポリフィルを用意する必要があるかもしれません。また、libフラグを "dom", "es2015"もしくは"dom", "es2015.promise", "es5"のように設定することで、TypeScriptがPromiseの存在を認識できるようにする必要があります。 **各ブラウザのPromiseサポート\(ネイティブ実装およびポリフィル\)の有無を** [**このサイト**](https://kangax.github.io/compat-table/es6/#test-Promise) **で確認できます。**
-
