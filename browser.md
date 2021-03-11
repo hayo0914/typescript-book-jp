@@ -151,7 +151,7 @@ ReactDOM.render(
 );
 ```
 
-### すばらしいアプリケーションを開発するワークフロー
+### あなたのすばらしいアプリケーションを開発する
 
 > 最新のパッケージを入手するには`npm install typescript@latest react@latest react-dom@latest @types/react@latest @types/react-dom@latest webpack@latest webpack-dev-server@latest webpack-cli@latest ts-loader@latest clean-webpack-plugin@latest html-webpack-plugin@latest --save-exact`を実行してください。
 
@@ -216,4 +216,3 @@ Create React Appでプロジェクトを作成すると、下記のような`tsc
 ## プロジェクトのビルド
 
 `npm run build` または `yarn build` のコマンドで、本番環境用のビルドを実行できます。これで、Reactチームによって本番環境に最適化されたバンドルファイルを出力できます。
-
