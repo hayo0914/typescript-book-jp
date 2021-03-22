@@ -97,7 +97,7 @@ npm i react
 
 ## Public vs. Private packages
 
-公開された一般的なnpmパッケージを何か1つでも使っている場合は、これは必要ありません。ただ、enterprise/commercial customers向けがあることを知ってください。
+一般に公開されているいずれかのpublicなnpmパッケージを利用する際には、この区別は必要ないでしょう。法人/商用の利用者向けにpublic、privateの区別があることだけ覚えておいてください。
 
 ### Public packages
 
