@@ -21,7 +21,7 @@ cd react-typescript
 npm install
 ```
 
-ここで、 [あなたのすばらしいアプリケーションを開発する](browser.md#あなたのすばらしいアプリケーションを開発する) にジャンプしてください。
+ここで、 [あなたのすばらしいアプリケーションを開発する](browser.md#anatanosubarashiiapurikshonwosuru) にジャンプしてください。
 
 ### プロジェクトの詳細設定
 
