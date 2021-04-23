@@ -51,10 +51,10 @@ logIfHasName({neme: 'I just misspelled name to neme'}); // Error: object literal
 
 ### 追加のプロパティを許可する
 
-型には、過剰なプロパティが許可されていることを明示的に示すインデックスシグネチャを含めることができます。
+型には、追加のプロパティが許可されていることを明示的に示すインデックスシグネチャを含めることができます。
 
 ```ts
-var x: { foo: number, [x: string]: any };
+var x: { foo: number, [x: string]: unknown };
 x = { foo: 1, baz: 2 };  // Ok, `baz` matched by index signature
 ```
 
