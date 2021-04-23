@@ -1,6 +1,6 @@
 # TypeScript Deep Dive 日本語版について
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-49-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-50-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
@@ -109,6 +109,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/bvews"><img src="https://avatars.githubusercontent.com/u/7419933?v=4?s=100" width="100px;" alt=""/><br /><sub><b>bvews</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=bvews" title="Documentation">📖</a></td>
     <td align="center"><a href="http://omuko.sakura.ne.jp/terakoya/"><img src="https://avatars.githubusercontent.com/u/293996?v=4?s=100" width="100px;" alt=""/><br /><sub><b>irasally</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=irasally" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/ken3ypa"><img src="https://avatars.githubusercontent.com/u/28388130?v=4?s=100" width="100px;" alt=""/><br /><sub><b>everyleaf_yanase</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=ken3ypa" title="Documentation">📖</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/jun-g-0"><img src="https://avatars.githubusercontent.com/u/71073481?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jun Gao</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=jun-g-0" title="Documentation">📖</a></td>
   </tr>
 </table>
 
