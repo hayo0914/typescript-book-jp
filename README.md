@@ -29,15 +29,13 @@ TypeScriptを学習する中で[TypeScript Deep Dive](https://github.com/basarat
 * 上記をIssueによって指摘する
 * [オリジナルのTypeScript Deep Dive](https://github.com/basarat/typescript-book/)の最新を反映する
 
-## Web開発者が学びあうためのコミュニティ
+## TODO
 
-TypeScriptだけでなくWebに関する技術全般について開発者同士がお互いに学びあうためのDiscordコミュニティを作成しました。もしよろしければご参加ください。
+下記の改善が必要と考えています。もしご協力いただける方がいらっしゃいましたら、PR をいただけますと大変助かりますmm
 
-![](.gitbook/assets/qr20200701193016433.png)
-
-{% embed url="https://discord.gg/k84yxx4" %}
-
-
+- [ ] サンプルコード内のコメントを日本語化する
+- [ ] 後半のセクション（その他のヒント、TypeScriptコンパイラの内部など) を読みやすい文章に校正する
+- [ ] 最近のTypeScript開発のバージョンアップや、周辺ツールなどの事情を反映した補筆、追加記事の執筆
 
 ## Contributors ✨
 
