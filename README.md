@@ -29,9 +29,11 @@ TypeScriptを学習する中で[TypeScript Deep Dive](https://github.com/basarat
 * 上記をIssueによって指摘する
 * [オリジナルのTypeScript Deep Dive](https://github.com/basarat/typescript-book/)の最新を反映する
 
+また、内容だけでなく、運用なども含め改善するべき点や、提案などありましたら、リポジトリに Issue をあげていただければと思います。
+
 ## TODO
 
-下記の改善が必要と考えています。もしご協力いただける方がいらっしゃいましたら、PR をいただけますと大変助かりますmm
+特に、下記の改善が必要と考えています。もしご協力いただける方がいらっしゃいましたら、PR をいただけますと大変助かりますmm
 
 - [ ] サンプルコード内のコメントを日本語化する
 - [ ] 後半のセクション（その他のヒント、TypeScriptコンパイラの内部など) を読みやすい文章に校正する
@@ -119,4 +121,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## お願い
+もしTypeScript Deep Dive 日本語版のリポジトリ及びGitBook を、オーナーとして共同でメンテナンス、改善していただけるという TS/JS の有識者（あるいは企業）の方がいらっしゃいましたら、Twitter (@yohamta) までご連絡いただけましたら幸いです。今後ともTypeSciptを新しく学習される方の一助となるよう、内容を継続的に改善していけたらと考えています。
 
