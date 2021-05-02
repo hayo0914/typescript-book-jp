@@ -1,6 +1,6 @@
 # TypeScript Deep Dive 日本語版について
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-50-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-51-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
@@ -112,6 +112,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/jun-g-0"><img src="https://avatars.githubusercontent.com/u/71073481?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jun Gao</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=jun-g-0" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/ryichk"><img src="https://avatars.githubusercontent.com/u/26560390?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ryichk</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=ryichk" title="Documentation">📖</a></td>
   </tr>
 </table>
 
