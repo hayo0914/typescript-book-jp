@@ -126,7 +126,7 @@ iTakeAnAdder(({a, b}) => { // Types of `a` and `b` are inferred
 
 ## Type Guard (Type Guards)
 
-[Type Guard](./typeGuard.md)が(特にユニオン型の場合に)どのように型を変更したり絞り込んだりするのを見てきました。TypeGuardは、ブロック内の変数の型推論の別の形式です。
+[Type Guard](./typeGuard.md)が(特にユニオン型の場合に)どのように型を変更したり絞り込んだりするのかを見てきました。TypeGuardは、ブロック内の変数の型推論の別の形式です。
 
 ## 警告(Warnings)
 
