@@ -26,7 +26,7 @@ console.log.apply(console, new Array(1000000000)); // RangeError: Invalid array 
 
 ### ReferenceError
 
-無効な参照の値参照をするときに発生するエラーを表すインスタンスを作成します。例えば
+参照されたのが無効な参照だった場合に発生するエラーを表すインスタンスを作成します。例えば
 
 ```javascript
 'use strict';
