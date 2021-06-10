@@ -26,7 +26,7 @@ console.log.apply(console, new Array(1000000000)); // RangeError: Invalid array 
 
 ### ReferenceError
 
-無効な参照を参照解除するときに発生するエラーを表すインスタンスを作成します。例えば
+無効な参照の値参照をするときに発生するエラーを表すインスタンスを作成します。例えば
 
 ```javascript
 'use strict';
@@ -168,4 +168,3 @@ function validate(value: number): {error?: string} {
 そして今、型システムで表現されています。
 
 > 非常に一般的な\(シンプル/キャッチオールなど\)の方法でエラーを処理しない限り、エラーをスローしないでください。
-
