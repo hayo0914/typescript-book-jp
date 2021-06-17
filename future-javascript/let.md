@@ -146,13 +146,13 @@ for (var j = 0; j < 3; j++) {
 
 ```typescript
 var funcs = [];
-// create a bunch of functions
+// たくさんの関数を作成する
 for (let i = 0; i < 3; i++) { // Note the use of let
     funcs.push(function() {
         console.log(i);
     })
 }
-// call them
+// それらを呼び出す
 for (var j = 0; j < 3; j++) {
     funcs[j]();
 }
