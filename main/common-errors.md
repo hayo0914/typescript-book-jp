@@ -53,6 +53,5 @@ catch (e) {
 
 **修正**：
 
-* `node_modules`と`package-lock`\(またはyarn lock\)と`npm install`をもう一度削除してください。
+* `node_modules`と`package-lock`\(またはyarn lock\)を削除したあと、`npm install`をもう一度実行してください。
 * うまくいかない場合は、無効なモジュールを見つけてください\(あなたのプロジェクトで使われているすべてのモジュールは`react.d.ts`を`peerDependency`とするべきです。hardな`dependency`は持たないようにしてください\)。
-
