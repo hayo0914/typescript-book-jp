@@ -2,7 +2,7 @@
 
 > [Jest/TypeScriptに関するPro eggheadレッスン](https://egghead.io/lessons/typescript-getting-started-with-jest-using-typescript)
 
-パーフェクトなテストのソリューションはありません。とはいえ、jestは優れたTypeScriptサポートを提供する優れたユニットテストのオプションです。
+パーフェクトなテストのソリューションはありません。とはいえ、jestは優れたTypeScriptサポートを提供する素晴らしいユニットテストのオプションです。
 
 > 注意：単純なノードのpackage.json setupで始めることを前提としています。また、すべてのTypeScriptファイルは`src`フォルダに置かれていなければなりません。このフォルダは、きれいなプロジェクト設定のために\(Jestを使わなくても\)常に推奨されます。
 
@@ -204,4 +204,3 @@ test('CheckboxWithLabel changes the text after click', () => {
 * スナップショットテスト
 * ビルトインのカバレッジレポート
 * ビルトインのasync/awaitサポート
-
