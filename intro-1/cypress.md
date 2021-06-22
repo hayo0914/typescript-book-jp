@@ -26,10 +26,10 @@ npx tsc --init --types cypress --lib dom,es6
 echo {} > cypress.json
 ```
 
-> ここでは特にサイプレスのために別々の`e2e`フォルダを作成するいくつかの理由があります：
+> cypressのために別の`e2e`フォルダを作成するのには、いくつかの理由があります：
 >
 > * 別のディレクトリや`e2e`を作成すると、`package.json`の依存関係を他のプロジェクトと簡単に分離することができます。これにより依存性の競合が少なくなります。
-> * テストフレームワークには、グローバルな名前空間を`describe` `it` `expect`などのもので汚染する慣習があります。グローバルな型定義の競合を避けるために、e2e `tsconfig.json`と`node_modules`をこの特別な`e2e`フォルダに保存することが最善です。
+> * テストフレームワークには、グローバルな名前空間を`describe` `it` `expect`などのもので汚染する慣習があります。グローバルな型定義の競合を避けるために、e2eの `tsconfig.json`と`node_modules`をこの特別な`e2e`フォルダに保存することをおすすめします。
 
 `e2e/package.json`ファイルにいくつかのスクリプトを追加します：
 
@@ -98,9 +98,9 @@ Cypressテストはコンパイル/パックされ、ブラウザで実行され
 たとえば、UIセレクタとテストの間でID値を共有して、CSSセレクタが壊れないようにすることができます。
 
 ```typescript
-import { Ids } from '../../../src/app/constants'; 
+import { Ids } from '../../../src/app/constants';
 
-// Later 
+// Later
 cy.get(`#${Ids.username}`)
   .type('john')
 ```
@@ -110,7 +110,7 @@ cy.get(`#${Ids.username}`)
 さまざまなテストがページで行う必要があるすべてのインタラクションに対して便利なハンドルを提供するオブジェクトを作成することは、一般的なテストの慣例です。getterとメソッドでTypeScriptクラスを使用してページオブジェクトを作成できます。
 
 ```typescript
-import { Ids } from '../../../src/app/constants'; 
+import { Ids } from '../../../src/app/constants';
 
 class LoginPage {
   visit() {
@@ -400,4 +400,3 @@ package.jsonの例:
 * Visual Testing: [https://docs.cypress.io/guides/tooling/visual-testing.html](https://docs.cypress.io/guides/tooling/visual-testing.html)
 * Optionally set a `baseUrl` in cypress.json to [prevent an initial reload that happens after first `visit`.](https://github.com/cypress-io/cypress/issues/2542)
 * Code coverage with cypress: [Webcast](https://www.youtube.com/watch?v=C8g5X4vCZJA)
-
