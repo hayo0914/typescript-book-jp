@@ -124,13 +124,13 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
-## Web 開発者が学びあう Discord
+## Web 開発者が学びあうコミュニティ
 
 TypeScript だけでなく Web 技術全般について開発者同士がお互いに学びあうための Discord コミュニティを作成しました。もしよろしければご参加ください。
 
 ![qrcode](.gitbook/assets/qr20200701193016433.png)
 
-[Discord](https://discord.gg/k84yxx4)
+[Discord の URL](https://discord.gg/k84yxx4)
 
 ## お願い
 もしTypeScript Deep Dive 日本語版のリポジトリ及びGitBook を、オーナーとして共同でメンテナンス、改善していただけるという TS/JS の有識者（あるいは企業）の方がいらっしゃいましたら、Twitter (@yohamta) までご連絡いただけましたら幸いです。今後ともTypeSciptを新しく学習される方の一助となるよう、内容を継続的に改善していけたらと考えています。
