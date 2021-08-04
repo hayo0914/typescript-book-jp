@@ -131,7 +131,36 @@ class FooChild extends FooBase {
 `abstract`はアクセス修飾子の1つと考えることができます。上で述べた修飾子とは異なり、クラスのメンバと同様に`class`に対しても利用できるため、アクセス修飾子とは分けて説明します。`abstract`修飾子が主に意味することは、その機能を親クラスに対して直接的に呼び出すことができず、子クラスがその具体的な機能を提供しなければならないということです。
 
 * 抽象クラスを直接インスタンス化することはできません。その代わりに、`abstract class`を継承した`class`を作成しなければなりません
+
+```typescript
+abstract class FooCommand {}
+
+class BarCommand extends FooCommand {}
+
+const fooCommand: FooCommand = new FooCommand(); // Cannot create an instance of an abstract class.
+
+const barCommand = new BarCommand(); // You can create an instance of a class that inherits from an abstract class.
+```
+
 * 抽象メンバは直接アクセスできません。子クラスがその具体的な機能（実装）を提供しなくてはなりません
+
+```typescript
+abstract class FooCommand {
+  abstract execute(): string;
+}
+
+class BarErrorCommand extends FooCommand {} // 'BarErrorCommand' needs implement abstract member 'execute'.
+
+class BarCommand extends FooCommand {
+  execute() {
+    return `Command Bar executed`;
+  }
+}
+
+const barCommand = new BarCommand();
+
+barCommand.execute(); // Command Bar executed
+```
 
 ## コンストラクタは必須ではありません
 
