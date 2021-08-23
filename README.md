@@ -1,6 +1,6 @@
 # TypeScript Deep Dive 日本語版について
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-54-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-55-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
@@ -116,6 +116,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/kshibayama"><img src="https://avatars.githubusercontent.com/u/6373952?v=4?s=100" width="100px;" alt=""/><br /><sub><b>kshibayama</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=kshibayama" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/Dz0526"><img src="https://avatars.githubusercontent.com/u/53589227?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ITO</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=Dz0526" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/ryotatake"><img src="https://avatars.githubusercontent.com/u/39555429?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ryotatake</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=ryotatake" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/ruritoBlogger"><img src="https://avatars.githubusercontent.com/u/40134104?v=4?s=100" width="100px;" alt=""/><br /><sub><b>rurito</b></sub></a><br /><a href="https://github.com/yohamta/typescript-book-jp/commits?author=ruritoBlogger" title="Documentation">📖</a></td>
   </tr>
 </table>
 
