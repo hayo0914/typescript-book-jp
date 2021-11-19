@@ -137,9 +137,9 @@ abstract class FooCommand {}
 
 class BarCommand extends FooCommand {}
 
-const fooCommand: FooCommand = new FooCommand(); // Cannot create an instance of an abstract class.
+const fooCommand: FooCommand = new FooCommand(); // 抽象クラスのインスタンスは作成できません
 
-const barCommand = new BarCommand(); // You can create an instance of a class that inherits from an abstract class.
+const barCommand = new BarCommand(); // 抽象クラスを継承したクラスのインスタンスは作成できます
 ```
 
 * 抽象メンバは直接アクセスできません。子クラスがその具体的な機能（実装）を提供しなくてはなりません
@@ -149,17 +149,17 @@ abstract class FooCommand {
   abstract execute(): string;
 }
 
-class BarErrorCommand extends FooCommand {} // 'BarErrorCommand' needs implement abstract member 'execute'.
+class BarErrorCommand extends FooCommand {} // 'BarErrorCommand'は抽象メンバー'execute'を実装する必要があります
 
 class BarCommand extends FooCommand {
   execute() {
-    return `Command Bar executed`;
+    return `コマンドBarが実行されました`;
   }
 }
 
 const barCommand = new BarCommand();
 
-barCommand.execute(); // Command Bar executed
+barCommand.execute(); // コマンドBarが実行されました
 ```
 
 ## コンストラクタは必須ではありません
@@ -199,7 +199,7 @@ class Foo {
 
 ```typescript
 class Foo {
-    members = [];  // Initialize directly
+    members = [];  // コンストラクタなしで直接メンバ変数を初期化できます
     add(x) {
         this.members.push(x);
     }
