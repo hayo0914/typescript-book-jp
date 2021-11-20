@@ -6,9 +6,8 @@
   "files": [
     "README.md"
   ],
-  "imageSize": 50,
-  "commit": true,
-  "commitConvention": "eslint",
+  "imageSize": 64,
+  "commit": false,
   "contributors": [
     {
       "login": "DotaKobayashi",
@@ -514,6 +513,5 @@
         "doc"
       ]
     }
-  ],
-  "contributorsPerLine": 7
+  ]
 }
