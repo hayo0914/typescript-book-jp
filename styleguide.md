@@ -188,13 +188,13 @@ enum Color {
 **悪い**
 
 ```typescript
-let foo = {x:123,y:undefined};
+let foo = { x: 123, y: undefined };
 ```
 
 **良い**
 
 ```typescript
-let foo:{x:number,y?:number} = {x:123};
+let foo: { x: number, y?: number } = { x: 123 };
 ```
 
 * 一般的に `undefined`を使用してください\(代わりに`{valid:boolean,value?:Foo}`のようなオブジェクトを返すことを検討してください\)
@@ -294,7 +294,7 @@ const foo: string = "hello";
 
 ## 配列 {#配列}
 
-* 配列に`foos:Array<Foo>`の代わりに`foos:Foo[]`として配列にアノテーションをつけます。
+* 配列に`foos: Array<Foo>`の代わりに`foos: Foo[]`として配列にアノテーションをつけます。
 
 > 理由：読みやすい。TypeScriptチームによって使用されています。脳が`[]`を検出するように訓練されているので、何かが配列であることを知りやすくなります。
 
