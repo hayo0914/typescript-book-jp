@@ -512,6 +512,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "ytkg",
+      "name": "YOSHIKI",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12048864?v=4",
+      "profile": "https://github.com/ytkg",
+      "contributions": [
+        "doc"
+      ]
     }
-  ]
+  ],
+  "commitConvention": "none"
 }
