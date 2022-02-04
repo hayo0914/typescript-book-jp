@@ -30,7 +30,7 @@ TypeScriptはJavaScriptを拡張して作られたプログラミング言語で
 改善に貢献していただいた皆様に、心より感謝申し上げます。
 
 <a href="https://github.com/yohamta/typescript-book-jp/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=yohamta/typescript-book-jp" />
+  <img src="https://contrib.rocks/image?repo=yohamta/typescript-book-jp&max=1000" />
 </a>
 
 Made with [contrib.rocks](https://contrib.rocks).
