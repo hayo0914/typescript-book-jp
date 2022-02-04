@@ -40,8 +40,8 @@
 * [React & TypeScriptのプロジェクト作成](browser.md)
 * [TypeScriptの型システム](type-system/README.md)
   * [JavaScriptからの移行ガイド](type-system/migrating.md)
-  * [@types パッケージ \(DefinitelyTyped\)](type-system/types.md)
-  * [アンビエント宣言\(declare\)](type-system/intro/README.md)
+  * [@types パッケージ (DefinitelyTyped)](type-system/types.md)
+  * [アンビエント宣言(declare)](type-system/intro/README.md)
     * [型定義ファイル](type-system/intro/d.ts.md)
     * [グローバル変数の宣言](type-system/intro/variables.md)
   * [インターフェース](type-system/interfaces.md)
@@ -123,4 +123,4 @@
     * [Emitter Functions](overview/emitter/emitter-functions.md)
     * [Emitter SourceMaps](overview/emitter/emitter-sourcemaps.md)
   * [Contributing](overview/contributing.md)
-
+* [TypeScript Deep Dive 日本語版](typescript-deep-dive-ri-ben-yu-ban.md)
