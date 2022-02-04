@@ -7,7 +7,7 @@ Cypressは素晴らしいE2Eテストツールです。これを考慮する大�
 * 優れたインタラクティブなGoogle Chromeのデバッグ環境を提供します。これは、UI開発者が手動で作業する方法と非常によく似ています
 * より強力なデバッグとテストの安定性を実現するコマンド実行セパレーションを持っています（詳細は後述）
 * より脆いテストでより意味のあるデバッグエクスペリエンスを提供するための暗黙のアサーションがあります（詳細は以下のヒントを参照してください）。
-* アプリケーションコードを変更することなく、バックエンドのXHRを簡単に模倣して観察する機能を提供します\(以下のヒントで詳しく説明しています\)。
+* アプリケーションコードを変更することなく、バックエンドのXHRを簡単に模倣して観察する機能を提供します(以下のヒントで詳しく説明しています)。
 
 ## インストール
 
@@ -17,7 +17,7 @@ Cypressは素晴らしいE2Eテストツールです。これを考慮する大�
 
 e2eディレクトリを作成し、cypress、TypeScriptをインストールし、typescriptとcypressの設定ファイルを追加します。
 
-```sh
+```bash
 mkdir e2e
 cd e2e
 npm init -y
@@ -33,7 +33,7 @@ echo {} > cypress.json
 
 `e2e/package.json`ファイルにいくつかのスクリプトを追加します：
 
-```json
+```javascript
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
@@ -42,7 +42,7 @@ echo {} > cypress.json
 
 最初のテストを`cypress/integration/basic.ts`に書きます:
 
-```ts
+```typescript
 it('should perform basic google search', () => {
   cy.visit('https://google.com');
   cy.get('[name="q"]')
@@ -131,9 +131,9 @@ page.username.type('john');
 
 ## ヒント: 明示的なアサーション
 
-Cypressには、ウェブ用のほんのいくつかのアサーションヘルプが付属しています。例えば、chai-jquery [https://docs.cypress.io/guides/references/assertions.html\#Chai-jQuery](https://docs.cypress.io/guides/references/assertions.html#Chai-jQuery) です。 それらを使うには、`.should`コマンドを使用して、chainerに文字列として渡します:
+Cypressには、ウェブ用のほんのいくつかのアサーションヘルプが付属しています。例えば、chai-jquery [https://docs.cypress.io/guides/references/assertions.html#Chai-jQuery](https://docs.cypress.io/guides/references/assertions.html#Chai-jQuery) です。 それらを使うには、`.should`コマンドを使用して、chainerに文字列として渡します:
 
-```text
+```
 cy.get('#foo')
   .should('have.text', 'something')
 ```
@@ -144,7 +144,7 @@ The complete list of chainers is available here : [https://docs.cypress.io/guide
 
 If you want something complex you can even use `should(callback)` and e.g.
 
-```text
+```
 cy.get('div')
   .should(($div) => {
     expect($div).to.have.length(1);
@@ -197,9 +197,9 @@ cy.get('#foo')
 
 ## ヒント: スマートディレイとリトライ
 
-Cypressはたくさんの非同期のものに対して、自動的に待ち\(そしてリトライし\)ます。
+Cypressはたくさんの非同期のものに対して、自動的に待ち(そしてリトライし)ます。
 
-```text
+```
 // If there is no request against the `foo` alias cypress will wait for 4 seconds automatically
 cy.wait('@foo')
 // If there is no element with id #foo cypress will wait for 4 seconds automatically and keep retrying
@@ -210,7 +210,7 @@ cy.get('#foo')
 
 ## ヒント: 暗黙のアサーション
 
-Cypressには暗黙のアサーションという概念があります。1つ前のコマンドが原因でそれ移行のコマンドでエラーが発生したときに実行されます。These kick in if a future command is erroring because of a previous command. E.g. the following will error at `contains` \(after automatic retries of course\) as nothing found can get `click`ed:
+Cypressには暗黙のアサーションという概念があります。1つ前のコマンドが原因でそれ移行のコマンドでエラーが発生したときに実行されます。These kick in if a future command is erroring because of a previous command. E.g. the following will error at `contains` (after automatic retries of course) as nothing found can get `click`ed:
 
 ```typescript
 cy.get('#foo')
@@ -339,7 +339,7 @@ describe('should work', () => {
 
 ## ヒント: コマンド - 実行の分離
 
-たとえば、`cy.get('#something')`のようなCypressのコマンド\(またはアサーション\)を呼び出したとき、関数は実際には何もアクションを行わずに即座に返ります。実際に関数が行うのは、Cypressのテストランナーに対して、あるアクション\(この場合は`get`\)をある時点で実行する必要があると伝えることです。
+たとえば、`cy.get('#something')`のようなCypressのコマンド(またはアサーション)を呼び出したとき、関数は実際には何もアクションを行わずに即座に返ります。実際に関数が行うのは、Cypressのテストランナーに対して、あるアクション(この場合は`get`)をある時点で実行する必要があると伝えることです。
 
 あなたが行うことは、基本的には、ランナーが将来実行することになるコマンドリストを書くことになります。このようにコマンドと実行が分離されていることは、次のようなシンプルなテストを書くことで確かめることができます。このテストを実行すると、ランナーがコマンドを_実行_する前に、`start / between / end`の`console.log`文がすぐに実行されることがわかります。
 
@@ -366,10 +366,10 @@ describe('Hello world', () => {
 
 Cypressテストによって生成された自動スナップショット+コマンドログは、デバッグに最適です。とはいえ、それは、あなたが望むならテストの実行を一時停止できます。
 
-まずChrome Developer Tools\(愛情を込めてdev toolsと呼ばれています\)をテストランナー\(macでは`CMD + ALT + i`/windowsでは`F12`\)で開いていることを確認してください。一度dev toolsを開けば、あなたはテストをリランすることができ、dev toolsは開いたままになります。もしdev toolsを開いていれば、あなたは2つの方法でテストを実行できます:
+まずChrome Developer Tools(愛情を込めてdev toolsと呼ばれています)をテストランナー(macでは`CMD + ALT + i`/windowsでは`F12`)で開いていることを確認してください。一度dev toolsを開けば、あなたはテストをリランすることができ、dev toolsは開いたままになります。もしdev toolsを開いていれば、あなたは2つの方法でテストを実行できます:
 
 * アプリケーションコードのブレークポイント: `debugger`文をアプリケーションのコードを使うと、テストランナーは通常のweb開発のように、ちょうどそこで停止します。
-* テストコードのブレークポイント: あなたは`.debug()`コマンドを使い、cypressのテスト実行をそこで停止できます。例えば、`.then(() => { debugger })`です。あなたはいくつかのエレメントを得ること\(`cy.get('#foo').then(($ /* a reference to the dom element */) => { debugger; })`\)や、ネットワーク呼び出し\(`cy.request('https://someurl').then((res /* network response */) => { debugger });`\)すら可能です。しかし、慣用的な方法は、`cy.get('#foo').debug()`です。そして、テストランナーが`debug`で止まったときに、`get`をコマンドログでクリックすると自動的に`console.log`にあなたが知りたい`.get('#foo')`に関する情報が出力されます\(そして、デバッグに必要な他のコマンドでも似たようなものです\)
+* テストコードのブレークポイント: あなたは`.debug()`コマンドを使い、cypressのテスト実行をそこで停止できます。例えば、`.then(() => { debugger })`です。あなたはいくつかのエレメントを得ること(`cy.get('#foo').then(($ /* a reference to the dom element */) => { debugger; })`)や、ネットワーク呼び出し(`cy.request('https://someurl').then((res /* network response */) => { debugger });`)すら可能です。しかし、慣用的な方法は、`cy.get('#foo').debug()`です。そして、テストランナーが`debug`で止まったときに、`get`をコマンドログでクリックすると自動的に`console.log`にあなたが知りたい`.get('#foo')`に関する情報が出力されます(そして、デバッグに必要な他のコマンドでも似たようなものです)
 
 ## ヒント: サーバーを開始してテストを実行する
 
@@ -393,10 +393,10 @@ package.jsonの例:
 
 ## リソース
 
-* ウェブサイト：[https://www.cypress.io/](https://www.cypress.io/)
-* あなたの最初のCypressテストを書く\(Cypress IDEの素晴らしいツアー\)：[https://docs.cypress.io/guides/getting-started/writing-your-first-test.html](https://docs.cypress.io/guides/getting-started/writing-your-first-test.html)
-* CI環境を設定する\(例えば、そのまま`cypress run`で動く提供されたdockerイメージ\)：[https://docs.cypress.io/guides/guides/continuous-integration.html](https://docs.cypress.io/guides/guides/continuous-integration.html)
-* レシピ\(説明付きのレシピの一覧です。レシピのソースコードに移動するには見出しをクリックしてください\): [https://docs.cypress.io/examples/examples/recipes.html](https://docs.cypress.io/examples/examples/recipes.html)
+* ウェブサイト：[https://www.cypress.io/](https://www.cypress.io)
+* あなたの最初のCypressテストを書く(Cypress IDEの素晴らしいツアー)：[https://docs.cypress.io/guides/getting-started/writing-your-first-test.html](https://docs.cypress.io/guides/getting-started/writing-your-first-test.html)
+* CI環境を設定する(例えば、そのまま`cypress run`で動く提供されたdockerイメージ)：[https://docs.cypress.io/guides/guides/continuous-integration.html](https://docs.cypress.io/guides/guides/continuous-integration.html)
+* レシピ(説明付きのレシピの一覧です。レシピのソースコードに移動するには見出しをクリックしてください): [https://docs.cypress.io/examples/examples/recipes.html](https://docs.cypress.io/examples/examples/recipes.html)
 * Visual Testing: [https://docs.cypress.io/guides/tooling/visual-testing.html](https://docs.cypress.io/guides/tooling/visual-testing.html)
 * Optionally set a `baseUrl` in cypress.json to [prevent an initial reload that happens after first `visit`.](https://github.com/cypress-io/cypress/issues/2542)
 * Code coverage with cypress: [Webcast](https://www.youtube.com/watch?v=C8g5X4vCZJA)
