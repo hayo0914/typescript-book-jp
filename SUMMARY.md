@@ -1,6 +1,6 @@
 # Table of contents
 
-* [TypeScript Deep Dive 日本語版について](README.md)
+* [TypeScript Deep Dive 日本語版](README.md)
 * [TypeScript入門 & 環境構築](getting-started/README.md)
   * [なぜTypeScriptを使うのか？](getting-started/why-typescript.md)
 * [JavaScript](recap/README.md)
@@ -123,4 +123,3 @@
     * [Emitter Functions](overview/emitter/emitter-functions.md)
     * [Emitter SourceMaps](overview/emitter/emitter-sourcemaps.md)
   * [Contributing](overview/contributing.md)
-* [TypeScript Deep Dive 日本語版](typescript-deep-dive-ri-ben-yu-ban.md)
