@@ -1,6 +1,6 @@
 # TypeScript Deep Dive 日本語版
 
-これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。オリジナルの作者[basarat](https://github.com/basarat)に心より感謝を捧げます。
+これは[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)の日本語版です。
 
 ## Why
 
@@ -27,7 +27,7 @@ TypeScriptはJavaScriptを拡張して作られたプログラミング言語で
 
 ## Contributors ✨
 
-改善に貢献していただいた皆様に、心より感謝申し上げます。
+オリジナルの作者[basarat](https://github.com/basarat)氏をはじめ、原作者の皆さま、及び、日本語版の改善に貢献していただいた皆さまに、心より感謝申し上げます。
 
 <a href="https://github.com/yohamta/typescript-book-jp/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=yohamta/typescript-book-jp&max=1000" />
