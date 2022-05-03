@@ -168,12 +168,9 @@ TypeScriptを使用してReactのWebアプリケーションを作成する場�
 
 ### 簡単にプロジェクトをセットアップする
 
-まず、Create React Appをインストールします。npmを利用して、`npm i -g create-react-app`というコマンドでローカルPCにグローバルにインストールできます。
-
-Create React Appのインストールができたら、[Reactの公式Webサイト](https://reactjs.org/docs/static-type-checking.html#using-typescript-with-create-react-app)に書かれているように`npx create-react-app my-app --template typescript`というコマンドを実行します。`my-app`の部分には、プロジェクトに利用するフォルダ名を指定します。これで、最初からTypeScriptを利用可能なプロジェクトを簡単に作成できます。
+[Reactの公式Webサイト](https://reactjs.org/docs/static-type-checking.html#using-typescript-with-create-react-app)に書かれているように`npx create-react-app my-app --template typescript`というコマンドを実行します。`my-app`の部分には、プロジェクトに利用するフォルダ名を指定します。これで、最初からTypeScriptを利用可能なプロジェクトを簡単に作成できます。
 
 ```text
-npm i -g create-react-app
 npx create-react-app my-app --template typescript
 cd my-app
 npm start # または、yarn start
