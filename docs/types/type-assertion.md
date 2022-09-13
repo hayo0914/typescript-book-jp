@@ -110,5 +110,5 @@ function handler(event: Event) {
 
 #### `as any as` vs `as unknown as`
 Typescript に関する限りどちらも同じように安全ではありません。あなたが幸せになれるものを使ってください。考慮すること：
-- Linter は `unknown` のほうが好きです (`no-explicit-any` ルールを設定している場合)
+- Linter は `unknown` のほうを好みます (`no-explicit-any` ルールを設定している場合)
 - `any` は `unknown` よりタイプする文字数が少ない
