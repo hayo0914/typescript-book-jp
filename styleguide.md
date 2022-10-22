@@ -15,11 +15,12 @@
 * [`null` vs `undefined`](styleguide.md#null-vs-undefined)
 * [書式設定](styleguide.md#書式設定)
 * [一重引用符と二重引用符](styleguide.md#引用符)
-* [タブ vs ](styleguide.md#スペース数)
+* [タブ vs スペース](styleguide.md#スペース数)
 * [セミコロン](styleguide.md#セミコロン)
 * [配列](styleguide.md#配列)
 * [ファイル名](styleguide.md#filename)
 * [`type` vs `interface`](styleguide.md#type-vs-interface)
+* [`==` or `===`](styleguide.md#double-equals-or-triple-equals)
 
 ## 変数と関数 {#変数と関数}
 
@@ -241,18 +242,18 @@ if (error === null)
 if (error)
 ```
 
-* プリミティブに`null`/`undefined`をチェックするには、`== undefined`/`!= undefined`を使います。これは`null`/`undefined`の両方に働きます。しかし、他の_falsy_値には使わないでください\(例:`''`,`0`,`false`\)。
+* `== null`/`!= null`(`===`/`!==`ではない)を使い、プリミティブに`null`/`undefined`をチェックします。これは`null`/`undefined`の両方に働きますが、他の_falsy_値\(例:`''`,`0`,`false`など\)では機能しません。
 
 **悪い**
 
 ```typescript
-if (error !== null)
+if (error !== null) // undefinedを除外しない
 ```
 
 **良い**
 
 ```typescript
-if (error != undefined)
+if (error != null) // nullもundefinedも除外する
 ```
 
 ## フォーマット {#書式設定}
@@ -329,3 +330,5 @@ class X implements FooBar {
 
 * そうでなければ、その日あなたを幸せにするものを使用してください。
 
+## `==` or `===` {#double-equals-or-triple-equals}
+どちらも[TypeScriptユーザーにとってほとんど安全です](https://www.youtube.com/watch?v=vBhRXMDlA18)。私はTypeScriptのコードベースで使われている`===`を使用しています。
