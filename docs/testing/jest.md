@@ -11,7 +11,7 @@
 npmを使用して次をインストールします。
 
 ```shell
-npm i jest @types/jest ts-jest -D
+npm i jest @types/jest ts-jest typescript -D
 ```
 
 説明：
@@ -19,6 +19,7 @@ npm i jest @types/jest ts-jest -D
 * `jest`フレームワーク(`jest`)をインストールします
 * `jest`の型(`@types/jest`)をインストールします
 * Jest用のTypeScriptプリプロセッサ(`ts-jest`)をインストールします。これにより、Jestはその場でTypeScriptをトランスパイルすることができ、source-mapをサポートします
+* `ts-jest` を使用するために必要なTypeScript コンパイラ(`typescript`)をインストールします
 * これらのすべてを、あなたのdevの依存関係に保存してください(テストはほとんど常にnpmのdev-dependencyです)
 
 ## ステップ2：Jestを設定する
