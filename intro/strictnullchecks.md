@@ -65,7 +65,7 @@ function processEntity(e?: Entity) {
 
 > これは単なるアサーションであり、型アサーションと同じように、あなたは値がnullでないことを確認する責任があることに注意してください。非nullアサーションは、本質的にはコンパイラに"それはnullでないことが分かっているから、nullではないものとして使います"と伝えるものです。
 
-### Definite Assignment Assertion演算子\(Definite Assignment Assertion Operator\)
+### 明確な割り当てアサーション演算子\(Definite Assignment Assertion Operator\)
 
 TypeScriptは、初期化されていないクラスのプロパティについてもエラーを出します。
 
@@ -80,7 +80,7 @@ class C {
 }
 ```
 
-プロパティ名に後置された完全な代入アサーションを使用して、コンストラクタ以外の場所で初期化することをTypeScriptに通知することができます。
+プロパティ名に後置された明確な割り当てアサーションを使用して、コンストラクタ以外の場所で初期化することをTypeScriptに通知することができます。
 
 ```typescript
 class C {
