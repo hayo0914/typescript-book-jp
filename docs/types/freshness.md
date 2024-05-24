@@ -92,5 +92,5 @@ this.setState({foo: "Hello"}); // Yay works fine!
 this.setState({foos: "Hello"}}; // Error: Objects may only specify known properties
 
 // And still type checked
-this.setState({foo: 123}}; // Error: Cannot assign number to a string
+this.setState({foo: 123}); // Error: Cannot assign number to a string
 ```
