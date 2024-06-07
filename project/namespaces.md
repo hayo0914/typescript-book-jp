@@ -1,8 +1,7 @@
-# 名前空間
+## 名前空間(Namespaces)
+名前空間は、JavaScriptで使用される次の一般的なパターンの便利な構文を提供します。
 
-名前空間は、JavaScriptで一般的に使われる次のようなパターンと同じことを実現できる構文です。
-
-```typescript
+```ts
 (function(something) {
 
     something.foo = 123;
@@ -10,9 +9,9 @@
 })(something || (something = {}))
 ```
 
-基本的に、`something || (something = {})`は、無名関数`function(something) {}`が何かを既存オブジェクト\(`something ||`部分\)に追加するか、新しいオブジェクト\( `|| (something = {})`の部分\)を作って何かを追加することを可能にします。これが意味することは、このように何らかの分岐で分割された2つのブロックを持つことができるということです。
+基本的に、`something || (something = {})`は、無名関数`function(something) {}`が何かを既存オブジェクト(`something ||`部分)に追加するか、新しいオブジェクト( `|| (something = {})`の部分)を作って何かを追加することを可能にします。これが意味することは、このように何らかの分岐で分割された2つのブロックを持つことができるということです。
 
-```typescript
+```ts
 (function(something) {
 
     something.foo = 123;
@@ -28,11 +27,12 @@ console.log(something); // {foo:123}
 })(something || (something = {}))
 
 console.log(something); // {foo:123, bar:456}
+
 ```
 
-このパターンは、グローバルな名前空間を汚染しないようにJavaScriptでよく使われるパターンです。ファイルモジュールの場合、グローバルの名前空間の汚染を心配する必要はありません。しかし、それでも、一連の関数を論理的にグループ化することに役立ちます。TypeScriptは、`namespace`キーワードを使って、次のようにコードをグループ化する手段を提供しています:
+これは、グローバルな名前空間を汚染しないようにJavaScriptでよく使われます。ファイルベースのモジュールでは、これを心配する必要はありませんが、このパターンは、それでも、一連の関数の論理グループ化(logical grouping)に役立ちます。そのため、TypeScriptは、`namespace`キーワードを使ってグループ化する手段を提供します:
 
-```typescript
+```ts
 namespace Utility {
     export function log(msg) {
         console.log(msg);
@@ -42,22 +42,21 @@ namespace Utility {
     }
 }
 
-// 使い方
+// usage
 Utility.log('Call me');
 Utility.error('maybe!');
 ```
 
 `namespace`キーワードは、先ほど見たのと同じJavaScriptを生成します：
 
-```typescript
+```ts
 (function (Utility) {
 
-// ユーティリティとして使う何らかのコード
+// Add stuff to Utility
 
 })(Utility || (Utility = {}));
 ```
 
-一点、注意していただきたいことは、名前空間を入れ子にすることができるということです。なので、`Utility`の下に`Messaging`名前空間を追加するために、`namespace Utility.Messaging`のようなことができます。
+注意すべきことは、名前空間を入れ子にすることができるので、`Utility`の下に`Messaging`名前空間を入れ子にするために`namespace Utility.Messaging`のようなことができるということです。
 
-大抵のプロジェクトでは、`namespace`ではなく、ファイルモジュールを使うことを推奨します。`namespace`は単に試したり、古いJavaScriptコードを移植するために使うことを推奨します。
-
+たいていのプロジェクトでは、簡単なデモと古いJavaScriptコードを移植するために、外部モジュールと`namespace`を使用することをオススメします。
