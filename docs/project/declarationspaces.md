@@ -28,7 +28,7 @@ var bar = Bar; // ERROR: "cannot find name 'Bar'"
 `cannot find name`と言うのは、*変数*宣言空間に`Bar`という名前が宣言されていないからです。それは次のトピック「変数宣言空間」につながります。
 
 ### 変数宣言空間(Variable Declaration Space)
-変数宣言空間(Variable Declaration Space)には、変数として使用できるものもあります。`class Foo`は、型宣言空間に`Foo`型を宣言することを見てきました。驚かないでください。それは、*変数*宣言空間に対して、変数*Foo*を宣言します：
+変数宣言空間(Variable Declaration Space)には、変数として使用できるものもあります。`class Foo`は、型宣言空間に`Foo`型を宣言することを見てきました。驚かないでください。それは、*変数*宣言空間に対しても同様に、変数*Foo*を宣言します：
 
 ```ts
 class Foo {};
